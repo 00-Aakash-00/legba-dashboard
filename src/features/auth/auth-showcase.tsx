@@ -6,7 +6,7 @@ export function AuthShowcase() {
   return (
     <section
       aria-label={auth.showcase.label}
-      className="rounded-[28px] border-2 border-showcase-line bg-wine-2 p-8"
+      className="rounded-[28px] border-2 border-showcase-line bg-instances-base p-8"
     >
       <p className="font-semibold text-2xl text-bone">
         {slide.lead}

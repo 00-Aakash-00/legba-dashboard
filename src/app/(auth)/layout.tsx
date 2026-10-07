@@ -10,11 +10,11 @@ export const ensureStatic = "navigation";
  */
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col gap-3 bg-[#090809] py-3 pr-[max(0.75rem,env(safe-area-inset-right))] pl-[max(0.75rem,env(safe-area-inset-left))] lg:grid lg:grid-cols-[44fr_56fr] lg:gap-4">
+    <div className="flex min-h-dvh flex-col gap-3 bg-auth-page py-3 pr-[max(0.75rem,env(safe-area-inset-right))] pl-[max(0.75rem,env(safe-area-inset-left))] lg:grid lg:grid-cols-[44fr_56fr] lg:gap-4">
       <AuthShowcase />
       <main
         id="main"
-        className="flex flex-1 flex-col rounded-[28px] border border-line-strong bg-[#0a0a0a]"
+        className="flex flex-1 flex-col rounded-[28px] border border-auth-line bg-auth-panel"
       >
         {children}
       </main>

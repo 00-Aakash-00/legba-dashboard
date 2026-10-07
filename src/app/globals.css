@@ -58,34 +58,83 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Legba palette, sampled from docs/design/mockups (see docs/design/spec). */
+/* Legba palette, measured from docs/design/mockups (docs/design/spec/*.json). */
 @theme {
-  --color-canvas: #0f1011;
-  --color-shell: #0c0d0e;
-  --color-panel: #0e0f10;
-  --color-panel-raised: #111113;
-  --color-field: #161617;
-  --color-chip: #17181a;
-  --color-badge: #27292d;
-  --color-line: #1d1f1f;
-  --color-line-strong: #2e2f30;
+  /* overview / app surfaces */
+  --color-canvas: #121314;
+  --color-shell: #0e0f10;
+  --color-hero: #0b0a0a;
+  --color-panel: #101112;
+  --color-panel-inner: #0f1010;
+  --color-panel-raised: #191a1c;
+  --color-field: #151718;
+  --color-chip: #161718;
+  --color-badge: #17191a;
+  --color-manage: #121314;
+  --color-code: #0f1010;
+  --color-line: #232526;
+  --color-line-soft: #1e2021;
+  --color-line-chip: #222324;
+  --color-line-field: #1d1f20;
+  --color-line-header: #202122;
+  --color-line-ring: #26272c;
+  --color-line-strong: #303032;
 
+  /* text */
   --color-bone: #f5f3ec;
+  --color-ink: #f5f5f5;
+  --color-ink-label: #e3e4e4;
+  --color-ink-nav: #dcdbdb;
+  --color-ink-2: #9aa0a6;
+  --color-ink-3: #8a9096;
+  --color-ink-caption: #83888f;
+  --color-ink-subtle: #7a7c80;
+  --color-ink-faint: #58595a;
   --color-dim: #71717a;
 
-  --color-signal: #f5274d;
+  /* reds */
+  --color-signal: #f41a44;
+  --color-signal-bullet: #fc1d42;
+  --color-signal-streak: #f0203f;
+  --color-signal-icon: #e01f36;
+  --color-signal-key: #f72247;
   --color-signal-strong: #fd1e43;
-  --color-pill-from: #d33047;
-  --color-pill-to: #aa1a2e;
-  --color-wine-1: #5b1117;
-  --color-wine-2: #340d0f;
-  --color-wine-3: #210608;
-  --color-wine-line: #4c0f18;
-  --color-wine-fill: #220e12;
-  --color-wine-fill-hover: #2c1218;
+  --color-red-btn-start: #a8162a;
+  --color-red-btn-mid: #8a131f;
+  --color-red-btn-end: #c21c30;
+  --color-red-outline: #b01b2c;
+  --color-wine-fill: #300d11;
+  --color-wine-fill-end: #48151b;
+  --color-wine-fill-hover: #3a1015;
+  --color-wine-line: #b01b2c;
+  --color-instances-base: #330d10;
+  --color-instances-edge: #5c0f17;
+  --color-instances-glow: #a91626;
+  --color-red-pixel: #5a121b;
   --color-red-line: #770e1c;
-  --color-showcase-line: #e61938;
-  --color-ok: #72e780;
+  --color-pill-from: #e84659;
+  --color-pill-mid: #c82239;
+  --color-pill-to: #9f1827;
+  --color-ok: #66e077;
+
+  /* login */
+  --color-auth-page: #080808;
+  --color-auth-panel: #0a0a0b;
+  --color-auth-line: #303032;
+  --color-auth-field: #161617;
+  --color-auth-field-line: #2c2c2e;
+  --color-auth-social: #161616;
+  --color-auth-accent: #fa2a4f;
+  --color-auth-link: #f42149;
+  --color-auth-check: #f1103a;
+  --color-auth-dot: #f62a4c;
+  --color-auth-dot-off: #3e3232;
+  --color-auth-divider: #737375;
+  --color-auth-label: #e0e1e2;
+  --color-auth-ink-2: #b5b8bc;
+  --color-auth-legal: #b3b5b7;
+  --color-sso-key: #13d49c;
+  --color-showcase-line: #e9193b;
 
   --radius-card: 20px;
   --radius-field: 10px;
@@ -109,38 +158,38 @@
 /* Dark only: the semantic shadcn tokens carry the Legba palette directly. */
 :root {
   color-scheme: dark;
-  --background: #0f1011;
-  --foreground: #f5f3ec;
-  --card: #111113;
-  --card-foreground: #f5f3ec;
-  --popover: #141416;
-  --popover-foreground: #f5f3ec;
-  --primary: #d33047;
+  --background: #121314;
+  --foreground: #f5f5f5;
+  --card: #101112;
+  --card-foreground: #f5f5f5;
+  --popover: #191a1c;
+  --popover-foreground: #f5f5f5;
+  --primary: #c21c30;
   --primary-foreground: #ffffff;
-  --secondary: #171819;
-  --secondary-foreground: #f5f3ec;
-  --muted: #161617;
-  --muted-foreground: #a1a1aa;
+  --secondary: #161718;
+  --secondary-foreground: #f5f5f5;
+  --muted: #151718;
+  --muted-foreground: #9aa0a6;
   --accent: #1c1d20;
-  --accent-foreground: #f5f3ec;
-  --destructive: #f5274d;
-  --border: #1d1f1f;
-  --input: #1e1e1f;
-  --ring: #f5274d;
-  --chart-1: #f5274d;
-  --chart-2: #d33047;
-  --chart-3: #aa1a2e;
-  --chart-4: #5b1117;
-  --chart-5: #a1a1aa;
+  --accent-foreground: #f5f5f5;
+  --destructive: #f41a44;
+  --border: #232526;
+  --input: #1d1f20;
+  --ring: #f41a44;
+  --chart-1: #f41a44;
+  --chart-2: #c21c30;
+  --chart-3: #8a131f;
+  --chart-4: #5c0f17;
+  --chart-5: #9aa0a6;
   --radius: 0.625rem;
-  --sidebar: #0e0f10;
-  --sidebar-foreground: #f5f3ec;
-  --sidebar-primary: #d33047;
+  --sidebar: #101112;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #c21c30;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1c1d20;
-  --sidebar-accent-foreground: #f5f3ec;
-  --sidebar-border: #1d1f1f;
-  --sidebar-ring: #f5274d;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #232526;
+  --sidebar-ring: #f41a44;
 }
 
 @layer base {
@@ -211,6 +260,7 @@
   background-image: linear-gradient(
     180deg,
     var(--color-pill-from) 0%,
+    var(--color-pill-mid) 45%,
     var(--color-pill-to) 100%
   );
   /* Composes with Tailwind's ring/shadow stack so focus rings keep the glow. */

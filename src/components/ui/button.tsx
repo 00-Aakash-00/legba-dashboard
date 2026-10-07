@@ -21,7 +21,9 @@ const buttonVariants = cva(
         pill: "rounded-full pill-primary font-semibold text-white hover:brightness-110 aria-busy:brightness-95",
         "pill-dark":
           "rounded-full border-[#5a1622] bg-[linear-gradient(180deg,#24100f_0%,#170a0c_100%)] font-semibold text-bone shadow-[inset_0_-1px_0_rgb(245_39_77/0.55),0_10px_28px_-14px_rgb(245_39_77/0.6)] hover:border-[#7a1d2c] hover:shadow-[inset_0_-1px_0_rgb(245_39_77/0.75),0_12px_32px_-12px_rgb(245_39_77/0.7)]",
-        wine: "rounded-full border-wine-line bg-wine-fill font-semibold text-bone hover:bg-wine-fill-hover",
+        wine: "rounded-full border-wine-line bg-[linear-gradient(180deg,var(--color-wine-fill)_0%,var(--color-wine-fill-end)_100%)] font-semibold text-ink hover:brightness-125",
+        "pill-red":
+          "rounded-full bg-[linear-gradient(100deg,var(--color-red-btn-start)_0%,var(--color-red-btn-mid)_45%,var(--color-red-btn-end)_100%)] font-semibold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.14)] hover:brightness-115",
         "outline-pill":
           "rounded-full border-line-strong bg-transparent font-semibold text-bone hover:bg-white/[0.04]",
         round:
