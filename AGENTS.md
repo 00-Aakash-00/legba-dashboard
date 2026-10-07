@@ -29,6 +29,11 @@ Prefetching, React Compiler, typed routes), React 19.3, Tailwind 4.3, shadcn (Ba
   `buttonVariants()` on `<Link>`/`<a>`; external and `mailto:` links are plain `<a>`.
 - The **only** loading indicator is the orb in `src/components/ui/spinner.tsx` (aicss.dev, MIT). No
   `animate-spin`, `Loader2`, or other spinners. Layout regions use skeletons.
+- **Icons only in the nav bar and on the login screens** (user rule): the desktop header (tabs, search
+  field, support/docs links, Top-Up), the mobile top bar and tab bar, and the auth screens (login, register,
+  forgot password, SSO). Everywhere else there are no icons: buttons and links are text,
+  lists use CSS bullets, and every empty and error state shows a hairline figure relevant to its page
+  (`src/components/hairline/figures/`), never an icon tile.
 - Every screen and data-backed section handles loading, empty, error, and success (ux-guidelines skill).
   Services throw `ServiceError`; they never turn a failure into `[]`.
 - **There is no authentication** (user decision): the login screens are placeholders and any
@@ -59,6 +64,9 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
   byte-identical — do not edit it. Its `kernel.js` (sha256 header `8e2abc…`) is the one shared engine.
 - Ghost/Shield figures come from the `hairline-create` skill and follow its ten rules: no colour inside a
   figure; red comes from host CSS (`--hairline-hi`).
+- **Every figure is unique** (user rule): each figure kind appears in exactly one place, and no figure is a
+  copy or variant of another. Never borrow Ghost/Shield (or any figure) as a placeholder; a new place gets a
+  new figure through the hairline judge loop.
 
 ## Demo states (placeholder backend — type at login, any password)
 - Any username/password → the normal dashboard (Jane Doe, Ghost + Shield, the mockup's data).
@@ -84,6 +92,9 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
   another device), one agent at a time, foreground tab, localhost only. Phone widths (< 500px) use
   Playwright emulation, named as such in reports.
 - QA runs in independent subagents per the qa-guidelines skill; QA agents report, never fix.
+- QA agents and any agent that drives the browser run on **Sonnet**, not Opus (user rule).
+- QA starts only once everything is built: clear the caches (`.next/`, `node_modules/.cache/`), rebuild
+  from clean (`pnpm build`), start that build, then QA it (user rule).
 
 ## Git
 - Small conventional commits; author and committer `aharish4@asu.edu` (`git log --format='%ae %ce'`).
