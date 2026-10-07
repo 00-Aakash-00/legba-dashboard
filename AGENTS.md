@@ -66,6 +66,9 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
 - `empty@demo.legba.app` — no subscriptions or keys (first-use empty states).
 - Newly registered users start empty (first-use states). The store is in-memory: a restart wipes it.
 
+## Dev server
+- `pnpm dev` runs `next dev --no-server-fast-refresh`: Next 16.4 server HMR breaks `catchError` ("Cannot redefine property: catchError"). Keep the flag until a Next patch fixes it.
+
 ## Verification
 - Gates: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 - Grep gates: no `clsx`/`tailwind-merge` imports, no spinner classes outside the orb, no `asChild`.

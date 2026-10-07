@@ -42,6 +42,7 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | pnpm `minimumReleaseAge: 1440` with exact excludes for the `next@16.4.0` family | 16.4.0 was <24h old at bootstrap; remove the excludes once it ages. |
 | pnpm `trustPolicy` not used | It rejected `undici-types@6.21.0` (from `@types/node`); not requested. |
 | React Scan via pinned `next/script` (SRI) behind `REACT_SCAN=1` in dev | Avoids the npm package's floating `latest` deps; keeps screenshots clean by default. |
+| `next dev --no-server-fast-refresh` | Next 16.4 server HMR re-instantiates `next/error` and throws "Cannot redefine property: catchError", turning (app) routes into 500s after edits. Client Fast Refresh still works; server components re-evaluate fully. Revisit on the next Next patch. |
 
 ## Generated imagery (Higgsfield)
 
