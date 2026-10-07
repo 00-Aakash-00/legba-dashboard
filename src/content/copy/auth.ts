@@ -5,19 +5,20 @@ export const auth = {
     label: "Legba highlights",
     slides: [
       {
-        lead: "Cloud, Edge, and ",
-        accent: "AI Solutions",
-        body: "Legba accelerates AI training, provides comprehensive cloud services, improves content delivery, and protects servers and applications.",
+        // The website's closing tagline puts the red on "using you." only.
+        lead: "Use the internet without the internet ",
+        accent: "using you.",
+        body: "Legba is a Chrome extension with two modes: Ghost gives your browser a private route, Shield opens a page in an isolated browser off your device.",
       },
       {
-        lead: "Private by default with ",
-        accent: "Ghost Mode",
-        body: "Maximum privacy. No traces. Built for operators.",
+        lead: "Routing and isolation for ",
+        accent: "your agents",
+        body: "Agent builders reach the same routing and isolation through a ready skill.",
       },
       {
-        lead: "Protected workloads with ",
-        accent: "Shield Mode",
-        body: "Enterprise-grade protection for your AI workloads.",
+        lead: "Two modes. ",
+        accent: "One extension.",
+        body: "Pick a mode. Open the page. Close the tab.",
       },
     ],
     slideRoleDescription: "slide",
@@ -27,7 +28,7 @@ export const auth = {
   },
   login: {
     title: "Login",
-    headingLines: ["Welcome back to", "Inference Box!"],
+    headingLines: ["Welcome back to", "Legba"],
     subtitle: "Enter your username and password to continue.",
     form: "Log in",
     email: "Email",
@@ -48,77 +49,49 @@ export const auth = {
     noAccount: "Don't have an account?",
     register: "Register",
     legalLead: "By logging in, you agree to our ",
-    msa: "Master Services Agreement",
+    terms: "Terms of service",
     and: " and ",
-    privacy: "Privacy Policy",
-    invalid:
-      "That email and password don't match. Check them and try again, or reset your password.",
-    unreachable:
-      "Couldn't reach the server. Check your connection and try again.",
-    providerUnavailable: (provider: string) =>
-      `${provider} sign-in isn't available yet. Use your email and password instead.`,
+    privacy: "Privacy policy",
   },
   register: {
     title: "Create account",
     heading: "Create your account",
-    subtitle: "Start building with Inference Box.",
+    subtitle: "Start building with Legba.",
     form: "Create account",
     name: "Full name",
     namePlaceholder: "Jane Doe",
     email: "Work email",
     password: "Password",
     passwordPlaceholder: "Create a password",
-    rulesLabel: "Your password needs",
-    rules: {
-      length: "At least 8 characters",
-      mix: "A letter and a number",
-    },
-    ruleMet: "done",
-    ruleUnmet: "not yet",
     submit: "Create account",
     pending: "Creating account",
     haveAccount: "Already have an account?",
     login: "Log in",
     legalLead: "By creating an account, you agree to our ",
-    emailTaken:
-      "That email is already registered. Log in instead, or use a different email.",
   },
   forgot: {
     title: "Reset password",
     heading: "Reset your password",
-    subtitle: "Enter your email and we'll send you a reset link.",
+    // A placeholder: there is no auth, so no mail is sent (AGENTS.md).
+    subtitle: "Any password works in this preview.",
     form: "Reset password",
     submit: "Send reset link",
     pending: "Sending",
-    sentTitle: "Check your inbox",
-    sent: (email: string) =>
-      `If an account exists for ${email}, a reset link is on its way. Check your inbox.`,
-    retry: "Use a different email",
+    sentTitle: "Nothing to reset",
+    sent: "No email was sent. Log in with any password.",
     back: "Back to log in",
   },
   sso: {
     title: "Single sign-on",
     heading: "Log in with SSO",
-    subtitle: "Enter your work email to find your organization's sign-in.",
-    form: "Find your SSO sign-in",
+    subtitle: "Enter your work email to continue.",
+    form: "Log in with SSO",
     email: "Work email",
     submit: "Continue",
-    pending: "Checking",
-    notConfigured: (domain: string) =>
-      `SSO isn't set up for ${domain} yet. Ask your admin, or log in with your email and password.`,
+    pending: "Logging in",
     back: "Back to log in",
   },
-  fields: {
-    nameRequired: "Enter your name.",
-    nameTooLong: "Use 80 characters or fewer.",
-    emailRequired: "Enter your email address.",
-    emailInvalid: "Enter a valid email address, like name@company.com.",
-    passwordRequired: "Enter your password.",
-    passwordWeak: "Use at least 8 characters, with a letter and a number.",
-    tooLong: "That's too long. Use 256 characters or fewer.",
-  },
-  /** A Server Action threw (not a network failure): nothing was changed. */
-  failed:
-    "Something went wrong on our side, so nothing was changed. Try again in a moment.",
+  /** A Server Action call failed on the server (not the network). */
+  failed: "Something went wrong on our side. Try again in a moment.",
   newTab: "(opens in a new tab)",
 };

@@ -33,7 +33,7 @@ export async function continueWithSso(formData: FormData) {
   redirect("/", RedirectType.replace);
 }
 
-/** No mail is sent: the confirmation simply echoes what was typed. */
+/** No mail is sent: any password works, so there is nothing to reset. */
 export async function requestPasswordReset(
   formData: FormData,
 ): Promise<ForgotState> {

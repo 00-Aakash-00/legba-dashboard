@@ -270,8 +270,9 @@ export function ShowcaseDecor() {
 }
 
 /**
- * The doll mark with the faint red grid behind it (desktop). The grid's
- * lines sit at the measured pitch (32.8 × 31.7) and fade out radially.
+ * The doll mark, exactly as provided, with the faint red grid behind it
+ * (desktop). The grid's lines sit at the measured pitch (32.8 × 31.7) and
+ * fade out radially.
  */
 export function ShowcaseMark() {
   return (
@@ -288,11 +289,7 @@ export function ShowcaseMark() {
             "radial-gradient(ellipse 175px 85px at 170px 90px, #000 35%, transparent 100%)",
         }}
       />
-      <Mark
-        size={95}
-        priority
-        className="relative size-full [filter:url(#legba-mark-cut)]"
-      />
+      <Mark size={95} priority className="relative size-full" />
     </div>
   );
 }

@@ -1,16 +1,16 @@
 "use client";
 
-import { CircleAlertIcon, EyeIcon, EyeOffIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { unstable_rethrow } from "next/navigation";
 import {
   type ComponentProps,
+  type FormEvent,
+  type KeyboardEvent,
   type ReactNode,
-  Suspense,
-  useRef,
-  useState,
+  startTransition,
 } from "react";
 import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { auth, states } from "@/content/copy";
@@ -26,35 +26,25 @@ const FIELD_INPUT = cn(
   "h-12 rounded-[10px] border-auth-field-line bg-auth-field px-[15.5px] font-medium text-white tracking-[-0.02em] lg:h-[44.5px] lg:pt-[2.5px] lg:pb-[5.5px] lg:pl-[14.5px]",
   "dark:bg-auth-field md:pointer-fine:text-[14px] lg:pointer-fine:text-[13.5px] lg:pointer-fine:tracking-[-0.065em]",
   "placeholder:font-normal placeholder:text-[#6f7378] hover:border-[#3a3a3d]",
-  "aria-invalid:border-[#d92446] aria-invalid:ring-0 dark:aria-invalid:border-[#d92446] dark:aria-invalid:ring-0",
-  "focus-visible:aria-invalid:ring-3 dark:focus-visible:aria-invalid:ring-destructive/40",
 );
 
 type AuthFieldProps = Omit<ComponentProps<"input">, "id"> & {
   id: string;
   label: string;
-  error?: string;
-  /** Extra ids for aria-describedby (e.g. a requirements list). */
-  describedBy?: string;
   /** A control inside the field's right edge (the reveal toggle). */
   trailing?: ReactNode;
   inputClassName?: string;
 };
 
+/** A labelled text field. Placeholder screens: nothing is required or checked. */
 export function AuthField({
   id,
   label,
-  error,
-  describedBy,
   trailing,
   className,
   inputClassName,
   ...input
 }: AuthFieldProps) {
-  const errorId = `${id}-error`;
-  const describedByIds =
-    [error ? errorId : null, describedBy].filter(Boolean).join(" ") ||
-    undefined;
   return (
     <Field className={cn("gap-0", className)}>
       <FieldLabel
@@ -66,24 +56,26 @@ export function AuthField({
       <div className="relative mt-1.5 lg:mt-[3px]">
         <Input
           id={id}
-          aria-invalid={error ? true : undefined}
-          aria-describedby={describedByIds}
           className={cn(FIELD_INPUT, trailing ? "pr-12" : null, inputClassName)}
           {...input}
         />
         {trailing}
       </div>
-      {error ? (
-        <FieldError
-          id={errorId}
-          className="mt-1.5 flex gap-1.5 text-[#ff5a73] text-[13px] leading-[17px] tracking-[-0.02em]"
-        >
-          <CircleAlertIcon aria-hidden className="mt-px size-[15px] shrink-0" />
-          <span>{error}</span>
-        </FieldError>
-      ) : null}
     </Field>
   );
+}
+
+/**
+ * `enterKeyHint="next"` labels the keyboard's return key "next", so pressing
+ * it moves to the next field instead of submitting the form early.
+ */
+export function focusOnEnter(
+  event: KeyboardEvent<HTMLInputElement>,
+  nextId: string,
+) {
+  if (event.key !== "Enter" || event.nativeEvent.isComposing) return;
+  event.preventDefault();
+  document.getElementById(nextId)?.focus();
 }
 
 /** The eye toggle inside a password field (icons.json login.password.eye). */
@@ -96,12 +88,12 @@ export function RevealToggle({
 }) {
   const label = revealed ? auth.login.hidePassword : auth.login.showPassword;
   // The glyph shows the current state (the mockup draws the open eye while
-  // the value is visible); the label names the action.
+  // the value is visible); the label names the action. No aria-pressed: a
+  // label that changes with the state already announces it.
   const Icon = revealed ? EyeIcon : EyeOffIcon;
   return (
     <button
       type="button"
-      aria-pressed={revealed}
       aria-label={label}
       onClick={onToggle}
       className="absolute top-1/2 right-[3.5px] grid size-11 -translate-y-1/2 place-items-center rounded-[8px] text-[#a0a2a4] outline-none transition-colors duration-150 hover:text-white focus-visible:ring-2 focus-visible:ring-signal active:text-white lg:right-[9.4px] lg:size-8"
@@ -160,115 +152,59 @@ export function SubmitButton({
 }
 
 /**
- * A form-level message under the submit button. The live region is always
- * mounted so the message is announced when it appears.
+ * Why the last attempt failed, under the control that made it (text only:
+ * no icons outside the nav bar). The live region is always mounted so the
+ * message is announced when it appears.
  */
-export function FormMessage({
-  message,
-  tone = "error",
-  className,
-}: {
-  message?: string;
-  tone?: "error" | "notice";
-  className?: string;
-}) {
+export function FormMessage({ message }: { message?: string }) {
   return (
-    <div role={tone === "error" ? "alert" : "status"} className={className}>
+    <div role="alert">
       {message ? (
-        <p
-          className={cn(
-            "mt-4 flex gap-2.5 rounded-[10px] border px-3.5 py-3 text-[13.5px] leading-[19px] tracking-[-0.02em]",
-            tone === "error"
-              ? "border-[#f41a44]/30 bg-[#f41a44]/[0.08] text-[#ffb3bf]"
-              : "border-line-strong bg-white/[0.03] text-[#d6d8db]",
-          )}
-        >
-          <CircleAlertIcon
-            aria-hidden
-            className={cn(
-              "mt-0.5 size-4 shrink-0",
-              tone === "error" ? "text-[#ff5a73]" : "text-[#a0a2a4]",
-            )}
-          />
-          <span>{message}</span>
+        <p className="mt-4 rounded-[10px] border border-[#f41a44]/30 bg-[#f41a44]/[0.08] px-3.5 py-3 text-[#ffb3bf] text-[13.5px] leading-[19px] tracking-[-0.02em]">
+          {message}
         </p>
       ) : null}
     </div>
   );
 }
 
-function NextParam() {
-  const next = useSearchParams().get("next");
-  return next ? <input type="hidden" name="next" value={next} /> : null;
-}
-
-/** Carries `?next=` into the login action; read on the client (static page). */
-export function NextField() {
-  return (
-    <Suspense fallback={null}>
-      <NextParam />
-    </Suspense>
-  );
-}
-
-type Rules<K extends string> = Record<K, (value: string) => string | undefined>;
+/** One call to a placeholder auth action. */
+export type Attempt<R = unknown> = { result?: R; failure?: string };
 
 /**
- * On-blur validation with the shared zod field checks: a field is checked
- * when the user leaves it (once they've typed in it), re-checked on every
- * change while it shows an error so the message clears the moment it's
- * fixed, and all fields are checked on submit.
+ * Calls one of the pass-through auth actions. Success is a redirect to the
+ * dashboard, rethrown so the router finishes it. The call can still reject
+ * (the network dropped, or the server failed): that comes back as an inline
+ * message instead of an error page, and the form keeps what was typed.
  */
-export function useFieldErrors<K extends string>(rules: Rules<K>) {
-  const [errors, setErrors] = useState<Partial<Record<K, string>>>({});
-  const touched = useRef(new Set<K>());
-  const keys = Object.keys(rules) as K[];
-
-  return {
-    errors,
-    change(name: K, value: string) {
-      touched.current.add(name);
-      if (errors[name]) {
-        setErrors((current) => ({ ...current, [name]: rules[name](value) }));
-      }
-    },
-    blur(name: K, value: string) {
-      if (!touched.current.has(name) && !errors[name]) return;
-      setErrors((current) => ({ ...current, [name]: rules[name](value) }));
-    },
-    /** Checks every field; returns the first invalid one, in field order. */
-    validate(values: Record<K, string>) {
-      const next: Partial<Record<K, string>> = {};
-      for (const key of keys) next[key] = rules[key](values[key]);
-      setErrors(next);
-      return keys.find((key) => next[key]);
-    },
-    /** Server-side field errors (first message per field). */
-    show(fieldErrors: Partial<Record<K, string[]>> | undefined) {
-      const next: Partial<Record<K, string>> = {};
-      for (const key of keys) next[key] = fieldErrors?.[key]?.[0];
-      setErrors(next);
-      return keys.find((key) => next[key]);
-    },
-    reset() {
-      touched.current.clear();
-      setErrors({});
-    },
-  };
-}
-
-/** Focuses a named control in a form (the first invalid field). */
-export function focusField(form: HTMLFormElement | null, name: string) {
-  const control = form?.elements.namedItem(name);
-  if (control instanceof HTMLElement) control.focus();
+export async function attempt<R>(call: () => Promise<R>): Promise<Attempt<R>> {
+  try {
+    return { result: await call() };
+  } catch (error) {
+    unstable_rethrow(error); // the success redirect
+    return { failure: actionFailure(error) };
+  }
 }
 
 /**
- * What to tell the user when a Server Action call rejects (it never returns
- * a result): the network failed, or the server threw. Either way nothing
- * changed, and the form keeps everything they typed.
+ * A form's submit handler: sends the fields through the action state inside
+ * a transition. Letting React run the form action instead would reset the
+ * form afterwards, clearing what was typed when an attempt fails. A repeat
+ * submit (Enter in a field) while one is pending is ignored.
  */
-export function actionFailure(error: unknown) {
+export function submitForm(
+  event: FormEvent<HTMLFormElement>,
+  pending: boolean,
+  dispatch: (data: FormData) => void,
+) {
+  event.preventDefault();
+  if (pending) return;
+  const data = new FormData(event.currentTarget);
+  startTransition(() => dispatch(data));
+}
+
+/** The user-facing message for a rejected Server Action call. */
+function actionFailure(error: unknown) {
   const offline =
     error instanceof TypeError ||
     (typeof navigator !== "undefined" && navigator.onLine === false);

@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import { AuthShowcase } from "@/features/auth/auth-showcase";
-import { MarkFilters } from "@/features/auth/mark-filters";
 
-// Auth pages are fully static: the form reads `next` on the client.
+// Auth pages are fully static: placeholders with no request data.
 export const ensureStatic = "navigation";
 
 /**
@@ -18,7 +17,6 @@ export const ensureStatic = "navigation";
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-auth-panel pr-[env(safe-area-inset-right,0px)] pl-[env(safe-area-inset-left,0px)] lg:grid lg:grid-cols-[minmax(0,631fr)_minmax(0,774fr)] lg:gap-3 lg:bg-auth-page lg:px-3 lg:py-2.5">
-      <MarkFilters />
       <main
         id="main"
         className="flex flex-1 flex-col px-4 lg:col-start-2 lg:row-start-1 lg:rounded-[28px] lg:border-2 lg:border-auth-line lg:bg-auth-panel lg:px-6"

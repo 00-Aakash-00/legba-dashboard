@@ -2,7 +2,6 @@
 
 import { KeyIcon } from "lucide-react";
 import Link from "next/link";
-import { unstable_rethrow } from "next/navigation";
 import {
   type ReactNode,
   startTransition,
@@ -15,13 +14,13 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { auth } from "@/content/copy";
 import { cn } from "@/lib/utils";
-import { signInWithProvider } from "./actions";
-import { actionFailure } from "./form-parts";
+import { continueWithProvider } from "./actions";
+import { type Attempt, attempt, FormMessage } from "./form-parts";
 import { GitHubIcon, GoogleIcon } from "./provider-icons";
-import type { Provider, ProviderState } from "./schema";
 
 const { login: copy } = auth;
-const INITIAL: ProviderState = {};
+
+type Provider = "google" | "github";
 
 // Spec auth.social.*: 42px (48px below 1024), radius 12, #161616 on a 1px
 // #2c2c2e border, 13.5px semibold labels.
@@ -30,26 +29,19 @@ const SOCIAL = cn(
 );
 
 /**
- * "Or login with" and the SSO / Google / GitHub row. SSO is a page (/sso);
- * Google and GitHub ask the server, which answers that they aren't
- * available yet. The answer appears under the row in a polite live region.
+ * "Or login with" and the SSO / Google / GitHub row. SSO is a page (/sso).
+ * Google and GitHub are placeholders: either one continues straight to the
+ * dashboard, with the orb in the button that was pressed.
  */
 export function ProviderSignIn() {
   const [requested, setRequested] = useState<Provider | null>(null);
-  const [state, dispatch, pending] = useActionState(
-    async (_previous: ProviderState, provider: Provider | null) => {
-      if (provider === null) return INITIAL;
-      try {
-        return await signInWithProvider(provider);
-      } catch (error) {
-        unstable_rethrow(error);
-        return { provider, message: actionFailure(error) };
-      }
-    },
-    INITIAL,
+  const [state, dispatch, pending] = useActionState<Attempt, Provider | null>(
+    (_previous, provider) =>
+      provider === null ? {} : attempt(() => continueWithProvider()),
+    {},
   );
 
-  // Hidden by Activity: a stale answer shouldn't greet the user on return.
+  // Hidden by Activity: a stale message shouldn't greet the user on return.
   const resetHidden = useEffectEvent(() => {
     setRequested(null);
     startTransition(() => dispatch(null));
@@ -106,13 +98,7 @@ export function ProviderSignIn() {
         />
       </fieldset>
 
-      {/* Never display:none: a live region must exist before its text does. */}
-      <p
-        role="status"
-        className="text-center text-[#c1c3c5] text-[13.5px] leading-[19px] tracking-[-0.02em] max-lg:text-[14px] [&:not(:empty)]:mt-3"
-      >
-        {state.message}
-      </p>
+      <FormMessage message={state.failure} />
     </>
   );
 }

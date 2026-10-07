@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Mark, Wordmark } from "@/components/brand/logo";
@@ -37,7 +36,7 @@ export function AuthScreen({
           {heading.map((line, index) => (
             <span key={line} className="block">
               {line}
-              {/* Keeps the accessible name spaced: "Welcome back to Inference Box!" */}
+              {/* Keeps the accessible name spaced: "Welcome back to Legba" */}
               {index < heading.length - 1 ? " " : null}
             </span>
           ))}
@@ -60,7 +59,10 @@ export function AuthScreen({
   );
 }
 
-/** Mark + LEGBA, measured in auth.brand (desktop only: the banner carries the mark below 1024px). */
+/**
+ * Mark + LEGBA, sized per auth.brand (desktop only: the banner carries the
+ * mark below 1024px). Both locked assets render exactly as provided.
+ */
 function BrandLockup() {
   return (
     <div
@@ -68,7 +70,7 @@ function BrandLockup() {
       aria-label={brand.name}
       className="hidden items-start justify-center lg:flex lg:pr-[4.8px]"
     >
-      <Mark size={49} priority className="[filter:url(#legba-mark-face)]" />
+      <Mark size={49} priority />
       <Wordmark height={26.5} className="mt-[13.5px] ml-[7.8px]" />
     </div>
   );
@@ -87,7 +89,7 @@ function LegalLine({ lead }: { lead: string }) {
         rel="noopener"
         className={linkClass}
       >
-        {login.msa}
+        {login.terms}
         <span className="sr-only"> {auth.newTab}</span>
       </a>
       {login.and}
@@ -133,14 +135,13 @@ export function AuthSwitch({
   );
 }
 
-/** "Back to log in" under the forgot-password and SSO forms. */
+/** "Back to log in" under the forgot-password and SSO forms (text only). */
 export function BackToLogin({ label }: { label: string }) {
   return (
     <Link
       href="/login"
-      className="relative mx-auto mt-8 flex w-fit items-center gap-1.5 rounded-[4px] font-semibold text-[#d6d8db] text-[14px] leading-5 tracking-[-0.03em] outline-none transition-colors duration-150 after:absolute after:-inset-x-2 after:-inset-y-3 hover:text-white focus-visible:ring-2 focus-visible:ring-signal active:opacity-70"
+      className="relative mx-auto mt-8 block w-fit rounded-[4px] font-semibold text-[#d6d8db] text-[14px] leading-5 tracking-[-0.03em] outline-none transition-colors duration-150 after:absolute after:-inset-x-2 after:-inset-y-3 hover:text-white focus-visible:ring-2 focus-visible:ring-signal active:opacity-70"
     >
-      <ArrowLeftIcon aria-hidden className="size-4" strokeWidth={2.25} />
       {label}
     </Link>
   );

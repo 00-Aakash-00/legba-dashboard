@@ -180,7 +180,11 @@ export function ShowcaseCarousel({
               >
                 <h2 className="text-balance font-semibold text-[20px] text-white leading-6 tracking-[-0.03em] max-[359px]:text-[18px] max-[359px]:leading-[22px] lg:text-[27.5px] lg:leading-[33px] lg:tracking-[-0.055em]">
                   {slide.lead}
-                  <span className="text-auth-accent">{slide.accent}</span>
+                  {/* Wraps as a unit: a long heading breaks between the white
+                      lead and the red accent, never inside the accent. */}
+                  <span className="inline-block text-auth-accent">
+                    {slide.accent}
+                  </span>
                 </h2>
                 <p className="mt-1 hidden text-sm text-white/80 leading-[18px] sm:line-clamp-2 lg:mt-[14.95px] lg:line-clamp-none lg:block lg:max-w-[400px] lg:text-[15.5px] lg:text-white lg:leading-[20.5px]">
                   {slide.body}
