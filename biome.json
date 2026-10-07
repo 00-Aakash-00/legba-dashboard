@@ -16,7 +16,8 @@
       "!.claude",
       "!docs/design",
       "!src/components/hairline/document-stack",
-      "!src/components/hairline/figures"
+      "!src/components/hairline/figures",
+      "!public"
     ]
   },
   "formatter": {
@@ -48,7 +49,9 @@
   },
   "overrides": [
     {
-      "includes": ["src/components/ui/**"],
+      "includes": [
+        "src/components/ui/**"
+      ],
       "linter": {
         "rules": {
           "a11y": {

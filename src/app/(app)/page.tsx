@@ -15,7 +15,7 @@ export const metadata: Metadata = { title: overview.title };
  */
 export default function OverviewPage() {
   return (
-    <div className="mx-auto grid w-full max-w-[1440px] gap-4 px-4 pt-4 pb-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:pt-6 xl:grid-cols-[minmax(0,925fr)_minmax(0,473fr)] xl:grid-rows-[minmax(367.5px,auto)_minmax(540px,auto)] xl:gap-x-4 xl:gap-y-[18.5px] xl:pt-[27px] xl:pr-4 xl:pb-[19px] xl:pl-2.5">
+    <div className="grid w-full gap-4 px-4 pt-4 pb-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:pt-6 xl:grid-cols-[minmax(0,925fr)_minmax(0,473fr)] xl:grid-rows-[minmax(367.5px,auto)_minmax(540px,auto)] xl:gap-x-4 xl:gap-y-[18.5px] xl:pt-[27px] xl:pr-4 xl:pb-[19px] xl:pl-2.5">
       <h1 className="sr-only">{overview.title}</h1>
       <ApiKeysHero />
       <InstancesCard />
