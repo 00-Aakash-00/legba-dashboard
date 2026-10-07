@@ -36,13 +36,17 @@ export function ApiKeysHero() {
       aria-labelledby={TITLE_ID}
       className="@container/hero relative isolate flex min-h-[300px] overflow-hidden rounded-[18px] border border-[#232325] bg-hero"
     >
+      {/* `sizes` is the card's inner width in the overview grid (app/(app)/
+          page.tsx): from 1280 the 925fr of 1398fr column of 100vw less 42px
+          of gutters and gap; from 1024 the 3fr of 5fr column of 100vw less
+          48px; below, 100vw less the 32px gutters; less the 2px border. */}
       <Image
         src="/images/overview/api-keys-hero.webp"
         alt=""
         fill
         loading="eager"
         fetchPriority="high"
-        sizes="(min-width: 1280px) 66vw, (min-width: 1024px) 60vw, calc(100vw - 32px)"
+        sizes="(min-width: 1280px) calc(66.17vw - 30px), (min-width: 1024px) calc(60vw - 31px), calc(100vw - 34px)"
         className="pointer-events-none select-none object-cover object-center opacity-80 @xl/hero:object-top"
       />
       <div className="relative flex w-full flex-col items-center justify-center px-5 py-9 text-center @xl/hero:pt-[66.3px] @xl/hero:pr-1 @xl/hero:pb-[43.15px] @xl/hero:pl-0">

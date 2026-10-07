@@ -87,35 +87,32 @@ const TILES = [
   { x: 165.4, y: 24, w: 12.1, h: 14.7, red: false, a: [0.014, 0.014] },
 ] as const;
 
-// Rack units, top to bottom: slot box, LED centre, status line rows, fade,
-// LED wash strength.
+// Rack units, top to bottom: slot box, indicator centre, status line rows,
+// fade.
 const UNITS = [
   {
     y: 90.5,
     h: 33.5,
-    led: [139.42, 107.9],
+    dot: [139.72, 107.9],
     red: 107.3,
     grey: 110.9,
     o: 1,
-    halo: 1,
   },
   {
     y: 139.5,
     h: 34.5,
-    led: [139.3, 156.45],
+    dot: [139.6, 156.45],
     red: 155.5,
     grey: 160,
     o: 0.92,
-    halo: 1,
   },
   {
     y: 189,
     h: 35,
-    led: [139.5, 206.3],
+    dot: [139.8, 206.3],
     red: 205.2,
     grey: 209.7,
     o: 0.5,
-    halo: 0.4,
   },
 ] as const;
 
@@ -127,7 +124,9 @@ const CHASSIS =
  * instances.dash), drawn in CSS px from the mockup with the art's bottom-right
  * corner pinned to the card's. The card's radius clips the chassis and side
  * panel, as drawn. The rack's edges are softened slightly, like the mockup's
- * render; the tiles keep hard edges.
+ * render; the tiles keep hard edges. Each unit's indicator is a small neutral
+ * ring where the mockup draws a red rounded-square LED and its glow: no red
+ * square markers (AGENTS.md).
  */
 function RackArt({ className }: { className?: string }) {
   return (
@@ -261,16 +260,6 @@ function RackArt({ className }: { className?: string }) {
         >
           <feGaussianBlur stdDeviation="0.45" />
         </filter>
-        {/* The LED's light washes along its slot: a broad, soft falloff. */}
-        <radialGradient id="instances-led-halo">
-          <stop stopColor="#cd0816" stopOpacity="0.34" />
-          <stop offset="0.25" stopColor="#cd0816" stopOpacity="0.28" />
-          <stop offset="0.375" stopColor="#cd0816" stopOpacity="0.2" />
-          <stop offset="0.5" stopColor="#cd0816" stopOpacity="0.14" />
-          <stop offset="0.625" stopColor="#cd0816" stopOpacity="0.085" />
-          <stop offset="0.75" stopColor="#cd0816" stopOpacity="0.045" />
-          <stop offset="1" stopColor="#cd0816" stopOpacity="0" />
-        </radialGradient>
       </defs>
 
       <rect x="191.4" y="1.9" width="15.7" height="2" rx="1" fill="#c41d35" />
@@ -328,45 +317,18 @@ function RackArt({ className }: { className?: string }) {
               stroke="url(#instances-status-grey)"
               strokeWidth="1.5"
             />
+            {/* Unlit indicator, in the card's body-text grey. */}
+            <circle
+              cx={unit.dot[0]}
+              cy={unit.dot[1]}
+              r="2.4"
+              stroke="#c2bbba"
+              strokeOpacity="0.32"
+              strokeWidth="1.1"
+            />
           </g>
         ))}
       </g>
-
-      {UNITS.map((unit) => {
-        const [cx, cy] = unit.led;
-        return (
-          <g key={unit.y} opacity={unit.o}>
-            <ellipse
-              cx={cx}
-              cy={cy}
-              rx="34"
-              ry="22"
-              fill="url(#instances-led-halo)"
-              opacity={unit.halo}
-            />
-            <g filter="url(#instances-soften)">
-              <rect
-                x={cx - 7.3}
-                y={cy - 7.3}
-                width="14.6"
-                height="14.6"
-                rx="3.5"
-                fill="#c41d30"
-                fillOpacity="0.12"
-                stroke="#b5202f"
-                strokeWidth="1.3"
-              />
-              <circle
-                cx={cx + 0.3}
-                cy={cy}
-                r="1.55"
-                stroke="#d42a3b"
-                strokeWidth="1.2"
-              />
-            </g>
-          </g>
-        );
-      })}
     </svg>
   );
 }

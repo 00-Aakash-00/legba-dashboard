@@ -1,0 +1,45 @@
+/*
+ * Right-edge fade on the code panel's scroller (the active tab panel), shown
+ * only while lines run past the edge. The mask is a 32px fade into the
+ * panel colour (the section's background shows through), drawn on a mask
+ * box 32px wider than the panel: at mask-position 0 the fade sits just past
+ * the right edge (no fade); at -32px it covers the last 32px.
+ *
+ * A scroll timeline drives it: the fade is full while 32px or more of text is
+ * hidden, then narrows to the width still hidden, and is gone once the lines
+ * end (the last 32px of the scroll range is the lines' end pad, `pr-8` in
+ * code-sample.tsx). With nothing to scroll the timeline is inactive and the
+ * mask stays at rest, so lines that fit are never faded. Browsers without
+ * scroll timelines keep a static fade; the end pad keeps the line ends whole
+ * there. The mask lifts while the panel has keyboard focus so the focus ring
+ * is whole.
+ */
+.scroller {
+  mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+  mask-size: calc(100% + 32px) 100%;
+  mask-repeat: no-repeat;
+  mask-position: -32px 0;
+}
+
+@supports (animation-timeline: scroll(self inline)) {
+  .scroller {
+    mask-position: 0 0;
+    animation: edge-fade linear both;
+    animation-timeline: scroll(self inline);
+    animation-range: calc(100% - 64px) calc(100% - 32px);
+  }
+}
+
+.scroller:focus-visible {
+  mask-image: none;
+}
+
+@keyframes edge-fade {
+  from {
+    mask-position: -32px 0;
+  }
+
+  to {
+    mask-position: 0 0;
+  }
+}
