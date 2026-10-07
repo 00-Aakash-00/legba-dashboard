@@ -1,15 +1,24 @@
+import { PencilLineIcon } from "lucide-react";
 import type { Metadata } from "next";
+import { DocsLink } from "@/components/patterns/docs-link";
+import { PageLayout } from "@/components/patterns/page-header";
+import { StubSection } from "@/components/patterns/stub-section";
 import { workspace } from "@/content/copy";
+import { listRegistries } from "@/server/services/workspace";
 
 export const metadata: Metadata = { title: workspace.registries.title };
 
-/** STUB: replaced by its feature builder. */
-export default function Page() {
+export default function RegistriesPage() {
+  const copy = workspace.registries;
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-3.5 pt-7">
-      <h1 className="font-semibold text-2xl text-bone">
-        {workspace.registries.title}
-      </h1>
-    </div>
+    <PageLayout title={copy.title} description={copy.description}>
+      <StubSection
+        id="registries"
+        copy={copy}
+        icon={PencilLineIcon}
+        load={listRegistries}
+        action={<DocsLink>{copy.empty.action}</DocsLink>}
+      />
+    </PageLayout>
   );
 }

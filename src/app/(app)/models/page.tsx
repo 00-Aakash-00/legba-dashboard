@@ -1,15 +1,24 @@
+import { PackageIcon } from "lucide-react";
 import type { Metadata } from "next";
+import { DocsLink } from "@/components/patterns/docs-link";
+import { PageLayout } from "@/components/patterns/page-header";
+import { StubSection } from "@/components/patterns/stub-section";
 import { workspace } from "@/content/copy";
+import { listModels } from "@/server/services/workspace";
 
 export const metadata: Metadata = { title: workspace.models.title };
 
-/** STUB: replaced by its feature builder. */
-export default function Page() {
+export default function ModelsPage() {
+  const copy = workspace.models;
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-3.5 pt-7">
-      <h1 className="font-semibold text-2xl text-bone">
-        {workspace.models.title}
-      </h1>
-    </div>
+    <PageLayout title={copy.title} description={copy.description}>
+      <StubSection
+        id="models"
+        copy={copy}
+        icon={PackageIcon}
+        load={listModels}
+        action={<DocsLink>{copy.empty.action}</DocsLink>}
+      />
+    </PageLayout>
   );
 }

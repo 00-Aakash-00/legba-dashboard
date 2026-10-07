@@ -1,13 +1,54 @@
+import { KeyIcon } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { PageLayout } from "@/components/patterns/page-header";
+import { SectionBoundary } from "@/components/patterns/section-boundary";
+import { SectionCard } from "@/components/patterns/section-card";
+import { Button } from "@/components/ui/button";
 import { apiKeys } from "@/content/copy";
+import { ApiKeysSkeleton } from "@/features/api-keys/api-keys-list";
+import { ApiKeysSection } from "@/features/api-keys/api-keys-section";
+import { CreateKeyDialog } from "@/features/api-keys/create-key-dialog";
 
 export const metadata: Metadata = { title: apiKeys.pageTitle };
 
-/** STUB: replaced by its feature builder. */
-export default function Page() {
+const HEADING_ID = "api-keys-heading";
+
+export default function ApiKeysPage() {
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-3.5 pt-7">
-      <h1 className="font-semibold text-2xl text-bone">{apiKeys.pageTitle}</h1>
-    </div>
+    <PageLayout
+      title={apiKeys.pageTitle}
+      description={apiKeys.pageDescription}
+      action={
+        <CreateKeyDialog
+          trigger={
+            <Button
+              variant="pill-dark"
+              size="pill-lg"
+              className="pointer-coarse:h-12"
+            >
+              <KeyIcon
+                aria-hidden
+                strokeWidth={3}
+                className="size-[18px] -scale-x-100 -rotate-90 text-signal-key"
+              />
+              {apiKeys.create}
+            </Button>
+          }
+        />
+      }
+    >
+      <SectionCard headingId={HEADING_ID} title={apiKeys.section}>
+        <SectionBoundary
+          title={apiKeys.error.title}
+          body={apiKeys.error.body}
+          className="flex-1"
+        >
+          <Suspense fallback={<ApiKeysSkeleton />}>
+            <ApiKeysSection headingId={HEADING_ID} />
+          </Suspense>
+        </SectionBoundary>
+      </SectionCard>
+    </PageLayout>
   );
 }
