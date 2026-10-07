@@ -7,7 +7,17 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!.claude",
+      "!docs/design",
+      "!src/components/hairline/document-stack",
+      "!src/components/hairline/figures"
+    ]
   },
   "formatter": {
     "enabled": true,
