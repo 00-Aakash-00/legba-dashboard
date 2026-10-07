@@ -17,6 +17,11 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | Backend | Placeholder backend (`src/server`): in-memory store and demo data. **No auth** (user, later on 2026-10-07): the login screen is a placeholder and any username/password continues to the dashboard; no sessions, no route guard. Typing a documented demo email at login switches a demo state (empty / error-then-retry / slow) so every UX state stays reachable for QA. |
 | Git | All commits as `aharish4@asu.edu`; private repo `github.com/00-Aakash-00/legba-dashboard`. |
 | Loaders | Every spinner is an aicss.dev orb. |
+| Icons | **Only in the nav bar and on the login screens** (user, 2026-10-07): the header (tabs, search, support/docs, Top-Up), the mobile top bar and tab bar, and login/register/forgot/SSO. Everywhere else buttons and links are text, lists use CSS bullets, toasts and dialogs have no glyphs. |
+| Empty and error states | Each shows a hairline figure (hairline-create skill) drawn for that page, never an icon tile (user, 2026-10-07). |
+| Unique figures | Every hairline figure is used in exactly one place and no figure is a variant of another (user, 2026-10-07). |
+| Plans | "Your subscriptions" lists every plan with its status (Inactive / Free plan / Active); cards and View All open the dashboard's own `/plans` page, where people subscribe (placeholder, no payment) (user, 2026-10-07). Nested boxes follow outer radius = inner radius + padding. |
+| QA | QA and browser-driving agents run on Sonnet; QA starts only after everything is built, the caches are cleared and the app is rebuilt from clean (user, 2026-10-07). |
 | Chrome | Claude in Chrome runs only on this Mac's Chrome. |
 
 ## Accepted deviations from the mockups
@@ -25,17 +30,22 @@ Every deviation from the mockups or from a default is recorded here with its rea
 |---|---|---|---|
 | Ghost / Shield card art | Particle renders with red glow | Hairline line figures (hairline-create skill); the card supplies the red glow, streaks and dust; the figure's single bright stroke is red | The user asked for hairline figures; hairline's rules forbid colour/glow inside a figure (rule 04). |
 | Product Documentation art | A "DOC" file tile with grid lines | The website's portable `DocumentStack` docs-hero component, vendored byte-identical | The user asked for the website's docs hero imagery. |
-| Login showcase slides 2–3 | Only slide 1 is drawn | Slides reuse mockup copy (Ghost Mode / Shield Mode lines) | No other copy exists; inventing positioning was avoided. |
-| "Remember me" | Checked | Defaults to checked | Matches the mockup. |
+| Login showcase slides | Only slide 1 is drawn | Three slides of approved Legba lines (brand-voice.md §7): the tagline with red on "using you." only, the agent skill line, and "Two modes. One extension." with "Pick a mode. Open the page. Close the tab." | Copy rewritten for Legba; the red follows the website's final CTA. |
+| Showcase slide 1 heading | One line | Wraps to two lines from 1024 to 1440px, so the mark sits about 33px higher | The approved tagline is longer; copy stays word for word. |
+| Doll mark (lockup and showcase) | Face recoloured | The locked mark exactly as provided (its black face shows) | Logo decision. |
+| "Remember me" | Checked | Defaults to checked (visual only: there is no auth) | Matches the mockup. |
+| Button and list icons (Create API Key key + chevron, Launch ↗, View All ↗, Explore ↗, carousel arrows, Manage ›, feature icons, copy glyphs) | Icons | Text labels; Previous/Next as text; red CSS square bullets for features | The icons rule. |
+| Empty and error states | Icon tile | The page's own hairline figure | The empty/error-state and unique-figure rules. |
 
 ## Engineering decisions
 
 | Decision | Reason |
 |---|---|
 | Next.js **16.4.0**, React 19.3, Cache Components + Partial Prefetching + React Compiler + typed routes | User asked for 16.4; scaffolded with create-next-app@16.4.0. |
-| `(app)` layout `ensureStatic = 'shell'`; `(auth)` layout `ensureStatic = 'navigation'` | Default links fetch only the static App Shell; auth pages are fully static (the form reads `next` on the client). |
-| Session read only below `<Suspense>`; nav in Suspense with a static fallback | Cache Components build rules; `useSelectedLayoutSegment` suspends on `/subscriptions/[id]`. |
-| `proxy.ts` gates GET/HEAD only; every action/service calls `requireUser()` | Server Actions POST to page URLs; the docs say not to rely on Proxy alone. |
+| `(app)` layout `ensureStatic = 'shell'`; `(auth)` layout `ensureStatic = 'navigation'` | Default links fetch only the static App Shell; auth pages are fully static placeholders with no request data (no `?next=` redirect). |
+| Demo-state cookie read only below `<Suspense>`; nav in Suspense with a static fallback | Cache Components build rules; `useSelectedLayoutSegment` suspends on dynamic segments. |
+| No `proxy.ts`, no route guard | There is no authentication (user decision); the demo state is a cookie set at login. |
+| Search palette ranks its own rows (`shouldFilter={false}` + cmdk's `defaultFilter`) | cmdk 1.1.1 never reorders groups and doesn't re-sort rows a query brings back, so Enter could go to a weak match. |
 | shadcn **Base UI** primitives (style base-nova), CLI pinned to 4.21.3 | Current shadcn default; 4.21.4 was under the 24h age gate. |
 | `cn` package everywhere; Turbopack `resolveAlias` maps `clsx`/`tailwind-merge` → `cn` | User asked to replace clsx + tailwind-merge; cva imports `{ clsx }`, which `cn` exports. No clsx in the client bundle. |
 | Loader = AICSS orb **S1 lattice** (MIT), 20px in buttons | Rendered S1 vs C3 at 16/20/32/44px on the red pill and canvas: the 3×3 lattice echoes the mockup's pixel squares and stays crisp; C3 read as a generic spinner. |
@@ -44,7 +54,7 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | No Shiki; static token arrays for the 5-line code samples | Exact mockup colours, zero runtime. |
 | No PWA manifest | Not requested; standalone mode would add an untested surface. |
 | generativecharts.com evaluated, **not adopted** | Neither mockup has a chart and the placeholder backend has no real data; a chart would show invented numbers. |
-| pnpm `minimumReleaseAge: 1440` with exact excludes for the `next@16.4.0` family | 16.4.0 was <24h old at bootstrap; remove the excludes once it ages. |
+| pnpm `minimumReleaseAge: 1440` | Supply-chain hygiene; the bootstrap-time excludes for the `next@16.4.0` family were removed once it aged past 24h. |
 | pnpm `trustPolicy` not used | It rejected `undici-types@6.21.0` (from `@types/node`); not requested. |
 | React Scan via pinned `next/script` (SRI) behind `REACT_SCAN=1` in dev | Avoids the npm package's floating `latest` deps; keeps screenshots clean by default. |
 | `next dev --no-server-fast-refresh` | Next 16.4 server HMR re-instantiates `next/error` and throws "Cannot redefine property: catchError", turning (app) routes into 500s after edits. Client Fast Refresh still works; server components re-evaluate fully. Revisit on the next Next patch. |

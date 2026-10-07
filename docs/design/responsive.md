@@ -28,7 +28,7 @@ looks right in any column it lands in.
 ├──────────────────────────────────────┤
 │ ▔▔▔▔                                 │  2px red bar with glow on top of the active tab
 │  ▦      ▭      ⬡      ✎      ⚿       │  64px tab bar · icon 20px · label 11px semibold
-│ Overview Deploy Models Registries Keys│
+│ Overview Sessions  MCP  Skill   Keys  │
 └──────────────────────────────────────┘ ← env(safe-area-inset-bottom)
 ```
 
@@ -57,7 +57,7 @@ Below 1024 the showcase becomes a compact banner and the form takes the page:
 │ ╰──────────────────────────────╯ │  slide body hidden < 640 (shown 640–1023, 2 lines)
 │                                  │
 │  Welcome back to                 │  heading 26/30 semibold, left-aligned on phone
-│  Inference Box!                  │
+│  Legba                           │
 │  Enter your username and …       │  14px muted
 │                                  │
 │  Email                           │  inputs 48px high, 16px text (no iOS zoom)
@@ -86,35 +86,35 @@ Below 1024 (one column, order: hero, instances, subscriptions, docs):
 
 ```
 ╭ Your API Keys ───────────────╮  hero · min-h 300 · eyebrow 11px · title 30/34 · body 15px
-│  SECURE • DEPLOY • SCALE     │  CTA full width 52px · caption 13px · hero art: object-position center
+│  CONNECT • OPEN • FINISH     │  CTA full width 52px · caption 13px · hero art: object-position center
 │  Your API Keys               │
-│  [⚿ Create API Key        ›] │
+│  [ Create API Key          ] │  text only (icons live in the nav bar and on login)
 ╰──────────────────────────────╯
-╭ View your instances ─────────╮  instances · title 24/28 · Launch pill · rack art scaled to 70%, bottom-right
+╭ View your sessions ──────────╮  sessions · title 24/28 · Launch pill · rack art scaled to 70%, bottom-right
 ╰──────────────────────────────╯
-╭ ■ Your subscriptions [2] [All▾]╮ header wraps: title row, then filter + "View All ↗" on one row
+╭ ■ Your subscriptions [3] ────╮ header wraps: title row, then "View All" on one row (text, no arrow)
 │ ┌──────────────────────┐┌──  │  scroll-snap row · card width 86% (next card peeks) · gap 12
-│ │ By: Legba   ● Active │└──  │  card (container query < 420px): figure on top (h-44, centred),
+│ │ By: Legba   ● Active │└──  │  card (container query < 420px): its own figure on top (h-44, centred),
 │ │   [hairline figure]  │     │  then title 22px, body, features (1 col), Manage bar 52px
 │ │ Ghost Mode …         │     │  dots under the row; arrows hidden for coarse pointers
 │ └──────────────────────┘     │
 ╰──────────────────────────────╯
-╭ DOCS · Product Documentation ╮  text first, DocumentStack art below at 70% (no clipping of its glow)
+╭ Install the agent skill ─────╮  text first, DocumentStack art below at 70% (no clipping of its glow)
 ╰──────────────────────────────╯
-╭ DOCS · API Documentation ────╮  text first, code block full width below, horizontal scroll inside
+╭ API Documentation ───────────╮  text first, code block full width below, horizontal scroll inside
 ╰──────────────────────────────╯
 ```
 
 From 768 the two docs cards sit side by side.
 
-## Stub pages (deployments, models, registries, api keys, subscriptions)
+## Data pages (sessions, API keys) and plans
 
 ```
 Page header: title (28/32 semibold) + one-line description (muted) + primary action (right on desktop,
 full width below the description on phone).
 Body: the section card (radius 20, panel bg, 1px line) holding the section's four states:
-  loading → skeleton rows (delayed 300ms) · empty → shadcn Empty with the hairline-free icon tile,
-  title, body, action · error → SectionError · success → list.
+  loading → skeleton rows (delayed 300ms) · empty → shadcn Empty with the page's own hairline figure
+  (unique to that place), title, body, action · error → SectionError with its own figure · success → list.
 ```
 
 The empty-state card uses the mockup's red square bullet + small-caps eyebrow vocabulary so stub pages
