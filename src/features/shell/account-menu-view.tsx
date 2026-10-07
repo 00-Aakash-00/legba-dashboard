@@ -3,6 +3,7 @@
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { ChevronDownIcon, UserRoundIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
   DropdownMenu,
@@ -30,8 +31,9 @@ const itemClassName =
  * The account trigger and menu (spec overview.json header.account: 38px
  * avatar + chevron). The items are text: icons belong to the navigation.
  * `profile` is null when the account slot failed: the avatar turns generic,
- * the menu says so and offers a retry, and it can still sign out. Top up
- * lives here on phones (the header pill is ≥1024).
+ * the menu says so and offers a retry, and it can still sign out. Plans
+ * opens the dashboard's /plans page. Top up lives here on phones (the header
+ * pill is ≥1024).
  */
 export function AccountMenuView({
   profile,
@@ -114,6 +116,13 @@ export function AccountMenuView({
               {account.retry}
             </DropdownMenuItem>
           ) : null}
+          <MenuPrimitive.LinkItem
+            closeOnClick
+            render={<Link href="/plans" />}
+            className={cn(menuLinkBase, itemClassName)}
+          >
+            {account.plans}
+          </MenuPrimitive.LinkItem>
           <DropdownMenuItem
             className={cn(itemClassName, "lg:hidden")}
             onClick={() => {

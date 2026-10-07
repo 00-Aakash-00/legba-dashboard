@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import {
   HairlineFigure,
-  type HairlineKind,
+  type InteractiveKind,
 } from "@/components/hairline/hairline-figure";
 import { plans } from "@/content/copy";
 import { cn } from "@/lib/utils";
@@ -58,7 +58,7 @@ function glow(x: number, y: number, rx: number, ry: number, alpha: number) {
  * outside the lit edge of the figure's rest pose (slot px, measured from the
  * figures' rest silhouettes), so the red reads as light on that edge.
  */
-const ATMOSPHERE: Record<HairlineKind, Atmosphere> = {
+const ATMOSPHERE: Record<InteractiveKind, Atmosphere> = {
   ghost: {
     dust: {
       seed: 11,
@@ -236,7 +236,7 @@ export function PlanArt({
   plan,
   className,
 }: {
-  plan: HairlineKind;
+  plan: InteractiveKind;
   className?: string;
 }) {
   const { back, front } = ATMOSPHERE[plan];

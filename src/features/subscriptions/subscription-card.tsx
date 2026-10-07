@@ -1,37 +1,53 @@
+import type { Route } from "next";
 import Link from "next/link";
+import type { InteractiveKind } from "@/components/hairline/hairline-figure";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { plans, subscriptions } from "@/content/copy";
+import { agentPlans, plans, plansPage, subscriptions } from "@/content/copy";
 import { cn } from "@/lib/utils";
 import type { SubscriptionDTO } from "@/server/services/subscriptions";
 import { PlanArt } from "./plan-art";
 import { PlanFeatures } from "./plan-features";
 import styles from "./subscription-card.module.css";
 
-const DOT: Record<SubscriptionDTO["status"], string> = {
+type Plan = SubscriptionDTO["plan"];
+type Status = SubscriptionDTO["status"];
+
+/**
+ * Each card's hairline figure: card figures only (InteractiveKind), so an
+ * empty- or error-state figure can't be borrowed here. The agent plan's own
+ * figure (a switchboard, "patchboard") is still being drawn: once it lands,
+ * it goes here and its atmosphere in plan-art.tsx. Until then the agent card
+ * has no art, and its copy starts at the card's edge instead of beside an
+ * empty slot.
+ */
+const ART: { [P in Plan]?: InteractiveKind } = {
+  ghost: "ghost",
+  shield: "shield",
+};
+
+/** Where each card leads: its plan's section on /plans (the ids of that page's section headings). */
+const HREF = {
+  ghost: "/plans#extension-plan-heading",
+  shield: "/plans#extension-plan-heading",
+  agent: "/plans#agent-plans-heading",
+} satisfies Record<Plan, Route>;
+
+/** Active is green; Inactive a muted grey; Free plan neutral, the label's own ink. */
+const DOT: Record<Status, string> = {
   active: "bg-ok",
-  paused: "bg-[#d9a441]",
-  cancelled: "bg-ink-subtle",
+  inactive: "bg-ink-subtle",
+  free: "bg-[#c8c8c9]",
 };
 
 /** The status chip ("● Active"). Its role makes a later change announce itself. */
-export function StatusChip({
-  status,
-  className,
-}: {
-  status: SubscriptionDTO["status"];
-  className?: string;
-}) {
-  const label = subscriptions.status[status];
+function StatusChip({ status, label }: { status: Status; label: string }) {
   return (
     <Badge
       variant="status"
       role="status"
       aria-label={label}
-      className={cn(
-        "h-[32.5px] gap-[7.4px] rounded-[11px] border-[#222425] bg-[#191a1b] pr-[11.2px] pl-[9px] font-semibold text-[#c8c8c9] text-[11.5px] tracking-[-0.025em]",
-        className,
-      )}
+      className="h-[32.5px] gap-[7.4px] rounded-[11px] border-[#222425] bg-[#191a1b] pr-[11.2px] pl-[9px] font-semibold text-[#c8c8c9] text-[11.5px] tracking-[-0.025em]"
     >
       <span
         aria-hidden="true"
@@ -46,66 +62,84 @@ export function StatusChip({
 }
 
 /** The vendor chip ("By: Legba"). */
-export function VendorChip({
-  vendor,
-  className,
-}: {
-  vendor: string;
-  className?: string;
-}) {
+function VendorChip() {
   return (
     <Badge
       variant="chip"
-      className={cn(
-        "h-[33px] rounded-[11px] border-line-chip bg-[linear-gradient(180deg,#1a1b1c,#171819)] pr-[11.9px] pl-[10.8px] font-medium text-[#bdbfbe] text-[14.5px] leading-[18px] tracking-[-0.03em]",
-        className,
-      )}
+      className="h-[33px] rounded-[11px] border-line-chip bg-[linear-gradient(180deg,#1a1b1c,#171819)] pr-[11.9px] pl-[10.8px] font-medium text-[#bdbfbe] text-[14.5px] leading-[18px] tracking-[-0.03em]"
     >
-      {subscriptions.vendor(vendor)}
+      {subscriptions.vendor}
     </Badge>
   );
 }
 
 /**
- * One subscription, as drawn in the overview mockup: vendor and status chips,
- * the plan's hairline illustration, its copy and features, and the Manage bar.
+ * What a card says. Ghost and Shield are the extension plan's two modes; the
+ * agent card names the agent plan the account is on, with that plan's
+ * features from the catalog (the plans page's own copy).
+ */
+function contentOf(subscription: SubscriptionDTO) {
+  if (subscription.plan === "agent") {
+    const tier = agentPlans.find((plan) => plan.id === subscription.tier);
+    return {
+      title: subscriptions.agent.title,
+      body: plansPage.agent.description,
+      features: tier?.features ?? [],
+      status:
+        subscription.status === "free"
+          ? subscriptions.status.free
+          : (tier?.name ?? subscriptions.status.active),
+    };
+  }
+  const plan = plans[subscription.plan];
+  return {
+    title: plan.title,
+    body: plan.body,
+    features: plan.features,
+    status: subscriptions.status[subscription.status],
+  };
+}
+
+/**
+ * One plan, as drawn in the overview mockup: vendor and status chips, the
+ * plan's hairline illustration, its copy and features, and the bar that
+ * opens the plan on /plans ("Manage plan" when it's on, "View plans" when
+ * it's inactive or Free).
  */
 export function SubscriptionCard({
   subscription,
-  scope,
 }: {
   subscription: SubscriptionDTO;
-  /** Keeps ids unique when two routes with cards stay mounted (Activity). */
-  scope: string;
 }) {
-  const plan = plans[subscription.plan];
-  const titleId = `${scope}-${subscription.id}-title`;
+  const { plan, status } = subscription;
+  const content = contentOf(subscription);
+  const art = ART[plan];
+  const titleId = `subscription-${plan}-title`;
   return (
-    <article
-      aria-labelledby={titleId}
-      data-plan={subscription.plan}
-      className={styles.card}
-    >
-      <div className={styles.layout}>
+    <article aria-labelledby={titleId} data-plan={plan} className={styles.card}>
+      <div className={cn(styles.layout, !art && styles.bare)}>
         <div className={styles.chips}>
-          <VendorChip vendor={subscription.vendor} />
-          <StatusChip status={subscription.status} />
+          <VendorChip />
+          <StatusChip status={status} label={content.status} />
         </div>
-        <PlanArt plan={subscription.plan} className={styles.art} />
+        {art ? <PlanArt plan={art} className={styles.art} /> : null}
         <div className={styles.text}>
           <h3
             id={titleId}
             className="w-fit font-semibold text-[#f6f5f5] text-[22px] leading-[17px] tracking-[-0.03em]"
           >
-            {plan.title}
+            {content.title}
           </h3>
           <p className="mt-[12.3px] font-medium text-[#93999e] text-[14.5px] leading-5 tracking-[-0.03em]">
-            {plan.body}
+            {content.body}
           </p>
-          <PlanFeatures plan={subscription.plan} className={styles.features} />
+          <PlanFeatures
+            features={content.features}
+            className={styles.features}
+          />
         </div>
         <Link
-          href={`/subscriptions/${subscription.id}`}
+          href={HREF[plan]}
           aria-describedby={titleId}
           className={cn(
             buttonVariants({ variant: "bar", size: "bar" }),
@@ -114,7 +148,9 @@ export function SubscriptionCard({
           )}
         >
           <span className="relative top-px leading-[14px]">
-            {subscriptions.manage}
+            {status === "active"
+              ? subscriptions.manage
+              : subscriptions.viewPlans}
           </span>
         </Link>
       </div>

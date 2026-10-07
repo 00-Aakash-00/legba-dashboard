@@ -100,11 +100,6 @@ export function PaletteBody({
           onSelect: () => onNavigate(item.href),
         })),
         {
-          label: search.subscriptions,
-          keywords: search.keywords.subscriptions,
-          onSelect: () => onNavigate("/subscriptions"),
-        },
-        {
           label: search.plans,
           keywords: search.keywords.plans,
           onSelect: () => onNavigate("/plans"),

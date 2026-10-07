@@ -1,32 +1,10 @@
 "use client";
 
-import {
-  createContext,
-  type ReactNode,
-  type RefObject,
-  use,
-  useRef,
-  useState,
-} from "react";
-import type { subscriptions } from "@/content/copy";
-
-export type SubscriptionStatus = keyof typeof subscriptions.status;
-export type SubscriptionFilter = "all" | SubscriptionStatus;
-
-export const FILTERS: readonly SubscriptionFilter[] = [
-  "all",
-  "active",
-  "paused",
-  "cancelled",
-];
+import { createContext, type ReactNode, use, useState } from "react";
 
 type Edges = { start: boolean; end: boolean };
 
 type SubscriptionsState = {
-  filter: SubscriptionFilter;
-  setFilter: (filter: SubscriptionFilter) => void;
-  /** The filter's trigger, so "Show all" can hand focus back to it. */
-  filterRef: RefObject<HTMLButtonElement | null>;
   /** The carousel's scroller while cards are on screen; null otherwise. */
   rail: HTMLElement | null;
   setRail: (rail: HTMLElement | null) => void;
@@ -38,26 +16,14 @@ type SubscriptionsState = {
 const SubscriptionsContext = createContext<SubscriptionsState | null>(null);
 
 /**
- * Shared by the prerendered frame (filter, arrows) and the streamed list, so
- * the frame works before the data arrives and the list obeys it after.
+ * Shared by the prerendered frame (Previous / Next) and the streamed cards,
+ * so the frame works before the data arrives and drives the row after.
  */
 export function SubscriptionsProvider({ children }: { children: ReactNode }) {
-  const [filter, setFilter] = useState<SubscriptionFilter>("all");
   const [rail, setRail] = useState<HTMLElement | null>(null);
   const [edges, setEdges] = useState<Edges>({ start: true, end: true });
-  const filterRef = useRef<HTMLButtonElement>(null);
   return (
-    <SubscriptionsContext
-      value={{
-        filter,
-        setFilter,
-        filterRef,
-        rail,
-        setRail,
-        edges,
-        setEdges,
-      }}
-    >
+    <SubscriptionsContext value={{ rail, setRail, edges, setEdges }}>
       {children}
     </SubscriptionsContext>
   );

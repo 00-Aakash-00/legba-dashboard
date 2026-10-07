@@ -1,34 +1,31 @@
 import "server-only";
 
-import { getDemoUser } from "../demo";
-import { simulate } from "../simulate";
-import { type SubscriptionRecord, store } from "../store";
+import { type AgentPlanId, getPlanState } from "./billing";
 
-export type SubscriptionDTO = Pick<
-  SubscriptionRecord,
-  "id" | "plan" | "status" | "vendor" | "startedAt" | "renewsAt"
->;
+/**
+ * One card on the overview's "Your subscriptions" panel. Every plan is always
+ * listed, with its status: Ghost and Shield are both the Chrome extension
+ * plan (active or inactive); every account has an agent plan, Free until it
+ * moves to a paid one.
+ */
+export type SubscriptionDTO =
+  | { plan: "ghost" | "shield"; status: "active" | "inactive" }
+  | { plan: "agent"; status: "active" | "free"; tier: AgentPlanId };
 
-function toDTO(record: SubscriptionRecord): SubscriptionDTO {
-  const { id, plan, status, vendor, startedAt, renewsAt } = record;
-  return { id, plan, status, vendor, startedAt, renewsAt };
-}
-
-/** The workspace's subscriptions. Throws ServiceError; never returns [] on failure. */
+/**
+ * Every plan with the workspace's status on it, in the panel's order. Derived
+ * from the plan state that /plans changes, so the panel always agrees with it.
+ * Throws ServiceError; never returns [] on failure.
+ */
 export async function listSubscriptions(): Promise<SubscriptionDTO[]> {
-  const user = await getDemoUser();
-  await simulate(user, "SUBSCRIPTIONS_UNAVAILABLE");
-  return (store.subscriptions.get(user.workspaceId) ?? []).map(toDTO);
-}
-
-/** One of the workspace's subscriptions, or null when it doesn't exist. */
-export async function getSubscription(
-  id: string,
-): Promise<SubscriptionDTO | null> {
-  const user = await getDemoUser();
-  await simulate(user, "SUBSCRIPTIONS_UNAVAILABLE");
-  const record = (store.subscriptions.get(user.workspaceId) ?? []).find(
-    (subscription) => subscription.id === id,
-  );
-  return record ? toDTO(record) : null;
+  const { extension, agent } = await getPlanState();
+  return [
+    { plan: "ghost", status: extension },
+    { plan: "shield", status: extension },
+    {
+      plan: "agent",
+      status: agent === "free" ? "free" : "active",
+      tier: agent,
+    },
+  ];
 }

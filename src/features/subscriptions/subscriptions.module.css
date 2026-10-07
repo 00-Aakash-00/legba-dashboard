@@ -1,15 +1,19 @@
 /*
- * The subscriptions section: a prerendered frame (bullet, title, filter,
- * arrows, View All) with a streamed part (the count and the cards) placed
- * into it by grid area, so the per-user count sits in the header row while
- * staying inside the section's Suspense and error boundary.
+ * The subscriptions panel: a prerendered frame (title, Previous / Next, View
+ * All) with a streamed part (the count and the cards) placed into it by grid
+ * area, so the per-user count sits in the header row while staying inside the
+ * panel's Suspense and error boundary.
  *
  * Measured from the overview mockup at 1440 (spec subs.*): header row centred
  * 37.25px below the panel's top edge, cards from 74.5px, 19.5px side insets.
- * Narrow panels (container < 728px) put the filter and View All on a second row.
+ * The mockup's red square bullet is not drawn (AGENTS.md), so the title starts
+ * at the side inset, flush with the cards. Narrow panels (container < 530px)
+ * put Previous / Next and View All on a second row.
  */
 .panel {
   container: subs / inline-size;
+  /* The box of the dots on wide screens (below). */
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -19,10 +23,10 @@
 }
 
 /*
- * Narrow panels: a wrapping row. Bullet, title and count on the first line;
- * the filter, the arrows (fine pointers) and View All on the second; the body
- * below. `order` places the streamed count after the title wherever it lands
- * in the DOM, and ::before breaks the line before the filter.
+ * Narrow panels: a wrapping row. Title and count on the first line; the
+ * arrows (fine pointers) and View All on the second; the body below.
+ * `order` places the streamed count after the title wherever it lands in the
+ * DOM, and ::before breaks the line before the arrows.
  */
 .frame {
   --pad-l: 15px;
@@ -43,22 +47,10 @@
   content: "";
 }
 
-.bullet {
-  grid-area: bullet;
-  order: 1;
-  flex: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 5.5px;
-  background: #fd1e43;
-  box-shadow: 0 0 8px rgba(253, 30, 67, 0.32);
-}
-
 .title {
   grid-area: title;
   order: 2;
   min-width: 0;
-  margin-left: 12px;
   white-space: nowrap;
 }
 
@@ -66,13 +58,6 @@
   grid-area: count;
   order: 3;
   margin-left: 10px;
-}
-
-.filter {
-  grid-area: filter;
-  order: 5;
-  justify-self: start;
-  margin-top: 14px;
 }
 
 .prev {
@@ -116,22 +101,21 @@
 
 /*
  * Wide panels: one header row over the cards (the mockup). The row needs
- * 686px with "All" and about 719px with the longest filter label
- * ("Cancelled") and the text Previous / Next; narrower, the title would run
- * into the count. The threshold leaves about 9px to spare.
+ * about 521px with the text Previous / Next; narrower, the count would run
+ * into Previous. The threshold leaves about 9px to spare.
  */
-@container subs (min-width: 728px) {
+@container subs (min-width: 530px) {
   .frame {
     --pad-l: 18.5px;
     --pad-r: 18px;
     display: grid;
     grid-template-columns:
-      auto auto minmax(39.4px, auto) auto minmax(0, 1fr)
+      auto minmax(39.4px, auto) minmax(0, 1fr)
       auto auto auto;
     grid-template-rows: 37.5px 1fr;
     grid-template-areas:
-      "bullet title count filter . prev next view"
-      "body body body body body body body body";
+      "title count . prev next view"
+      "body body body body body body";
     row-gap: 18.5px;
     padding: 17.5px var(--pad-r) 20.5px var(--pad-l);
   }
@@ -140,15 +124,6 @@
     display: none;
   }
 
-  /* The /subscriptions page has no arrows or View All; its filter sits at the right. */
-  .page {
-    grid-template-columns: auto auto minmax(39.4px, auto) minmax(0, 1fr) auto;
-    grid-template-areas:
-      "bullet title count . filter"
-      "body body body body body";
-  }
-
-  .filter,
   .prev,
   .next,
   .view,
@@ -156,24 +131,8 @@
     margin-top: 0;
   }
 
-  .bullet {
-    margin-left: 6px;
-  }
-
-  .title {
-    margin-left: 14.4px;
-  }
-
   .count {
     margin-left: 10.9px;
-  }
-
-  .filter {
-    margin-left: 29px;
-  }
-
-  .page .filter {
-    justify-self: end;
   }
 
   .prev {
@@ -234,7 +193,19 @@
   }
 }
 
-/* Where the arrows are hidden (touch) or the screen is narrow, dots show the position. */
+/*
+ * Two-up rails (the rail's 760px query: the panel is 36.5px wider than its
+ * rail). A card beyond the pair would show as a sliver in a side inset, so
+ * the row is clipped 4px into the insets; cards still pass under them while
+ * the row scrolls.
+ */
+@container subs (min-width: 796.5px) {
+  .rail {
+    clip-path: inset(0 calc(var(--pad-r) - 4px) 0 calc(var(--pad-l) - 4px));
+  }
+}
+
+/* Dots under the row mark the cards in view, so a card beyond them is never a surprise. */
 .dots {
   display: flex;
   justify-content: center;
@@ -254,23 +225,19 @@
   background: #f62a4c;
 }
 
+/*
+ * Beside Previous / Next (wide screens, fine pointers), the dots sit centred
+ * in the panel's bottom padding (about 21px at 1440), out of the flow, so the
+ * mockup's measured layout doesn't move.
+ */
 @media (width >= 64rem) and (pointer: fine) {
   .dots {
-    display: none;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 7.5px;
+    padding-top: 0;
+    pointer-events: none;
   }
-}
-
-/* The /subscriptions page lists every card in a grid instead. */
-.grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
-  list-style: none;
-}
-
-.grid > li {
-  display: flex;
-  min-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

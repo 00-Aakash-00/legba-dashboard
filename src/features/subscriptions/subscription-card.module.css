@@ -58,6 +58,15 @@
   margin-left: calc(var(--art) - 19px);
 }
 
+/*
+ * A card without art (the agent plan, until its figure lands): no empty slot.
+ * The copy keeps its height in the row and starts at the card's edge, under
+ * the vendor chip.
+ */
+.bare {
+  --art: 19px;
+}
+
 .features {
   margin-top: 23.2px;
 }
@@ -90,6 +99,7 @@
 
   .text {
     margin-top: 10px;
+    margin-bottom: 20px;
     margin-left: 0;
   }
 
@@ -97,8 +107,18 @@
     margin-top: 16px;
   }
 
+  /* At the bottom, so the bars line up across a row of cards of different heights. */
   .manage {
-    margin-top: 20px;
+    margin-top: auto;
     margin-right: 0;
+  }
+
+  /*
+   * Stacked, a card without art is shorter than its row: its copy sits
+   * midway between the chips and the bar rather than over one tall gap.
+   */
+  .bare .text {
+    margin-top: auto;
+    padding-top: 20px;
   }
 }
