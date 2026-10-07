@@ -18,7 +18,8 @@ Prefetching, React Compiler, typed routes), React 19.3, Tailwind 4.3, shadcn (Ba
   pixels ÷ 1.38889 = CSS px). **Mockup beats the website brand guide** (Montserrat, glows, red planes, copy
   verbatim — the user decided this on 2026-10-07).
 - `docs/design/spec/*.json` — measured element specs; `docs/design/decisions.md` — every accepted deviation.
-- `src/content/copy.ts` — every user-facing string lives here.
+- `src/content/copy.ts` — the single import for every user-facing string; the strings live in
+  `src/content/copy/<area>.ts` (one file per area/owner).
 - Before using any framework API, read the matching guide in `node_modules/next/dist/docs/`.
 
 ## Conventions
