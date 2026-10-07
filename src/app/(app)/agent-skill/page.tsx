@@ -48,6 +48,7 @@ export default function AgentSkillPage() {
               <Step
                 number={1}
                 title={workspace.keyStep}
+                body={copy.setup.keyBody}
                 action={
                   <Link
                     href="/api-keys"

@@ -107,6 +107,8 @@ export const workspace = {
     },
     setup: {
       section: "Set up the skill",
+      /** Step 1's line: the API Keys page's own note (apiKeys.note), verbatim. */
+      keyBody: "Full keys are shown once, when they're created.",
       install: {
         title: "Install the skill",
         body: "Run the install command once the skill is published.",

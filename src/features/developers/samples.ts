@@ -3,10 +3,15 @@
  * label it Preview (docs/design/decisions.md, "Preview content"): swap in the
  * real host, config and command before launch.
  *
- * The create-session samples are the website's API quickstart, verbatim
- * (Website/Legba/app/developers/api/quickstart/page.tsx, step 2). The MCP
- * config is the illustrative config the user approved; Legba does not
- * publish a public MCP server.
+ * The create-session samples are the website's API quickstart, verbatim:
+ * Website/Legba/app/developers/api/quickstart/page.tsx, "Step 2: Create a
+ * Browser Instance" (#step-2-create-instance). The website's preview contract
+ * starts a browser session as an instance: POST /api/instances with a browser
+ * image ("ubuntu-20.04" is "Ubuntu 20.04 LTS with Chrome",
+ * app/developers/api/images/page.tsx) and a size, answered with an
+ * instance_uuid (app/developers/api/instances/page.tsx). Change them only
+ * when the website's contract changes. The MCP config is the illustrative
+ * config the user approved; Legba does not publish a public MCP server.
  */
 
 export type CodeSampleId = "curl" | "javascript" | "python";

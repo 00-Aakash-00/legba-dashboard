@@ -1,9 +1,12 @@
 /*
  * Static, pre-tokenised code samples for the API Documentation card (no
  * Shiki: exact mockup colours, zero runtime; docs/design/decisions.md).
- * Each language is the website's quickstart create-instance call
- * (Website/Legba/app/developers/api/quickstart/page.tsx), condensed to the
- * mockup's five lines. The host and org are placeholders: the API is a preview.
+ * Each language is the website's create-instance call, the request the
+ * Sessions page shows in full (src/features/developers/samples.ts):
+ * Website/Legba/app/developers/api/quickstart/page.tsx, "Step 2: Create a
+ * Browser Instance", and the same request in app/developers/api/instances/
+ * page.tsx. Condensed to the mockup's five lines; the endpoint, headers and
+ * body are unchanged. The host and org are placeholders: the API is a preview.
  */
 
 /** Token colours from the spec: command, flag/plain text, URL and header
