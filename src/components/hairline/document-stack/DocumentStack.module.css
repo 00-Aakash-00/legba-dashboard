@@ -1,0 +1,188 @@
+.artwork {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+}
+
+.artwork::before {
+  position: absolute;
+  z-index: -2;
+  inset: 16px 8px;
+  border-radius: 35%;
+  background: rgba(245, 243, 236, 0.025);
+  filter: blur(56px);
+  pointer-events: none;
+  content: "";
+}
+
+/* A static, two-level dither softens banding without blurring the artwork. */
+.artwork::after {
+  position: absolute;
+  z-index: -2;
+  inset: -48px -16px;
+  background: var(--document-stack-dither) repeat;
+  background-size: 128px 128px;
+  mask-image: radial-gradient(ellipse at center, black 25%, transparent 72%);
+  pointer-events: none;
+  content: "";
+}
+
+.grid {
+  position: absolute;
+  z-index: -1;
+  top: -48px;
+  left: -16px;
+  width: calc(100% + 32px);
+  height: calc(100% + 96px);
+  pointer-events: none;
+}
+
+.gridLines {
+  fill: none;
+  stroke: rgba(245, 243, 236, 0.08);
+  stroke-width: 0.75;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 72%);
+}
+
+.gridSpine {
+  stroke: rgba(245, 243, 236, 0.12);
+}
+
+.gridNodes {
+  fill: rgba(245, 243, 236, 0.2);
+}
+
+.fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  border-radius: 8px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage:focus-visible {
+  outline: 1px solid #d03a50;
+  outline-offset: -1px;
+}
+
+.artwork[data-ready] .fallback {
+  visibility: hidden;
+}
+
+.artwork[data-ready] .stage {
+  visibility: visible;
+}
+
+.stage > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stage svg :where(path, polygon, ellipse, line) {
+  fill: #0a0a0b;
+  stroke: rgba(245, 243, 236, 0.07);
+  stroke-width: 0.9;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: stroke 260ms cubic-bezier(0.5, 0, 0.1, 1);
+}
+
+.artwork [class~="document-label"] path {
+  fill: rgba(245, 243, 236, 0.7);
+  stroke: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.artwork [class~="document-panel-front"] {
+  stroke: rgba(245, 243, 236, 0.045);
+}
+
+.artwork [class~="document-panel-middle"] {
+  fill: #111112;
+  stroke: rgba(245, 243, 236, 0.025);
+}
+
+.artwork [class~="document-panel-back"],
+.artwork [class~="document-edge"] {
+  fill: #0a0a0b;
+  stroke: rgba(245, 243, 236, 0.035);
+}
+
+.artwork [class~="document-selected"] {
+  stroke: rgba(245, 243, 236, 0.14);
+}
+
+.artwork [class~="document-bevel"] {
+  fill: none;
+  stroke: rgba(245, 243, 236, 0.075);
+  stroke-width: 2;
+}
+
+.artwork [class~="document-inset"] {
+  fill: none;
+  stroke: rgba(245, 243, 236, 0.035);
+}
+
+.artwork [class~="document-bevel-1"],
+.artwork [class~="document-bevel-2"] {
+  stroke: rgba(245, 243, 236, 0.025);
+  stroke-width: 1.4;
+}
+
+.artwork [class~="document-page"] {
+  stroke: rgba(245, 243, 236, 0.075);
+}
+
+.artwork [class~="document-fold"] {
+  stroke: rgba(245, 243, 236, 0.025);
+}
+
+.artwork [class~="document-badge"] {
+  stroke: rgba(245, 243, 236, 0.015);
+}
+
+.artwork [class~="document-label"] {
+  fill: rgba(245, 243, 236, 0.7);
+  stroke: none;
+}
+
+.artwork [class~="document-heading"] {
+  fill: rgba(245, 243, 236, 0.12);
+  stroke: none;
+}
+
+.artwork [class~="document-rule"] {
+  fill: rgba(245, 243, 236, 0.07);
+  stroke: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage svg * {
+    transition: none;
+  }
+}
