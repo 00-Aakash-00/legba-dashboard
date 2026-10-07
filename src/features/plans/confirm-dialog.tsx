@@ -67,8 +67,6 @@ const popup = cn(
   // Phone: a bottom sheet in thumb reach.
   "fixed inset-x-0 bottom-0 flex max-h-[calc(100dvh-1.5rem)] flex-col overflow-y-auto overscroll-contain outline-none",
   "border-line border-t bg-panel text-ink shadow-[0_-24px_64px_-24px_rgb(0_0_0/0.9)]",
-  // The hero CTA's light streak, along the top edge.
-  "before:pointer-events-none before:absolute before:inset-x-16 before:top-0 before:h-px before:bg-[linear-gradient(90deg,transparent,rgb(240_32_63/0.85),transparent)] before:shadow-[0_0_10px_rgb(240_32_63/0.55)] sm:before:inset-x-24",
   "transition-[translate,scale,opacity] duration-[240ms] ease-drawer data-ending-style:duration-[180ms]",
   "data-starting-style:opacity-0 data-ending-style:opacity-0",
   "motion-safe:max-sm:data-starting-style:translate-y-full motion-safe:max-sm:data-ending-style:translate-y-full",
@@ -183,21 +181,15 @@ export function ConfirmDialog({
             role="alert"
             className={cn(
               styles.dialogInset,
-              "mt-4 flex gap-3 border border-signal/25 bg-signal/[0.06] px-4 py-3 font-medium text-[14px] text-ink leading-5",
+              "mt-4 border border-signal/25 bg-signal/[0.06] px-4 py-3 font-medium text-[14px] text-ink leading-5",
             )}
           >
-            <span
-              aria-hidden
-              className="mt-[7px] size-1.5 shrink-0 rounded-[1.5px] bg-signal shadow-[0_0_6px_rgb(244_26_68/0.6)]"
-            />
-            <div className="min-w-0">
-              <p className="text-pretty">{failure.message}</p>
-              {failure.reference ? (
-                <p className="mt-1 font-mono text-[12px] text-ink-caption">
-                  {states.reference(failure.reference)}
-                </p>
-              ) : null}
-            </div>
+            <p className="text-pretty">{failure.message}</p>
+            {failure.reference ? (
+              <p className="mt-1 font-mono text-[12px] text-ink-caption">
+                {states.reference(failure.reference)}
+              </p>
+            ) : null}
           </div>
         ) : null}
         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">

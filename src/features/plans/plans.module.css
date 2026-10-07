@@ -11,17 +11,15 @@
  *
  *   column  44  inset 8 + 1   ->  card  35
  *   card    35  inset 20 + 1  ->  box   14  (also chips in the card's corner)
- *   box     14  inset 7 + 1   ->  tile   6
  *
  * From 1280px the card breathes (inset 24) and the column grows to 48 to keep
- * the box at 14 and the tile at 6.
+ * the box at 14.
  */
 .plans {
   --bw: 1px;
   --r-column: 44px;
   --pad-column: 8px;
   --pad-card: 20px;
-  --pad-box: 7px;
   /* Where a card's content starts, measured from the card's outer edge. */
   --inset-card: calc(var(--bw) + var(--pad-card));
   /* Text below a card lines up with the card's text. */
@@ -49,12 +47,7 @@
 }
 
 .box {
-  --r-in-box: max(0px, calc(var(--r-in-card) - var(--pad-box) - var(--bw)));
   border-radius: var(--r-in-card);
-}
-
-.tile {
-  border-radius: var(--r-in-box);
 }
 
 /* A chip in a card's corner sits at the box inset; elsewhere it is a pill. */

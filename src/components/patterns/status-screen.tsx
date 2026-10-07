@@ -7,14 +7,13 @@ import {
 } from "@/components/hairline/hairline-figure";
 import { brand, states } from "@/content/copy";
 import { cn } from "@/lib/utils";
-import { eyebrowClass, SectionBullet } from "./section-card";
+import { eyebrowClass } from "./section-card";
 
 /**
  * A calm, centred message for errors and missing pages, in the overview's
  * vocabulary: the screen's own hairline figure (decorative; the copy says
  * everything), the eyebrow, one heading, what happened and what to do next,
- * and the way out. With a figure, its bright stroke is the one red above the
- * button, so the eyebrow drops its red bullet.
+ * and the way out.
  */
 export function StatusScreen({
   figure,
@@ -45,16 +44,7 @@ export function StatusScreen({
       {figure ? (
         <HairlineFigure kind={figure} decorative className="h-52 w-65" />
       ) : null}
-      <p
-        className={cn(
-          "flex items-center gap-[13px]",
-          figure ? "mt-6" : null,
-          eyebrowClass,
-        )}
-      >
-        {figure ? null : <SectionBullet />}
-        {eyebrow}
-      </p>
+      <p className={cn(figure ? "mt-6" : null, eyebrowClass)}>{eyebrow}</p>
       <h1 className="mt-4 max-w-[560px] text-balance font-semibold text-[28px] text-ink leading-8 tracking-[-0.03em] sm:text-[32px] sm:leading-[38px]">
         {title}
       </h1>

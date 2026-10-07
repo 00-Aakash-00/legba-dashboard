@@ -86,7 +86,7 @@ export default function AgentSkillPage() {
               {copy.features.items.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3.5 text-pretty font-semibold text-[#c9ccd0] text-[14.5px] leading-[21px] tracking-[-0.02em] before:mt-[7px] before:size-[7px] before:shrink-0 before:rounded-[2px] before:bg-signal-bullet before:content-['']"
+                  className="flex gap-3.5 text-pretty font-semibold text-[#c9ccd0] text-[14.5px] leading-[21px] tracking-[-0.02em] before:mt-[8.5px] before:size-1 before:shrink-0 before:rounded-full before:bg-ink-subtle before:content-['']"
                 >
                   {item}
                 </li>

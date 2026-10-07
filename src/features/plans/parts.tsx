@@ -1,8 +1,5 @@
 import type { ReactNode } from "react";
-import {
-  eyebrowClass,
-  SectionBullet,
-} from "@/components/patterns/section-card";
+import { eyebrowClass } from "@/components/patterns/section-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { plansPage } from "@/content/copy";
 import { cn } from "@/lib/utils";
@@ -176,14 +173,14 @@ function perPeriod(suffix: string) {
   return suffix === "/year" ? plansPage.perYear : plansPage.perMonth;
 }
 
-/** "What's included:" and the plan's features, with CSS square bullets. */
+/** "What's included:" and the plan's features, with small neutral CSS dots. */
 export function Included({
   features,
   onWine = false,
   className,
 }: {
   features: readonly string[];
-  /** On the featured column's red: bone text and bullets. */
+  /** On the featured column's red: bone text, dimmed bone dots. */
   onWine?: boolean;
   className?: string;
 }) {
@@ -203,11 +200,12 @@ export function Included({
           <li
             key={feature}
             className={cn(
-              "flex items-center gap-3 font-medium text-[15px] leading-5 tracking-[-0.02em]",
-              "before:size-1.5 before:shrink-0 before:rounded-[1.5px]",
+              // A 4px dot centred on the first 20px line, the text 18px in.
+              "flex items-start gap-3.5 font-medium text-[15px] leading-5 tracking-[-0.02em]",
+              "before:mt-2 before:size-1 before:shrink-0 before:rounded-full",
               onWine
-                ? "text-bone before:bg-bone"
-                : "text-ink-label before:bg-signal",
+                ? "text-bone before:bg-bone/40"
+                : "text-ink-label before:bg-ink-subtle",
             )}
           >
             {feature}
@@ -222,8 +220,8 @@ export function Included({
 export const AGENT_PLANS_HEADING_ID = "agent-plans-heading";
 
 /**
- * A section's red bullet + eyebrow (the overview's vocabulary) and its line.
- * Focusable from script only (tabIndex -1), so focus has somewhere to land.
+ * A section's eyebrow (the overview's vocabulary) and its line. Focusable
+ * from script only (tabIndex -1), so focus has somewhere to land.
  */
 export function SectionHeading({
   id,
@@ -236,15 +234,7 @@ export function SectionHeading({
 }) {
   return (
     <div className="flex flex-col gap-2.5">
-      <h2
-        id={id}
-        tabIndex={-1}
-        className={cn(
-          "flex items-center gap-[13px] outline-none",
-          eyebrowClass,
-        )}
-      >
-        <SectionBullet />
+      <h2 id={id} tabIndex={-1} className={cn(eyebrowClass, "outline-none")}>
         {title}
       </h2>
       {description ? (

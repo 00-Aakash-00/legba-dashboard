@@ -118,23 +118,12 @@ function PlanColumn({ plan }: { plan: SwitchablePlan }) {
             <li
               key={highlight}
               className={cn(
-                "flex items-center gap-3 p-(--pad-box)",
+                // 44px rows: the text's ink sits about 17px from the top, left and bottom.
+                "px-4 py-3 font-semibold text-[14.5px] text-ink-label leading-5 tracking-[-0.02em]",
                 index > 0 && styles.dashTop,
               )}
             >
-              {/* A lit pixel, the instances rack's LED: a bullet, not an icon. */}
-              <span
-                aria-hidden
-                className={cn(
-                  styles.tile,
-                  "grid size-[30px] shrink-0 place-items-center border border-[#2a2b2f] bg-[#1c1d20]",
-                )}
-              >
-                <span className="size-[7px] rounded-[2px] bg-signal shadow-[0_0_8px_rgb(244_26_68/0.65)]" />
-              </span>
-              <span className="min-w-0 font-semibold text-[14.5px] text-ink-label leading-5 tracking-[-0.02em]">
-                {highlight}
-              </span>
+              {highlight}
             </li>
           ))}
         </ul>

@@ -34,6 +34,9 @@ Prefetching, React Compiler, typed routes), React 19.3, Tailwind 4.3, shadcn (Ba
   forgot password, SSO). Everywhere else there are no icons: buttons and links are text,
   lists use CSS bullets, and every empty and error state shows a hairline figure relevant to its page
   (`src/components/hairline/figures/`), never an icon tile.
+- **No red square markers** (user rule): no red rounded-square section bullets, list bullets or "LED"
+  tiles anywhere (this overrides the mockup's "■ Your subscriptions"). Titles and eyebrows are plain text;
+  list items use a small neutral round dot. Modals and dialogs carry no red top glow or streak.
 - Every screen and data-backed section handles loading, empty, error, and success (ux-guidelines skill).
   Services throw `ServiceError`; they never turn a failure into `[]`.
 - **There is no authentication** (user decision): the login screens are placeholders and any
