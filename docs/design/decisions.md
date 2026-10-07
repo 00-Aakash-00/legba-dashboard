@@ -47,6 +47,7 @@ Every deviation from the mockups or from a default is recorded here with its rea
 
 | File | Model | Job | Notes |
 |---|---|---|---|
-| `public/images/overview/api-keys-hero.webp` | gpt_image_2 (image edit of the mockup hero crop), 21:9, 4k | 6fc6329d-2d98-425f-ada3-2829fedf0d5d | Text/UI removed; resized to 2560px WebP (157 KB). |
+| `public/images/overview/api-keys-hero.webp` | gpt_image_2 (image edit of the mockup hero crop), 21:9, 4k | 6fc6329d-2d98-425f-ada3-2829fedf0d5d | Text/UI removed; resized to 2560px WebP (157 KB). Judge score 9/10; render with `object-cover object-top` (top-aligned, streaks within 1–3px). |
+| `public/images/avatars/default.webp` | nano_banana_flash, 1:1, 1k | 1b31a92e-90a7-4654-8c26-77448768c5b7 | Non-identifiable stylised portrait; 192px WebP. Judge pick for mood match at 40px. |
 
 No logo, doll mark, or LEGBA text was ever generated (locked assets only).

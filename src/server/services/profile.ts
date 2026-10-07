@@ -22,7 +22,7 @@ export async function getProfile(): Promise<ProfileDTO> {
     name: user.name,
     email: user.email,
     initials: initials || user.email[0]?.toUpperCase() || "?",
-    // Set once the generated avatar is in public/images/avatars (see decisions.md).
-    avatarUrl: null,
+    // The mockup account shows the generated portrait; everyone else gets initials.
+    avatarUrl: user.id === "usr_jane" ? "/images/avatars/default.webp" : null,
   };
 }
