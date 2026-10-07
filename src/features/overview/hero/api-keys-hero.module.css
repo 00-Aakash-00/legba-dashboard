@@ -1,0 +1,159 @@
+/*
+ * Text blocks are trimmed to cap height and baseline (or descent), so the
+ * layout spaces ink to ink like the mockup spec. Where text-box trimming is
+ * unsupported, Montserrat's metrics (ascent 0.968em, descent 0.251em, cap
+ * 0.7em) give the same rhythm: the text moves up by the top trim and the
+ * content after it moves in by both trims.
+ */
+.trim {
+  text-box: trim-both cap alphabetic;
+}
+
+.trimDescent {
+  text-box: trim-both cap text;
+}
+
+@supports not (text-box: trim-both cap alphabetic) {
+  .trim,
+  .trimDescent {
+    translate: 0 calc(0.3415em - 0.5lh);
+  }
+
+  .trim {
+    margin-bottom: calc(0.7em - 1lh);
+  }
+
+  .trimDescent {
+    margin-bottom: calc(0.951em - 1lh);
+  }
+}
+
+/*
+ * "Create API Key" pill (docs/design/spec/overview.json, hero.cta).
+ *
+ * The mockup draws a dark fill that warms to the right, a red hairline whose
+ * brightness peaks at the centre of the top and bottom edges (dim at the
+ * rounded ends), and a halo that glows only from those two bright segments.
+ * A box-shadow is uniform along an edge, so the layers are gradients on the
+ * two pseudo-elements, painted under the label inside the button's own
+ * stacking context. Sizes are relative so the full-width phone pill keeps
+ * the same light. Alphas are fitted to the mockup's measured falloff.
+ */
+
+.cta {
+  position: relative;
+  isolation: isolate;
+}
+
+.cta::before,
+.cta::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Halo, under the fill: a tight glow on each long edge plus a wide, faint
+   haze that carries it ~30px out. The box is 140% of the pill's width so
+   the haze fades to nothing before its sides (radii are 60% and 78% of the
+   pill's width). */
+.cta::before {
+  inset: -34px -20%;
+  z-index: -2;
+  background:
+    radial-gradient(
+      42.86% 21px at 50% 33.5px,
+      rgb(230 30 45 / 0.27) 0%,
+      rgb(230 30 45 / 0.2) 13%,
+      rgb(230 30 45 / 0.11) 37%,
+      rgb(230 30 45 / 0.035) 70%,
+      rgb(230 30 45 / 0) 85%
+    ),
+    radial-gradient(
+      42.86% 21px at 50% calc(100% - 33.5px),
+      rgb(230 30 45 / 0.27) 0%,
+      rgb(230 30 45 / 0.2) 13%,
+      rgb(230 30 45 / 0.11) 37%,
+      rgb(230 30 45 / 0.035) 70%,
+      rgb(230 30 45 / 0) 85%
+    ),
+    radial-gradient(
+      55.71% 32px at 50% 33.5px,
+      rgb(230 30 45 / 0.045) 0%,
+      rgb(230 30 45 / 0.042) 60%,
+      rgb(230 30 45 / 0.025) 80%,
+      rgb(230 30 45 / 0) 100%
+    ),
+    radial-gradient(
+      55.71% 32px at 50% calc(100% - 33.5px),
+      rgb(230 30 45 / 0.045) 0%,
+      rgb(230 30 45 / 0.042) 60%,
+      rgb(230 30 45 / 0.025) 80%,
+      rgb(230 30 45 / 0) 100%
+    );
+  opacity: 0.88;
+  transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Fill, inner edge glow and the hairline (the border-box layers show only
+   through the transparent 1px border). The bottom line runs a touch
+   brighter than the top, as drawn. */
+.cta::after {
+  inset: -1px;
+  z-index: -1;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      60% 8px at 50% 0,
+      rgb(230 30 45 / 0.16) 0%,
+      rgb(230 30 45 / 0.085) 34%,
+      rgb(230 30 45 / 0.04) 59%,
+      rgb(230 30 45 / 0.015) 84%,
+      rgb(230 30 45 / 0) 100%
+    )
+    padding-box,
+    radial-gradient(
+      60% 8px at 50% 100%,
+      rgb(230 30 45 / 0.11) 0%,
+      rgb(230 30 45 / 0.06) 34%,
+      rgb(230 30 45 / 0.025) 59%,
+      rgb(230 30 45 / 0) 84%
+    )
+    padding-box,
+    linear-gradient(90deg, #130a0c 0%, #1c0f10 45%, #290e0f 100%) padding-box,
+    radial-gradient(
+      42% 3px at 50% 100%,
+      rgb(255 70 85 / 0.18),
+      rgb(255 70 85 / 0) 100%
+    )
+    border-box,
+    linear-gradient(
+      90deg,
+      #3f0d12 0%,
+      #521116 8%,
+      #5e161b 20%,
+      #721c22 30%,
+      #86232b 36%,
+      #a02b36 42%,
+      #b5323f 47%,
+      #bc3441 50%,
+      #b5323f 53%,
+      #a02b36 58%,
+      #86232b 64%,
+      #721c22 70%,
+      #5e161b 80%,
+      #521116 92%,
+      #3f0d12 100%
+    )
+    border-box;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover::before {
+    opacity: 1;
+  }
+}
+
+.cta:focus-visible::before {
+  opacity: 1;
+}

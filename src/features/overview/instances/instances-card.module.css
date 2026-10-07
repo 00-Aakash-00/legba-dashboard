@@ -1,0 +1,143 @@
+/*
+ * Text blocks are trimmed to cap height and descent, so the layout spaces
+ * ink to ink like the mockup spec. Where text-box trimming is unsupported,
+ * Montserrat's metrics (ascent 0.968em, descent 0.251em, cap 0.7em) give the
+ * same rhythm: the text moves up by the top trim and the content after it
+ * moves in by both trims.
+ */
+.trimDescent {
+  text-box: trim-both cap text;
+}
+
+@supports not (text-box: trim-both cap text) {
+  .trimDescent {
+    translate: 0 calc(0.3415em - 0.5lh);
+    margin-bottom: calc(0.951em - 1lh);
+  }
+}
+
+/*
+ * "View your instances" surface (docs/design/spec/overview.json, instances).
+ *
+ * The wine field is fitted to the mockup (mean error ≈ 2/255 per channel): a
+ * vertical base with soft pools of light and shade on top. Each pool is
+ * anchored to the edge it belongs to, so a narrower card keeps the same
+ * composition: the left-edge glow, the right-edge glow peaking at y ≈ 185,
+ * the warm bottom, the smoky patch beside the Launch pill and the dark zone
+ * behind the rack. The border-box layers are the hairline, which shows only
+ * through the transparent 1px border: bright on the left and top-left,
+ * dimming to the right and bottom, hot where the right glow meets the edge.
+ */
+.surface {
+  border: 1px solid transparent;
+  background:
+    radial-gradient(
+      331px 91px at right -24.6px bottom 73.1px,
+      rgb(0 6 2 / 0.364),
+      rgb(0 6 2 / 0.327) 50%,
+      rgb(0 6 2 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      126px 67px at right 154.7px top 181.5px,
+      rgb(0 8 4 / 0.378),
+      rgb(0 8 4 / 0.228) 50%,
+      rgb(0 8 4 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      132px 75px at left 50px bottom 92px,
+      rgb(0 8 6 / 0.586),
+      rgb(0 8 6 / 0.31) 50%,
+      rgb(0 8 6 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      60px 71px at left 150px bottom 163.5px,
+      rgb(207 25 43 / 0.185),
+      rgb(207 25 43 / 0.092) 50%,
+      rgb(207 25 43 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      62px 117px at right 19.7px top 26.6px,
+      rgb(90 16 23 / 0.878),
+      rgb(90 16 23 / 0) 50%
+    )
+    padding-box,
+    radial-gradient(
+      103px 210px at right -9.9px top 94.9px,
+      rgb(247 25 49 / 0.779),
+      rgb(247 25 49 / 0.08) 50%,
+      rgb(247 25 49 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      350px 392px at left 93.3px bottom -265.2px,
+      rgb(85 26 30),
+      rgb(85 26 30 / 0.654) 50%,
+      rgb(85 26 30 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      98px 517px at left -21.7px bottom 100.6px,
+      rgb(255 26 51 / 0.469),
+      rgb(255 26 51 / 0.142) 50%,
+      rgb(255 26 51 / 0)
+    )
+    padding-box,
+    linear-gradient(#411013 0%, #2a0c0d 33.33%, #2e0d0f 66.67%, #2a0709 100%)
+    padding-box,
+    radial-gradient(
+      103px 210px at right -9.9px top 94.9px,
+      rgb(255 40 62 / 0.7),
+      rgb(255 40 62 / 0) 70%
+    )
+    border-box,
+    linear-gradient(
+      105deg,
+      #b0172b 0%,
+      #a3162a 14%,
+      #8e1824 21%,
+      #861522 25%,
+      #67151e 36%,
+      #5a141b 100%
+    )
+    border-box;
+}
+
+/*
+ * Launch pill (instances.launch), fitted to the mockup: deep in the middle,
+ * bright at both ends, with a glossy band along the top and a slight lift
+ * at the bottom edge. Replaces the pill-red variant's flat gradient.
+ */
+.launch {
+  background:
+    linear-gradient(
+      rgb(255 62 75 / 0.48) 0,
+      rgb(255 62 75 / 0.43) 1.7px,
+      rgb(255 62 75 / 0.26) 4.4px,
+      rgb(255 62 75 / 0.17) 8.8px,
+      rgb(255 62 75 / 0.064) 15.4px,
+      rgb(255 62 75 / 0) 22px,
+      rgb(0 0 0 / 0.035) 28.6px,
+      rgb(0 0 0 / 0) 35px,
+      rgb(255 30 45 / 0.05) 40.5px,
+      rgb(255 30 45 / 0.12) 100%
+    ),
+    linear-gradient(
+      90deg,
+      #b8182e 0%,
+      #a91528 6%,
+      #9a1424 12%,
+      #8e1422 20%,
+      #83111e 30%,
+      #7c111d 42%,
+      #7f121e 55%,
+      #8c1521 67%,
+      #9d1526 78%,
+      #af1b2d 88%,
+      #be2134 94%,
+      #c52536 100%
+    );
+}
