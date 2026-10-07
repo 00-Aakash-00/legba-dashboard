@@ -22,7 +22,6 @@ import {
   fromKeyboard,
   sheetBackdrop,
   sheetButton,
-  sheetClose,
   sheetDescription,
   sheetFooter,
   sheetPopup,
@@ -38,6 +37,7 @@ type FlowModule = typeof import("./create-key-flow");
 type TrackedPromise<T> = Promise<T> & {
   status?: "pending" | "fulfilled" | "rejected";
   value?: T;
+  reason?: unknown;
 };
 
 /**
@@ -78,10 +78,11 @@ function loadFlow(): Promise<FlowModule> {
         loading.status = "fulfilled";
         loading.value = module;
       },
-      () => {
+      (error: unknown) => {
         // Kept, not cleared: React re-reads this promise to render the
         // failure. "Try again" (or new intent on a trigger) starts afresh.
         loading.status = "rejected";
+        loading.reason = error;
       },
     );
     flowModule = loading;
@@ -145,6 +146,7 @@ export function CreateKeyRoot({
   /** Name of a key created in this session (never the secret), for the toast. */
   const created = useRef<string | null>(null);
   const trigger = useRef<Element | null>(null);
+  const popup = useRef<HTMLDivElement>(null);
   const forceClose = useRef(false);
   const [keyboard, setKeyboard] = useState(false);
 
@@ -217,8 +219,13 @@ export function CreateKeyRoot({
           className={sheetBackdrop}
         />
         <DialogPrimitive.Popup
+          ref={popup}
           data-kbd={keyboard || undefined}
           className={sheetPopup}
+          // The form focuses its Key name field itself, as soon as it exists
+          // (pointer, touch or keyboard). Until then (content still loading,
+          // or failed) the dialog itself holds focus, not one of its buttons.
+          initialFocus={popup}
           finalFocus={() =>
             trigger.current?.isConnected ? true : (fallbackFocus?.() ?? true)
           }
@@ -233,12 +240,6 @@ export function CreateKeyRoot({
               />
             </Suspense>
           </LoadBoundary>
-          {/* Last in the DOM so focus starts in the form, not on the close button. */}
-          <DialogPrimitive.Close
-            render={<Button variant="ghost" size="sm" className={sheetClose} />}
-          >
-            {apiKeys.dialog.close}
-          </DialogPrimitive.Close>
         </DialogPrimitive.Popup>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
@@ -251,6 +252,22 @@ function Flow(props: {
 }) {
   const { CreateKeyFlow } = use(loadFlow());
   return <CreateKeyFlow {...props} />;
+}
+
+/**
+ * The way out while the content is loading or failed, in the footer. The form
+ * has its own Cancel, styled the same, so nothing changes when it arrives.
+ */
+function CancelButton() {
+  return (
+    <DialogPrimitive.Close
+      render={
+        <Button variant="outline-pill" size="pill-md" className={sheetButton} />
+      }
+    >
+      {apiKeys.dialog.cancel}
+    </DialogPrimitive.Close>
+  );
 }
 
 /** Shown only if the content isn't preloaded yet; the orb waits 200ms. */
@@ -269,6 +286,9 @@ function FlowFallback() {
       >
         <Spinner tone="accent" />
         {apiKeys.dialog.loading}
+      </div>
+      <div className={sheetFooter}>
+        <CancelButton />
       </div>
     </div>
   );
@@ -301,17 +321,7 @@ function LoadFailed({ onRetry }: { onRetry: () => void }) {
         {apiKeys.dialog.loadFailed}
       </p>
       <div className={sheetFooter}>
-        <DialogPrimitive.Close
-          render={
-            <Button
-              variant="outline-pill"
-              size="pill-md"
-              className={sheetButton}
-            />
-          }
-        >
-          {apiKeys.dialog.cancel}
-        </DialogPrimitive.Close>
+        <CancelButton />
         <Button
           variant="pill"
           size="pill-md"

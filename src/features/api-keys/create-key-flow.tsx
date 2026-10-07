@@ -137,6 +137,28 @@ function NameForm({
       .filter(Boolean)
       .join(" ") || undefined;
 
+  // The dialog opens on this field however it was opened (pointer, touch or
+  // keyboard): naming the key is its only job. The form can also arrive after
+  // the dialog (this chunk loads on first open, or on "Try again"), when the
+  // dialog itself holds focus; Base UI may park focus there once more on the
+  // next frame, hence the second try. preventScroll: the phone sheet is
+  // still sliding in.
+  useLayoutEffect(() => {
+    const field = inputRef.current;
+    const popup = field?.closest<HTMLElement>('[role="dialog"]');
+    if (!field || !popup) return;
+    const focusField = () => {
+      const active = document.activeElement;
+      // Not while closing, and not once focus has moved on inside the dialog.
+      if (!popup.hasAttribute("data-open")) return;
+      if (active && active !== popup && popup.contains(active)) return;
+      field.focus({ preventScroll: true });
+    };
+    focusField();
+    const frame = requestAnimationFrame(focusField);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   // A rejection from the server moves focus back to the field it is about.
   useEffect(() => {
     if (result.error) inputRef.current?.focus();

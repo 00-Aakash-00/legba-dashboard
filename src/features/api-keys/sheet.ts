@@ -34,7 +34,7 @@ export const sheetPopup = [
 ].join(" ");
 
 export const sheetTitle =
-  "pr-10 font-semibold text-[20px] text-ink leading-7 tracking-[-0.03em]";
+  "font-semibold text-[20px] text-ink leading-7 tracking-[-0.03em]";
 
 export const sheetDescription =
   "mt-1.5 font-medium text-[14.5px] text-ink-2 leading-[21px] tracking-[-0.02em]";
@@ -44,9 +44,6 @@ export const sheetFooter =
 
 /** Footer buttons: full-width 48px targets on phones. */
 export const sheetButton = "max-sm:h-12 max-sm:w-full";
-
-export const sheetClose =
-  "absolute top-3.5 right-3.5 pointer-coarse:h-11 sm:top-4 sm:right-4";
 
 /** True when Base UI's change event came from the keyboard (Enter/Space/Escape). */
 export function fromKeyboard(event: Event) {

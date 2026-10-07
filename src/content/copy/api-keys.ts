@@ -43,7 +43,6 @@ export const apiKeys = {
     submit: "Create key",
     pending: "Creating key",
     cancel: "Cancel",
-    close: "Close",
     loading: "Loading",
     failed:
       "Couldn't create the key. No key was created. Try again in a moment.",

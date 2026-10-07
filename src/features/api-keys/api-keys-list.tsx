@@ -368,16 +368,16 @@ export function ApiKeysSkeleton() {
         <thead className="max-md:hidden">
           <tr>
             <th className={cn(COL.name, HEAD)}>
-              <Bar className="h-2.5 w-11 bg-[#17191a]" />
+              <Bar className="h-2.5 w-11" />
             </th>
             <th className={cn(COL.key, HEAD)}>
-              <Bar className="h-2.5 w-8 bg-[#17191a]" />
+              <Bar className="h-2.5 w-8" />
             </th>
             <th className={cn(COL.created, HEAD)}>
-              <Bar className="h-2.5 w-14 bg-[#17191a]" />
+              <Bar className="h-2.5 w-14" />
             </th>
             <th className={cn(COL.lastUsed, HEAD)}>
-              <Bar className="h-2.5 w-16 bg-[#17191a]" />
+              <Bar className="h-2.5 w-16" />
             </th>
             <th className={cn(COL.action, HEAD)} />
           </tr>
@@ -388,11 +388,11 @@ export function ApiKeysSkeleton() {
               <td className={COL.name}>
                 <div className="flex flex-col gap-2 py-1">
                   <Bar className={cn("max-w-full", width)} />
-                  <Bar className="h-2.5 w-52 max-w-full bg-[#17191a] md:hidden" />
+                  <Bar className="h-2.5 w-52 max-w-full md:hidden" />
                 </div>
               </td>
               <td className={COL.key}>
-                <Skeleton className="h-[26px] w-[118px] rounded-[7px] bg-[#17191a]" />
+                <Skeleton className="h-[26px] w-[118px] rounded-[7px]" />
               </td>
               <td className={COL.created}>
                 <Bar className="w-24" />
@@ -401,7 +401,7 @@ export function ApiKeysSkeleton() {
                 <Bar className="w-12" />
               </td>
               <td className={COL.action}>
-                <Skeleton className="ml-auto h-9 w-[78px] rounded-full bg-[#17191a] pointer-coarse:h-11" />
+                <Skeleton className="ml-auto h-9 w-[78px] rounded-full pointer-coarse:h-11" />
               </td>
             </tr>
           ))}
