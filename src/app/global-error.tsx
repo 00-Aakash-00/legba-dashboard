@@ -1,7 +1,6 @@
 "use client";
 
 import "./globals.css";
-import { RotateCcwIcon, TriangleAlertIcon } from "lucide-react";
 import { JetBrains_Mono, Montserrat } from "next/font/google";
 import {
   StandaloneFrame,
@@ -39,7 +38,6 @@ export default function GlobalError({
         <title>{copy.title}</title>
         <StandaloneFrame>
           <StatusScreen
-            icon={TriangleAlertIcon}
             eyebrow={copy.eyebrow}
             title={copy.heading}
             body={copy.body}
@@ -52,7 +50,6 @@ export default function GlobalError({
                 onClick={() => window.location.reload()}
                 className="px-6 pointer-coarse:h-12"
               >
-                <RotateCcwIcon aria-hidden className="size-[17px]" />
                 {copy.action}
               </Button>
             }

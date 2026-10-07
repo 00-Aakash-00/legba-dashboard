@@ -1,4 +1,3 @@
-import { ArrowRightIcon, CompassIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -17,7 +16,6 @@ export default function NotFound() {
   return (
     <StandaloneFrame>
       <StatusScreen
-        icon={CompassIcon}
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}
@@ -30,7 +28,6 @@ export default function NotFound() {
             )}
           >
             {copy.action}
-            <ArrowRightIcon aria-hidden className="size-[18px]" />
           </Link>
         }
       />

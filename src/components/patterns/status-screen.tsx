@@ -1,19 +1,22 @@
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Mark, Wordmark } from "@/components/brand/logo";
+import {
+  HairlineFigure,
+  type HairlineKind,
+} from "@/components/hairline/hairline-figure";
 import { brand, states } from "@/content/copy";
 import { cn } from "@/lib/utils";
-import { IconTile } from "./icon-tile";
 import { eyebrowClass, SectionBullet } from "./section-card";
 
 /**
  * A calm, centred message for errors and missing pages, in the overview's
- * vocabulary: the icon tile, the red bullet + eyebrow, one heading, what
- * happened and what to do next, and the way out.
+ * vocabulary: the screen's own hairline figure (decorative; the copy says
+ * everything), the red bullet + eyebrow, one heading, what happened and what
+ * to do next, and the way out.
  */
 export function StatusScreen({
-  icon,
+  figure,
   eyebrow,
   title,
   body,
@@ -21,7 +24,8 @@ export function StatusScreen({
   actions,
   className,
 }: {
-  icon: LucideIcon;
+  /** The figure drawn for this one screen (every figure is used once). */
+  figure?: HairlineKind;
   eyebrow: string;
   title: string;
   body: string;
@@ -37,8 +41,16 @@ export function StatusScreen({
         className,
       )}
     >
-      <IconTile icon={icon} />
-      <p className={cn("mt-9 flex items-center gap-[13px]", eyebrowClass)}>
+      {figure ? (
+        <HairlineFigure kind={figure} decorative className="h-52 w-65" />
+      ) : null}
+      <p
+        className={cn(
+          "flex items-center gap-[13px]",
+          figure ? "mt-6" : null,
+          eyebrowClass,
+        )}
+      >
         <SectionBullet />
         {eyebrow}
       </p>

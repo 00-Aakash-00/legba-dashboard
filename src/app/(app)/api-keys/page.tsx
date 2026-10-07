@@ -1,4 +1,3 @@
-import { KeyIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PageLayout } from "@/components/patterns/page-header";
@@ -27,11 +26,6 @@ export default function ApiKeysPage() {
               size="pill-lg"
               className="pointer-coarse:h-12"
             >
-              <KeyIcon
-                aria-hidden
-                strokeWidth={3}
-                className="size-[18px] -scale-x-100 -rotate-90 text-signal-key"
-              />
               {apiKeys.create}
             </Button>
           }

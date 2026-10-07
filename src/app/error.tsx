@@ -1,6 +1,5 @@
 "use client";
 
-import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
 import { RetryButton } from "@/components/patterns/retry-button";
 import {
@@ -26,7 +25,6 @@ export default function RootError({
   return (
     <StandaloneFrame>
       <StatusScreen
-        icon={TriangleAlertIcon}
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}

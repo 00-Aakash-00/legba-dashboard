@@ -1,7 +1,6 @@
 "use client";
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
-import { CircleAlertIcon, KeyIcon, KeyRoundIcon } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import {
   Fragment,
@@ -131,7 +130,6 @@ export function ApiKeysList({
 
       {visible.length === 0 ? (
         <EmptyState
-          icon={KeyRoundIcon}
           title={apiKeys.empty.title}
           body={apiKeys.empty.body}
           className="flex-1"
@@ -144,11 +142,6 @@ export function ApiKeysList({
                   size="pill-lg"
                   className="pointer-coarse:h-12"
                 >
-                  <KeyIcon
-                    aria-hidden
-                    strokeWidth={2.75}
-                    className="size-[18px] -scale-x-100 -rotate-90"
-                  />
                   {apiKeys.create}
                 </Button>
               }
@@ -255,12 +248,8 @@ export function ApiKeysList({
                         <td colSpan={5} className="px-3 pb-4">
                           <p
                             role="alert"
-                            className="flex items-center gap-2 font-medium text-[13.5px] text-signal leading-5"
+                            className="font-medium text-[13.5px] text-signal leading-5"
                           >
-                            <CircleAlertIcon
-                              aria-hidden
-                              className="size-4 shrink-0"
-                            />
                             {apiKeys.revoke.failed}
                           </p>
                         </td>

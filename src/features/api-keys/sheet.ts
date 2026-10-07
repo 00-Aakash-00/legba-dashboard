@@ -48,7 +48,7 @@ export const sheetFooter =
 export const sheetButton = "max-sm:h-12 max-sm:w-full";
 
 export const sheetClose =
-  "absolute top-3.5 right-3.5 pointer-coarse:size-11 sm:top-4 sm:right-4";
+  "absolute top-3.5 right-3.5 pointer-coarse:h-11 sm:top-4 sm:right-4";
 
 /** True when Base UI's change event came from the keyboard (Enter/Space/Escape). */
 export function fromKeyboard(event: Event) {

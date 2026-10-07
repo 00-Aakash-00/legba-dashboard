@@ -2,6 +2,10 @@
 
 import { catchError, type ErrorInfo } from "next/error";
 import { useId, useTransition } from "react";
+import {
+  HairlineFigure,
+  type HairlineKind,
+} from "@/components/hairline/hairline-figure";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { states } from "@/content/copy";
@@ -12,6 +16,8 @@ type SectionBoundaryProps = {
   title: string;
   /** Why, and what happens to the user's data. */
   body: string;
+  /** The figure drawn for this section's failure (every figure is used once). */
+  figure?: HairlineKind;
   className?: string;
 };
 
@@ -43,6 +49,7 @@ export const SectionBoundary = catchError(renderSectionError);
 export function SectionError({
   title,
   body,
+  figure,
   className,
   reference,
   retry,
@@ -56,6 +63,13 @@ export function SectionError({
         className,
       )}
     >
+      {figure ? (
+        <HairlineFigure
+          kind={figure}
+          decorative
+          className="mb-1 h-36 w-45 shrink-0"
+        />
+      ) : null}
       {/* Only the message is live, so the button's label changes don't re-announce it. */}
       <div role="alert" className="flex flex-col items-center gap-2">
         <p className="font-semibold text-base text-foreground">{title}</p>
@@ -71,7 +85,7 @@ export function SectionError({
       <Button
         variant="wine"
         size="pill-md"
-        className="mt-1 data-disabled:opacity-80"
+        className="mt-1 data-disabled:opacity-80 pointer-coarse:h-11"
         disabled={pending}
         focusableWhenDisabled
         aria-busy={pending || undefined}

@@ -1,7 +1,6 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { XIcon } from "lucide-react";
 import { catchError, type ErrorInfo } from "next/error";
 import { useRouter } from "next/navigation";
 import {
@@ -233,16 +232,9 @@ export function CreateKeyRoot({
           </LoadBoundary>
           {/* Last in the DOM so focus starts in the form, not on the close button. */}
           <DialogPrimitive.Close
-            aria-label={apiKeys.dialog.close}
-            render={
-              <Button
-                variant="icon-ghost"
-                size="icon-sm"
-                className={sheetClose}
-              />
-            }
+            render={<Button variant="ghost" size="sm" className={sheetClose} />}
           >
-            <XIcon aria-hidden />
+            {apiKeys.dialog.close}
           </DialogPrimitive.Close>
         </DialogPrimitive.Popup>
       </DialogPrimitive.Portal>

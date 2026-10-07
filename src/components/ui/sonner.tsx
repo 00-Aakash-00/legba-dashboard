@@ -1,16 +1,14 @@
 "use client";
 
-import {
-  CircleCheckIcon,
-  InfoIcon,
-  OctagonXIcon,
-  TriangleAlertIcon,
-} from "lucide-react";
 import type { CSSProperties } from "react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 
-/** Dark-only toaster; loading uses the orb, like every other loader. */
+/**
+ * Dark-only toaster. Toasts carry no icons (icons appear only in the nav bar
+ * and on the login screens); sonner skips the icon slot when its entry is
+ * null. Loading uses the orb, like every other loader.
+ */
 const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
@@ -28,10 +26,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
         right: 16,
       }}
       icons={{
-        success: <CircleCheckIcon className="size-4 text-ok" />,
-        info: <InfoIcon className="size-4" />,
-        warning: <TriangleAlertIcon className="size-4" />,
-        error: <OctagonXIcon className="size-4 text-signal" />,
+        success: null,
+        info: null,
+        warning: null,
+        error: null,
         loading: <Spinner size={18} tone="accent" />,
       }}
       style={

@@ -1,5 +1,8 @@
-import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import {
+  HairlineFigure,
+  type HairlineKind,
+} from "@/components/hairline/hairline-figure";
 import {
   Empty,
   EmptyContent,
@@ -8,20 +11,22 @@ import {
   EmptyMedia,
 } from "@/components/ui/empty";
 import { cn } from "@/lib/utils";
-import { IconTile } from "./icon-tile";
 
 /**
  * First-use empty state (ux-guidelines: say what belongs here and offer the
- * action that creates it). shadcn Empty with the Legba icon tile.
+ * action that creates it). shadcn Empty with the page's own hairline figure,
+ * decorative because the title and body already say everything. No icons:
+ * they appear only in the nav bar and on the login screens.
  */
 export function EmptyState({
-  icon,
+  figure,
   title,
   body,
   action,
   className,
 }: {
-  icon: LucideIcon;
+  /** The figure drawn for this one place (every figure is used once). */
+  figure?: HairlineKind;
   title: string;
   body: string;
   action?: ReactNode;
@@ -32,9 +37,11 @@ export function EmptyState({
       className={cn("flex-none gap-7 border-0 px-6 py-12 sm:py-16", className)}
     >
       <EmptyHeader className="max-w-[440px] gap-0">
-        <EmptyMedia className="mb-7">
-          <IconTile icon={icon} />
-        </EmptyMedia>
+        {figure ? (
+          <EmptyMedia className="mb-5">
+            <HairlineFigure kind={figure} decorative className="h-40 w-50" />
+          </EmptyMedia>
+        ) : null}
         <h3
           data-slot="empty-title"
           className="font-semibold text-[19px] text-ink leading-6 tracking-[-0.03em]"

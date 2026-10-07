@@ -1,6 +1,5 @@
 "use client";
 
-import { RotateCcwIcon } from "lucide-react";
 import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
@@ -32,11 +31,7 @@ export function RetryButton({
         className,
       )}
     >
-      {pending ? (
-        <Spinner className="pending-delay" />
-      ) : (
-        <RotateCcwIcon aria-hidden className="size-[17px]" />
-      )}
+      {pending ? <Spinner className="pending-delay" /> : null}
       {pending ? states.retrying : states.retry}
     </Button>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { CheckIcon, CircleAlertIcon, CopyIcon } from "lucide-react";
 import { unstable_rethrow } from "next/navigation";
 import {
   type FormEvent,
@@ -207,9 +206,8 @@ function NameForm({
             <p
               id={errorId}
               role="alert"
-              className="flex items-center gap-1.5 font-medium text-[13px] text-signal leading-5"
+              className="font-medium text-[13px] text-signal leading-5"
             >
-              <CircleAlertIcon aria-hidden className="size-3.5 shrink-0" />
               {fieldError}
             </p>
           ) : null}
@@ -235,12 +233,8 @@ function NameForm({
       {failure ? (
         <div
           role="alert"
-          className="mt-3 flex gap-2.5 rounded-[12px] border border-signal/25 bg-signal/[0.06] px-3.5 py-3 font-medium text-[13.5px] text-ink leading-5"
+          className="mt-3 rounded-[12px] border border-signal/25 bg-signal/[0.06] px-3.5 py-3 font-medium text-[13.5px] text-ink leading-5"
         >
-          <CircleAlertIcon
-            aria-hidden
-            className="mt-0.5 size-4 shrink-0 text-signal"
-          />
           <div>
             <p>
               {failure === "offline" ? states.offline : apiKeys.dialog.failed}
@@ -361,11 +355,6 @@ function SaveKey({ name, secret }: { name: string; secret: string }) {
             onClick={copyKey}
             className="max-sm:h-11 max-sm:w-full"
           >
-            {copy === "copied" ? (
-              <CheckIcon aria-hidden className="text-ok" />
-            ) : (
-              <CopyIcon aria-hidden />
-            )}
             {copy === "copied" ? apiKeys.created.copied : apiKeys.created.copy}
           </Button>
           <output aria-live="polite" className="sr-only">
@@ -378,12 +367,8 @@ function SaveKey({ name, secret }: { name: string; secret: string }) {
         <p
           id={failedId}
           role="alert"
-          className="mt-3 flex gap-2 font-medium text-[13.5px] text-ink leading-5"
+          className="mt-3 font-medium text-[13.5px] text-ink leading-5"
         >
-          <CircleAlertIcon
-            aria-hidden
-            className="mt-0.5 size-4 shrink-0 text-signal"
-          />
           {apiKeys.created.copyFailed}
         </p>
       ) : null}

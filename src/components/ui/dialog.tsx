@@ -2,7 +2,6 @@
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { cn } from "cn";
-import { XIcon } from "lucide-react";
 import type * as React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -64,13 +63,12 @@ function DialogContent({
             render={
               <Button
                 variant="ghost"
-                className="absolute top-2 right-2"
-                size="icon-sm"
+                className="absolute top-2 right-2 pointer-coarse:h-11"
+                size="sm"
               />
             }
           >
-            <XIcon />
-            <span className="sr-only">Close</span>
+            Close
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>

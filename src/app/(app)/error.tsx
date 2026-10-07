@@ -1,6 +1,5 @@
 "use client";
 
-import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
 import { RetryButton } from "@/components/patterns/retry-button";
 import { StatusScreen } from "@/components/patterns/status-screen";
@@ -20,7 +19,6 @@ export default function AppError({
   return (
     <div className="flex min-h-[calc(100dvh-8rem)] w-full flex-col px-4">
       <StatusScreen
-        icon={TriangleAlertIcon}
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}
