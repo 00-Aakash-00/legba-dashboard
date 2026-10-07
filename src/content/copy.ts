@@ -9,6 +9,7 @@ export * from "./copy/auth";
 export * from "./copy/common";
 export * from "./copy/docs";
 export * from "./copy/overview";
+export * from "./copy/plans";
 export * from "./copy/shell";
 export * from "./copy/subscriptions";
 export * from "./copy/workspace";

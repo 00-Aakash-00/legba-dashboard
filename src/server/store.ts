@@ -23,9 +23,18 @@ export type ApiKeyRecord = {
   lastUsedAt: string | null;
 };
 
+export type AgentPlanId = "free" | "pro" | "scale" | "enterprise";
+
+/** Which plans the workspace is on. The extension plan covers Ghost and Shield. */
+export type PlanState = {
+  extension: "active" | "inactive";
+  agent: AgentPlanId;
+};
+
 type Store = {
   subscriptions: Map<string, SubscriptionRecord[]>;
   apiKeys: Map<string, ApiKeyRecord[]>;
+  planState: Map<string, PlanState>;
 };
 
 const SCENARIOS = ["normal", "flaky", "slow", "empty"] as const;
@@ -36,7 +45,11 @@ const SCENARIOS = ["normal", "flaky", "slow", "empty"] as const;
  * it; a server restart resets it (single process only).
  */
 function createStore(): Store {
-  const store: Store = { subscriptions: new Map(), apiKeys: new Map() };
+  const store: Store = {
+    subscriptions: new Map(),
+    apiKeys: new Map(),
+    planState: new Map(),
+  };
   for (const scenario of SCENARIOS) {
     const workspaceId = `demo_${scenario}`;
     const plans: PlanId[] = scenario === "empty" ? [] : ["ghost", "shield"];
@@ -53,6 +66,10 @@ function createStore(): Store {
       })),
     );
     store.apiKeys.set(workspaceId, []);
+    store.planState.set(workspaceId, {
+      extension: scenario === "empty" ? "inactive" : "active",
+      agent: "free",
+    });
   }
   return store;
 }
@@ -64,7 +81,7 @@ const globalStore = globalThis as typeof globalThis & {
 // A store created by an older shape of this module (before the demo
 // workspaces) is replaced rather than reused.
 export const store: Store =
-  globalStore.__legbaStore?.subscriptions.has("demo_normal") === true
+  globalStore.__legbaStore?.planState instanceof Map
     ? globalStore.__legbaStore
     : createStore();
 globalStore.__legbaStore = store;
