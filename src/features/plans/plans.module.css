@@ -1,0 +1,233 @@
+/*
+ * Plans page surfaces.
+ *
+ * Concentric corners (user rule): a box that holds another box with an even
+ * inset publishes the radius its child must use, `--r-in-<box>`, which is its
+ * own radius minus that inset (its padding plus its 1px border). Both curves
+ * then share one centre and the gap between them stays even all the way
+ * round. Each level has its own names because a custom property can't be
+ * defined from its own inherited value. Paddings come from the same
+ * variables (Tailwind `p-(--pad-card)` etc.), so radius and inset can't drift.
+ *
+ *   column  44  inset 8 + 1   ->  card  35
+ *   card    35  inset 20 + 1  ->  box   14  (also chips in the card's corner)
+ *   box     14  inset 7 + 1   ->  tile   6
+ *
+ * From 1280px the card breathes (inset 24) and the column grows to 48 to keep
+ * the box at 14 and the tile at 6.
+ */
+.plans {
+  --bw: 1px;
+  --r-column: 44px;
+  --pad-column: 8px;
+  --pad-card: 20px;
+  --pad-box: 7px;
+  /* Where a card's content starts, measured from the card's outer edge. */
+  --inset-card: calc(var(--bw) + var(--pad-card));
+  /* Text below a card lines up with the card's text. */
+  --inset-included: calc(var(--pad-column) + var(--inset-card));
+}
+
+@media (width >= 80rem) {
+  .plans {
+    --r-column: 48px;
+    --pad-card: 24px;
+  }
+}
+
+.column {
+  --r-in-column: max(
+    0px,
+    calc(var(--r-column) - var(--pad-column) - var(--bw))
+  );
+  border-radius: var(--r-column);
+}
+
+.card {
+  --r-in-card: max(0px, calc(var(--r-in-column) - var(--pad-card) - var(--bw)));
+  border-radius: var(--r-in-column);
+}
+
+.box {
+  --r-in-box: max(0px, calc(var(--r-in-card) - var(--pad-box) - var(--bw)));
+  border-radius: var(--r-in-card);
+}
+
+.tile {
+  border-radius: var(--r-in-box);
+}
+
+/* A chip in a card's corner sits at the box inset; elsewhere it is a pill. */
+.chip {
+  border-radius: var(--r-in-card, 999px);
+}
+
+/* On the plan the account is on, "Current plan" takes the place of
+   "Popular": one chip per header, so the chip that streams in never needs a
+   second line (and never moves the columns) at any width. */
+.chips:has([data-current]) [data-popular] {
+  display: none;
+}
+
+/* Top-level boxes share the column's radius. */
+.banner {
+  border-radius: var(--r-column);
+}
+
+/* Monthly / Yearly: a pill holding pills, 3px apart. */
+.switch {
+  --r-switch: 22px;
+  --pad-switch: 3px;
+  border-radius: var(--r-switch);
+  padding: var(--pad-switch);
+}
+
+.segment {
+  border-radius: max(
+    0px,
+    calc(var(--r-switch) - var(--pad-switch) - var(--bw, 1px))
+  );
+}
+
+/* Touch: 44px segments, so the pill grows by the same 8px. */
+@media (pointer: coarse) {
+  .switch {
+    --r-switch: 26px;
+  }
+}
+
+/* The page's preview note: the chip sits 10px in from its corner. */
+.note {
+  --r-note: 19px;
+  --pad-note: 10px;
+  border-radius: var(--r-note);
+}
+
+.noteChip {
+  border-radius: max(0px, calc(var(--r-note) - var(--pad-note) - 1px));
+}
+
+/* Confirmation dialogs: a bottom sheet on phones (top corners only), a
+   centred card from 640px. Boxes inside sit at the dialog's inset. */
+.dialog {
+  --bw: 1px;
+  --r-dialog: 32px;
+  --pad-dialog: 20px;
+  --r-in-dialog: max(
+    0px,
+    calc(var(--r-dialog) - var(--pad-dialog) - var(--bw))
+  );
+  border-radius: var(--r-dialog) var(--r-dialog) 0 0;
+  padding: 24px var(--pad-dialog)
+    max(var(--pad-dialog), env(safe-area-inset-bottom, 0px));
+}
+
+@media (width >= 40rem) {
+  .dialog {
+    --r-dialog: 36px;
+    --pad-dialog: 24px;
+    border-radius: var(--r-dialog);
+    padding: var(--pad-dialog);
+  }
+}
+
+.dialogInset {
+  border-radius: var(--r-in-dialog);
+}
+
+/* Dashed rules, drawn as a gradient so the dash is the same everywhere. */
+.dash {
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    #2f3134 0 5px,
+    transparent 5px 10px
+  );
+}
+
+/* The rule between the two highlight rows, across the box's full width. */
+.dashTop {
+  position: relative;
+}
+
+.dashTop::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    #2f3134 0 5px,
+    transparent 5px 10px
+  );
+}
+
+/*
+ * The featured column: the overview's wine plane (the "View your sessions"
+ * card), recomposed for a tall column whose top two thirds sit under the
+ * dark card. The light is anchored to the edges that stay visible, so any
+ * height keeps the composition: a lip of light above the card, a hot right
+ * edge and a glow up the left edge beside the feature list, a warm floor
+ * under it and one soft diagonal wave across it (the reference's sweep).
+ * The border-box layers are the hairline, showing only through the
+ * transparent 1px border: bright at the top left, hot where the right glow
+ * meets the edge, dimming toward the bottom.
+ */
+.featured {
+  border-color: transparent;
+  background:
+    radial-gradient(
+      85% 60% at left 105% bottom -12%,
+      rgb(255 72 92 / 0.2),
+      rgb(255 72 92 / 0.06) 45%,
+      rgb(255 72 92 / 0) 70%
+    )
+    padding-box,
+    radial-gradient(
+      140px 320px at right -50px bottom 170px,
+      rgb(247 25 49 / 0.78),
+      rgb(247 25 49 / 0.14) 50%,
+      rgb(247 25 49 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      170px 560px at left -64px bottom 40px,
+      rgb(255 26 51 / 0.62),
+      rgb(255 26 51 / 0.18) 50%,
+      rgb(255 26 51 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      640px 380px at left 58% bottom -180px,
+      rgb(156 26 40 / 0.95),
+      rgb(112 24 33 / 0.6) 50%,
+      rgb(85 26 30 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      320px 96px at left 28% top -44px,
+      rgb(255 40 62 / 0.4),
+      rgb(255 40 62 / 0)
+    )
+    padding-box,
+    linear-gradient(#4a1216 0%, #330d10 38%, #2f0d10 70%, #2a0709 100%)
+    padding-box,
+    radial-gradient(
+      140px 320px at right -50px bottom 170px,
+      rgb(255 40 62 / 0.9),
+      rgb(255 40 62 / 0) 70%
+    )
+    border-box,
+    linear-gradient(
+      160deg,
+      #d21d35 0%,
+      #a3162a 22%,
+      #861522 45%,
+      #6f1520 70%,
+      #5a141b 100%
+    )
+    border-box;
+  box-shadow:
+    0 0 0 1px rgb(176 23 43 / 0.12),
+    0 32px 90px -36px rgb(213 32 60 / 0.55);
+}
