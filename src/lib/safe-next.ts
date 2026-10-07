@@ -31,6 +31,9 @@ export function safeNext(raw: unknown): Route {
     return "/";
   }
   if (url.origin !== BASE) return "/";
+  // Dot segments ("/.//x", "/a/..//x", "/%2e//x") normalise to "//x", which a
+  // browser would treat as protocol-relative: check the normalised path too.
+  if (url.pathname.startsWith("//")) return "/";
   if (
     BLOCKED.some(
       (path) => url.pathname === path || url.pathname.startsWith(`${path}/`),

@@ -1,7 +1,6 @@
 import "server-only";
 
 import { generateApiKey } from "../crypto";
-import { ServiceError } from "../errors";
 import { requireUser } from "../session";
 import { simulate } from "../simulate";
 import { type ApiKeyRecord, store } from "../store";
@@ -45,9 +44,9 @@ export async function createApiKey(
 
 export async function revokeApiKey(id: string): Promise<void> {
   const user = await requireUser();
+  // Idempotent and scoped to the user's own keys: revoking a key that is
+  // already gone (another tab, a double submit) is a success, not an error.
   const keys = store.apiKeys.get(user.id) ?? [];
-  if (!keys.some((key) => key.id === id))
-    throw new ServiceError("KEY_NOT_FOUND");
   store.apiKeys.set(
     user.id,
     keys.filter((key) => key.id !== id),

@@ -23,7 +23,7 @@ const badgeVariants = cva(
         status:
           "h-8 gap-2 rounded-[10px] border-line bg-[#151618] px-3 font-medium text-[13px] text-bone",
         count:
-          "h-6 min-w-6 rounded-md bg-badge px-1.5 font-semibold text-muted text-xs",
+          "h-6 min-w-6 rounded-md bg-badge px-1.5 font-semibold text-muted-foreground text-xs",
       },
     },
     defaultVariants: {

@@ -5,7 +5,10 @@ import styles from "./spinner.module.css";
 /**
  * The app's only loading indicator: the AICSS "S1" orb lattice (MIT, see
  * spinner.module.css). Its 3×3 dots echo the pixel squares in the design.
- * Use it for pending buttons and small regions; layout regions use skeletons.
+ *
+ * Always presentational (aria-hidden). Announce loading with the control's
+ * visible text + aria-busy, or the region's persistent role="status" text.
+ * Layout regions use skeletons instead.
  */
 
 const STAGE = 28;
@@ -14,14 +17,12 @@ const CELLS = Array.from({ length: 9 }, (_, n) => {
   const y = Math.floor(n / 3);
   const dx = x - 1;
   const dy = y - 1;
-  const mid = dx === 0 && dy === 0;
   return {
     key: n,
     left: x * 6,
     top: y * 6,
     // The centre leads by a beat so the next swell doesn't sit behind the fade.
-    delay: Math.hypot(dx, dy) * 700 - (mid ? 180 : 0),
-    mid,
+    delay: Math.hypot(dx, dy) * 700 - (dx === 0 && dy === 0 ? 180 : 0),
   };
 });
 
@@ -30,17 +31,11 @@ type SpinnerProps = Omit<ComponentProps<"span">, "children"> & {
   size?: number;
   /** "current" inherits the text colour (white in red pills); "accent" is signal red. */
   tone?: "current" | "accent";
-  /** Announced to assistive tech when the spinner stands alone. */
-  label?: string;
-  /** Inside a control that already says what is happening (aria-busy + text). */
-  decorative?: boolean;
 };
 
 function Spinner({
   size = 20,
   tone = "current",
-  label = "Loading",
-  decorative = false,
   className,
   style,
   ...props
@@ -49,8 +44,7 @@ function Spinner({
     <span
       data-slot="spinner"
       data-tone={tone}
-      role={decorative ? undefined : "status"}
-      aria-hidden={decorative || undefined}
+      aria-hidden
       className={cn(styles.root, className)}
       style={
         {
@@ -67,7 +61,6 @@ function Spinner({
           <span
             key={cell.key}
             className={styles.cell}
-            data-mid={cell.mid || undefined}
             style={{
               left: cell.left,
               top: cell.top,
@@ -76,7 +69,6 @@ function Spinner({
           />
         ))}
       </span>
-      {decorative ? null : <span className="sr-only">{label}</span>}
     </span>
   );
 }

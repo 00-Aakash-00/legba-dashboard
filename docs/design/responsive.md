@@ -38,7 +38,8 @@ looks right in any column it lands in.
 - Avatar (◯) opens the account menu: identity, **Top up credits**, Contact support, Documentation,
   Sign out. (Top-Up and the header icons live here on mobile.)
 - Page content gets `padding-bottom: calc(64px + env(safe-area-inset-bottom))` so nothing hides under
-  the tab bar.
+  the tab bar; toasts sit above it (`--tabbar-h`), and `scroll-padding` keeps focused controls visible.
+- Landscape: fixed edges also pad `env(safe-area-inset-left/right)`.
 - `:active` press feedback on every tab (scale .97, 120ms ease-out); no hover styles on touch.
 
 ## Login and auth pages
@@ -52,7 +53,7 @@ Below 1024 the showcase becomes a compact banner and the form takes the page:
 │ ╭──────────────────────────────╮ │  showcase banner · h-40 (160px) · radius 24 · 2px red border + glow
 │ │ [mark 44]          ▪▪ ▪       │ │  pixel clusters top-right · gradient + blurred glow as desktop
 │ │ Cloud, Edge, and             │ │  slide title 20/24 semibold (accent words red)
-│ │ AI Solutions          • ○ ○  │ │  dots bottom-right · swipe = scroll-snap (touch-action: pan-y)
+│ │ AI Solutions          • ○ ○  │ │  dots bottom-right · swipe = native scroll-snap (x mandatory, overscroll-x contain)
 │ ╰──────────────────────────────╯ │  slide body hidden < 640 (shown 640–1023, 2 lines)
 │                                  │
 │  Welcome back to                 │  heading 26/30 semibold, left-aligned on phone
@@ -123,7 +124,7 @@ read as part of the same product.
 
 - Press: scale(0.97), 120–160ms, `--ease-out-strong`. Hover (fine pointers only): colour/border, 150ms.
 - Dropdowns/menus: 150–200ms from `var(--transform-origin)`; dialogs 220ms centred; bottom sheets
-  280ms `--ease-drawer`; tooltips 125ms, instant after the first.
+  240ms `--ease-drawer`; tooltips 125ms, instant after the first.
 - Carousels: native scroll-snap with `scroll-behavior: smooth` (instant under reduced motion).
 - Login showcase autoplay: every 6s, crossfade 400ms; pauses on hover/focus/hidden tab; stops after the
   user picks a slide; off under `prefers-reduced-motion`.

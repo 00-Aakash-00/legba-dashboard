@@ -1,7 +1,8 @@
 "use client";
 
 import { catchError, type ErrorInfo } from "next/error";
-import { useTransition } from "react";
+import { useId, useTransition } from "react";
+import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { states } from "@/content/copy";
 import { cn } from "@/lib/utils";
@@ -47,33 +48,39 @@ export function SectionError({
   retry,
 }: SectionBoundaryProps & { reference?: string; retry: () => void }) {
   const [pending, startTransition] = useTransition();
+  const labelId = useId();
   return (
     <div
-      role="alert"
       className={cn(
         "flex h-full min-h-40 flex-col items-center justify-center gap-3 rounded-[inherit] px-6 py-8 text-center",
         className,
       )}
     >
-      <p className="font-semibold text-base text-foreground">{title}</p>
-      <p className="max-w-sm text-muted-foreground text-sm leading-relaxed">
-        {body}
-      </p>
-      {reference ? (
-        <p className="font-mono text-muted-foreground/70 text-xs">
-          {states.reference(reference)}
+      {/* Only the message is live, so the button's label changes don't re-announce it. */}
+      <div role="alert" className="flex flex-col items-center gap-2">
+        <p className="font-semibold text-base text-foreground">{title}</p>
+        <p className="max-w-sm text-muted-foreground text-sm leading-relaxed">
+          {body}
         </p>
-      ) : null}
-      <button
-        type="button"
+        {reference ? (
+          <p className="font-mono text-muted-foreground text-xs">
+            {states.reference(reference)}
+          </p>
+        ) : null}
+      </div>
+      <Button
+        variant="wine"
+        size="pill-md"
+        className="mt-1 data-disabled:opacity-80"
         disabled={pending}
+        focusableWhenDisabled
         aria-busy={pending || undefined}
-        onClick={() => startTransition(() => retry())}
-        className="mt-1 inline-flex h-10 items-center gap-2 rounded-full border border-wine-line bg-wine-fill px-5 font-semibold text-foreground text-sm transition-[transform,background-color] duration-150 ease-out-strong active:scale-[0.97] disabled:opacity-80 hover:bg-wine-fill-hover"
+        aria-labelledby={labelId}
+        onClick={() => startTransition(retry)}
       >
-        {pending ? <Spinner decorative tone="accent" /> : null}
-        {pending ? states.retrying : states.retry}
-      </button>
+        {pending ? <Spinner tone="accent" className="pending-delay" /> : null}
+        <span id={labelId}>{pending ? states.retrying : states.retry}</span>
+      </Button>
     </div>
   );
 }

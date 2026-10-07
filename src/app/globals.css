@@ -71,7 +71,6 @@
   --color-line-strong: #2e2f30;
 
   --color-bone: #f5f3ec;
-  --color-muted: #a1a1aa;
   --color-dim: #71717a;
 
   --color-signal: #f5274d;
@@ -178,23 +177,28 @@
   button,
   [role="button"],
   [role="tab"],
-  [role="menuitem"] {
+  [role="menuitem"],
+  nav a {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
   }
-  /* iOS zooms into inputs under 16px; touch devices get 16px. */
-  @media (pointer: coarse) {
-    input,
-    textarea,
-    select {
-      font-size: 16px;
+  /* Keep focused controls clear of the sticky header and the tab bar. */
+  html:has([data-app-shell]) {
+    scroll-padding-top: 3.75rem;
+    scroll-padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+  @media (width >= 64rem) {
+    html:has([data-app-shell]) {
+      scroll-padding-bottom: 0;
     }
   }
 }
 
 @utility skeleton-delay {
-  /* ux-guidelines loading ladder: skeletons never flash for fast responses. */
+  /* ux-guidelines loading ladder: skeletons never flash for fast responses.
+     Put this on the skeleton group's container, never on <Skeleton> itself:
+     its animation shorthand would replace animate-pulse. */
   animation: fade-in 200ms var(--ease-out-strong) 300ms both;
 }
 
@@ -209,16 +213,49 @@
     var(--color-pill-from) 0%,
     var(--color-pill-to) 100%
   );
-  box-shadow:
+  /* Composes with Tailwind's ring/shadow stack so focus rings keep the glow. */
+  --tw-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.12),
     0 8px 24px -10px rgb(213 32 60 / 0.55);
+  box-shadow:
+    var(--tw-inset-shadow, 0 0 #0000), var(--tw-inset-ring-shadow, 0 0 #0000),
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 @utility press {
-  transition-property: transform;
+  transition-property: scale;
   transition-duration: 140ms;
   transition-timing-function: var(--ease-out-strong);
   &:active:not(:disabled) {
-    transform: scale(0.97);
+    scale: 0.97;
+  }
+}
+
+/* Unlayered on purpose: these must beat any layered utility. */
+
+/* iOS zooms into inputs under 16px; touch devices always get 16px. */
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Reduced motion: keep fades (they aid comprehension), drop movement and
+   scaling from tw-animate-css entrances. The properties don't inherit. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    --tw-enter-scale: 1;
+    --tw-exit-scale: 1;
+    --tw-enter-translate-x: 0;
+    --tw-enter-translate-y: 0;
+    --tw-exit-translate-x: 0;
+    --tw-exit-translate-y: 0;
+    --tw-enter-rotate: 0;
+    --tw-exit-rotate: 0;
   }
 }

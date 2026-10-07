@@ -63,12 +63,23 @@
     }
   }
 
+  /* Reduced motion keeps the beat but drops the scale: an opacity-only wave. */
+  @keyframes orb-fade {
+    0% {
+      opacity: var(--orb-rest);
+    }
+    28% {
+      opacity: 1;
+    }
+    56%,
+    100% {
+      opacity: var(--orb-rest);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .cell {
-      animation: none;
-    }
-    .cell[data-mid] {
-      opacity: 1;
+      animation-name: orb-fade;
     }
   }
 }

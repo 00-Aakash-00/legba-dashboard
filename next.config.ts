@@ -12,7 +12,10 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     rules: {
+      // Tailwind compiles global stylesheets only. `as: "*.css"` renames the
+      // loader output, which would turn CSS Modules into global CSS.
       "*.css": {
+        condition: { not: { path: /\.module\.css$/ } },
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },

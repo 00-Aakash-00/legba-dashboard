@@ -31,8 +31,16 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
   if (session && isAuthPage) {
-    const next = safeNext(request.nextUrl.searchParams.get("next"));
-    return NextResponse.redirect(new URL(next, request.url));
+    const target = new URL(
+      safeNext(request.nextUrl.searchParams.get("next")),
+      request.url,
+    );
+    // Defence in depth: never redirect off-origin, whatever safeNext returns.
+    return NextResponse.redirect(
+      target.origin === request.nextUrl.origin
+        ? target
+        : new URL("/", request.url),
+    );
   }
   return NextResponse.next();
 }

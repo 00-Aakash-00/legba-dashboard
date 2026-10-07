@@ -15,12 +15,12 @@ export const metadata: Metadata = { title: overview.title };
  */
 export default function OverviewPage() {
   return (
-    <div className="mx-auto grid w-full max-w-[1440px] gap-4 px-3.5 pt-7 pb-5 xl:grid-cols-[minmax(0,924fr)_minmax(0,472fr)] xl:gap-x-4 xl:gap-y-5">
+    <div className="mx-auto grid w-full max-w-[1440px] gap-4 px-3.5 pt-7 pb-5 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:grid-cols-[minmax(0,924fr)_minmax(0,472fr)] xl:gap-x-4 xl:gap-y-5">
       <h1 className="sr-only">{overview.title}</h1>
       <ApiKeysHero />
       <InstancesCard />
       <SubscriptionsPanel />
-      <div className="grid gap-4 xl:gap-5">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:gap-5">
         <ProductDocsCard />
         <ApiDocsCard />
       </div>

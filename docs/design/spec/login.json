@@ -1,0 +1,2342 @@
+{
+  "page": "login",
+  "source": "docs/design/mockups/login.png",
+  "scale": 1.38889,
+  "viewport": {
+    "width": 1440,
+    "height": 927
+  },
+  "tokens": {
+    "colors": {
+      "bg-page": "#080808",
+      "bg-showcase-base": "#040202",
+      "bg-showcase-darkest": "#0a0303",
+      "border-showcase-left": "#e9193b",
+      "border-showcase-mid": "#b0192c",
+      "border-showcase-right": "#650e16",
+      "glow-main-add": "#93383d",
+      "glow-main-peak": "#d2474e",
+      "glow-right-core-peak": "#710b16",
+      "glow-left-wash-add": "#710d17",
+      "glow-bottom-left-peak": "#490a10",
+      "pixel-hot": "#ff5064",
+      "pixel-light": "#ffb9c3",
+      "grid-line": "#ff465a",
+      "bg-auth": "#0a0a0b",
+      "border-auth": "#303032",
+      "bg-input": "#161617",
+      "border-input": "#2c2c2e",
+      "bg-button-secondary": "#161616",
+      "border-button-secondary": "#2c2c2e",
+      "red-button-top": "#e84659",
+      "red-button-mid": "#c82239",
+      "red-button-bottom": "#9f1827",
+      "red-accent": "#fa2a4f",
+      "red-link": "#f42149",
+      "red-checkbox": "#f1103a",
+      "red-dot-active": "#f62a4c",
+      "red-mark-showcase": "#f02b4e",
+      "red-mark-auth": "#ce3048",
+      "mark-face-auth": "#4a2e2d",
+      "dot-inactive": "#3e3232",
+      "divider-line": "#737375",
+      "text-primary": "#ffffff",
+      "text-label": "#e0e1e2",
+      "text-secondary": "#b5b8bc",
+      "text-divider": "#c1c3c5",
+      "text-prompt": "#adb1b5",
+      "text-legal": "#b3b5b7",
+      "icon-eye": "#a0a2a4",
+      "icon-key": "#13d49c",
+      "wordmark-bone": "#f5f2ea"
+    },
+    "radii": {
+      "showcase": 26,
+      "auth": 28,
+      "input": 10,
+      "button-secondary": 12,
+      "button-primary": 20,
+      "checkbox": 4,
+      "dot-active": 5,
+      "dot": 4.25,
+      "pixel": 0
+    },
+    "shadows": {
+      "button-primary-rim": "inset 0 1px 0 rgba(255,140,155,0.25), inset 0 0 0 1px rgba(255,255,255,0.04)",
+      "panel": "none",
+      "input": "none",
+      "button-secondary": "none",
+      "button-primary-outer": "none"
+    },
+    "typography": {
+      "_note": "Same finding as overview.json: the mockup face is narrower than Montserrat at equal cap/x-height (needs -0.03…-0.075em to match ink width at the cap-fitted size; the left-panel paragraph is the exception and fits at 0em). Here sizes are fitted to cap height (stem ends, blur-unbiased; x-height agrees within ~2%) and rounded to 0.5px; weights to stroke ink (blur-aware template fit against headless-Chrome Montserrat renders, gain≈1 for white text); 'tracking' fields are the WIDTH-EXACT values. Every text element's notes list the width at 0em and at the overview convention -0.03em so the implementer can harmonise with overview.json (which clamps at -0.03em). Ascenders/descenders in the mockup are 3–6% shorter than Montserrat's, so ink heights of b/d/l/g/p/y will exceed the mockup slightly. Every small white text carries ~6–10% more ink than a Chrome Montserrat render at the chosen weight (renderer difference), so grey/red text colours are INK-MATCHED (integrated ink of a render vs the mockup, with that surplus removed) rather than brightest-pixel values, which under-read thin strokes.",
+      "display": {
+        "size": 27.5,
+        "weight": 600,
+        "tracking": "-0.055em",
+        "lineHeight": 31
+      },
+      "body-showcase": {
+        "size": 15.5,
+        "weight": 400,
+        "tracking": "0em",
+        "lineHeight": 20.5
+      },
+      "subtitle": {
+        "size": 14.5,
+        "weight": 500,
+        "tracking": "-0.07em"
+      },
+      "label": {
+        "size": 13.5,
+        "weight": 500,
+        "tracking": "-0.055em"
+      },
+      "input": {
+        "size": 13.5,
+        "weight": 500,
+        "tracking": "-0.065em (digits -0.04em)"
+      },
+      "small": {
+        "size": 13,
+        "weight": 500,
+        "linkWeight": 600,
+        "tracking": "-0.05…-0.06em"
+      },
+      "button-primary": {
+        "size": 14.5,
+        "weight": 600,
+        "tracking": "-0.03em"
+      },
+      "button-secondary": {
+        "size": 13.5,
+        "weight": 600,
+        "tracking": "-0.04em"
+      },
+      "prompt": {
+        "size": 16,
+        "weight": 500,
+        "linkWeight": 600,
+        "tracking": "-0.075em"
+      },
+      "legal": {
+        "size": 13,
+        "weight": 500,
+        "tracking": "-0.055em"
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "page",
+      "description": "Login page background (dark only). Two full-height rounded panels side by side on a near-black page.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 927
+      },
+      "bg": "#080808",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Viewport 1440x927 (PNG 2000x1288 ÷ 1.38889). CONVENTIONS: page coordinates, CSS px, top-left origin. Boxes of text elements are INK boxes (cap/ascender top → baseline or descender bottom, first → last glyph ink), with baseline / text-origin x given in notes; boxes of shapes are their outer (border-box) edges. Layout: showcase panel x 11.8–642.9, auth panel x 655.2–1429.3 (gap ≈12.3); outer gutters left 11.8, right 10.7, top 8.4 (showcase) / 9.8 (auth), bottom 10.8 / 10.9. Mockup typeface is narrower than Montserrat at equal cap/x-height (see tokens.typography._note). No drop shadows anywhere on the page."
+    },
+    {
+      "id": "showcase",
+      "description": "Left showcase panel: rounded card with a 7px red gradient border, dark-red base and blurred red glows; holds pixel squares, doll mark, heading, paragraph and carousel dots.",
+      "locator": {
+        "role": "complementary",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 12.0,
+        "y": 8.5,
+        "w": 631.0,
+        "h": 908.0
+      },
+      "bg": "#040202 base + 7 additive glow layers (showcase.glow.*)",
+      "border": {
+        "width": 7,
+        "color": "#e9193b",
+        "sides": "all"
+      },
+      "radius": 26,
+      "text": null,
+      "icon": null,
+      "effects": "Border is a horizontal gradient (left→right): linear-gradient(90deg, #ea1a3c 0%, #c51a32 28%, #b0192c 52%, #8f1420 76%, #74101a 95%, #650e16 100%) — e.g. border:7px solid transparent; background: #040202 padding-box, <that gradient> border-box, with the glow layers inside. Top edge is ~1–4% brighter than the bottom edge at the same x (negligible). overflow:hidden (glows and squares are clipped by the rounded inner edge).",
+      "notes": "Outer edges measured: left 11.8, top 8.35, right 642.85, bottom 916.24 (w 631.05, h 907.9). Border measured 6.7 (left) – 7.3 (top) px. Outer corner radius 24–28 (TL 26.4–27.4, TR 27.3–27.8, BR 24.0–25.0, BL 25.1–25.5); inner radius ≈19. Padding-box origin (18.8, 15.6). Darkest interior (bottom-right) ≈#0a0303; fitted base under the additive glows #040202. Content (mark, heading, body, dots) is centred on x≈328 (panel centre 327.3)."
+    },
+    {
+      "id": "showcase.glow.main",
+      "description": "Main glow: tall pink-red bloom in the upper-left/centre (brightest area of the panel)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 28.5,
+        "y": -198.0,
+        "w": 375.0,
+        "h": 770.0
+      },
+      "bg": "radial-gradient(ellipse 188px 385px at 216px 187px, rgb(147 56 61) 0%, rgb(147 56 61 / .61) 40%, rgb(147 56 61 / .14) 80%, rgb(147 56 61 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (216,187) page px, σx 75, σy 154, adds rgb(147,56,61) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #973a3f). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Observed peak #d9424c–#d4474f around (210,140–260); half-intensity at x≈125/300. The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.top",
+      "description": "Upper extension of the main glow along the top edge (x 60–270)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": -93.0,
+        "y": -89.5,
+        "w": 510.0,
+        "h": 285.0
+      },
+      "bg": "radial-gradient(ellipse 255px 142px at 162px 53px, rgb(64 0 6) 0%, rgb(64 0 6 / .61) 40%, rgb(64 0 6 / .14) 80%, rgb(64 0 6 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (162,53) page px, σx 102, σy 57, adds rgb(64,0,6) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #440208). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Keeps the top band bright: observed #b11d2d–#c92737 at (210,16–60). The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.right-core",
+      "description": "Compact deep-red glow, right-middle",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 357.0,
+        "y": 159.5,
+        "w": 270.0,
+        "h": 295.0
+      },
+      "bg": "radial-gradient(ellipse 135px 148px at 492px 307px, rgb(59 1 10) 0%, rgb(59 1 10 / .61) 40%, rgb(59 1 10 / .14) 80%, rgb(59 1 10 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (492,307) page px, σx 54, σy 59, adds rgb(59,1,10) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #3f030c). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Observed ≈#700b15–#710b16 at (485–515, 290–320). The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.right-wash",
+      "description": "Broad dim red wash entering from the right edge (upper half)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 160.0,
+        "y": -631.0,
+        "w": 1080.0,
+        "h": 1720.0
+      },
+      "bg": "radial-gradient(ellipse 540px 860px at 700px 229px, rgb(60 10 14) 0%, rgb(60 10 14 / .61) 40%, rgb(60 10 14 / .14) 80%, rgb(60 10 14 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (700,229) page px, σx 216, σy 344, adds rgb(60,10,14) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #400c10). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Centre lies just outside the panel; lifts the upper-right quadrant to ≈#2a0609–#3a0c0f. The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.left-wash",
+      "description": "Broad red wash entering from the left edge (mid height)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": -697.5,
+        "y": -190.5,
+        "w": 1355.0,
+        "h": 1115.0
+      },
+      "bg": "radial-gradient(ellipse 678px 558px at -20px 367px, rgb(113 13 23) 0%, rgb(113 13 23 / .61) 40%, rgb(113 13 23 / .14) 80%, rgb(113 13 23 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (-20,367) page px, σx 271, σy 223, adds rgb(113,13,23) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #750f19). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Centre just outside the left edge; observed #730e18–#830f1b at x 30–70, y 300–420; covers most of the left half. The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.bottom-left",
+      "description": "Low dark-red glow along the bottom-left",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": -267.0,
+        "y": 679.5,
+        "w": 700.0,
+        "h": 395.0
+      },
+      "bg": "radial-gradient(ellipse 350px 198px at 83px 877px, rgb(67 7 13) 0%, rgb(67 7 13 / .61) 40%, rgb(67 7 13 / .14) 80%, rgb(67 7 13 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (83,877) page px, σx 140, σy 79, adds rgb(67,7,13) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #47090f). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Observed ≈#470a0f–#4c0a10 along y 840–905, x 35–190; fades to #0a0303 by x≈330. The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.glow.right-low",
+      "description": "Faint glow at the right edge around y≈680",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 507.5,
+        "y": 563.0,
+        "w": 385.0,
+        "h": 230.0
+      },
+      "bg": "radial-gradient(ellipse 192px 115px at 700px 678px, rgb(57 8 13) 0%, rgb(57 8 13 / .61) 40%, rgb(57 8 13 / .14) 80%, rgb(57 8 13 / 0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "Additive Gaussian glow (7-glow fit of the whole panel, residual RMS 7.9/2.9/2.6 R/G/B levels): centre (700,678) page px, σx 77, σy 46, adds rgb(57,8,13) at its centre. CSS above = radii 2.5σ, stops 0/40/80/100% = 1/.61/.14/0 (Gaussian samples); the colour is the ADDED amount, so stack every showcase.glow.* layer with mix-blend-mode: plus-lighter (or screen) over the #040202 base inside the panel's padding box — the sum reproduces the observed colours (e.g. #d2474e at the main peak, #700b15 at the right core). Normal alpha stacking does not add and comes out darker where layers overlap (this layer alone peaks at #3d0a0f). 'at' coordinates are PAGE coords — subtract the panel padding-box origin (18.8,15.6) when the gradient lives on the panel.",
+      "notes": "Box = ellipse bounds (±2.5σ), clipped by the panel's rounded inner edge. Centre just outside the right edge; observed ≈#33090b–#3a090e at x 590–640, y 630–705. The real image also has a darker diagonal band from ≈(430,420) to ≈(250,700) between the glows, which this smooth model only approximates."
+    },
+    {
+      "id": "showcase.grid",
+      "description": "Faint red grid of 1px lines behind the doll mark, faded out radially (visible only around the mark).",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 170.0,
+        "y": 555.0,
+        "w": 330.0,
+        "h": 150.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "repeating 1px lines, colour ≈rgba(255,70,90,0.05) at the centre of the fade (+≈11 R, +3 G/B over the #1e0507–#30090a background); vertical lines at x = 186.1 + 32.8·k (k=0…9 → 481.3), horizontal lines at y = 590.0 + 31.7·k (k=0…4 → 716.8, the last one hidden under the heading). Mask: radial-gradient(ellipse 175px 85px at 340px 645px, #000 35%, transparent 100%) in page coords — lines strongest at x 380–420 / y 620–675, gone by x<175 or x>500, y<555 or y>705.",
+      "notes": "Cell pitch measured 32.8 (x) × 31.7 (y); possibly 33px square cells in the source. Very low contrast: only visible at 3–5× contrast; do not make it brighter than ~6% alpha."
+    },
+    {
+      "id": "showcase.pixels.top.a",
+      "description": "Top cluster: faint red tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 443.0,
+        "y": 69.0,
+        "w": 34.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,90,110,0.10)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 442.9–477.3, y 68.9–103.7. Rendered colour in the mockup #3e1014 (median) — the overlay rgba(255,90,110,0.10) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.m1",
+      "description": "Top cluster: light tile, 1.5 tiles wide × 2 tall (upper part of the light 'L' shape) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 477.5,
+        "y": 69.0,
+        "w": 50.0,
+        "h": 67.5
+      },
+      "bg": "rgba(255,185,195,0.15)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 477.2–527.1, y 68.9–136.5. Rendered colour in the mockup #522226 (median) — the overlay rgba(255,185,195,0.15) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.m2",
+      "description": "Top cluster: light tile right of m1 (middle row) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 527.5,
+        "y": 103.5,
+        "w": 33.5,
+        "h": 33.0
+      },
+      "bg": "rgba(255,235,240,0.11)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 527.3–560.6, y 103.6–136.4. Rendered colour in the mockup #522427 (median) — the overlay rgba(255,235,240,0.11) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.m3",
+      "description": "Top cluster: light tile row (bottom of the 'L', 2.4 tiles wide) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 446.5,
+        "y": 136.5,
+        "w": 80.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,190,200,0.15)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 446.5–527.1, y 136.5–171.4. Rendered colour in the mockup #5a292d (median) — the overlay rgba(255,190,200,0.15) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.s1",
+      "description": "Top cluster: bright pink-red tile (top row) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 527.0,
+        "y": 69.0,
+        "w": 33.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,80,100,0.52)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 527.1–560.6, y 68.9–103.6. Rendered colour in the mockup #9d2e3b (median) — the overlay rgba(255,80,100,0.52) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.b",
+      "description": "Top cluster: ghost tile right of s1 (barely visible) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 560.5,
+        "y": 69.0,
+        "w": 33.5,
+        "h": 34.5
+      },
+      "bg": "rgba(255,255,255,0.02)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 560.6–593.9, y 68.9–103.6. Rendered colour in the mockup #3b1013 (median) — the overlay rgba(255,255,255,0.02) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.s2",
+      "description": "Top cluster: bright pink-red tile (middle row, far right) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 560.5,
+        "y": 103.5,
+        "w": 33.5,
+        "h": 33.0
+      },
+      "bg": "rgba(255,80,100,0.49)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 560.6–593.9, y 103.6–136.4. Rendered colour in the mockup #982e3a (median) — the overlay rgba(255,80,100,0.49) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.s3",
+      "description": "Top cluster: bright pink-red tile (bottom row, left) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 412.0,
+        "y": 136.5,
+        "w": 34.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,80,100,0.55)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 412.2–446.5, y 136.5–171.5. Rendered colour in the mockup #a6313f (median) — the overlay rgba(255,80,100,0.55) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.c",
+      "description": "Top cluster: very faint tile below m2 — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 527.0,
+        "y": 136.5,
+        "w": 33.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,255,255,0.04)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 527.1–560.6, y 136.4–171.4. Rendered colour in the mockup #45191c (median) — the overlay rgba(255,255,255,0.04) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.s4",
+      "description": "Top cluster: light tile below-left of s3 — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 378.0,
+        "y": 171.5,
+        "w": 34.0,
+        "h": 35.0
+      },
+      "bg": "rgba(255,190,200,0.15)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 378.2–412.4, y 171.5–206.4. Rendered colour in the mockup #60292d (median) — the overlay rgba(255,190,200,0.15) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.f1",
+      "description": "Top cluster: faint half-height tile (34×17) above-left — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 378.0,
+        "y": 104.0,
+        "w": 33.5,
+        "h": 17.0
+      },
+      "bg": "rgba(255,255,255,0.03)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 377.9–411.5, y 103.8–120.9. Rendered colour in the mockup #391012 (median) — the overlay rgba(255,255,255,0.03) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.top.f2",
+      "description": "Top cluster: faint half-size tile (17×17) left of s4 — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 361.5,
+        "y": 154.5,
+        "w": 16.5,
+        "h": 17.0
+      },
+      "bg": "rgba(255,255,255,0.025)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 361.6–378.2, y 154.6–171.4. Rendered colour in the mockup #4b181b (median) — the overlay rgba(255,255,255,0.025) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.mid",
+      "description": "Lone faint tile in the middle of the panel — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 318.0,
+        "y": 317.5,
+        "w": 34.0,
+        "h": 35.0
+      },
+      "bg": "rgba(255,255,255,0.055)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 318.1–352.2, y 317.7–352.5. Rendered colour in the mockup #601f24 (median) — the overlay rgba(255,255,255,0.055) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.f1",
+      "description": "Left cluster: faint half-height tile (34×17) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 78.5,
+        "y": 352.0,
+        "w": 34.0,
+        "h": 16.5
+      },
+      "bg": "rgba(255,255,255,0.06)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 78.5–112.4, y 352.0–368.4. Rendered colour in the mockup #a02230 (median) — the overlay rgba(255,255,255,0.06) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.b1",
+      "description": "Left cluster: saturated red tile (brightest of the left cluster) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 44.0,
+        "y": 368.5,
+        "w": 34.5,
+        "h": 34.5
+      },
+      "bg": "rgba(252,48,79,0.60)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 43.9–78.5, y 368.4–402.7. Rendered colour in the mockup #cb233a (median) — the overlay rgba(252,48,79,0.60) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.m1",
+      "description": "Left cluster: light tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 112.5,
+        "y": 399.0,
+        "w": 33.5,
+        "h": 34.5
+      },
+      "bg": "rgba(255,150,160,0.15)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 112.4–145.8, y 399.0–433.6. Rendered colour in the mockup #992a34 (median) — the overlay rgba(255,150,160,0.15) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.b2",
+      "description": "Left cluster: bright pink-red tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 146.0,
+        "y": 399.0,
+        "w": 33.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,80,100,0.54)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 145.8–179.1, y 399.0–433.8. Rendered colour in the mockup #c63848 (median) — the overlay rgba(255,80,100,0.54) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.b3",
+      "description": "Left cluster: bright pink-red tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 112.5,
+        "y": 433.5,
+        "w": 33.5,
+        "h": 32.0
+      },
+      "bg": "rgba(255,80,100,0.50)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 112.4–145.8, y 433.6–465.8. Rendered colour in the mockup #b83442 (median) — the overlay rgba(255,80,100,0.50) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.m2",
+      "description": "Left cluster: light (white-ish) tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 78.5,
+        "y": 465.5,
+        "w": 34.0,
+        "h": 35.5
+      },
+      "bg": "rgba(255,255,255,0.125)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 78.5–112.4, y 465.7–500.9. Rendered colour in the mockup #773137 (median) — the overlay rgba(255,255,255,0.125) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.f2",
+      "description": "Left cluster: faint tile — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 145.5,
+        "y": 466.0,
+        "w": 33.5,
+        "h": 35.0
+      },
+      "bg": "rgba(255,255,255,0.06)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 145.6–179.1, y 465.8–500.9. Rendered colour in the mockup #69272d (median) — the overlay rgba(255,255,255,0.06) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.pixels.left.s",
+      "description": "Left cluster: small half-size tile (15–16 px) — decorative 'pixel square'.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 180.0,
+        "y": 501.0,
+        "w": 15.0,
+        "h": 16.0
+      },
+      "bg": "rgba(255,255,255,0.05)",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent square, no blur, no border; sharp edges.",
+      "notes": "Measured edges x 180.1–195.3, y 500.9–516.7. Rendered colour in the mockup #612126 (median) — the overlay rgba(255,255,255,0.05) reproduces it over the underlying glow; if the glows are approximated differently, match the rendered colour instead. Tiles sit on a loose ≈34px grid (tile 33.3–34.6 px, half tiles ≈17)."
+    },
+    {
+      "id": "showcase.mark",
+      "description": "Legba doll mark (voodoo-doll face with crossed pins) centred above the heading.",
+      "locator": {
+        "role": "img",
+        "name": "Legba",
+        "text": null
+      },
+      "box": {
+        "x": 288.5,
+        "y": 598.0,
+        "w": 79.0,
+        "h": 75.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Doll mark: circle face outline, X eyes in two pink ovals, stitched mouth, scar stitches top-left, two crossed pins with ball heads (public/brand/mark.png).",
+      "effects": "No glow/shadow around the mark (dark ring seen at high contrast is resampling ringing).",
+      "notes": "Ink box 79×75.1, centre (328.0, 635.5). Use public/brand/mark.png (512², content bbox 38,64–459,472): scale 0.186 → render the PNG at ≈95×95 with its box at x≈281.5, y≈586. Mockup colours differ from the asset: red strokes/eyes ≈#f02b4e (asset #d13950) and the face interior is transparent (shows the panel background ≈#30060a–#3e090f) instead of black — recolour (CSS mask/filter) or use an SVG variant."
+    },
+    {
+      "id": "showcase.heading",
+      "description": "Showcase heading, one line, two colours: 'Cloud, Edge, and ' white + 'AI Solutions' red.",
+      "locator": {
+        "role": "heading",
+        "name": "Cloud, Edge, and AI Solutions",
+        "text": "Cloud, Edge, and AI Solutions"
+      },
+      "box": {
+        "x": 143.0,
+        "y": 716.0,
+        "w": 371.5,
+        "h": 26.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Cloud, Edge, and AI Solutions",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 33,
+        "tracking": "-0.055em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "Single line, centred (ink centre x≈328.7). Baseline y=736.9; cap top ≈717.4 (cap height 19.5). Whole-line width-exact tracking -0.0557em (27.5px/600: natural ink 414.2 vs mockup 371.3). lineHeight not measurable (single line) — 33 (1.2) suggested. 'AI Solutions' is a <span> in the accent red."
+    },
+    {
+      "id": "showcase.heading.lead",
+      "description": "Heading part 1 (white)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Cloud, Edge, and"
+      },
+      "box": {
+        "x": 143.0,
+        "y": 716.5,
+        "w": 213.0,
+        "h": 26.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Cloud, Edge, and ",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 33,
+        "tracking": "-0.055em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=736.9, text origin x=141.9, advance≈214.9 (centre x≈250.1). Mockup ink width 213.0; Montserrat 600/27.5 at 0em = 236.0 (+23.0), at -0.03em = 223.6 (+10.7); width-exact tracking -0.056em. Stroke-fit: 600 (gain 0.96 vs white); trailing space precedes the accent span."
+    },
+    {
+      "id": "showcase.heading.accent",
+      "description": "Heading part 2 'AI Solutions' in brand red",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "AI Solutions"
+      },
+      "box": {
+        "x": 363.5,
+        "y": 716.0,
+        "w": 151.0,
+        "h": 21.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "AI Solutions",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 33,
+        "tracking": "-0.055em",
+        "color": "#fa2a4f",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=736.9, text origin x=363.8, advance≈149.8 (centre x≈439.4). Mockup ink width 150.8; Montserrat 600/27.5 at 0em = 168.5 (+17.7), at -0.03em = 159.4 (+8.6); width-exact tracking -0.058em. Colour = median of the saturated stroke interiors (R≥245) #fa2a4f; 99.75th percentile #ff2c53."
+    },
+    {
+      "id": "showcase.body",
+      "description": "Showcase paragraph, 3 centred lines.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Legba accelerates AI training, provides comprehensive cloud services, improves content delivery, and protects servers and applications."
+      },
+      "box": {
+        "x": 141.0,
+        "y": 763.0,
+        "w": 374.5,
+        "h": 55.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Legba accelerates AI training, provides comprehensive cloud services, improves content delivery, and protects servers and applications.",
+        "family": "Montserrat",
+        "size": 15.5,
+        "weight": 400,
+        "lineHeight": 20.5,
+        "tracking": "0em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "Baselines 774.3 / 794.9 / 815.1 → line-height 20.4 (20.5). Wrap: max-width between 377.4 (line 2 advance) and 422 (line 1 + 'comprehensive') reproduces the breaks — e.g. max-width 400px, centred. Width fits Montserrat 400 at 15.5px with ~0 tracking (residual ≤1.7px/line). Colour: stroke-fit gain 1.00–1.02 vs white at weight 400; the brightest pixels only reach ≈#cfcfcf because the strokes are ~1.1px (anti-aliasing), so #ffffff is correct for 400 (equivalently ~rgba(255,255,255,0.8) if 500 were used)."
+    },
+    {
+      "id": "showcase.body.line1",
+      "description": "Paragraph line 1 (verification aid for wrapping)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Legba accelerates AI training, provides"
+      },
+      "box": {
+        "x": 181.5,
+        "y": 763.0,
+        "w": 294.0,
+        "h": 14.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Legba accelerates AI training, provides",
+        "family": "Montserrat",
+        "size": 15.5,
+        "weight": 400,
+        "lineHeight": 20.5,
+        "tracking": "0em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=774.3, text origin x=179.6, advance≈296.0 (centre x≈327.7). Mockup ink width 293.8; Montserrat 400/15.5 at 0em = 295.6 (+1.7), at -0.03em = 277.9 (-15.9); width-exact tracking -0.003em."
+    },
+    {
+      "id": "showcase.body.line2",
+      "description": "Paragraph line 2 (verification aid for wrapping)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "comprehensive cloud services, improves content"
+      },
+      "box": {
+        "x": 141.0,
+        "y": 783.5,
+        "w": 374.5,
+        "h": 14.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "comprehensive cloud services, improves content",
+        "family": "Montserrat",
+        "size": 15.5,
+        "weight": 400,
+        "lineHeight": 20.5,
+        "tracking": "0em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=794.9, text origin x=140.3, advance≈375.8 (centre x≈328.2). Mockup ink width 374.6; Montserrat 400/15.5 at 0em = 376.2 (+1.6), at -0.03em = 355.3 (-19.4); width-exact tracking -0.002em."
+    },
+    {
+      "id": "showcase.body.line3",
+      "description": "Paragraph line 3 (verification aid for wrapping)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "delivery, and protects servers and applications."
+      },
+      "box": {
+        "x": 149.0,
+        "y": 803.5,
+        "w": 359.0,
+        "h": 14.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "delivery, and protects servers and applications.",
+        "family": "Montserrat",
+        "size": 15.5,
+        "weight": 400,
+        "lineHeight": 20.5,
+        "tracking": "0em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=815.1, text origin x=148.2, advance≈360.5 (centre x≈328.4). Mockup ink width 358.9; Montserrat 400/15.5 at 0em = 359.0 (+0.0), at -0.03em = 337.1 (-21.8); width-exact tracking -0.000em."
+    },
+    {
+      "id": "showcase.dots",
+      "description": "Carousel pagination: 3 dots, first active (red), centred under the paragraph.",
+      "locator": {
+        "role": "tablist",
+        "name": "Slides",
+        "text": null
+      },
+      "box": {
+        "x": 303.5,
+        "y": 861.5,
+        "w": 48.5,
+        "h": 10.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Group centre x≈328.0, centre y≈866.5. Gaps between dot edges 11.4 and 10.4 (≈10–11px). Active dot is larger (10px) than inactive dots (8.5px)."
+    },
+    {
+      "id": "showcase.dots.1",
+      "description": "Active dot (slide 1)",
+      "locator": {
+        "role": "tab",
+        "name": "Slide 1",
+        "text": null
+      },
+      "box": {
+        "x": 303.5,
+        "y": 861.5,
+        "w": 10.0,
+        "h": 10.0
+      },
+      "bg": "#f62a4c",
+      "border": null,
+      "radius": 5,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Diameter 9.9–10.1 (10px), centre (308.7, 866.5). aria-selected=true."
+    },
+    {
+      "id": "showcase.dots.2",
+      "description": "Inactive dot (slide 2)",
+      "locator": {
+        "role": "tab",
+        "name": "Slide 2",
+        "text": null
+      },
+      "box": {
+        "x": 325.0,
+        "y": 862.0,
+        "w": 8.5,
+        "h": 8.5
+      },
+      "bg": "#3e3232",
+      "border": null,
+      "radius": 4.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Diameter ≈8.5, centre (329.3, 866.5). Filled dim grey-mauve (≈rgba(255,255,255,0.16) over the #130405 background), rim marginally brighter than centre."
+    },
+    {
+      "id": "showcase.dots.3",
+      "description": "Inactive dot (slide 3)",
+      "locator": {
+        "role": "tab",
+        "name": "Slide 3",
+        "text": null
+      },
+      "box": {
+        "x": 344.0,
+        "y": 862.0,
+        "w": 8.5,
+        "h": 8.5
+      },
+      "bg": "#473a3b",
+      "border": null,
+      "radius": 4.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Diameter ≈8.5, centre (348.1, 866.3). Drawn as a RING in the mockup (rim #4d4141, darker centre #2d1e21, ring ≈2px) unlike dot 2 — probably an artefact; implement both inactive dots identically (≈rgba(255,255,255,0.18)) unless a hollow style is wanted."
+    },
+    {
+      "id": "auth",
+      "description": "Right authentication panel: flat near-black card with a thin grey border, rounded corners; content column centred.",
+      "locator": {
+        "role": "main",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 655.0,
+        "y": 10.0,
+        "w": 774.0,
+        "h": 906.5
+      },
+      "bg": "#0a0a0b",
+      "border": {
+        "width": 2.5,
+        "color": "#303032",
+        "sides": "all"
+      },
+      "radius": 28,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Border line profile fits 2.5–2.6px of #2f2f31 (FWHM 2.5px); integrated-equivalent 2px #3a3a3c. Border centrelines: left 656.65, right 1428.0, top 11.2, bottom 914.8. Outer radius 26.5–29 (TL ≈29, TR ≈28, BL/BR ≈27). Interior is perfectly flat #0a0a0b (no glow). Content column (inputs) x 838.0–1243.7 (w 405.7, centre 1040.9); panel centre 1042.2."
+    },
+    {
+      "id": "auth.brand",
+      "description": "Brand lockup: doll mark + LEGBA wordmark, centred at the top of the auth panel.",
+      "locator": {
+        "role": "img",
+        "name": "Legba",
+        "text": null
+      },
+      "box": {
+        "x": 957.0,
+        "y": 105.0,
+        "w": 165.5,
+        "h": 37.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Lockup ink centre x≈1040.0. Mark ink → wordmark ink gap 12.1px. Wordmark is vertically centred on the mark (mark centre y 123.7, wordmark ink centre 125.3)."
+    },
+    {
+      "id": "auth.brand.mark",
+      "description": "Doll mark (small) in the lockup",
+      "locator": {
+        "role": "img",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 957.0,
+        "y": 105.0,
+        "w": 42.0,
+        "h": 37.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Doll mark (public/brand/mark.png): red outline/eyes/stitches/pins, face filled dark brown.",
+      "effects": null,
+      "notes": "Ink 41.8×37.7 (slightly wider than the asset's 1.03 aspect: 1.11). Red ≈#ce3048 (asset #d13950 — use asset colour). Face interior ≈#4a2e2d (brownish, NOT black as in mark.png): approximate with the asset over a #4a2e2d circle or a recoloured SVG. If using mark.png uniformly scaled (~0.096), render ≈49×49 with box at x≈953.4, y≈98.5."
+    },
+    {
+      "id": "auth.brand.wordmark",
+      "description": "LEGBA wordmark (Permanent Marker style, locked asset)",
+      "locator": {
+        "role": "img",
+        "name": "Legba",
+        "text": null
+      },
+      "box": {
+        "x": 1011.0,
+        "y": 113.0,
+        "w": 112.0,
+        "h": 25.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "public/brand/wordmark-bone.svg",
+      "effects": null,
+      "notes": "Ink 111.8×24.8, colour #f5f2ea (= bone #F5F3EC). SVG viewBox 276.35×64.66 with ink inset (2.0, 2.0)–(274.3, 62.6): scale 0.410 → render the SVG at 113.3×26.5 with its box at x≈1010.2, y≈112.0."
+    },
+    {
+      "id": "auth.title",
+      "description": "Page title, 2 centred lines: 'Welcome back to' / 'Inference Box!'.",
+      "locator": {
+        "role": "heading",
+        "name": "Welcome back to Inference Box!",
+        "text": "Welcome back to Inference Box!"
+      },
+      "box": {
+        "x": 926.5,
+        "y": 176.5,
+        "w": 224.5,
+        "h": 51.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Welcome back to Inference Box!",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 31,
+        "tracking": "-0.055em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "Baselines 196.9 / 227.9 → line-height 31.0. Break after 'to' (explicit <br> or max-width 230–350px). Line centres x≈1038.9 / 1037.8 (≈2.5px left of the column centre 1040.9 — keep centred on the column). Stroke-fit weight 600 (gain 0.99–1.01 vs white; 500/700 clearly worse). Cap height 19.3 → 27.5px. Glyph interiors reach #ffffff."
+    },
+    {
+      "id": "auth.title.line1",
+      "description": "Title line 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Welcome back to"
+      },
+      "box": {
+        "x": 926.5,
+        "y": 176.5,
+        "w": 224.5,
+        "h": 20.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Welcome back to",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 31,
+        "tracking": "-0.055em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=196.9, text origin x=925.9, advance≈224.6 (centre x≈1038.9). Mockup ink width 224.3; Montserrat 600/27.5 at 0em = 245.6 (+21.3), at -0.03em = 234.0 (+9.7); width-exact tracking -0.055em."
+    },
+    {
+      "id": "auth.title.line2",
+      "description": "Title line 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Inference Box!"
+      },
+      "box": {
+        "x": 948.0,
+        "y": 207.5,
+        "w": 181.0,
+        "h": 20.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Inference Box!",
+        "family": "Montserrat",
+        "size": 27.5,
+        "weight": 600,
+        "lineHeight": 31,
+        "tracking": "-0.055em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=227.9, text origin x=945.3, advance≈183.7 (centre x≈1037.8). Mockup ink width 181.0; Montserrat 600/27.5 at 0em = 199.8 (+18.8), at -0.03em = 189.1 (+8.1); width-exact tracking -0.053em."
+    },
+    {
+      "id": "auth.subtitle",
+      "description": "Subtitle under the title",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Enter your username and password to continue."
+      },
+      "box": {
+        "x": 884.5,
+        "y": 247.0,
+        "w": 306.5,
+        "h": 13.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Enter your username and password to continue.",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 19,
+        "tracking": "-0.07em",
+        "color": "#b5b8bc",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=257.7, text origin x=883.1, advance≈307.5 (centre x≈1037.4). Mockup ink width 306.4; Montserrat 500/14.5 at 0em = 351.8 (+45.4), at -0.03em = 332.6 (+26.3); width-exact tracking -0.071em. Cap 'E' 10.2 and x-height 7.8 both → 14.5px. Alternative if tight tracking reads cramped: 13.5px @ -0.03em matches the width with ~7% smaller caps. Colour: ink-matched at 500 (brightest pixels #b3b6ba; integrated ink of a 500 render needs ≈#b5b8bc–#c2c5ca, the lower value after removing the ~8% small-text ink surplus every white label also shows)."
+    },
+    {
+      "id": "auth.form",
+      "description": "Credentials form block (labels, inputs, remember row, submit).",
+      "locator": {
+        "role": "form",
+        "name": "Log in",
+        "text": null
+      },
+      "box": {
+        "x": 836.0,
+        "y": 300.0,
+        "w": 409.0,
+        "h": 242.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Inputs span x 838.0–1243.7 (w≈405.5); the submit pill is ≈2px wider on each side (836.2–1245.3). Vertical rhythm: label baseline → input top 7.0; input bottom → next label baseline 25.9; input bottom → checkbox top 14.8; remember row → submit top 32.6 (checkbox bottom 469.6 → 502.2)."
+    },
+    {
+      "id": "auth.email.label",
+      "description": "Email field label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Email"
+      },
+      "box": {
+        "x": 841.5,
+        "y": 300.0,
+        "w": 33.0,
+        "h": 10.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Email",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.055em",
+        "color": "#e0e1e2",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=309.8, text origin x=840.3, advance≈35.0 (centre x≈858.2). Mockup ink width 33.2; Montserrat 500/13.5 at 0em = 36.3 (+3.1), at -0.03em = 34.6 (+1.5); width-exact tracking -0.057em. Left ink edge 841.7 = input left + 3.4 (label text origin x≈840.3, ≈2px inside the input edge). Colour ink-matched at 500 (brightest pixels #d8dada → #e0e1e2 after the small-text surplus correction; up to #f2f4f4 without it)."
+    },
+    {
+      "id": "auth.email.input",
+      "description": "Email text input (filled)",
+      "locator": {
+        "role": "textbox",
+        "name": "Email",
+        "text": null
+      },
+      "box": {
+        "x": 838.5,
+        "y": 317.0,
+        "w": 405.5,
+        "h": 44.5
+      },
+      "bg": "#161617",
+      "border": {
+        "width": 1,
+        "color": "#2c2c2e",
+        "sides": "all"
+      },
+      "radius": 10,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Outer edges 838.27–1243.67 × 316.81–361.19 (405.4×44.4). Border profile also fits 1.5px #242426; ≈rgba(255,255,255,0.09). Radius 9.5–10.8 (10). Text origin x≈853.8 → padding-left ≈15.5; value baseline 342.6 (vertically centred: input centre 339.0, x-height centre ≈339)."
+    },
+    {
+      "id": "auth.email.value",
+      "description": "Email input value (prefilled)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "jane@demo.gmail.com"
+      },
+      "box": {
+        "x": 852.5,
+        "y": 333.0,
+        "w": 142.5,
+        "h": 12.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "jane@demo.gmail.com",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.065em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=342.5, text origin x=853.8, advance≈141.7 (centre x≈925.1). Mockup ink width 142.7; Montserrat 500/13.5 at 0em = 158.9 (+16.2), at -0.03em = 151.7 (+8.9); width-exact tracking -0.067em. Stroke-fit gain ≈1.0 vs white at 500."
+    },
+    {
+      "id": "auth.password.label",
+      "description": "Password field label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Password"
+      },
+      "box": {
+        "x": 841.5,
+        "y": 377.5,
+        "w": 57.5,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Password",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.06em",
+        "color": "#e0e1e2",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=387.1, text origin x=840.2, advance≈59.5 (centre x≈870.3). Mockup ink width 57.7; Montserrat 500/13.5 at 0em = 63.4 (+5.8), at -0.03em = 60.6 (+2.9); width-exact tracking -0.061em. Colour ink-matched at 500 (brightest pixels #dcdcdd; integrated ink → #e0e1e2 after the small-text surplus correction; up to #f1f2f3 without it)."
+    },
+    {
+      "id": "auth.password.input",
+      "description": "Password input (value shown in clear text: reveal state)",
+      "locator": {
+        "role": "textbox",
+        "name": "Password",
+        "text": null
+      },
+      "box": {
+        "x": 838.0,
+        "y": 394.5,
+        "w": 405.5,
+        "h": 45.0
+      },
+      "bg": "#161617",
+      "border": {
+        "width": 1,
+        "color": "#2c2c2e",
+        "sides": "all"
+      },
+      "radius": 10,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Outer edges 838.03–1243.74 × 394.66–439.44 (405.7×44.8). Same style as the email input. Right padding to the eye icon ink: 14.7px."
+    },
+    {
+      "id": "auth.password.value",
+      "description": "Password input value, visible (type=text while revealed)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "1234567"
+      },
+      "box": {
+        "x": 853.5,
+        "y": 411.5,
+        "w": 49.5,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "1234567",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.04em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y≈420.9, text origin x≈853.6. Mockup ink width 49.7; Montserrat 500/13.5 at 0em = 52.9 (+3.2), at -0.03em = 50.5 (+0.8); width-exact -0.040em. Digit-height fit 13.5px."
+    },
+    {
+      "id": "auth.password.toggle",
+      "description": "Show/hide password toggle (eye icon button) inside the password input, right side.",
+      "locator": {
+        "role": "button",
+        "name": "Hide password",
+        "text": null
+      },
+      "box": {
+        "x": 1207.5,
+        "y": 407.5,
+        "w": 21.5,
+        "h": 18.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Eye (outline): almond with pointed ends (centreline 19.5×15.8) + iris ring Ø6.5 (r≈3.25) centred; no pupil dot; stroke ≈1.4px, round joins.",
+      "effects": null,
+      "notes": "Ink box 21.4×17.8, centre (1218.3, 416.6) = input vertical centre. Colour ≈#a0a2a4 (stroke peaks #929494 due to AA). Suggest a 24px icon box at (1206.3, 404.6) inside a 32px hit area. Eye-open glyph is shown while the value is visible."
+    },
+    {
+      "id": "auth.remember.checkbox",
+      "description": "'Remember me' checkbox, checked (red fill, white check).",
+      "locator": {
+        "role": "checkbox",
+        "name": "Remember me",
+        "text": null
+      },
+      "box": {
+        "x": 839.5,
+        "y": 454.5,
+        "w": 15.5,
+        "h": 15.5
+      },
+      "bg": "#f1103a",
+      "border": null,
+      "radius": 4,
+      "text": null,
+      "icon": "Check mark: white polyline, stroke ≈1.6–1.8px, round caps; ink 843.0–851.7 × 458.5–465.7 (short arm from (843.6,462.6) down to the vertex (846.2,465.4), long arm up to (851.4,459.0)).",
+      "effects": null,
+      "notes": "15.4×15.4 (≈15.5px square), centre (847.2, 461.9). No visible border in the checked state. Fill sampled #f4123a/#ed0d34 (more saturated than the accent red). Gap checkbox → label text origin ≈7.5px."
+    },
+    {
+      "id": "auth.remember.label",
+      "description": "Remember me label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Remember me"
+      },
+      "box": {
+        "x": 864.0,
+        "y": 456.5,
+        "w": 91.0,
+        "h": 10.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Remember me",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.06em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=466.3, text origin x=862.4, advance≈92.0 (centre x≈908.7). Mockup ink width 90.8; Montserrat 500/13 at 0em = 98.3 (+7.5), at -0.03em = 94.4 (+3.6); width-exact tracking -0.058em. Cap 'R' 9.2 → 13.1px. Brightest pixels only #e8eaea (thin strokes), but the integrated ink needs white even at 500 (19% more ink than a #e8eaea render) — use #ffffff (or 550–600 if it reads too light)."
+    },
+    {
+      "id": "auth.forgot",
+      "description": "Forgot password link, right-aligned on the remember row",
+      "locator": {
+        "role": "link",
+        "name": "Forgot password?",
+        "text": null
+      },
+      "box": {
+        "x": 1131.0,
+        "y": 457.0,
+        "w": 108.5,
+        "h": 12.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Forgot password?",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 600,
+        "lineHeight": 17,
+        "tracking": "-0.05em",
+        "color": "#f62450",
+        "transform": "none",
+        "align": "right"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=466.3, text origin x=1129.9, advance≈110.0 (centre x≈1185.3). Mockup ink width 108.6; Montserrat 600/13 at 0em = 118.2 (+9.6), at -0.03em = 112.4 (+3.8); width-exact tracking -0.049em. Right ink edge 1239.8 (≈4px inside the input's right edge 1243.7). Same baseline as 'Remember me'. Weight: shape fits 500–600, integrated ink is 28% above a 500 render → 600 (same as 'Register'). Brightest pixels #f02446; same red as the Register link."
+    },
+    {
+      "id": "auth.submit",
+      "description": "Primary submit button 'Log in': full-width red gradient pill.",
+      "locator": {
+        "role": "button",
+        "name": "Log in",
+        "text": null
+      },
+      "box": {
+        "x": 836.0,
+        "y": 502.0,
+        "w": 409.0,
+        "h": 40.0
+      },
+      "bg": "linear-gradient(180deg, #e84659 0%, #dd4356 5%, #d5374c 20%, #d22b42 35%, #c82239 50%, #bb1d33 65%, #af1b2e 80%, #a21928 95%, #9f1827 100%)",
+      "border": null,
+      "radius": 20,
+      "text": null,
+      "icon": null,
+      "effects": "Vertical gradient (lighter coral-red top → deep red bottom), uniform horizontally. Faint 1px lighter rim along the edge (≈+3–9 levels): inset 0 1px 0 rgba(255,140,155,0.25), inset 0 0 0 1px rgba(255,255,255,0.04). No outer shadow or glow (the dark ring around it is resampling ringing).",
+      "notes": "409.1×40.0, radius = height/2 (fully rounded; corner fits 18.7–20.3). 2px wider on each side than the inputs."
+    },
+    {
+      "id": "auth.submit.label",
+      "description": "Submit button label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Log in"
+      },
+      "box": {
+        "x": 1020.0,
+        "y": 516.5,
+        "w": 41.5,
+        "h": 13.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Log in",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 600,
+        "lineHeight": 19,
+        "tracking": "-0.03em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=527.1, text origin x=1018.8, advance≈43.5 (centre x≈1040.8). Mockup ink width 41.5; Montserrat 600/14.5 at 0em = 43.7 (+2.2), at -0.03em = 41.5 (+0.0); width-exact tracking -0.030em. Centred: ink centre x 1040.9, button centre 1040.8; baseline 527.1 (button centre y 522.2)."
+    },
+    {
+      "id": "auth.divider",
+      "description": "'Or login with' divider: two hairlines with centred text.",
+      "locator": {
+        "role": "separator",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 837.5,
+        "y": 569.0,
+        "w": 407.0,
+        "h": 12.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Lines are equal length (137 / 136.5) with ≈26.8px (left) / 28.4px (right) gaps to the text ink (text box ≈27px each side); line centre y 574.6 aligns with the text's x-height middle."
+    },
+    {
+      "id": "auth.divider.line-left",
+      "description": "Divider hairline, left",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 837.5,
+        "y": 574.0,
+        "w": 137.0,
+        "h": 1.0
+      },
+      "bg": "#737375",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "1px high at y≈574.1–575.1 (centre 574.6), x 837.4–974.5. Profile fits 1.4px #575759; 1px #737375 is the integrated equivalent."
+    },
+    {
+      "id": "auth.divider.text",
+      "description": "Divider label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Or login with"
+      },
+      "box": {
+        "x": 1001.0,
+        "y": 569.0,
+        "w": 78.5,
+        "h": 12.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Or login with",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.055em",
+        "color": "#c1c3c5",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=578.7, text origin x=1000.6, advance≈79.5 (centre x≈1040.7). Mockup ink width 78.4; Montserrat 500/13.5 at 0em = 87.6 (+9.1), at -0.03em = 82.7 (+4.3); width-exact tracking -0.056em. Colour ink-matched at 500 (brightest pixels #bec0c2)."
+    },
+    {
+      "id": "auth.divider.line-right",
+      "description": "Divider hairline, right",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1108.0,
+        "y": 574.0,
+        "w": 136.5,
+        "h": 1.0
+      },
+      "bg": "#737375",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "1px high, x 1108.0–1244.5. Same style as the left line."
+    },
+    {
+      "id": "auth.social",
+      "description": "Row of 3 equal secondary buttons (SSO, Google, GitHub).",
+      "locator": {
+        "role": "group",
+        "name": "Log in with",
+        "text": null
+      },
+      "box": {
+        "x": 838.0,
+        "y": 605.5,
+        "w": 406.0,
+        "h": 42.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "3 columns over 406px with ≈8.8px gaps (966.1→974.9, 1105.1→1114.0): grid-template-columns repeat(3,1fr), gap ≈9px. Each button 128.4–130.3 × 41.8. Icon + label centred as a group; icon→label ink gap 7.8–10."
+    },
+    {
+      "id": "auth.social.sso",
+      "description": "SSO sign-in button",
+      "locator": {
+        "role": "button",
+        "name": "SSO",
+        "text": null
+      },
+      "box": {
+        "x": 838.0,
+        "y": 605.5,
+        "w": 128.5,
+        "h": 42.0
+      },
+      "bg": "#161616",
+      "border": {
+        "width": 1,
+        "color": "#2c2c2e",
+        "sides": "all"
+      },
+      "radius": 12,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Outer 837.77–966.12 × 605.45–647.21. Border profile also fits 1.5px #252527. Corner radius 11–12.5."
+    },
+    {
+      "id": "auth.social.sso.icon",
+      "description": "SSO icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 876.5,
+        "y": 619.5,
+        "w": 15.0,
+        "h": 15.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Key icon (teal-green, filled): round head with a hole at top-right, short shaft down-left with a notch; rotated 45°.",
+      "effects": null,
+      "notes": "Ink 15.0×14.9, centre (884.0, 626.8), colour #13d49c. Suggest an 18–20px icon box."
+    },
+    {
+      "id": "auth.social.sso.label",
+      "description": "SSO button label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "SSO"
+      },
+      "box": {
+        "x": 901.5,
+        "y": 621.5,
+        "w": 25.5,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "SSO",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 600,
+        "lineHeight": 18,
+        "tracking": "-0.04em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=630.9, text origin x=901.0, advance≈26.0 (centre x≈914.4). Mockup ink width 25.7; Montserrat 600/13.5 at 0em = 27.3 (+1.6), at -0.03em = 26.5 (+0.7); width-exact tracking -0.058em. Buttons share one style: 13.5/600, -0.04em (per-word exact values vary because the words are short)."
+    },
+    {
+      "id": "auth.social.google",
+      "description": "Google sign-in button",
+      "locator": {
+        "role": "button",
+        "name": "Google",
+        "text": null
+      },
+      "box": {
+        "x": 975.0,
+        "y": 605.5,
+        "w": 130.5,
+        "h": 42.0
+      },
+      "bg": "#161616",
+      "border": {
+        "width": 1,
+        "color": "#2c2c2e",
+        "sides": "all"
+      },
+      "radius": 12,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Outer 974.86–1105.13 × 605.44–647.21. Border profile also fits 1.5px #252527. Corner radius 11–12.5."
+    },
+    {
+      "id": "auth.social.google.icon",
+      "description": "Google icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1003.0,
+        "y": 617.0,
+        "w": 18.5,
+        "h": 18.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Google 'G' logo, official 4 colours (blue #4285f4, red #ea4335, yellow #fbbc05, green #34a853); measured ≈#377ce6/#ea282a/#f5c008/#229c40.",
+      "effects": null,
+      "notes": "Ink 18.4×18.2, centre (1012.0, 626.3). Suggest an 18–20px icon box."
+    },
+    {
+      "id": "auth.social.google.label",
+      "description": "Google button label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Google"
+      },
+      "box": {
+        "x": 1031.0,
+        "y": 620.5,
+        "w": 46.0,
+        "h": 13.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Google",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 600,
+        "lineHeight": 18,
+        "tracking": "-0.04em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=630.7, text origin x=1030.2, advance≈46.8 (centre x≈1053.8). Mockup ink width 46.1; Montserrat 600/13.5 at 0em = 48.4 (+2.3), at -0.03em = 46.4 (+0.2); width-exact tracking -0.034em. Buttons share one style: 13.5/600, -0.04em (per-word exact values vary because the words are short)."
+    },
+    {
+      "id": "auth.social.github",
+      "description": "GitHub sign-in button",
+      "locator": {
+        "role": "button",
+        "name": "GitHub",
+        "text": null
+      },
+      "box": {
+        "x": 1114.0,
+        "y": 605.5,
+        "w": 129.5,
+        "h": 41.5
+      },
+      "bg": "#161616",
+      "border": {
+        "width": 1,
+        "color": "#2c2c2e",
+        "sides": "all"
+      },
+      "radius": 12,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Outer 1114.02–1243.74 × 605.50–647.20. Border profile also fits 1.5px #252527. Corner radius 11–12.5."
+    },
+    {
+      "id": "auth.social.github.icon",
+      "description": "GitHub icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1139.0,
+        "y": 617.5,
+        "w": 19.0,
+        "h": 18.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "GitHub Invertocat mark (white circle with the cat silhouette knocked out).",
+      "effects": null,
+      "notes": "Ink 18.9×18.4, centre (1148.3, 626.5), colour #f4f4f4. Suggest an 18–20px icon box."
+    },
+    {
+      "id": "auth.social.github.label",
+      "description": "GitHub button label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "GitHub"
+      },
+      "box": {
+        "x": 1165.5,
+        "y": 621.0,
+        "w": 45.5,
+        "h": 10.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "GitHub",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 600,
+        "lineHeight": 18,
+        "tracking": "-0.04em",
+        "color": "#ffffff",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=630.8, text origin x=1165.0, advance≈46.2 (centre x≈1188.4). Mockup ink width 45.7; Montserrat 600/13.5 at 0em = 48.4 (+2.7), at -0.03em = 46.3 (+0.6); width-exact tracking -0.040em. Buttons share one style: 13.5/600, -0.04em (per-word exact values vary because the words are short)."
+    },
+    {
+      "id": "auth.register",
+      "description": "Sign-up prompt line, centred: muted question + red link.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Don't have an account? Register"
+      },
+      "box": {
+        "x": 927.5,
+        "y": 688.0,
+        "w": 227.5,
+        "h": 15.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Ink centre x≈1040.9 (column centre). Shared baseline 699.7. Space between '?' ink and 'R' ink 5.4px. Apostrophe renders as a straight tick (U+0027), not a curly quote."
+    },
+    {
+      "id": "auth.register.prompt",
+      "description": "Prompt text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Don't have an account?"
+      },
+      "box": {
+        "x": 927.5,
+        "y": 688.5,
+        "w": 163.5,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Don't have an account?",
+        "family": "Montserrat",
+        "size": 16,
+        "weight": 500,
+        "lineHeight": 21,
+        "tracking": "-0.075em",
+        "color": "#adb1b5",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=699.7, text origin x=925.6, advance≈164.9 (centre x≈1008.7). Mockup ink width 163.3; Montserrat 500/16 at 0em = 188.6 (+25.3), at -0.03em = 178.5 (+15.2); width-exact tracking -0.075em. Cap 'D' 11.0 → 15.9px; x-height → 15.7px. Alternative: 15px @ -0.03em ≈ width-exact with 6% smaller caps."
+    },
+    {
+      "id": "auth.register.link",
+      "description": "Register link",
+      "locator": {
+        "role": "link",
+        "name": "Register",
+        "text": null
+      },
+      "box": {
+        "x": 1096.0,
+        "y": 688.0,
+        "w": 58.5,
+        "h": 15.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Register",
+        "family": "Montserrat",
+        "size": 16,
+        "weight": 600,
+        "lineHeight": 21,
+        "tracking": "-0.075em",
+        "color": "#f42149",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=699.7, text origin x=1094.5, advance≈59.3 (centre x≈1124.8). Mockup ink width 58.5; Montserrat 600/16 at 0em = 66.8 (+8.3), at -0.03em = 63.5 (+4.9); width-exact tracking -0.074em. Weight: stroke-fit 500–600, visually and by ink 600 (heavier than the prompt). Colour: brightest pixels #f62450, ink-matched #f21d46 → #f42149. Not underlined."
+    },
+    {
+      "id": "auth.legal",
+      "description": "Legal consent line at the bottom of the auth panel with two underlined links.",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By logging in, you agree to our Master Services Agreement and Privacy Policy."
+      },
+      "box": {
+        "x": 811.5,
+        "y": 868.5,
+        "w": 457.5,
+        "h": 12.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "By logging in, you agree to our Master Services Agreement and Privacy Policy.",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.055em",
+        "color": "#b3b5b7",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "Single line, centred (ink centre x 1040.4). Baseline 877.8. Whole-line width-exact tracking -0.0544em at 13px/500 (natural ink 511.1 vs mockup 457.4; at -0.03em the line is ≈+30px wider). Baseline sits ≈35.7px above the auth panel's inner bottom edge (≈913.5)."
+    },
+    {
+      "id": "auth.legal.lead",
+      "description": "Legal text before the first link",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By logging in, you agree to our"
+      },
+      "box": {
+        "x": 811.5,
+        "y": 868.5,
+        "w": 178.0,
+        "h": 12.0
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "By logging in, you agree to our ",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.055em",
+        "color": "#b3b5b7",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box. baseline y=877.8, text origin x=810.3, advance≈179.1 (centre x≈900.2). Mockup ink width 178.1; Montserrat 500/13 at 0em = 200.7 (+22.6), at -0.03em = 189.0 (+10.9); width-exact tracking -0.058em. Colour ink-matched at 500 (brightest pixels #aeb0b2)."
+    },
+    {
+      "id": "auth.legal.msa",
+      "description": "Link: Master Services Agreement (underlined)",
+      "locator": {
+        "role": "link",
+        "name": "Master Services Agreement",
+        "text": null
+      },
+      "box": {
+        "x": 994.0,
+        "y": 869.0,
+        "w": 162.5,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Master Services Agreement",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.055em",
+        "color": "#b3b5b7",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": "text-decoration: underline 1px, same colour as text; underline centre y≈879.45 (≈1.75px below the baseline 877.7, i.e. text-underline-offset ≈1.3px); underline spans x 993.8–1156.4.",
+      "notes": "Box = text ink + underline. ink box. baseline y=877.7, text origin x=993.3, advance≈161.9 (centre x≈1074.7). Mockup ink width 161.0; Montserrat 500/13 at 0em = 180.1 (+19.1), at -0.03em = 170.8 (+9.8); width-exact tracking -0.061em."
+    },
+    {
+      "id": "auth.legal.and",
+      "description": "Legal text between links",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "and"
+      },
+      "box": {
+        "x": 1160.5,
+        "y": 869.0,
+        "w": 21.0,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": " and ",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.055em",
+        "color": "#b3b5b7",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of 'and'; baseline 877.8. Same style as the lead text (short word: per-word tracking fit unreliable)."
+    },
+    {
+      "id": "auth.legal.privacy",
+      "description": "Link: Privacy Policy (underlined; underline also runs under the final period)",
+      "locator": {
+        "role": "link",
+        "name": "Privacy Policy",
+        "text": null
+      },
+      "box": {
+        "x": 1186.0,
+        "y": 868.5,
+        "w": 83.5,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Privacy Policy.",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.055em",
+        "color": "#b3b5b7",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": "text-decoration: underline 1px, text colour, centre y≈879.45, x 1185.9–1268.8; skip-ink gap under the 'y' descender of 'Privacy' (default text-decoration-skip-ink:auto).",
+      "notes": "The underline ends at 1268.8, past the 'y' and under the '.', so the period is inside the link (or the decoration covers it). ink box. baseline y=877.6, text origin x=1185.1, advance≈79.9 (centre x≈1225.4). Mockup ink width 79.3; Montserrat 500/13 at 0em = 89.0 (+9.7), at -0.03em = 83.9 (+4.6); width-exact tracking -0.057em."
+    }
+  ],
+  "verification": []
+}

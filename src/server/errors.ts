@@ -7,7 +7,6 @@ export type ServiceErrorCode =
   | "REGISTRIES_UNAVAILABLE"
   | "MODELS_UNAVAILABLE"
   | "PAYMENTS_UNAVAILABLE"
-  | "KEY_NOT_FOUND"
   | "EMAIL_TAKEN";
 
 /**

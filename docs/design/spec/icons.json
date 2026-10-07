@@ -1,0 +1,395 @@
+{
+  "library": "lucide",
+  "icons": [
+    {
+      "id": "header.nav.overview",
+      "mockup": "Header nav 'Overview' (active tab): 2×2 grid of solid rounded squares, white; glyph ≈14.4×15.8 px (squares ≈6.5px, gaps ≈1.8px).",
+      "name": "layout-grid",
+      "react": "import { LayoutGridIcon } from \"lucide-react\";",
+      "filled": true,
+      "alternates": [
+        "layout-dashboard",
+        "grid-2x2"
+      ],
+      "notes": "Active state: fill=\"currentColor\" + strokeWidth 1.75 at 17px (squares ≈6.2px, gaps ≈1.6px; ink within 7% of the mockup). Inactive state: outline, strokeWidth 2.25. Colour ≈#FCFCFC active, ≈#A6ABB1 inactive. Only this icon is drawn filled in the mockup; the other nav icons stay outline when active (switch colour only)."
+    },
+    {
+      "id": "header.nav.deployments",
+      "mockup": "Header nav 'Deployments': monitor on a stand with small marks inside the screen; ≈#A6ABB1; glyph ≈15.1×15.8 px.",
+      "name": "monitor-up",
+      "react": "import { MonitorUpIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "monitor",
+        "monitor-cloud",
+        "monitor-check",
+        "monitor-cog"
+      ],
+      "notes": "17px, strokeWidth 2.25 (≈1.6px stroke) — use the same size/stroke for all five nav icons. The screen content in the mockup is illegible texture; MonitorUp matches its ink density (195 vs 191) and reads as 'deploy'. Use plain Monitor if an empty screen is preferred."
+    },
+    {
+      "id": "header.nav.modelCatalog",
+      "mockup": "Header nav 'Model Catalog': rounded hexagon/shield outline with a smaller nested shield and a centre dot (AI-drawn; no library has this glyph); ≈#9DA2A5; glyph ≈15.1×15.8 px.",
+      "name": "package",
+      "react": "import { PackageIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "box",
+        "bolt",
+        "boxes",
+        "brain"
+      ],
+      "notes": "17px, strokeWidth 2.25 (≈1.6px stroke) — use the same size/stroke for all five nav icons. Package keeps the hexagonal silhouette and reads as 'model package'. Bolt (hexagon + inner ring) is the closest literal silhouette but means hardware/settings."
+    },
+    {
+      "id": "header.nav.registries",
+      "mockup": "Header nav 'Registries': diagonal pen with a cap ring and a baseline underneath; ≈#ABAEB1; glyph ≈13×16.6 px.",
+      "name": "pencil-line",
+      "react": "import { PencilLineIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "pen-line",
+        "pencil"
+      ],
+      "notes": "17px, strokeWidth 2.25 (≈1.6px stroke) — use the same size/stroke for all five nav icons. Lucide's baseline sits under the right half of the pencil; the mockup's starts under the tip. Accepted."
+    },
+    {
+      "id": "header.nav.apiKeys",
+      "mockup": "Header nav 'API Keys': outline key, round bow top-right with a dot, outlined shaft to bottom-left; ≈#91969B; glyph ≈15.1×15.8 px.",
+      "name": "key-round",
+      "react": "import { KeyRoundIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "key"
+      ],
+      "notes": "17px, strokeWidth 2.25 (≈1.6px stroke) — use the same size/stroke for all five nav icons. Same family as the hero and SSO keys, which use lucide Key at a heavy stroke."
+    },
+    {
+      "id": "header.search",
+      "mockup": "Search input (header, 'Type to search…'): magnifier at the left; ≈#A2A6AB; glyph ≈16.6 px.",
+      "name": "search",
+      "react": "import { SearchIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "20px, strokeWidth 2 (lucide default, ≈1.67px). Near-identical to the mockup (ink 151 vs 152)."
+    },
+    {
+      "id": "header.support",
+      "mockup": "Header utility button: headset (headphones with a mic boom on the right cup); ≈#D2D5DB; glyph ≈17.3×15.8 px.",
+      "name": "headset",
+      "react": "import { HeadsetIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "headphones",
+        "life-buoy"
+      ],
+      "notes": "18px, strokeWidth 2.25 (≈1.7px); same size/stroke as header.docs and header.topUp. Lucide's boom curls to the bottom centre where the mockup's is a short stub. Accepted."
+    },
+    {
+      "id": "header.docs",
+      "mockup": "Header utility button: open book (two pages, centre spine); ≈#C8CFD8; glyph ≈16.6 px.",
+      "name": "book-open",
+      "react": "import { BookOpenIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "book-open-text",
+        "book-marked"
+      ],
+      "notes": "18px, strokeWidth 2.25 (≈1.7px)."
+    },
+    {
+      "id": "header.topUp",
+      "mockup": "'Top-Up' pill button: wallet/card outline with a double top band and an inward arrow at the bottom; ≈#CFD0D1; glyph ≈15.8 px.",
+      "name": "wallet-cards",
+      "react": "import { WalletCardsIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "wallet",
+        "wallet-minimal",
+        "credit-card",
+        "banknote-arrow-up"
+      ],
+      "notes": "18px, strokeWidth 2.25. Reproduces the double top band and an inner curve at exactly the mockup's 15.8px glyph size. No lucide glyph has the card plus inward arrow."
+    },
+    {
+      "id": "header.account.chevron",
+      "mockup": "Account menu caret right of the avatar: chevron-down; ≈#A5AAB3; glyph ≈11.5×6.5 px.",
+      "name": "chevron-down",
+      "react": "import { ChevronDownIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "18px, strokeWidth 2.5 (≈1.9px)."
+    },
+    {
+      "id": "hero.createKey.key",
+      "mockup": "'Create API Key' button: solid red key with a thick ring bow top-right (round hole) and a thick shaft to bottom-left with one tooth; #FD1F48; glyph ≈23.8 px.",
+      "name": "key",
+      "react": "import { KeyIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "key-round"
+      ],
+      "notes": "25px, strokeWidth 3.5 (≈3.65px); ink 414 vs 421. The solid look comes from the heavy stroke. Do not set fill: it would close the ring's hole."
+    },
+    {
+      "id": "hero.createKey.chevron",
+      "mockup": "'Create API Key' button: trailing chevron-right; ≈#E74255; glyph ≈7.9×13.7 px.",
+      "name": "chevron-right",
+      "react": "import { ChevronRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "24px, strokeWidth 2.25 (≈2.25px)."
+    },
+    {
+      "id": "instances.launch.arrow",
+      "mockup": "'Launch' pill on the 'View your instances' card: arrow-up-right, white on red; glyph ≈13.7×13 px.",
+      "name": "arrow-up-right",
+      "react": "import { ArrowUpRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "move-up-right"
+      ],
+      "notes": "26px, strokeWidth 1.85 (≈2px). Same as docs.explore.arrow; 'View All' is smaller (24px)."
+    },
+    {
+      "id": "subs.viewAll.arrow",
+      "mockup": "'View All' pill (Your subscriptions header): arrow-up-right, white on red; glyph ≈12.2 px.",
+      "name": "arrow-up-right",
+      "react": "import { ArrowUpRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "move-up-right"
+      ],
+      "notes": "24px, strokeWidth 2 (≈2px); glyph extents match exactly."
+    },
+    {
+      "id": "docs.explore.arrow",
+      "mockup": "'Explore' pills on the Product Documentation and API Documentation cards: arrow-up-right, white; glyph ≈13 px.",
+      "name": "arrow-up-right",
+      "react": "import { ArrowUpRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "move-up-right"
+      ],
+      "notes": "26px, strokeWidth 1.85 (≈2px)."
+    },
+    {
+      "id": "subs.filter.chevron",
+      "mockup": "Subscriptions filter select ('All'): chevron-down; ≈#A4AEB6; glyph ≈12.2×6.5 px.",
+      "name": "chevron-down",
+      "react": "import { ChevronDownIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "20px, strokeWidth 2.25 (≈1.9px). Overrides the shadcn Select trigger default (size-4, strokeWidth 2), which renders only ≈9px wide."
+    },
+    {
+      "id": "subs.carousel.prev",
+      "mockup": "Subscriptions carousel, circular previous button: arrow-left; ≈#C5CCD6; glyph ≈10.8×9.4 px.",
+      "name": "arrow-left",
+      "react": "import { ArrowLeftIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "move-left",
+        "chevron-left"
+      ],
+      "notes": "16px, strokeWidth 2.5 (≈1.67px)."
+    },
+    {
+      "id": "subs.carousel.next",
+      "mockup": "Subscriptions carousel, circular next button: arrow-right; ≈#BDC7D1; glyph ≈10.8×9.4 px.",
+      "name": "arrow-right",
+      "react": "import { ArrowRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "move-right",
+        "chevron-right"
+      ],
+      "notes": "16px, strokeWidth 2.5 (≈1.67px)."
+    },
+    {
+      "id": "ghost.feature.anonymous",
+      "mockup": "Ghost Mode list, 'Anonymous inference': red ring (slightly broken) with a small drop/dot in the centre; ≈#DF1F2F; glyph ≈20.9×21.6 px.",
+      "name": "circle-dot",
+      "react": "import { CircleDotIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "circle-dot-dashed",
+        "hat-glasses",
+        "venetian-mask"
+      ],
+      "notes": "23px, strokeWidth 2 (≈1.9px); ink 245 vs 243. AI-drawn glyph with no exact equivalent. Use CircleDotDashed for a dashed 'ghost' ring, or HatGlasses/VenetianMask for a literal 'anonymous' symbol (both change the silhouette)."
+    },
+    {
+      "id": "ghost.feature.noLogs",
+      "mockup": "Ghost Mode list, 'No logs retained': red padlock with an arched shackle and an outlined body holding a solid inner plate; ≈#FA1A42; glyph ≈15.1×18.7 px.",
+      "name": "lock-keyhole",
+      "react": "import { LockKeyholeIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "lock",
+        "file-lock",
+        "shield-off"
+      ],
+      "notes": "20px, strokeWidth 2.25 (≈1.9px); ink 242 vs 253. The mockup's inner plate is larger than the keyhole dot. For a heavier body, use Lock with className \"[&_rect]:fill-current\" (solid body, about 1.4–1.7× the mockup's ink)."
+    },
+    {
+      "id": "ghost.feature.global",
+      "mockup": "Ghost Mode list, 'Global access': red pointy-top hexagon outline enclosing a globe (meridians and equator); ≈#F11E3B; glyph ≈19.4×20.9 px.",
+      "name": "globe",
+      "react": "import { GlobeIcon, HexagonIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "earth",
+        "hexagon",
+        "box"
+      ],
+      "notes": "Composite, the closest match: HexagonIcon at 23px/strokeWidth 2 as the frame, GlobeIcon at 11px/strokeWidth 2.75 centred on it. Stack both in one grid cell (inline-grid place-items-center; each child col-start-1 row-start-1). Extents 19.4×20.9px equal the mockup's. Single-icon fallback: Globe at 22px, which loses the hexagon."
+    },
+    {
+      "id": "ghost.feature.priority",
+      "mockup": "Ghost Mode list, 'Priority infrastructure': red hexagon outline enclosing a small bolt/S squiggle; ≈#E12535; glyph ≈20.9×20.2 px.",
+      "name": "zap",
+      "react": "import { HexagonIcon, ZapIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "hexagon",
+        "rocket",
+        "gauge"
+      ],
+      "notes": "Composite, built like ghost.feature.global: Hexagon at 23px/strokeWidth 2 plus Zap at 11px/strokeWidth 2.75, centred (ink 279 vs 280). Single-icon fallback: Zap at 22px (different silhouette)."
+    },
+    {
+      "id": "shield.feature.security",
+      "mockup": "Shield Mode list, 'Enhanced security layer': red shield (peaked top, pointed base) with a check inside; ≈#DF2134; glyph ≈15.8×19.4 px.",
+      "name": "shield-check",
+      "react": "import { ShieldCheckIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "21px, strokeWidth 2 (≈1.75px). Renders 15.8×19.4px, within 1px of all three mockup shields; the peaked-top shield with an inner check is the same shape."
+    },
+    {
+      "id": "shield.feature.threat",
+      "mockup": "Shield Mode list, 'Threat monitoring': same red shield-check; ≈#E12035; glyph ≈16.6×20.2 px.",
+      "name": "shield-check",
+      "react": "import { ShieldCheckIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "21px, strokeWidth 2 (≈1.75px). Renders 15.8×19.4px, within 1px of all three mockup shields; the peaked-top shield with an inner check is the same shape."
+    },
+    {
+      "id": "shield.feature.compliance",
+      "mockup": "Shield Mode list, 'Compliance ready': same red shield-check; ≈#E2202C; glyph ≈15.8×19.4 px.",
+      "name": "shield-check",
+      "react": "import { ShieldCheckIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "21px, strokeWidth 2 (≈1.75px). Renders 15.8×19.4px, within 1px of all three mockup shields; the peaked-top shield with an inner check is the same shape."
+    },
+    {
+      "id": "shield.feature.support",
+      "mockup": "Shield Mode list, 'Dedicated support': red ring, open/faded at the bottom, with a small up-arrow inside; ≈#E12631; glyph ≈19.4×18.7 px.",
+      "name": "circle-arrow-up",
+      "react": "import { CircleArrowUpIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "circle-fading-arrow-up",
+        "circle-user-round",
+        "life-buoy",
+        "headset"
+      ],
+      "notes": "21px, strokeWidth 2. This is the literal glyph in the mockup; lucide's arrow is a little larger. If an arrow reads wrong for 'support', CircleUserRound keeps the ring silhouette; LifeBuoy is the other option."
+    },
+    {
+      "id": "subs.manage.chevron",
+      "mockup": "'Manage Subscription' rows (both subscription cards): trailing chevron-right; ≈#B7BFC8; glyph ≈7×11.5 px.",
+      "name": "chevron-right",
+      "react": "import { ChevronRightIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "20px, strokeWidth 2.25 (≈1.9px)."
+    },
+    {
+      "id": "docs.product.file",
+      "mockup": "Product Documentation card art: large glass document tile with a dog-ear and a 'DOC' badge (≈53×66 px).",
+      "name": "file",
+      "react": "import { FileIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "file-text"
+      ],
+      "notes": "Illustration, not an icon. decisions.md replaces this tile with the vendored DocumentStack component. If a file glyph is ever needed here, lucide File has the same 0.8 aspect ratio and dog-ear (≈78px, strokeWidth ≈0.4)."
+    },
+    {
+      "id": "instances.illustration.led",
+      "mockup": "'View your instances' card art: server-rack rows, each with a glowing rounded-square LED with a centre dot; ≈#AF2330 on dark red; glyph ≈17.3×18 px.",
+      "name": "square-dot",
+      "react": "import { SquareDotIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "Part of the decorative card illustration. If it is drawn with icons, use SquareDot at 20px, strokeWidth 2, with a red drop-shadow glow."
+    },
+    {
+      "id": "login.password.eye",
+      "mockup": "Login password field, visibility toggle: eye (almond outline with an iris ring); ≈#929494; glyph ≈21.6×18 px.",
+      "name": "eye",
+      "react": "import { EyeIcon, EyeOffIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "24px, strokeWidth 1.75 (≈1.75px); width equals the mockup's (21.6px). While the password is visible, swap to EyeOff at the same size and stroke, and toggle aria-label between 'Show password' and 'Hide password'."
+    },
+    {
+      "id": "login.remember.check",
+      "mockup": "'Remember me' checkbox: white check on a #EF143A rounded box (≈15px); check glyph ≈9.4×8 px.",
+      "name": "check",
+      "react": "import { CheckIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [],
+      "notes": "Rendered by the shadcn Checkbox indicator, which already imports CheckIcon. Set it to 14px with strokeWidth 2.5 (≈1.46px). The red box is the checkbox itself (≈15px, radius ≈4px)."
+    },
+    {
+      "id": "login.sso.key",
+      "mockup": "'SSO' social button: solid green key, the same glyph as the hero key (thick ring bow top-right, thick shaft with a tooth); #12DC9F; glyph ≈15.1 px.",
+      "name": "key",
+      "react": "import { KeyIcon } from \"lucide-react\";",
+      "filled": false,
+      "alternates": [
+        "key-round"
+      ],
+      "notes": "16px, strokeWidth 4 (≈2.67px). The heavy stroke gives the solid look; do not set fill."
+    }
+  ],
+  "brandAssets": [
+    {
+      "id": "brand.legba.mark",
+      "note": "Locked voodoo-doll mark: public/brand/mark.png (512×512 RGBA). Shown in the header (≈39×35px), on the login card above the title (≈41×37px) and in the login showcase (≈78×75px). Never redraw or generate it."
+    },
+    {
+      "id": "brand.legba.wordmark",
+      "note": "Locked Permanent Marker wordmark: public/brand/wordmark-bone.svg (#F5F3EC) on dark surfaces; -red and -black variants exist. Header ≈91×20px, login card ≈111×25px."
+    },
+    {
+      "id": "social.google",
+      "note": "Google 4-colour 'G' in the Google login button (≈19px). Use Google's official multicolour G SVG. lucide v1 ships no brand icons (lucide-react 1.52 exports no Github or Chrome)."
+    },
+    {
+      "id": "social.github",
+      "note": "GitHub Invertocat in the GitHub login button, white (≈19px). Use the official GitHub mark SVG with fill currentColor."
+    },
+    {
+      "id": "header.account.avatar",
+      "note": "User avatar photo (≈34px circle) left of the account chevron. It is a user image with an initials fallback (Avatar component), not an icon."
+    },
+    {
+      "id": "decor.sectionMarker",
+      "note": "Solid red rounded squares before 'Your subscriptions' and the 'DOCS' labels. Draw them as CSS boxes, not icons."
+    },
+    {
+      "id": "decor.statusDot",
+      "note": "Green dot in the 'Active' subscription badges. Draw it as a CSS circle, not an icon."
+    },
+    {
+      "id": "decor.textBullets",
+      "note": "The '•' separators in 'SECURE • DEPLOY • SCALE' are text characters from the copy, and the login showcase pagination dots are CSS. Neither is an icon."
+    }
+  ]
+}

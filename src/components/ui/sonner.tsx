@@ -16,13 +16,23 @@ const Toaster = ({ ...props }: ToasterProps) => {
     <Sonner
       theme="dark"
       className="toaster group"
-      mobileOffset={16}
+      // Clear the mobile tab bar and the home indicator (--tabbar-h is set by the app shell).
+      offset={{
+        bottom:
+          "calc(24px + var(--tabbar-h, env(safe-area-inset-bottom, 0px)))",
+      }}
+      mobileOffset={{
+        bottom:
+          "calc(16px + var(--tabbar-h, env(safe-area-inset-bottom, 0px)))",
+        left: 16,
+        right: 16,
+      }}
       icons={{
         success: <CircleCheckIcon className="size-4 text-ok" />,
         info: <InfoIcon className="size-4" />,
         warning: <TriangleAlertIcon className="size-4" />,
         error: <OctagonXIcon className="size-4 text-signal" />,
-        loading: <Spinner decorative size={18} tone="accent" />,
+        loading: <Spinner size={18} tone="accent" />,
       }}
       style={
         {

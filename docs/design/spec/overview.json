@@ -1,0 +1,5246 @@
+{
+  "page": "overview",
+  "source": "docs/design/mockups/overview.png",
+  "scale": 1.38889,
+  "viewport": {
+    "width": 1440,
+    "height": 1033
+  },
+  "tokens": {
+    "colors": {
+      "bg-page": "#121314",
+      "bg-page-top": "#111213",
+      "bg-page-bottom": "#141617",
+      "bg-header": "#0e0f10",
+      "bg-hero": "#0b0a0a",
+      "bg-card": "#101112",
+      "bg-card-inner": "#0f1010",
+      "bg-raised": "#191a1c",
+      "bg-input": "#151718",
+      "bg-select": "#161718",
+      "bg-badge": "#17191a",
+      "bg-manage": "#121314",
+      "bg-code": "#0f1010",
+      "bg-black": "#000000",
+      "border-header": "#202122",
+      "border-card": "#232526",
+      "border-card-inner": "#1e2021",
+      "border-chip": "#222324",
+      "border-input": "#1d1f20",
+      "border-topup-top": "#4c4c4c",
+      "border-topup-bottom": "#262626",
+      "border-hero": "#232325",
+      "border-ring": "#26272c",
+      "red-500": "#f41a44",
+      "red-bullet": "#fc1d42",
+      "red-streak": "#f0203f",
+      "red-icon": "#e01f36",
+      "red-key-icon": "#f72247",
+      "red-button-start": "#a8162a",
+      "red-button-mid": "#8a131f",
+      "red-button-end": "#c21c30",
+      "red-outline": "#b01b2c",
+      "red-pill-fill-start": "#300d11",
+      "red-pill-fill-end": "#48151b",
+      "red-instances-base": "#330d10",
+      "red-instances-edge": "#5c0f17",
+      "red-instances-glow": "#a91626",
+      "red-pixel": "#5a121b",
+      "green-status": "#66e077",
+      "text-primary": "#f5f5f5",
+      "text-label": "#e3e4e4",
+      "text-nav-active": "#dcdbdb",
+      "text-secondary": "#9aa0a6",
+      "text-muted": "#8a9096",
+      "text-caption": "#83888f",
+      "text-placeholder": "#898c90",
+      "text-subtle": "#7a7c80",
+      "text-faint": "#58595a",
+      "text-on-red": "#c2bbba",
+      "code-command": "#a7746b",
+      "code-flag": "#b2b1af",
+      "code-url": "#996197",
+      "code-string": "#c22b40",
+      "code-punct-red": "#c22b40",
+      "code-continuation": "#9e5c56",
+      "code-tab-active": "#bb4853"
+    },
+    "radii": {
+      "hero": 18,
+      "instances": 21,
+      "panel": 20,
+      "docs-card": 20,
+      "sub-card": 18,
+      "manage-bar": 16,
+      "chip": 11,
+      "select": 11,
+      "badge": 8,
+      "code-panel": 10,
+      "plate": 10,
+      "bullet-lg": 5.5,
+      "bullet-sm": 4,
+      "led": 4,
+      "rack-unit": 6,
+      "indicator": 3,
+      "pill": 9999
+    },
+    "shadows": {
+      "cta-halo": "0 0 18px rgba(220,30,55,0.25)",
+      "streak-glow": "0 0 6px rgba(240,32,63,0.6)",
+      "red-button-top-highlight": "inset 0 1px 0 rgba(255,255,255,0.14)",
+      "led-glow": "0 0 6px rgba(169,30,44,0.67)",
+      "instances-edge-glow": "radial-gradient(ellipse 60px 110px at 100% 185px, rgba(205,25,45,0.75), transparent)"
+    },
+    "typography": {
+      "_note": "Mockup face is 5–20% narrower than Montserrat at equal x/cap height (x/cap 0.70–0.73 vs 0.75). Sizes are fitted to vertical metrics (mean of x-height and cap-height fits), weights to stroke width (blur-aware template fit + stem widths), tracking to ink width clamped at -0.03em; residual width differences are listed per element.",
+      "title-xl": {
+        "size": 36,
+        "weight": 600,
+        "tracking": "-0.015em"
+      },
+      "title-lg": {
+        "size": 27,
+        "weight": 600,
+        "tracking": "-0.03em"
+      },
+      "title-md": {
+        "size": 22,
+        "weight": 600,
+        "tracking": "-0.03em"
+      },
+      "title-sm": {
+        "size": 19,
+        "weight": 600,
+        "tracking": "-0.03em"
+      },
+      "title-panel": {
+        "size": 18,
+        "weight": 600,
+        "tracking": "-0.03em"
+      },
+      "body-lg": {
+        "size": 16,
+        "weight": 500,
+        "lineHeight": 22.5
+      },
+      "body-md": {
+        "size": 15,
+        "weight": 500,
+        "lineHeight": 21.5
+      },
+      "body-sm": {
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 20
+      },
+      "caption": {
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 19
+      },
+      "nav": {
+        "size": 13,
+        "weight": 500,
+        "activeWeight": 600
+      },
+      "button": {
+        "size": "14–16.5",
+        "weight": 600
+      },
+      "feature": {
+        "size": 12.5,
+        "weight": 600
+      },
+      "chip": {
+        "size": 14.5,
+        "weight": 500
+      },
+      "eyebrow": {
+        "size": 13,
+        "weight": 600,
+        "transform": "uppercase"
+      },
+      "code": {
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5
+      }
+    }
+  },
+  "elements": [
+    {
+      "id": "page",
+      "description": "Page background (dark only); content sits on a 2-column grid",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 1033
+      },
+      "bg": "linear-gradient(180deg, #111213 0%, #131415 55%, #141617 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Viewport 1440x1033. Columns: left x 9.5–934.5 (w≈925), right x 950–1423 (w≈473); column gap 15.5–16. Rows: row 1 y 88–455.5, row 2 y 474–1014. Left margin ≈10px but right margin ≈17px in the mockup (asymmetric; implementer may centre at 1440 with ~13.5px gutters if parity is preferred). Gap header→row1 27px, row1→row2 18.5px."
+    },
+    {
+      "id": "header",
+      "description": "Top app bar",
+      "locator": {
+        "role": "banner",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 61
+      },
+      "bg": "#0e0f10",
+      "border": {
+        "width": 1,
+        "color": "#202122",
+        "sides": "bottom"
+      },
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "60px bar + 1px bottom border (line centre y≈60.4). Content vertical centre ≈27.5 (not 30): icons y 19.5–35.5, text baseline y≈32."
+    },
+    {
+      "id": "header.logo.mark",
+      "description": "Legba mark (voodoo-doll head with crossed pins), red line-art",
+      "locator": {
+        "role": "img",
+        "name": "Legba",
+        "text": null
+      },
+      "box": {
+        "x": 16.5,
+        "y": 10,
+        "w": 39,
+        "h": 35.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "red outline version of Assets/icons/favicon (circle head, X eyes, stitched mouth, two crossed pins with round heads); stroke ≈2px",
+      "effects": null,
+      "notes": "colour ≈#f21840 (thick parts). Favicon asset is filled black/red; mockup shows the outline variant on dark. Pin heads extend to the box corners."
+    },
+    {
+      "id": "header.logo.wordmark",
+      "description": "LEGBA wordmark (brush/marker lettering)",
+      "locator": {
+        "role": "img",
+        "name": "Legba",
+        "text": null
+      },
+      "box": {
+        "x": 70,
+        "y": 17.5,
+        "w": 91,
+        "h": 20
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "Assets/wordmark/wordmark-bone.svg (Permanent Marker outlines, locked asset)",
+      "effects": null,
+      "notes": "ink box; fill near-white ≈#f7f5f6 (asset bone #F5F3EC is acceptable). Render the SVG at height ≈20px (ink) – do not typeset."
+    },
+    {
+      "id": "header.divider.left",
+      "description": "Vertical hairline between brand and nav",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 194.5,
+        "y": 14.5,
+        "w": 1,
+        "h": 25
+      },
+      "bg": "#242627",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "1px line centred x≈194.8, y 14.4–39.6."
+    },
+    {
+      "id": "header.nav",
+      "description": "Primary navigation (5 links with 16px-ish icons)",
+      "locator": {
+        "role": "navigation",
+        "name": "Primary",
+        "text": null
+      },
+      "box": {
+        "x": 224.5,
+        "y": 19.5,
+        "w": 525.5,
+        "h": 41
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Items: icon box ≈15–16px, icon→label gap ≈6.5–7px, item→item gap ≈25px (label end → next icon). Active indicator sits on the header bottom edge."
+    },
+    {
+      "id": "header.nav.overview",
+      "description": "Nav link \"Overview\" (active)",
+      "locator": {
+        "role": "link",
+        "name": "Overview",
+        "text": "Overview"
+      },
+      "box": {
+        "x": 224.5,
+        "y": 19.5,
+        "w": 81.5,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "union of icon+label ink. aria-current=\"page\"."
+    },
+    {
+      "id": "header.nav.overview.icon",
+      "description": "Overview nav icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 224.5,
+        "y": 19.5,
+        "w": 16,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "2x2 grid of filled rounded squares (layout-grid, filled), white",
+      "effects": null,
+      "notes": "colour #fbfbfc (active, filled squares ≈6.5px with r≈2, 3px gap); render as 18px icon (ink ≈15–16px)."
+    },
+    {
+      "id": "header.nav.overview.label",
+      "description": "Overview nav label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Overview"
+      },
+      "box": {
+        "x": 248.5,
+        "y": 22.5,
+        "w": 57.5,
+        "h": 10
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Overview",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 600,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#dcdbdb",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.3, text origin x=248.0. Mockup ink width 57.6px; Montserrat at this spec ≈ 59.8px (width-exact would need -0.054em: mockup face is narrower than Montserrat). Active item uses brighter text and heavier weight."
+    },
+    {
+      "id": "header.nav.deployments",
+      "description": "Nav link \"Deployments\"",
+      "locator": {
+        "role": "link",
+        "name": "Deployments",
+        "text": "Deployments"
+      },
+      "box": {
+        "x": 332.5,
+        "y": 19.5,
+        "w": 95,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "union of icon+label ink."
+    },
+    {
+      "id": "header.nav.deployments.icon",
+      "description": "Deployments nav icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 332.5,
+        "y": 19.5,
+        "w": 15.5,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "monitor/desktop outline with stand and a tiny node graph inside, 1.5px stroke",
+      "effects": null,
+      "notes": "stroke colour ≈#9aa0a3 (same grey as label); render as 18px icon (ink ≈15–16px)."
+    },
+    {
+      "id": "header.nav.deployments.label",
+      "description": "Deployments nav label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Deployments"
+      },
+      "box": {
+        "x": 355,
+        "y": 22.5,
+        "w": 72,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Deployments",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#9a9ea4",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.0, text origin x=354.1. Mockup ink width 72.0px; Montserrat at this spec ≈ 83.3px (width-exact would need -0.117em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "header.nav.model-catalog",
+      "description": "Nav link \"Model Catalog\"",
+      "locator": {
+        "role": "link",
+        "name": "Model Catalog",
+        "text": "Model Catalog"
+      },
+      "box": {
+        "x": 453,
+        "y": 19.5,
+        "w": 101.5,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "union of icon+label ink."
+    },
+    {
+      "id": "header.nav.model-catalog.icon",
+      "description": "Model Catalog nav icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 453,
+        "y": 19.5,
+        "w": 15,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "rounded pentagon/shield badge outline with a concentric inner badge and centre dot, 1.5px stroke",
+      "effects": null,
+      "notes": "stroke colour ≈#9aa0a3 (same grey as label); render as 18px icon (ink ≈15–16px)."
+    },
+    {
+      "id": "header.nav.model-catalog.label",
+      "description": "Model Catalog nav label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Model Catalog"
+      },
+      "box": {
+        "x": 474.5,
+        "y": 22.5,
+        "w": 79,
+        "h": 13
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Model Catalog",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#9a9da1",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.2, text origin x=473.7. Mockup ink width 79.2px; Montserrat at this spec ≈ 88.1px (width-exact would need -0.087em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "header.nav.registries",
+      "description": "Nav link \"Registries\"",
+      "locator": {
+        "role": "link",
+        "name": "Registries",
+        "text": "Registries"
+      },
+      "box": {
+        "x": 579.5,
+        "y": 19.5,
+        "w": 75.5,
+        "h": 16.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "union of icon+label ink."
+    },
+    {
+      "id": "header.nav.registries.icon",
+      "description": "Registries nav icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 579.5,
+        "y": 19.5,
+        "w": 14.5,
+        "h": 16.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "pen writing on a baseline (pen-line), 1.5px stroke",
+      "effects": null,
+      "notes": "stroke colour ≈#9aa0a3 (same grey as label); render as 18px icon (ink ≈15–16px)."
+    },
+    {
+      "id": "header.nav.registries.label",
+      "description": "Registries nav label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Registries"
+      },
+      "box": {
+        "x": 600.5,
+        "y": 22.5,
+        "w": 54.5,
+        "h": 13
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Registries",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#969ba0",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.1, text origin x=600.0. Mockup ink width 54.7px; Montserrat at this spec ≈ 60.0px (width-exact would need -0.075em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "header.nav.api-keys",
+      "description": "Nav link \"API Keys\"",
+      "locator": {
+        "role": "link",
+        "name": "API Keys",
+        "text": "API Keys"
+      },
+      "box": {
+        "x": 680.5,
+        "y": 19.5,
+        "w": 69.5,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "union of icon+label ink."
+    },
+    {
+      "id": "header.nav.api-keys.icon",
+      "description": "API Keys nav icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 680.5,
+        "y": 19.5,
+        "w": 15,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "key outline (round bow top-right, shaft bottom-left; key-round), 1.5px stroke",
+      "effects": null,
+      "notes": "stroke colour ≈#9aa0a3 (same grey as label); render as 18px icon (ink ≈15–16px)."
+    },
+    {
+      "id": "header.nav.api-keys.label",
+      "description": "API Keys nav label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "API Keys"
+      },
+      "box": {
+        "x": 702,
+        "y": 22.5,
+        "w": 47.5,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "API Keys",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#9ba5aa",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=31.5, text origin x=701.6. Mockup ink width 47.5px; Montserrat at this spec ≈ 53.9px (width-exact would need -0.100em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "header.nav.overview.indicator",
+      "description": "Active-tab underline under Overview",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 224,
+        "y": 56,
+        "w": 83.5,
+        "h": 4.5
+      },
+      "bg": "#f41a44",
+      "border": null,
+      "radius": 3,
+      "text": null,
+      "icon": null,
+      "effects": "top corners rounded ≈3px (border-radius 3px 3px 0 0); no glow",
+      "notes": "spans the full item (icon+label) width; bottom edge sits on the header border (y≈60.5)."
+    },
+    {
+      "id": "header.search",
+      "description": "Global search input (pill)",
+      "locator": {
+        "role": "searchbox",
+        "name": "Search",
+        "text": null
+      },
+      "box": {
+        "x": 826,
+        "y": 7.5,
+        "w": 284,
+        "h": 40
+      },
+      "bg": "#151718",
+      "border": {
+        "width": 1,
+        "color": "#1d1f20",
+        "sides": "all"
+      },
+      "radius": 20,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "border top slightly brighter (#1f2122) than bottom (#1a1a1b). Icon x≈843, placeholder origin x≈870.5."
+    },
+    {
+      "id": "header.search.icon",
+      "description": "Search magnifier icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 843,
+        "y": 18.5,
+        "w": 16.5,
+        "h": 17
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "magnifying glass (search), 1.5px stroke",
+      "effects": null,
+      "notes": "stroke ≈#979b9f; ~20px icon (ink 16.6px)."
+    },
+    {
+      "id": "header.search.placeholder",
+      "description": "Search placeholder text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Type to search..."
+      },
+      "box": {
+        "x": 871,
+        "y": 22.5,
+        "w": 93,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Type to search...",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 500,
+        "lineHeight": 17,
+        "tracking": "-0.03em",
+        "color": "#898c90",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.1, text origin x=870.6. Mockup ink width 92.9px; Montserrat at this spec ≈ 101.2px (width-exact would need -0.069em: mockup face is narrower than Montserrat). Three ASCII periods (could be an ellipsis …; indistinguishable at this size)."
+    },
+    {
+      "id": "header.support",
+      "description": "Support (headset) icon button",
+      "locator": {
+        "role": "button",
+        "name": "Support",
+        "text": null
+      },
+      "box": {
+        "x": 1149,
+        "y": 19.5,
+        "w": 18,
+        "h": 15.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "headset with mic (headphones + mic boom), 1.5px stroke",
+      "effects": null,
+      "notes": "stroke ≈#c4c6cd; no visible button chrome; give it a 32px hit area."
+    },
+    {
+      "id": "header.docs",
+      "description": "Docs (open book) icon button",
+      "locator": {
+        "role": "button",
+        "name": "Documentation",
+        "text": null
+      },
+      "box": {
+        "x": 1186,
+        "y": 19.5,
+        "w": 17,
+        "h": 16.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "open book (book-open), 1.5px stroke",
+      "effects": null,
+      "notes": "stroke ≈#bac1c9; no visible chrome; 32px hit area."
+    },
+    {
+      "id": "header.divider.right",
+      "description": "Vertical hairline before Top-Up",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1224.5,
+        "y": 14.5,
+        "w": 1,
+        "h": 25
+      },
+      "bg": "#1f2122",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "1px line centred x≈1224.8, y 14.4–39.6."
+    },
+    {
+      "id": "header.topup",
+      "description": "Top-Up outline pill button",
+      "locator": {
+        "role": "button",
+        "name": "Top-Up",
+        "text": null
+      },
+      "box": {
+        "x": 1240,
+        "y": 7,
+        "w": 116.5,
+        "h": 40.5
+      },
+      "bg": "#000000",
+      "border": {
+        "width": 1,
+        "color": "#3a3b3b",
+        "sides": "all"
+      },
+      "radius": 20.25,
+      "text": null,
+      "icon": null,
+      "effects": "border is a vertical gradient: #4c4c4c (top) → #262626 (bottom), i.e. a top-lit outline",
+      "notes": "pure black fill. Icon at x≈1260, label origin x≈1290.8."
+    },
+    {
+      "id": "header.topup.icon",
+      "description": "Wallet/top-up icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1260,
+        "y": 18.5,
+        "w": 16.5,
+        "h": 17.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "wallet/card outline with a small return (↩) arrow inside, 1.5px stroke",
+      "effects": null,
+      "notes": "stroke ≈#b3b5b5."
+    },
+    {
+      "id": "header.topup.label",
+      "description": "Top-Up button label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Top-Up"
+      },
+      "box": {
+        "x": 1291,
+        "y": 22.5,
+        "w": 45.5,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Top-Up",
+        "family": "Montserrat",
+        "size": 13.5,
+        "weight": 600,
+        "lineHeight": 17,
+        "tracking": "-0.03em",
+        "color": "#d1d0d1",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=32.2, text origin x=1290.8. Mockup ink width 45.4px; Montserrat at this spec ≈ 48.0px (width-exact would need -0.069em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "header.account",
+      "description": "Account menu trigger (avatar + chevron)",
+      "locator": {
+        "role": "button",
+        "name": "Account menu",
+        "text": null
+      },
+      "box": {
+        "x": 1368.5,
+        "y": 8,
+        "w": 57,
+        "h": 38.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "avatar circle + 4px gap + chevron."
+    },
+    {
+      "id": "header.account.avatar",
+      "description": "User avatar (circular illustrated portrait)",
+      "locator": {
+        "role": "img",
+        "name": "Avatar",
+        "text": null
+      },
+      "box": {
+        "x": 1368.5,
+        "y": 8.5,
+        "w": 38,
+        "h": 38
+      },
+      "bg": null,
+      "border": {
+        "width": 1,
+        "color": "#26272c",
+        "sides": "all"
+      },
+      "radius": 19,
+      "text": null,
+      "icon": "illustrated red/orange demon-mask style portrait on dark ground",
+      "effects": null,
+      "notes": "circle d≈38 centred (1387.5, 27.3); thin grey ring. Use the user image; this is placeholder art."
+    },
+    {
+      "id": "header.account.chevron",
+      "description": "Account menu chevron",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1413.5,
+        "y": 24.5,
+        "w": 11.5,
+        "h": 6.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "chevron-down, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#8c9196; ~20px icon."
+    },
+    {
+      "id": "hero",
+      "description": "\"Your API Keys\" hero card",
+      "locator": {
+        "role": "region",
+        "name": "Your API Keys",
+        "text": null
+      },
+      "box": {
+        "x": 9.5,
+        "y": 88,
+        "w": 925,
+        "h": 367.5
+      },
+      "bg": "#0b0a0a",
+      "border": {
+        "width": 1,
+        "color": "#232325",
+        "sides": "all"
+      },
+      "radius": 18,
+      "text": null,
+      "icon": null,
+      "effects": "decorative red particle ribbons in all four corners + 7 horizontal light streaks (see hero.particles.*, hero.streak.*); content column centred at x≈470.5",
+      "notes": "Border lines centred x 10.1 / 933.8, y 88.6 / 455.3. Card is near-black warm (#0b0a0a–#0d0a0a). Content is centred, not padded from the edges."
+    },
+    {
+      "id": "hero.particles.tl",
+      "description": "Red particle-dust ribbon (TL corner)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 68,
+        "y": 88,
+        "w": 242,
+        "h": 132
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "top-left crescent: dense band along the top edge (x 107–308) curving down the left side as a thin ribbon (x 69–95) to y≈215; thousands of 1–2px red dots, densest/brightest at the outer (card-edge) side, fading inward; brightest dots ≈#e8243f, typical #8a1424–#60141e at 40–70% density, sparse #331a1a specks",
+      "notes": "Clipped by the card radius. Reproduce as an exported image/canvas layer (aria-hidden); the four lobes together read as two twisted particle tori framing the centre."
+    },
+    {
+      "id": "hero.particles.tr",
+      "description": "Red particle-dust ribbon (TR corner)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 645,
+        "y": 88,
+        "w": 225,
+        "h": 117
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "top-right crescent: dense along the top edge (x 649–836) curving down the right side (x 811–866) to y≈200; thousands of 1–2px red dots, densest/brightest at the outer (card-edge) side, fading inward; brightest dots ≈#e8243f, typical #8a1424–#60141e at 40–70% density, sparse #331a1a specks",
+      "notes": "Clipped by the card radius. Reproduce as an exported image/canvas layer (aria-hidden); the four lobes together read as two twisted particle tori framing the centre."
+    },
+    {
+      "id": "hero.particles.bl",
+      "description": "Red particle-dust ribbon (BL corner)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 68,
+        "y": 335,
+        "w": 252,
+        "h": 120.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "bottom-left crescent: thin ribbon up the left (x 69–107, y 338–390) widening into a dense dome along the bottom edge (x 81–318); thousands of 1–2px red dots, densest/brightest at the outer (card-edge) side, fading inward; brightest dots ≈#e8243f, typical #8a1424–#60141e at 40–70% density, sparse #331a1a specks",
+      "notes": "Clipped by the card radius. Reproduce as an exported image/canvas layer (aria-hidden); the four lobes together read as two twisted particle tori framing the centre."
+    },
+    {
+      "id": "hero.particles.br",
+      "description": "Red particle-dust ribbon (BR corner)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 618,
+        "y": 318,
+        "w": 252,
+        "h": 137.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "bottom-right crescent: ribbon up the right (x 814–866, y 320–390) widening into a dense dome along the bottom edge (x 621–859); thousands of 1–2px red dots, densest/brightest at the outer (card-edge) side, fading inward; brightest dots ≈#e8243f, typical #8a1424–#60141e at 40–70% density, sparse #331a1a specks",
+      "notes": "Clipped by the card radius. Reproduce as an exported image/canvas layer (aria-hidden); the four lobes together read as two twisted particle tori framing the centre."
+    },
+    {
+      "id": "hero.streak.1",
+      "description": "Horizontal red light streak #1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 684.5,
+        "y": 133.5,
+        "w": 173.5,
+        "h": 1.5
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "core #d81236 (684–780) fading to transparent by x≈858; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=134.3; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.2",
+      "description": "Horizontal red light streak #2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 97,
+        "y": 154,
+        "w": 185,
+        "h": 5
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "soft 5px glow line, core #e91f3d (x 102–150), fades to transparent by x≈282; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=156.6; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.3",
+      "description": "Horizontal red light streak #3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 823.5,
+        "y": 228,
+        "w": 110.5,
+        "h": 4
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glowing line, core #f21f3f (x 826–880), fades toward the card edge (clipped at x 934); glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=230.0; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.4",
+      "description": "Horizontal red light streak #4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 865.5,
+        "y": 245,
+        "w": 68.5,
+        "h": 2
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "thin line, core #e41630 (x 870–912), fades toward the card edge; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=245.9; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.5",
+      "description": "Horizontal red light streak #5",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 16.5,
+        "y": 285,
+        "w": 155.5,
+        "h": 2.5
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "thin line starting at the card edge, core #e62446 (x 22–82), fades by x≈172; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=286.2; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.6",
+      "description": "Horizontal red light streak #6",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 72.5,
+        "y": 312.5,
+        "w": 159.5,
+        "h": 2
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "thin line, core #cc122d (x 76–130), fades by x≈232; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=313.6; aria-hidden decorative."
+    },
+    {
+      "id": "hero.streak.7",
+      "description": "Horizontal red light streak #7",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 731.5,
+        "y": 377.5,
+        "w": 173.5,
+        "h": 3
+      },
+      "bg": "linear-gradient(90deg, #f0203f 0%, #f0203f 30%, rgba(240,32,63,0) 100%)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "thin line, core #e71a32 (x 736–790), fades by x≈905; glow box-shadow 0 0 6px rgba(240,32,63,0.6); sharp start on the left, long fade to the right",
+      "notes": "centre line y=379.1; aria-hidden decorative."
+    },
+    {
+      "id": "hero.eyebrow",
+      "description": "Eyebrow \"Secure • Deploy • Scale\" (small caps, tracked)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Secure • Deploy • Scale"
+      },
+      "box": {
+        "x": 350,
+        "y": 154,
+        "w": 242.5,
+        "h": 9
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Secure • Deploy • Scale",
+        "family": "Montserrat",
+        "size": 11,
+        "weight": 500,
+        "lineHeight": 14,
+        "tracking": "0.075em",
+        "color": "#8b9196",
+        "transform": "small-caps",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "Small caps measured: full-cap initials 8.9px tall (=12.5px Montserrat), lowercase-as-caps 7.65px tall (=11px). Montserrat on Google Fonts has no smcp, so CSS small-caps would synthesize 70% caps (too small): build as uppercase text with initials at 12.5px and the rest at 11px, letter-spacing 0.075em, weight 500. Words start at x 350.0 / 450.1 / 550.2 (100px pitch); ink-to-ink gap word↔dot ≈22.3px. Dots are 3.6px circles (#7c8287) centred y≈159.1, x≈426.0 and 526.4. Baseline y≈163.0. Peak glyph colour #7a8085 (true ≈#8b9196)."
+    },
+    {
+      "id": "hero.eyebrow.dot.1",
+      "description": "Eyebrow separator dot 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 424,
+        "y": 157.5,
+        "w": 4,
+        "h": 3.5
+      },
+      "bg": "#7c8287",
+      "border": null,
+      "radius": 1.8,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "circle; rendered as • in copy."
+    },
+    {
+      "id": "hero.eyebrow.dot.2",
+      "description": "Eyebrow separator dot 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 524.5,
+        "y": 157.5,
+        "w": 3.5,
+        "h": 3.5
+      },
+      "bg": "#7c8287",
+      "border": null,
+      "radius": 1.8,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "circle."
+    },
+    {
+      "id": "hero.title",
+      "description": "Hero heading",
+      "locator": {
+        "role": "heading",
+        "name": "Your API Keys",
+        "text": "Your API Keys"
+      },
+      "box": {
+        "x": 345.5,
+        "y": 190,
+        "w": 248,
+        "h": 32.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Your API Keys",
+        "family": "Montserrat",
+        "size": 36,
+        "weight": 600,
+        "lineHeight": 44,
+        "tracking": "-0.015em",
+        "color": "#fdfdfd",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=215.8, text origin x=344.7. Mockup ink width 247.7px; Montserrat at this spec ≈ 248.4px. h1/h2 level heading; centred on x≈469.5. Peak fill #fdfdfd (white)."
+    },
+    {
+      "id": "hero.copy",
+      "description": "Hero supporting copy (2 centred lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Create and manage API keys to access Legba’s AI infrastructure and services."
+      },
+      "box": {
+        "x": 294.5,
+        "y": 239,
+        "w": 352,
+        "h": 34
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Create and manage API keys to access Legba’s\nAI infrastructure and services.",
+        "family": "Montserrat",
+        "size": 16,
+        "weight": 500,
+        "lineHeight": 22,
+        "tracking": "-0.03em",
+        "color": "#969da3",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Create and manage API keys to access Legba’s\" ink x 294.5–646.6, baseline 250.7; L2 \"AI infrastructure and services.\" ink x 357.1–582.5, baseline 272.9. Line pitch 22px. Mean tracking needed for exact width -0.033em (clamped). Apostrophe is typographic ’. Centre x≈470.5."
+    },
+    {
+      "id": "hero.cta",
+      "description": "Primary \"Create API Key\" wide pill button",
+      "locator": {
+        "role": "button",
+        "name": "Create API Key",
+        "text": "Create API Key"
+      },
+      "box": {
+        "x": 254.5,
+        "y": 294.5,
+        "w": 432.5,
+        "h": 59
+      },
+      "bg": "linear-gradient(90deg, #130a0c 0%, #1c0f10 45%, #290e0f 100%)",
+      "border": {
+        "width": 1,
+        "color": "#b32e3b",
+        "sides": "all"
+      },
+      "radius": 29.5,
+      "text": null,
+      "icon": null,
+      "effects": "border is a horizontal gradient: dim #3f0d12 at both ends → bright #b8303c/#bf2f41 at the centre (x≈470) on top AND bottom edges (reads as two light streaks along the pill); soft red halo concentrated at the centre: box-shadow 0 0 18px rgba(220,30,55,0.25) (halo visible ~15px above/below centre, none at the ends)",
+      "notes": "Border centre lines x 254.8 / 686.4, y 295.1 / 353.2. Contents: key icon left (x 284.4), label origin x≈328.9, chevron right (x 650.9)."
+    },
+    {
+      "id": "hero.cta.icon",
+      "description": "Key icon in CTA",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 284.5,
+        "y": 312.5,
+        "w": 23.5,
+        "h": 24
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "solid key: round bow (ring ≈11px, hole ≈5px) top-right + thick shaft to bottom-left",
+      "effects": null,
+      "notes": "fill #f72247; ~24px glyph, stroke weight ≈5px (bold)."
+    },
+    {
+      "id": "hero.cta.label",
+      "description": "CTA label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Create API Key"
+      },
+      "box": {
+        "x": 328.5,
+        "y": 317.5,
+        "w": 117,
+        "h": 16
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Create API Key",
+        "family": "Montserrat",
+        "size": 16.5,
+        "weight": 600,
+        "lineHeight": 20.5,
+        "tracking": "-0.03em",
+        "color": "#e6e5e4",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=329.8, text origin x=328.9. Mockup ink width 117.4px; Montserrat at this spec ≈ 118.5px (width-exact would need -0.035em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "hero.cta.chevron",
+      "description": "Chevron in CTA (right end)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 651,
+        "y": 317.5,
+        "w": 8,
+        "h": 13
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "chevron-right, 2px stroke",
+      "effects": null,
+      "notes": "stroke #ca394b (muted red); ~22px icon."
+    },
+    {
+      "id": "hero.caption",
+      "description": "Caption under CTA (2 centred lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Integrate powerful AI capabilities into your applications."
+      },
+      "box": {
+        "x": 368,
+        "y": 379.5,
+        "w": 205,
+        "h": 31.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Integrate powerful AI capabilities\ninto your applications.",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 500,
+        "lineHeight": 19,
+        "tracking": "-0.025em",
+        "color": "#7e8589",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Integrate powerful AI capabilities\" ink x 367.9–573.1, baseline 389.6; L2 \"into your applications.\" ink x 401.8–538.6, baseline 408.0. Line pitch 19px. Mean tracking needed for exact width -0.026em (clamped). Muted grey; centre x≈470."
+    },
+    {
+      "id": "instances",
+      "description": "Red \"View your instances\" card",
+      "locator": {
+        "role": "region",
+        "name": "View your instances",
+        "text": null
+      },
+      "box": {
+        "x": 950.5,
+        "y": 88.5,
+        "w": 472.5,
+        "h": 367
+      },
+      "bg": "linear-gradient(180deg, #3f1013 0%, #300d0f 40%, #261010 75%, #3a0e11 100%)",
+      "border": {
+        "width": 1,
+        "color": "#b0162c",
+        "sides": "all"
+      },
+      "radius": 21,
+      "text": null,
+      "icon": null,
+      "effects": "layers over the base: (1) left-edge glow ≈45px wide (#6a0f18 at x 956 → #3c0d11 at x 1000), strongest y 250–290 and in the bottom-left corner; (2) right-edge glow radial-gradient(ellipse 60px 110px at 100% 185px, rgba(205,25,45,0.75), transparent) (peaks #a51626 at x 1418, y 170–200); (3) dark smoky patch centred ≈(1040, 360), r≈80px (#1a0a0b); (4) dark zone behind the rack (x>1250, y>300) #1c0707–#230606; border gradient: bright #b0162c on the left side/top-left corner → #5c1219 on the right/bottom",
+      "notes": "Border centre lines x 950.9 / 1422.2, y 88.9 / 454.9. Text padding-left ≈36px (origin x 986.3)."
+    },
+    {
+      "id": "instances.title",
+      "description": "Instances card heading",
+      "locator": {
+        "role": "heading",
+        "name": "View your instances",
+        "text": "View your instances"
+      },
+      "box": {
+        "x": 987,
+        "y": 134.5,
+        "w": 263.5,
+        "h": 26
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "View your instances",
+        "family": "Montserrat",
+        "size": 27,
+        "weight": 600,
+        "lineHeight": 34,
+        "tracking": "-0.03em",
+        "color": "#fdfcfc",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=155.4, text origin x=986.3. Mockup ink width 263.5px; Montserrat at this spec ≈ 262.9px."
+    },
+    {
+      "id": "instances.copy",
+      "description": "Instances card copy (3 lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Manage your deployed models, monitor usage, and scale as needed with Legba’s secure infrastructure."
+      },
+      "box": {
+        "x": 988,
+        "y": 178,
+        "w": 267,
+        "h": 62
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Manage your deployed models,\nmonitor usage, and scale as needed\nwith Legba’s secure infrastructure.",
+        "family": "Montserrat",
+        "size": 16,
+        "weight": 500,
+        "lineHeight": 23,
+        "tracking": "-0.03em",
+        "color": "#c2bbba",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Manage your deployed models,\" ink x 987.8–1221.8, baseline 189.8; L2 \"monitor usage, and scale as needed\" ink x 987.8–1255.0, baseline 213.3; L3 \"with Legba’s secure infrastructure.\" ink x 987.8–1246.3, baseline 235.9. Line pitch 23px. Mean tracking needed for exact width -0.040em (clamped). Colour reads as rgba(255,255,255,0.72) over the red surface (≈#c2bbba). Apostrophe ’."
+    },
+    {
+      "id": "instances.dash",
+      "description": "Small red dash (decor)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1304.5,
+        "y": 206.5,
+        "w": 16,
+        "h": 2.5
+      },
+      "bg": "#a2182c",
+      "border": null,
+      "radius": 1.1,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "aria-hidden; rounded ends."
+    },
+    {
+      "id": "instances.pixel.1",
+      "description": "Translucent red pixel square #1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1320,
+        "y": 214,
+        "w": 29.5,
+        "h": 29.5
+      },
+      "bg": "#4e0f16",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.2",
+      "description": "Translucent red pixel square #2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1349.5,
+        "y": 243.5,
+        "w": 29.5,
+        "h": 30.5
+      },
+      "bg": "#4e1017",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.3",
+      "description": "Translucent red pixel square #3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1290.5,
+        "y": 259,
+        "w": 16.5,
+        "h": 16.5
+      },
+      "bg": "#251010",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.4",
+      "description": "Translucent red pixel square #4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1157.5,
+        "y": 290,
+        "w": 28.5,
+        "h": 29.5
+      },
+      "bg": "#460f15",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.5",
+      "description": "Translucent red pixel square #5",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1186,
+        "y": 319.5,
+        "w": 29.5,
+        "h": 30
+      },
+      "bg": "#5a121b",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.6",
+      "description": "Translucent red pixel square #6",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1129.5,
+        "y": 321,
+        "w": 16.5,
+        "h": 17
+      },
+      "bg": "#361013",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.pixel.7",
+      "description": "Translucent red pixel square #7",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1166,
+        "y": 360.5,
+        "w": 19.5,
+        "h": 19.5
+      },
+      "bg": "#301013",
+      "border": null,
+      "radius": 0,
+      "text": null,
+      "icon": null,
+      "effects": "flat translucent red tile, hard edges (≈ rgba(230,30,60,0.10–0.22) over the card)",
+      "notes": "aria-hidden decor; squares 1→2 and 4→5 form diagonal steps; 3, 6, 7 are faint."
+    },
+    {
+      "id": "instances.rack",
+      "description": "Server-rack illustration (3 units) bottom-right of card",
+      "locator": {
+        "role": "img",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1225,
+        "y": 282.5,
+        "w": 198,
+        "h": 173
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "dark translucent device: chassis front face + perspective side panel, red LEDs and red status lines; clipped by the card edge/radius",
+      "notes": "aria-hidden decorative. Components below."
+    },
+    {
+      "id": "instances.rack.chassis",
+      "description": "Rack front face",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1225,
+        "y": 282.5,
+        "w": 120.5,
+        "h": 169
+      },
+      "bg": "rgba(10,4,5,0.35)",
+      "border": {
+        "width": 1,
+        "color": "#3a2a2c",
+        "sides": "all"
+      },
+      "radius": 8,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "border centre x 1225.6, top y 283.0; bottom runs into the card bottom."
+    },
+    {
+      "id": "instances.rack.side",
+      "description": "Rack side panel (perspective)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1345,
+        "y": 283.5,
+        "w": 78,
+        "h": 171.5
+      },
+      "bg": "rgba(10,4,5,0.30)",
+      "border": {
+        "width": 1,
+        "color": "#3a2a2c",
+        "sides": "top"
+      },
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "top edge slants from (1345, 284.5) to (1420, 296.5); face slightly darker than the front",
+      "notes": "clipped by the card right edge."
+    },
+    {
+      "id": "instances.rack.accent",
+      "description": "Vertical red glow line on the rack side",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1378,
+        "y": 310,
+        "w": 1.5,
+        "h": 42
+      },
+      "bg": "linear-gradient(180deg, #571016, #6c1019 40%, #3c0d10)",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "soft red glow",
+      "notes": "x≈1378.5."
+    },
+    {
+      "id": "instances.rack.unit.1",
+      "description": "Rack unit 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1234.5,
+        "y": 295,
+        "w": 103,
+        "h": 34.5
+      },
+      "bg": "rgba(255,255,255,0.03)",
+      "border": {
+        "width": 1,
+        "color": "#3b2b2d",
+        "sides": "all"
+      },
+      "radius": 6,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "faint outlined slot."
+    },
+    {
+      "id": "instances.rack.unit.1.led",
+      "description": "Rack unit 1 LED",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1244,
+        "y": 304,
+        "w": 17.5,
+        "h": 17
+      },
+      "bg": null,
+      "border": {
+        "width": 1.5,
+        "color": "#a91e2c",
+        "sides": "all"
+      },
+      "radius": 4,
+      "text": null,
+      "icon": "rounded square with centre dot",
+      "effects": "red rounded-square outline with a 3px centre dot, soft red glow (0 0 6px #a91e2caa)",
+      "notes": ""
+    },
+    {
+      "id": "instances.rack.unit.1.lines",
+      "description": "Rack unit 1 status lines",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1278.5,
+        "y": 311,
+        "w": 47.5,
+        "h": 6
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "two 1.5px lines: red (#c0182c, y≈312.0) over grey (rgba(255,255,255,0.12), y≈316.2), x 1278.7–1326.2",
+      "notes": "decor."
+    },
+    {
+      "id": "instances.rack.unit.2",
+      "description": "Rack unit 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1234.5,
+        "y": 344,
+        "w": 103,
+        "h": 35.5
+      },
+      "bg": "rgba(255,255,255,0.03)",
+      "border": {
+        "width": 1,
+        "color": "#3b2b2d",
+        "sides": "all"
+      },
+      "radius": 6,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "faint outlined slot."
+    },
+    {
+      "id": "instances.rack.unit.2.led",
+      "description": "Rack unit 2 LED",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1244,
+        "y": 353.5,
+        "w": 17.5,
+        "h": 17.5
+      },
+      "bg": null,
+      "border": {
+        "width": 1.5,
+        "color": "#a21e2a",
+        "sides": "all"
+      },
+      "radius": 4,
+      "text": null,
+      "icon": "rounded square with centre dot",
+      "effects": "red rounded-square outline with a 3px centre dot, soft red glow (0 0 6px #a21e2aaa)",
+      "notes": ""
+    },
+    {
+      "id": "instances.rack.unit.2.lines",
+      "description": "Rack unit 2 status lines",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1278.5,
+        "y": 359.5,
+        "w": 47.5,
+        "h": 6.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "two 1.5px lines: red (#c0182c, y≈360.5) over grey (rgba(255,255,255,0.12), y≈365.0), x 1278.7–1326.2",
+      "notes": "decor."
+    },
+    {
+      "id": "instances.rack.unit.3",
+      "description": "Rack unit 3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1234.5,
+        "y": 393.5,
+        "w": 103,
+        "h": 36
+      },
+      "bg": "rgba(255,255,255,0.03)",
+      "border": {
+        "width": 1,
+        "color": "#3b2b2d",
+        "sides": "all"
+      },
+      "radius": 6,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "faint outlined slot. Unit 3 is dimmer (fading out)."
+    },
+    {
+      "id": "instances.rack.unit.3.led",
+      "description": "Rack unit 3 LED",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1244,
+        "y": 403,
+        "w": 17.5,
+        "h": 17.5
+      },
+      "bg": null,
+      "border": {
+        "width": 1.5,
+        "color": "#5b1217",
+        "sides": "all"
+      },
+      "radius": 4,
+      "text": null,
+      "icon": "rounded square with centre dot",
+      "effects": "red rounded-square outline with a 3px centre dot, soft red glow (0 0 6px #5b1217aa)",
+      "notes": ""
+    },
+    {
+      "id": "instances.rack.unit.3.lines",
+      "description": "Rack unit 3 status lines",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1278.5,
+        "y": 409,
+        "w": 47.5,
+        "h": 6.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "two 1.5px lines: red (#c0182c, y≈410.0) over grey (rgba(255,255,255,0.12), y≈414.5), x 1278.7–1326.2",
+      "notes": "decor."
+    },
+    {
+      "id": "instances.launch",
+      "description": "Launch pill button (solid red)",
+      "locator": {
+        "role": "link",
+        "name": "Launch",
+        "text": "Launch"
+      },
+      "box": {
+        "x": 980,
+        "y": 387.5,
+        "w": 135,
+        "h": 43.5
+      },
+      "bg": "linear-gradient(90deg, #a8162a 0%, #8a131f 55%, #c21c30 100%)",
+      "border": null,
+      "radius": 21.7,
+      "text": null,
+      "icon": null,
+      "effects": "vertical shading: top lighter (#a5212f, 1px top highlight #c62235 → inset 0 1px 0 rgba(255,255,255,0.14)), bottom darker (#80121f); right end brightest",
+      "notes": "Label origin x≈1009.5; arrow icon x 1072.1."
+    },
+    {
+      "id": "instances.launch.label",
+      "description": "Launch label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Launch"
+      },
+      "box": {
+        "x": 1009.5,
+        "y": 404.5,
+        "w": 46.5,
+        "h": 10
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Launch",
+        "family": "Montserrat",
+        "size": 14,
+        "weight": 600,
+        "lineHeight": 17.5,
+        "tracking": "-0.03em",
+        "color": "#f5f5f5",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=415.2, text origin x=1009.5. Mockup ink width 46.8px; Montserrat at this spec ≈ 49.2px (width-exact would need -0.064em: mockup face is narrower than Montserrat). Pink tint in the mockup is AA mixing with the red fill; label is white."
+    },
+    {
+      "id": "instances.launch.icon",
+      "description": "Launch arrow icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1072,
+        "y": 404,
+        "w": 14,
+        "h": 13
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-up-right (↗), 2px stroke",
+      "effects": null,
+      "notes": "white #f5f5f5; ~20px icon."
+    },
+    {
+      "id": "subs",
+      "description": "\"Your subscriptions\" panel",
+      "locator": {
+        "role": "region",
+        "name": "Your subscriptions",
+        "text": null
+      },
+      "box": {
+        "x": 10,
+        "y": 474,
+        "w": 925.5,
+        "h": 540
+      },
+      "bg": "#101111",
+      "border": {
+        "width": 1,
+        "color": "#232526",
+        "sides": "all"
+      },
+      "radius": 20,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Border centre lines x 10.4 / 934.8, y 474.4 / 1013.4. Header row centred y≈511; cards start y 548.5."
+    },
+    {
+      "id": "subs.bullet",
+      "description": "Red square bullet before panel title",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 35.5,
+        "y": 501,
+        "w": 20,
+        "h": 21
+      },
+      "bg": "#fd1e43",
+      "border": null,
+      "radius": 5.5,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "≈20x20."
+    },
+    {
+      "id": "subs.title",
+      "description": "Panel heading",
+      "locator": {
+        "role": "heading",
+        "name": "Your subscriptions",
+        "text": "Your subscriptions"
+      },
+      "box": {
+        "x": 71.5,
+        "y": 504,
+        "w": 161,
+        "h": 18
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Your subscriptions",
+        "family": "Montserrat",
+        "size": 18,
+        "weight": 600,
+        "lineHeight": 22,
+        "tracking": "-0.03em",
+        "color": "#eceded",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=518.4, text origin x=69.9. Mockup ink width 161.3px; Montserrat at this spec ≈ 162.4px (width-exact would need -0.034em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.count",
+      "description": "Subscription count badge",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "2"
+      },
+      "box": {
+        "x": 243,
+        "y": 500,
+        "w": 28.5,
+        "h": 23.5
+      },
+      "bg": "#17191a",
+      "border": null,
+      "radius": 8,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "no border."
+    },
+    {
+      "id": "subs.count.label",
+      "description": "Count badge number",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "2"
+      },
+      "box": {
+        "x": 255,
+        "y": 507.5,
+        "w": 5.5,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "2",
+        "family": "Montserrat",
+        "size": 14,
+        "weight": 500,
+        "lineHeight": 17.5,
+        "tracking": "0em",
+        "color": "#848d94",
+        "transform": "none",
+        "align": "center"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=516.9, text origin x=254.4. Mockup ink width 5.8px; Montserrat at this spec ≈ 7.4px."
+    },
+    {
+      "id": "subs.filter",
+      "description": "Filter select \"All\" with chevron",
+      "locator": {
+        "role": "combobox",
+        "name": "Filter subscriptions",
+        "text": "All"
+      },
+      "box": {
+        "x": 300.5,
+        "y": 492.5,
+        "w": 96.5,
+        "h": 37
+      },
+      "bg": "#161718",
+      "border": null,
+      "radius": 11,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "no visible border; label origin x≈316.1, chevron x 370.1."
+    },
+    {
+      "id": "subs.filter.label",
+      "description": "Filter current value",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "All"
+      },
+      "box": {
+        "x": 317,
+        "y": 506,
+        "w": 15.5,
+        "h": 11
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "All",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.03em",
+        "color": "#a7adb6",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=517.0, text origin x=316.1. Mockup ink width 15.8px; Montserrat at this spec ≈ 16.5px (width-exact would need -0.053em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.filter.chevron",
+      "description": "Select chevron",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 370,
+        "y": 508.5,
+        "w": 11.5,
+        "h": 6.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "chevron-down, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#9aa1a8; ~20px icon."
+    },
+    {
+      "id": "subs.prev",
+      "description": "Previous page round button",
+      "locator": {
+        "role": "button",
+        "name": "Previous",
+        "text": null
+      },
+      "box": {
+        "x": 706,
+        "y": 496,
+        "w": 30.5,
+        "h": 31
+      },
+      "bg": null,
+      "border": {
+        "width": 1,
+        "color": "#18191b",
+        "sides": "all"
+      },
+      "radius": 15.5,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "very faint ring (#151618 peak on #0f1010); centre (721, 511.5)."
+    },
+    {
+      "id": "subs.prev.icon",
+      "description": "Arrow left",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 716.5,
+        "y": 507.5,
+        "w": 10,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-left, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#c9cdd1; ~16px icon."
+    },
+    {
+      "id": "subs.next",
+      "description": "Next page round button",
+      "locator": {
+        "role": "button",
+        "name": "Next",
+        "text": null
+      },
+      "box": {
+        "x": 744.5,
+        "y": 496,
+        "w": 31,
+        "h": 31
+      },
+      "bg": null,
+      "border": {
+        "width": 1,
+        "color": "#18191b",
+        "sides": "all"
+      },
+      "radius": 15.5,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "centre (759.8, 511.5). Gap between circles ≈8px."
+    },
+    {
+      "id": "subs.next.icon",
+      "description": "Arrow right",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 754,
+        "y": 507.5,
+        "w": 10.5,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-right, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#c9cdd1."
+    },
+    {
+      "id": "subs.view-all",
+      "description": "View All pill link (solid red)",
+      "locator": {
+        "role": "link",
+        "name": "View All",
+        "text": "View All"
+      },
+      "box": {
+        "x": 798,
+        "y": 492,
+        "w": 118.5,
+        "h": 37.5
+      },
+      "bg": "linear-gradient(90deg, #8a1424 0%, #6a121c 50%, #b0182b 100%)",
+      "border": null,
+      "radius": 18.7,
+      "text": null,
+      "icon": null,
+      "effects": "top highlight (#bf1d2f line; inset 0 1px 0 rgba(255,255,255,0.12)); bottom darker #5c1119; right end brightest",
+      "notes": "Label origin x≈819.7; arrow x 882."
+    },
+    {
+      "id": "subs.view-all.label",
+      "description": "View All label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "View All"
+      },
+      "box": {
+        "x": 820,
+        "y": 506,
+        "w": 46,
+        "h": 10
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "View All",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#f5f5f5",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=515.6, text origin x=819.7. Mockup ink width 46.1px; Montserrat at this spec ≈ 48.2px (width-exact would need -0.054em: mockup face is narrower than Montserrat). White label (pink tint is AA over red)."
+    },
+    {
+      "id": "subs.view-all.icon",
+      "description": "View All arrow",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 882,
+        "y": 506,
+        "w": 12,
+        "h": 12.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-up-right (↗), 2px stroke",
+      "effects": null,
+      "notes": "white."
+    },
+    {
+      "id": "subs.card.ghost",
+      "description": "Ghost Mode subscription card",
+      "locator": {
+        "role": "article",
+        "name": "Ghost Mode",
+        "text": null
+      },
+      "box": {
+        "x": 29.5,
+        "y": 548.5,
+        "w": 446.5,
+        "h": 444
+      },
+      "bg": "#0f1010",
+      "border": {
+        "width": 1,
+        "color": "#1e2021",
+        "sides": "all"
+      },
+      "radius": 18,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Ghost card is 446.5 wide, Shield 429.5 (mockup is not symmetric; gap between cards ≈11px). Padding ≈20px; text column starts at card.x+220.7 (title origin)."
+    },
+    {
+      "id": "subs.card.ghost.vendor",
+      "description": "Ghost Mode vendor chip \"By: Legba\"",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By: Legba"
+      },
+      "box": {
+        "x": 49.5,
+        "y": 567.5,
+        "w": 93,
+        "h": 33
+      },
+      "bg": "#191a1c",
+      "border": {
+        "width": 1,
+        "color": "#222324",
+        "sides": "all"
+      },
+      "radius": 11,
+      "text": null,
+      "icon": null,
+      "effects": "fill has a faint top-lit gradient (#1a1b1c top → #171819 bottom)",
+      "notes": ""
+    },
+    {
+      "id": "subs.card.ghost.vendor.label",
+      "description": "Vendor chip text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By: Legba"
+      },
+      "box": {
+        "x": 62.5,
+        "y": 579,
+        "w": 65.5,
+        "h": 14.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "By: Legba",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.03em",
+        "color": "#bdbfbe",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=589.6, text origin x=61.3. Mockup ink width 65.5px; Montserrat at this spec ≈ 66.0px (width-exact would need -0.034em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.status",
+      "description": "Ghost Mode status chip \"Active\"",
+      "locator": {
+        "role": "status",
+        "name": "Active",
+        "text": "Active"
+      },
+      "box": {
+        "x": 385.5,
+        "y": 568,
+        "w": 72.5,
+        "h": 32.5
+      },
+      "bg": "#191a1b",
+      "border": {
+        "width": 1,
+        "color": "#222425",
+        "sides": "all"
+      },
+      "radius": 11,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": ""
+    },
+    {
+      "id": "subs.card.ghost.status.dot",
+      "description": "Green active dot",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 395.5,
+        "y": 581,
+        "w": 7.5,
+        "h": 7
+      },
+      "bg": "#66e077",
+      "border": null,
+      "radius": 3.75,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "≈7.5px circle; no glow."
+    },
+    {
+      "id": "subs.card.ghost.status.label",
+      "description": "Status chip text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Active"
+      },
+      "box": {
+        "x": 410.5,
+        "y": 580.5,
+        "w": 35,
+        "h": 8.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Active",
+        "family": "Montserrat",
+        "size": 11.5,
+        "weight": 600,
+        "lineHeight": 14.5,
+        "tracking": "-0.025em",
+        "color": "#c8c8c9",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=588.9, text origin x=410.4. Mockup ink width 35.3px; Montserrat at this spec ≈ 35.3px."
+    },
+    {
+      "id": "subs.card.ghost.illustration",
+      "description": "Ghost Mode hero illustration",
+      "locator": {
+        "role": "img",
+        "name": "Ghost Mode illustration",
+        "text": null
+      },
+      "box": {
+        "x": 30.5,
+        "y": 600,
+        "w": 215,
+        "h": 305
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "hooded faceless figure (cloak/hood) drawn in white/grey particle dust, two angular white eye glints, red rim-light streaks crossing it; dense figure extents x 32–221, y 615–835; sparse particle specks continue to y≈900",
+      "notes": "Use the hairline-create Ghost/Shield figure (AGENTS.md): no colour inside the figure; red accents come from host CSS --hairline-hi. Bleeds to the card left edge."
+    },
+    {
+      "id": "subs.card.ghost.illustration.streak.1",
+      "description": "Ghost Mode red light streak 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 168,
+        "y": 648,
+        "w": 30,
+        "h": 2
+      },
+      "bg": "linear-gradient(90deg, #b82d3f, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=649.0; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.ghost.illustration.streak.2",
+      "description": "Ghost Mode red light streak 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 173,
+        "y": 660,
+        "w": 67,
+        "h": 2.5
+      },
+      "bg": "linear-gradient(90deg, #c41e37, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=661.3; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.ghost.illustration.streak.3",
+      "description": "Ghost Mode red light streak 3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 31,
+        "y": 756.5,
+        "w": 87,
+        "h": 2.5
+      },
+      "bg": "linear-gradient(90deg, #f72843, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=757.8; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.ghost.illustration.streak.4",
+      "description": "Ghost Mode red light streak 4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 95,
+        "y": 831,
+        "w": 100,
+        "h": 2
+      },
+      "bg": "linear-gradient(90deg, #e5253e, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=832.0; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.ghost.title",
+      "description": "Ghost Mode title",
+      "locator": {
+        "role": "heading",
+        "name": "Ghost Mode",
+        "text": "Ghost Mode"
+      },
+      "box": {
+        "x": 251.5,
+        "y": 634.5,
+        "w": 128,
+        "h": 16.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Ghost Mode",
+        "family": "Montserrat",
+        "size": 22,
+        "weight": 600,
+        "lineHeight": 28,
+        "tracking": "-0.03em",
+        "color": "#f6f5f5",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=650.9, text origin x=250.2. Mockup ink width 128.2px; Montserrat at this spec ≈ 129.3px (width-exact would need -0.035em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.copy",
+      "description": "Ghost Mode description (2 lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Maximum privacy. No traces. Built for operators."
+      },
+      "box": {
+        "x": 252,
+        "y": 668,
+        "w": 196.5,
+        "h": 34
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Maximum privacy. No traces.\nBuilt for operators.",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 20,
+        "tracking": "-0.025em",
+        "color": "#93999e",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Maximum privacy. No traces.\" ink x 252.0–448.6, baseline 679.0; L2 \"Built for operators.\" ink x 252.0–381.6, baseline 699.0. Line pitch 20px. Mean tracking needed for exact width -0.024em (clamped)."
+    },
+    {
+      "id": "subs.card.ghost.features",
+      "description": "Ghost Mode feature list",
+      "locator": {
+        "role": "list",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 252,
+        "y": 731.5,
+        "w": 168,
+        "h": 119.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "4 rows, row pitch ≈33px (baselines 747.2, 780.1, 812.6, 846.1); icon column centre x≈262.5; icon→label gap ≈17–18px."
+    },
+    {
+      "id": "subs.card.ghost.feature.1.icon",
+      "description": "Feature 1 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 252,
+        "y": 731.5,
+        "w": 21,
+        "h": 21.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "circular badge outline with a small droplet/keyhole at centre, red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.ghost.feature.1.label",
+      "description": "Feature 1 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Anonymous inference"
+      },
+      "box": {
+        "x": 290,
+        "y": 737.5,
+        "w": 128.5,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Anonymous inference",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8d9398",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=747.2, text origin x=289.5. Mockup ink width 128.2px; Montserrat at this spec ≈ 135.0px (width-exact would need -0.060em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.feature.2.icon",
+      "description": "Feature 2 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 255,
+        "y": 765.5,
+        "w": 15,
+        "h": 18
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "lock: arched shackle + filled square body, red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.ghost.feature.2.label",
+      "description": "Feature 2 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "No logs retained"
+      },
+      "box": {
+        "x": 290,
+        "y": 771,
+        "w": 96,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "No logs retained",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8e9297",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=780.1, text origin x=289.7. Mockup ink width 95.8px; Montserrat at this spec ≈ 98.1px (width-exact would need -0.043em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.feature.3.icon",
+      "description": "Feature 3 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 253.5,
+        "y": 797,
+        "w": 18.5,
+        "h": 20
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "isometric cube/hexagon outline with inner edges (global/box), red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.ghost.feature.3.label",
+      "description": "Feature 3 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Global access"
+      },
+      "box": {
+        "x": 290,
+        "y": 803.5,
+        "w": 81,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Global access",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#92989d",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=812.6, text origin x=289.5. Mockup ink width 80.6px; Montserrat at this spec ≈ 81.7px (width-exact would need -0.037em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.feature.4.icon",
+      "description": "Feature 4 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 252,
+        "y": 831,
+        "w": 21,
+        "h": 20
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "hexagon outline with a forked/branch glyph inside, red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.ghost.feature.4.label",
+      "description": "Feature 4 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Priority infrastructure"
+      },
+      "box": {
+        "x": 290,
+        "y": 836.5,
+        "w": 130,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Priority infrastructure",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8d949c",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=846.1, text origin x=289.2. Mockup ink width 129.6px; Montserrat at this spec ≈ 128.9px."
+    },
+    {
+      "id": "subs.card.ghost.manage",
+      "description": "Ghost Mode \"Manage Subscription\" bar button",
+      "locator": {
+        "role": "link",
+        "name": "Manage Subscription",
+        "text": "Manage Subscription"
+      },
+      "box": {
+        "x": 49.5,
+        "y": 915,
+        "w": 409,
+        "h": 55
+      },
+      "bg": "#121314",
+      "border": {
+        "width": 1,
+        "color": "#1f2021",
+        "sides": "all"
+      },
+      "radius": 16,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Label origin x = bar.x + 26.8; chevron at bar right − 28."
+    },
+    {
+      "id": "subs.card.ghost.manage.label",
+      "description": "Manage Subscription label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Manage Subscription"
+      },
+      "box": {
+        "x": 78,
+        "y": 937.5,
+        "w": 149.5,
+        "h": 13.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Manage Subscription",
+        "family": "Montserrat",
+        "size": 15,
+        "weight": 600,
+        "lineHeight": 19,
+        "tracking": "-0.03em",
+        "color": "#e3e4e4",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=948.6, text origin x=76.3. Mockup ink width 149.8px; Montserrat at this spec ≈ 153.9px (width-exact would need -0.045em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.ghost.manage.chevron",
+      "description": "Manage bar chevron",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 423.5,
+        "y": 937.5,
+        "w": 6.5,
+        "h": 10.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "chevron-right, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#c8c9ca; ~18px icon."
+    },
+    {
+      "id": "subs.card.shield",
+      "description": "Shield Mode subscription card",
+      "locator": {
+        "role": "article",
+        "name": "Shield Mode",
+        "text": null
+      },
+      "box": {
+        "x": 487,
+        "y": 548.5,
+        "w": 429.5,
+        "h": 444
+      },
+      "bg": "#0f1010",
+      "border": {
+        "width": 1,
+        "color": "#1e2021",
+        "sides": "all"
+      },
+      "radius": 18,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Padding ≈20px; text column starts at card.x+220.7 (title origin)."
+    },
+    {
+      "id": "subs.card.shield.vendor",
+      "description": "Shield Mode vendor chip \"By: Legba\"",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By: Legba"
+      },
+      "box": {
+        "x": 506.5,
+        "y": 568,
+        "w": 92,
+        "h": 32.5
+      },
+      "bg": "#191a1c",
+      "border": {
+        "width": 1,
+        "color": "#222324",
+        "sides": "all"
+      },
+      "radius": 11,
+      "text": null,
+      "icon": null,
+      "effects": "fill has a faint top-lit gradient (#1a1b1c top → #171819 bottom)",
+      "notes": ""
+    },
+    {
+      "id": "subs.card.shield.vendor.label",
+      "description": "Vendor chip text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "By: Legba"
+      },
+      "box": {
+        "x": 520,
+        "y": 579,
+        "w": 65.5,
+        "h": 14.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "By: Legba",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 18,
+        "tracking": "-0.03em",
+        "color": "#bfbfbf",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=589.7, text origin x=518.3. Mockup ink width 65.5px; Montserrat at this spec ≈ 66.0px (width-exact would need -0.034em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.status",
+      "description": "Shield Mode status chip \"Active\"",
+      "locator": {
+        "role": "status",
+        "name": "Active",
+        "text": "Active"
+      },
+      "box": {
+        "x": 825.5,
+        "y": 567.5,
+        "w": 73.5,
+        "h": 33
+      },
+      "bg": "#191a1b",
+      "border": {
+        "width": 1,
+        "color": "#222425",
+        "sides": "all"
+      },
+      "radius": 11,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": ""
+    },
+    {
+      "id": "subs.card.shield.status.dot",
+      "description": "Green active dot",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 836,
+        "y": 581,
+        "w": 7,
+        "h": 7
+      },
+      "bg": "#66e077",
+      "border": null,
+      "radius": 3.75,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "≈7.5px circle; no glow."
+    },
+    {
+      "id": "subs.card.shield.status.label",
+      "description": "Status chip text",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Active"
+      },
+      "box": {
+        "x": 850.5,
+        "y": 580.5,
+        "w": 35,
+        "h": 9
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Active",
+        "family": "Montserrat",
+        "size": 11.5,
+        "weight": 600,
+        "lineHeight": 14.5,
+        "tracking": "-0.025em",
+        "color": "#c7c9ca",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=588.8, text origin x=850.1. Mockup ink width 35.3px; Montserrat at this spec ≈ 35.3px."
+    },
+    {
+      "id": "subs.card.shield.illustration",
+      "description": "Shield Mode hero illustration",
+      "locator": {
+        "role": "img",
+        "name": "Shield Mode illustration",
+        "text": null
+      },
+      "box": {
+        "x": 488.5,
+        "y": 600,
+        "w": 215,
+        "h": 305
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "three stacked translucent shields in perspective (white/grey particle dust), front shield with a glowing red right edge, red elliptical energy rings at the base (y≈800–850); dense figure extents x 498–680, y 634–847; sparse particle specks continue to y≈900",
+      "notes": "Use the hairline-create Ghost/Shield figure (AGENTS.md): no colour inside the figure; red accents come from host CSS --hairline-hi. Bleeds to the card left edge."
+    },
+    {
+      "id": "subs.card.shield.illustration.streak.1",
+      "description": "Shield Mode red light streak 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 640,
+        "y": 661.5,
+        "w": 16,
+        "h": 5
+      },
+      "bg": "linear-gradient(90deg, #c8142e, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=664.2; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.shield.illustration.streak.2",
+      "description": "Shield Mode red light streak 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 502.5,
+        "y": 745,
+        "w": 48.5,
+        "h": 2.5
+      },
+      "bg": "linear-gradient(90deg, #e91d3a, rgba(240,32,63,0))",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "glow 0 0 6px rgba(240,32,63,0.55); fades left→right",
+      "notes": "centre y=746.3; part of the figure lighting (aria-hidden)."
+    },
+    {
+      "id": "subs.card.shield.title",
+      "description": "Shield Mode title",
+      "locator": {
+        "role": "heading",
+        "name": "Shield Mode",
+        "text": "Shield Mode"
+      },
+      "box": {
+        "x": 709,
+        "y": 636,
+        "w": 124,
+        "h": 15.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Shield Mode",
+        "family": "Montserrat",
+        "size": 22,
+        "weight": 600,
+        "lineHeight": 28,
+        "tracking": "-0.03em",
+        "color": "#f9f9f9",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=651.9, text origin x=708.8. Mockup ink width 123.8px; Montserrat at this spec ≈ 132.3px (width-exact would need -0.068em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.copy",
+      "description": "Shield Mode description (2 lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Enterprise-grade protection for your AI workloads."
+      },
+      "box": {
+        "x": 708.5,
+        "y": 669,
+        "w": 188,
+        "h": 33.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Enterprise-grade protection\nfor your AI workloads.",
+        "family": "Montserrat",
+        "size": 14.5,
+        "weight": 500,
+        "lineHeight": 20,
+        "tracking": "-0.03em",
+        "color": "#959aa0",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Enterprise-grade protection\" ink x 709.2–896.4, baseline 679.9; L2 \"for your AI workloads.\" ink x 708.5–859.0, baseline 700.0. Line pitch 20px. Mean tracking needed for exact width -0.033em (clamped)."
+    },
+    {
+      "id": "subs.card.shield.features",
+      "description": "Shield Mode feature list",
+      "locator": {
+        "role": "list",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 711.5,
+        "y": 734.5,
+        "w": 173.5,
+        "h": 116.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "4 rows, row pitch ≈33px (baselines 748.9, 781.7, 814.4, 847.5); icon column centre x≈719; icon→label gap ≈17–18px."
+    },
+    {
+      "id": "subs.card.shield.feature.1.icon",
+      "description": "Feature 1 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 711.5,
+        "y": 734.5,
+        "w": 15.5,
+        "h": 18.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "shield with checkmark (shield-check), red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.shield.feature.1.label",
+      "description": "Feature 1 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Enhanced security layer"
+      },
+      "box": {
+        "x": 745,
+        "y": 739.5,
+        "w": 140,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Enhanced security layer",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8c9196",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=748.9, text origin x=743.5. Mockup ink width 139.7px; Montserrat at this spec ≈ 144.3px (width-exact would need -0.047em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.feature.2.icon",
+      "description": "Feature 2 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 710.5,
+        "y": 766,
+        "w": 16.5,
+        "h": 20.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "shield with checkmark (shield-check), red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.shield.feature.2.label",
+      "description": "Feature 2 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Threat monitoring"
+      },
+      "box": {
+        "x": 745,
+        "y": 772.5,
+        "w": 106,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Threat monitoring",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8c9198",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=781.7, text origin x=745.3. Mockup ink width 105.8px; Montserrat at this spec ≈ 110.7px (width-exact would need -0.054em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.feature.3.icon",
+      "description": "Feature 3 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 711.5,
+        "y": 799,
+        "w": 15.5,
+        "h": 19.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "shield with checkmark (shield-check), red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.shield.feature.3.label",
+      "description": "Feature 3 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Compliance ready"
+      },
+      "box": {
+        "x": 745,
+        "y": 805,
+        "w": 104.5,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Compliance ready",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8c9297",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=814.4, text origin x=745.0. Mockup ink width 104.4px; Montserrat at this spec ≈ 110.3px (width-exact would need -0.061em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.feature.4.icon",
+      "description": "Feature 4 icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 709,
+        "y": 832.5,
+        "w": 19,
+        "h": 18.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "circle outline open at the bottom with a small up-arrow/pin inside (support), red outline ≈1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#e01f36 (peaks #d91c30–#f91b43); ~22px icon."
+    },
+    {
+      "id": "subs.card.shield.feature.4.label",
+      "description": "Feature 4 label",
+      "locator": {
+        "role": "listitem",
+        "name": null,
+        "text": "Dedicated support"
+      },
+      "box": {
+        "x": 745,
+        "y": 838,
+        "w": 111,
+        "h": 11.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Dedicated support",
+        "family": "Montserrat",
+        "size": 12.5,
+        "weight": 600,
+        "lineHeight": 15.5,
+        "tracking": "-0.03em",
+        "color": "#8c9298",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=847.5, text origin x=744.1. Mockup ink width 110.9px; Montserrat at this spec ≈ 113.5px (width-exact would need -0.043em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.manage",
+      "description": "Shield Mode \"Manage Subscription\" bar button",
+      "locator": {
+        "role": "link",
+        "name": "Manage Subscription",
+        "text": "Manage Subscription"
+      },
+      "box": {
+        "x": 506.5,
+        "y": 915,
+        "w": 392.5,
+        "h": 55
+      },
+      "bg": "#121314",
+      "border": {
+        "width": 1,
+        "color": "#1f2021",
+        "sides": "all"
+      },
+      "radius": 16,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Label origin x = bar.x + 26.8; chevron at bar right − 28."
+    },
+    {
+      "id": "subs.card.shield.manage.label",
+      "description": "Manage Subscription label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Manage Subscription"
+      },
+      "box": {
+        "x": 533.5,
+        "y": 937.5,
+        "w": 149,
+        "h": 13.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Manage Subscription",
+        "family": "Montserrat",
+        "size": 15,
+        "weight": 600,
+        "lineHeight": 19,
+        "tracking": "-0.03em",
+        "color": "#e0e0e1",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=948.5, text origin x=531.9. Mockup ink width 149.0px; Montserrat at this spec ≈ 153.9px (width-exact would need -0.048em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "subs.card.shield.manage.chevron",
+      "description": "Manage bar chevron",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 866,
+        "y": 937.5,
+        "w": 6.5,
+        "h": 10.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "chevron-right, 1.75px stroke",
+      "effects": null,
+      "notes": "stroke ≈#c8c9ca; ~18px icon."
+    },
+    {
+      "id": "docs.product",
+      "description": "Product Documentation card",
+      "locator": {
+        "role": "region",
+        "name": "Product Documentation",
+        "text": null
+      },
+      "box": {
+        "x": 950,
+        "y": 474,
+        "w": 473,
+        "h": 264.5
+      },
+      "bg": "#101112",
+      "border": {
+        "width": 1,
+        "color": "#242526",
+        "sides": "all"
+      },
+      "radius": 20,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Padding-left ≈20px (bullet x 970.5, title origin x≈970)."
+    },
+    {
+      "id": "docs.product.bullet",
+      "description": "Red square bullet",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 970.5,
+        "y": 494.5,
+        "w": 17.5,
+        "h": 18
+      },
+      "bg": "#fb1b41",
+      "border": null,
+      "radius": 4,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "≈18x18."
+    },
+    {
+      "id": "docs.product.eyebrow",
+      "description": "\"DOCS\" label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "DOCS"
+      },
+      "box": {
+        "x": 1001,
+        "y": 499,
+        "w": 36,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "DOCS",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 600,
+        "lineHeight": 16,
+        "tracking": "-0.03em",
+        "color": "#b0b8c1",
+        "transform": "uppercase",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=508.4, text origin x=999.2. Mockup ink width 36.0px; Montserrat at this spec ≈ 36.3px (width-exact would need -0.038em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.product.title",
+      "description": "Product Documentation heading",
+      "locator": {
+        "role": "heading",
+        "name": "Product Documentation",
+        "text": "Product Documentation"
+      },
+      "box": {
+        "x": 971.5,
+        "y": 546,
+        "w": 208.5,
+        "h": 14
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Product Documentation",
+        "family": "Montserrat",
+        "size": 19,
+        "weight": 600,
+        "lineHeight": 24,
+        "tracking": "-0.03em",
+        "color": "#f0f0f0",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=559.5, text origin x=969.9. Mockup ink width 208.8px; Montserrat at this spec ≈ 224.2px (width-exact would need -0.071em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.product.copy",
+      "description": "Product Documentation description (2 lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Explore our tutorials and use cases to get started."
+      },
+      "box": {
+        "x": 970.5,
+        "y": 582,
+        "w": 201.5,
+        "h": 36
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Explore our tutorials and use\ncases to get started.",
+        "family": "Montserrat",
+        "size": 15,
+        "weight": 500,
+        "lineHeight": 21.5,
+        "tracking": "-0.025em",
+        "color": "#9b9fa5",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Explore our tutorials and use\" ink x 971.3–1172.2, baseline 593.0; L2 \"cases to get started.\" ink x 970.6–1118.2, baseline 614.2. Line pitch 21.5px. Mean tracking needed for exact width -0.024em (clamped)."
+    },
+    {
+      "id": "docs.product.explore",
+      "description": "Explore outline pill link",
+      "locator": {
+        "role": "link",
+        "name": "Explore",
+        "text": "Explore"
+      },
+      "box": {
+        "x": 970.5,
+        "y": 677.5,
+        "w": 137.5,
+        "h": 42.5
+      },
+      "bg": "linear-gradient(90deg, #300d11 0%, #3a1015 40%, #48151b 75%, #461218 100%)",
+      "border": {
+        "width": 1,
+        "color": "#9e1a29",
+        "sides": "all"
+      },
+      "radius": 21,
+      "text": null,
+      "icon": null,
+      "effects": "border gradient: brightest on the left side (#b01b2c) → #66171b along top/bottom middle → #7b1d24 on the right; no outer glow",
+      "notes": "Label origin x≈999; arrow at x 1064.9."
+    },
+    {
+      "id": "docs.product.explore.label",
+      "description": "Explore label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Explore"
+      },
+      "box": {
+        "x": 1000,
+        "y": 693.5,
+        "w": 48.5,
+        "h": 13
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Explore",
+        "family": "Montserrat",
+        "size": 14,
+        "weight": 600,
+        "lineHeight": 17.5,
+        "tracking": "-0.03em",
+        "color": "#e3dddc",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=704.0, text origin x=999.2. Mockup ink width 48.2px; Montserrat at this spec ≈ 50.0px (width-exact would need -0.051em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.product.explore.icon",
+      "description": "Explore arrow",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1065,
+        "y": 693.5,
+        "w": 13,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-up-right (↗), 2px stroke",
+      "effects": null,
+      "notes": "near-white #e8e2e1."
+    },
+    {
+      "id": "docs.api",
+      "description": "API Documentation card",
+      "locator": {
+        "role": "region",
+        "name": "API Documentation",
+        "text": null
+      },
+      "box": {
+        "x": 950,
+        "y": 754.5,
+        "w": 473,
+        "h": 260
+      },
+      "bg": "#101112",
+      "border": {
+        "width": 1,
+        "color": "#242526",
+        "sides": "all"
+      },
+      "radius": 20,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "Padding-left ≈20px (bullet x 970.5, title origin x≈970)."
+    },
+    {
+      "id": "docs.api.bullet",
+      "description": "Red square bullet",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 970.5,
+        "y": 777,
+        "w": 17.5,
+        "h": 18
+      },
+      "bg": "#fb1b41",
+      "border": null,
+      "radius": 4,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "≈18x18."
+    },
+    {
+      "id": "docs.api.eyebrow",
+      "description": "\"DOCS\" label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "DOCS"
+      },
+      "box": {
+        "x": 1000,
+        "y": 782,
+        "w": 37,
+        "h": 9.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "DOCS",
+        "family": "Montserrat",
+        "size": 13,
+        "weight": 600,
+        "lineHeight": 16,
+        "tracking": "-0.02em",
+        "color": "#b4bbc1",
+        "transform": "uppercase",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=791.0, text origin x=998.9. Mockup ink width 36.7px; Montserrat at this spec ≈ 36.7px."
+    },
+    {
+      "id": "docs.api.title",
+      "description": "API Documentation heading",
+      "locator": {
+        "role": "heading",
+        "name": "API Documentation",
+        "text": "API Documentation"
+      },
+      "box": {
+        "x": 970.5,
+        "y": 828,
+        "w": 170,
+        "h": 14.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "API Documentation",
+        "family": "Montserrat",
+        "size": 19,
+        "weight": 600,
+        "lineHeight": 24,
+        "tracking": "-0.03em",
+        "color": "#f2f2f2",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=842.6, text origin x=970.4. Mockup ink width 169.9px; Montserrat at this spec ≈ 183.5px (width-exact would need -0.075em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.api.copy",
+      "description": "API Documentation description (2 lines)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Explore our API tutorials and examples for integration."
+      },
+      "box": {
+        "x": 970.5,
+        "y": 864,
+        "w": 201,
+        "h": 36
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Explore our API tutorials and\nexamples for integration.",
+        "family": "Montserrat",
+        "size": 15,
+        "weight": 500,
+        "lineHeight": 21.5,
+        "tracking": "-0.03em",
+        "color": "#a2a6ac",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box of the whole paragraph; hard line breaks exactly as shown (\\n). L1 \"Explore our API tutorials and\" ink x 971.3–1171.4, baseline 875.5; L2 \"examples for integration.\" ink x 970.6–1147.7, baseline 896.2. Line pitch 21.5px. Mean tracking needed for exact width -0.033em (clamped)."
+    },
+    {
+      "id": "docs.api.explore",
+      "description": "Explore outline pill link",
+      "locator": {
+        "role": "link",
+        "name": "Explore",
+        "text": "Explore"
+      },
+      "box": {
+        "x": 970.5,
+        "y": 952.5,
+        "w": 137.5,
+        "h": 42.5
+      },
+      "bg": "linear-gradient(90deg, #300d11 0%, #3a1015 40%, #48151b 75%, #461218 100%)",
+      "border": {
+        "width": 1,
+        "color": "#9e1a29",
+        "sides": "all"
+      },
+      "radius": 21,
+      "text": null,
+      "icon": null,
+      "effects": "border gradient: brightest on the left side (#b01b2c) → #66171b along top/bottom middle → #7b1d24 on the right; no outer glow",
+      "notes": "Label origin x≈999; arrow at x 1064.9."
+    },
+    {
+      "id": "docs.api.explore.label",
+      "description": "Explore label",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "Explore"
+      },
+      "box": {
+        "x": 1000,
+        "y": 968.5,
+        "w": 48.5,
+        "h": 13.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Explore",
+        "family": "Montserrat",
+        "size": 14,
+        "weight": 600,
+        "lineHeight": 17.5,
+        "tracking": "-0.03em",
+        "color": "#dfd8da",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=978.9, text origin x=998.8. Mockup ink width 48.2px; Montserrat at this spec ≈ 50.0px (width-exact would need -0.051em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.api.explore.icon",
+      "description": "Explore arrow",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1065,
+        "y": 968.5,
+        "w": 13,
+        "h": 12
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": "arrow-up-right (↗), 2px stroke",
+      "effects": null,
+      "notes": "near-white #e8e2e1."
+    },
+    {
+      "id": "docs.product.illustration",
+      "description": "Document-stack illustration (DOC file on stacked plates over a faint grid)",
+      "locator": {
+        "role": "img",
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1217.5,
+        "y": 485,
+        "w": 173,
+        "h": 252
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "monochrome dark-grey UI plates with hairline borders, faint 26px grid with node dots above/below",
+      "notes": "aria-hidden decor. Likely the vendored src/components/hairline/document-stack hero (AGENTS.md)."
+    },
+    {
+      "id": "docs.product.illustration.grid",
+      "description": "Faint blueprint grid lines + nodes",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1255,
+        "y": 485,
+        "w": 87,
+        "h": 252
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "vertical 1px lines at x 1259.5 (faint #151617), 1286 (#1a1b1c), 1312 (#1a1b1c), 1338.5 (faint) running y 485–560 and 680–737; horizontal 1px lines at y 507.6, 535.0, 686.9, 712.8 (x ≈1225–1350, fading at ends); node dots (≈2px, #5a5957) at (1285.5, 508) and (1285.5, 713), fainter at (1285.5, 535), (1253, 563), (1352, 563)",
+      "notes": "Grid fades out with distance from the plates (masked)."
+    },
+    {
+      "id": "docs.product.illustration.plate.back-2",
+      "description": "Back plate 2 (top-most edge)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1247,
+        "y": 561,
+        "w": 111.5,
+        "h": 17
+      },
+      "bg": "#101112",
+      "border": {
+        "width": 1,
+        "color": "#1a1b1c",
+        "sides": "top"
+      },
+      "radius": 8,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "only its top edge (y 561.6) and corners are visible above plate 1."
+    },
+    {
+      "id": "docs.product.illustration.plate.back-1",
+      "description": "Back plate 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1233.5,
+        "y": 571,
+        "w": 139.5,
+        "h": 7
+      },
+      "bg": "#101112",
+      "border": {
+        "width": 1,
+        "color": "#1b1c1d",
+        "sides": "top"
+      },
+      "radius": 9,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "top edge y 571.3."
+    },
+    {
+      "id": "docs.product.illustration.plate",
+      "description": "Front plate (card)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1217.5,
+        "y": 577.5,
+        "w": 173,
+        "h": 100.5
+      },
+      "bg": "linear-gradient(135deg, #17191a 0%, #111213 60%)",
+      "border": {
+        "width": 1,
+        "color": "#1e1f20",
+        "sides": "all"
+      },
+      "radius": 10,
+      "text": null,
+      "icon": null,
+      "effects": "subtle top-left sheen",
+      "notes": "border centre x 1218.2/1390.1, y 578.1/677.8."
+    },
+    {
+      "id": "docs.product.illustration.file",
+      "description": "File icon with folded corner",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1234.5,
+        "y": 594,
+        "w": 51.5,
+        "h": 64.5
+      },
+      "bg": "linear-gradient(180deg, #2b2b2c 0%, #1c1d1e 100%)",
+      "border": {
+        "width": 1,
+        "color": "#3a3a3b",
+        "sides": "all"
+      },
+      "radius": 5,
+      "text": null,
+      "icon": null,
+      "effects": "top-right corner folded (≈16px dog-ear, darker #111213 triangle with lighter fold edge)",
+      "notes": ""
+    },
+    {
+      "id": "docs.product.illustration.doc-badge",
+      "description": "DOC label plate inside the file",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1240.5,
+        "y": 632,
+        "w": 40.5,
+        "h": 21.5
+      },
+      "bg": "#262627",
+      "border": {
+        "width": 1,
+        "color": "#2f2f30",
+        "sides": "all"
+      },
+      "radius": 4,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": ""
+    },
+    {
+      "id": "docs.product.illustration.doc-label",
+      "description": "\"DOC\" text in file icon",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "DOC"
+      },
+      "box": {
+        "x": 1247,
+        "y": 639.5,
+        "w": 24,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "DOC",
+        "family": "Montserrat",
+        "size": 11.5,
+        "weight": 700,
+        "lineHeight": 14.5,
+        "tracking": "-0.03em",
+        "color": "#f2f2f2",
+        "transform": "uppercase",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=647.6, text origin x=1245.9. Mockup ink width 23.8px; Montserrat at this spec ≈ 25.7px (width-exact would need -0.114em: mockup face is narrower than Montserrat). Bold white; fit suggests 600–700."
+    },
+    {
+      "id": "docs.product.illustration.line.1",
+      "description": "Placeholder text bar 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 594.5,
+        "w": 70,
+        "h": 4.5
+      },
+      "bg": "#2d2c2d",
+      "border": null,
+      "radius": 2.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.2",
+      "description": "Placeholder text bar 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 603.5,
+        "w": 41,
+        "h": 4.5
+      },
+      "bg": "#28282a",
+      "border": null,
+      "radius": 2.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.3",
+      "description": "Placeholder text bar 3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 615.5,
+        "w": 73.5,
+        "h": 2
+      },
+      "bg": "#242526",
+      "border": null,
+      "radius": 1,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.4",
+      "description": "Placeholder text bar 4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 623.5,
+        "w": 51.5,
+        "h": 2
+      },
+      "bg": "#282829",
+      "border": null,
+      "radius": 1,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.5",
+      "description": "Placeholder text bar 5",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 630.5,
+        "w": 56.5,
+        "h": 2.5
+      },
+      "bg": "#2a2a2b",
+      "border": null,
+      "radius": 1.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.6",
+      "description": "Placeholder text bar 6",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 637,
+        "w": 72.5,
+        "h": 3
+      },
+      "bg": "#2c2c2c",
+      "border": null,
+      "radius": 1.5,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.7",
+      "description": "Placeholder text bar 7",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 645,
+        "w": 52.5,
+        "h": 2
+      },
+      "bg": "#262627",
+      "border": null,
+      "radius": 1,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.product.illustration.line.8",
+      "description": "Placeholder text bar 8",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1297.5,
+        "y": 652.5,
+        "w": 40.5,
+        "h": 2.5
+      },
+      "bg": "#292929",
+      "border": null,
+      "radius": 1.25,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "rounded bar; first two are heading bars (thicker), rest are body lines."
+    },
+    {
+      "id": "docs.api.code",
+      "description": "Code sample panel with language tabs",
+      "locator": {
+        "role": "region",
+        "name": "Code sample",
+        "text": null
+      },
+      "box": {
+        "x": 1188.5,
+        "y": 805,
+        "w": 218,
+        "h": 161.5
+      },
+      "bg": "#0f1010",
+      "border": {
+        "width": 1,
+        "color": "#1e2021",
+        "sides": "all"
+      },
+      "radius": 10,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "border centre x 1188.9/1406.1, y 805.4/965.8; top border slightly brighter (#1f2121)."
+    },
+    {
+      "id": "docs.api.code.tabs",
+      "description": "Tab bar",
+      "locator": {
+        "role": "tablist",
+        "name": "Language",
+        "text": null
+      },
+      "box": {
+        "x": 1189,
+        "y": 805.5,
+        "w": 217,
+        "h": 36
+      },
+      "bg": "#0f1011",
+      "border": {
+        "width": 1,
+        "color": "#18191b",
+        "sides": "bottom"
+      },
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "divider centre y≈841.4. Three background zones: selected curl cell x 1189–1245.5 #17191a (see .tab.curl.bg), Python cell x 1245.5–1301 #0f1011 (no fill), x 1301–1406 #131415 (JavaScript cell + remainder, slightly lighter). Tab label origins x 1213.0 / 1257.7 / 1314.2, baseline y≈827.9."
+    },
+    {
+      "id": "docs.api.code.tab.curl.bg",
+      "description": "Selected tab cell background (curl)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1189.5,
+        "y": 806,
+        "w": 56,
+        "h": 35
+      },
+      "bg": "#17191a",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "top-left corner follows the panel radius (10px); square elsewhere."
+    },
+    {
+      "id": "docs.api.code.tab.rest.bg",
+      "description": "Lighter tab-bar zone behind JavaScript",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1301,
+        "y": 806,
+        "w": 104.5,
+        "h": 35
+      },
+      "bg": "#131415",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": null,
+      "notes": "top-right corner follows the panel radius (10px). Mockup quirk: the Python cell between is darker (#0f1011)."
+    },
+    {
+      "id": "docs.api.illustration.grid",
+      "description": "Faint blueprint grid behind the code panel",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1255,
+        "y": 757,
+        "w": 87,
+        "h": 255
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "vertical 1px lines at x 1259.5 (faint), 1285.2, 1311.8, 1338.5 (#161718–#1a1b1c) visible above (y 757–805) and below (y 966–1012) the panel; horizontal 1px lines at y 782.6 and 989.3 (x ≈1190–1400, fading at the ends). Same 26px grid as the Product Documentation illustration.",
+      "notes": "aria-hidden decor; masked/fading away from the panel."
+    },
+    {
+      "id": "docs.api.code.tab.curl",
+      "description": "\"curl\" tab (selected)",
+      "locator": {
+        "role": "tab",
+        "name": "curl",
+        "text": "curl"
+      },
+      "box": {
+        "x": 1213,
+        "y": 820,
+        "w": 18,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "curl",
+        "family": "Montserrat",
+        "size": 10.5,
+        "weight": 600,
+        "lineHeight": 13,
+        "tracking": "-0.03em",
+        "color": "#bb4853",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=827.7, text origin x=1213.0. Mockup ink width 18.0px; Montserrat at this spec ≈ 18.5px (width-exact would need -0.044em: mockup face is narrower than Montserrat). aria-selected=true; red text."
+    },
+    {
+      "id": "docs.api.code.tab.python",
+      "description": "\"Python\" tab",
+      "locator": {
+        "role": "tab",
+        "name": "Python",
+        "text": "Python"
+      },
+      "box": {
+        "x": 1258,
+        "y": 820,
+        "w": 31,
+        "h": 10
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "Python",
+        "family": "Montserrat",
+        "size": 10.5,
+        "weight": 500,
+        "lineHeight": 13,
+        "tracking": "-0.03em",
+        "color": "#7a7c80",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=828.0, text origin x=1257.7. Mockup ink width 31.0px; Montserrat at this spec ≈ 35.2px (width-exact would need -0.111em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.api.code.tab.javascript",
+      "description": "\"JavaScript\" tab",
+      "locator": {
+        "role": "tab",
+        "name": "JavaScript",
+        "text": "JavaScript"
+      },
+      "box": {
+        "x": 1314.5,
+        "y": 820,
+        "w": 45,
+        "h": 10
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "JavaScript",
+        "family": "Montserrat",
+        "size": 10.5,
+        "weight": 500,
+        "lineHeight": 13,
+        "tracking": "-0.03em",
+        "color": "#7a7c80",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=827.9, text origin x=1314.2. Mockup ink width 44.6px; Montserrat at this spec ≈ 51.7px (width-exact would need -0.104em: mockup face is narrower than Montserrat)."
+    },
+    {
+      "id": "docs.api.code.tab.indicator",
+      "description": "Selected-tab underline (under curl)",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": null
+      },
+      "box": {
+        "x": 1212.5,
+        "y": 840.5,
+        "w": 22,
+        "h": 1.5
+      },
+      "bg": "#3a1c22",
+      "border": null,
+      "radius": null,
+      "text": null,
+      "icon": null,
+      "effects": "faint red line (≈ rgba(239,35,60,0.25)), fades at both ends",
+      "notes": "sits on the tab divider."
+    },
+    {
+      "id": "docs.api.code.line.1",
+      "description": "Code line 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "curl -X POST \\"
+      },
+      "box": {
+        "x": 1229,
+        "y": 857.5,
+        "w": 75.5,
+        "h": 8.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "curl -X POST \\",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#b2b1af",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=865.3; text origin x=1228.7 (monospace cell 5.47px at 9px → measured pitch matches JetBrains Mono, kx≈1.0). text.color is the dominant token colour; per-token colours: \"curl\" #a7746b; \"-X POST \\\" #b2b1af. Line 1 starts at code column 0 (x 1228.7)."
+    },
+    {
+      "id": "docs.api.code.ln.1",
+      "description": "Line number 1",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "1"
+      },
+      "box": {
+        "x": 1204,
+        "y": 858,
+        "w": 3.5,
+        "h": 7.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "1",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#58595a",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=865.4, text origin x=1202.8. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
+    },
+    {
+      "id": "docs.api.code.line.2",
+      "description": "Code line 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "https://api.legba.ai/v1 \\"
+      },
+      "box": {
+        "x": 1242,
+        "y": 877.5,
+        "w": 136,
+        "h": 10.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "https://api.legba.ai/v1 \\",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#996197",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=885.2; text origin x=1241.8 (monospace cell 5.47px at 9px → measured pitch matches JetBrains Mono, kx≈1.0). text.color is the dominant token colour; per-token colours: \"https://api.legba.ai/v1\" #996197; \"\\\" #9e5c56. Continuation lines 2–4 indented to x≈1241.8 (≈13px = 2.4ch; mockup indent is not a whole number of cells)."
+    },
+    {
+      "id": "docs.api.code.ln.2",
+      "description": "Line number 2",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "2"
+      },
+      "box": {
+        "x": 1203,
+        "y": 877.5,
+        "w": 5,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "2",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#58595a",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=885.2, text origin x=1202.7. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
+    },
+    {
+      "id": "docs.api.code.line.3",
+      "description": "Code line 3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "-H \"Authorization: Bearer ...\""
+      },
+      "box": {
+        "x": 1242.5,
+        "y": 897,
+        "w": 156.5,
+        "h": 9
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "-H \"Authorization: Bearer ...\"",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#996197",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=904.7; text origin x=1241.4 (monospace cell 5.47px at 9px → measured pitch matches JetBrains Mono, kx≈1.0). text.color is the dominant token colour; per-token colours: \"-H\" #b2b1af; \"\"\" #c22b40; \"Authorization: Bearer\" #996197; \"...\"\" #c22b40. The \"...\" is squeezed into two cells in the mockup (closing quote at cell 28); use three ASCII dots. Quotes and dots red-pink, header text purple."
+    },
+    {
+      "id": "docs.api.code.ln.3",
+      "description": "Line number 3",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "3"
+      },
+      "box": {
+        "x": 1203,
+        "y": 897,
+        "w": 5,
+        "h": 9
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "3",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#58595a",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=904.7, text origin x=1202.9. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
+    },
+    {
+      "id": "docs.api.code.line.4",
+      "description": "Code line 4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "-d \"{\"model\": \"ghost\","
+      },
+      "box": {
+        "x": 1242.5,
+        "y": 916.5,
+        "w": 118.5,
+        "h": 11
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "-d \"{\"model\": \"ghost\",",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#c22b40",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=924.5; text origin x=1241.6 (monospace cell 5.47px at 9px → measured pitch matches JetBrains Mono, kx≈1.0). text.color is the dominant token colour; per-token colours: \"-d\" #b2b1af; \"\"{\"model\": \"ghost\",\" #c22b40. JSON string red."
+    },
+    {
+      "id": "docs.api.code.ln.4",
+      "description": "Line number 4",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "4"
+      },
+      "box": {
+        "x": 1203,
+        "y": 918,
+        "w": 5,
+        "h": 6.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "4",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#58595a",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=924.4, text origin x=1203.1. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
+    },
+    {
+      "id": "docs.api.code.line.5",
+      "description": "Code line 5",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "\"prompt\": \"..\"}\""
+      },
+      "box": {
+        "x": 1259.5,
+        "y": 936.5,
+        "w": 85.5,
+        "h": 10.5
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "\"prompt\": \"..\"}\"",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#c22b40",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=944.0; text origin x=1258.4 (monospace cell 5.47px at 9px → measured pitch matches JetBrains Mono, kx≈1.0). text.color is the dominant token colour; per-token colours: \"\"prompt\": \"..\"}\"\" #c22b40. Aligned under the opening quote on line 4 (x 1258.4). Mockup shows TWO dots: \"prompt\": \"..\"}\" (verified by cell positions) – transcribed verbatim; likely meant \"...\"."
+    },
+    {
+      "id": "docs.api.code.ln.5",
+      "description": "Line number 5",
+      "locator": {
+        "role": null,
+        "name": null,
+        "text": "5"
+      },
+      "box": {
+        "x": 1203,
+        "y": 936.5,
+        "w": 5,
+        "h": 8
+      },
+      "bg": null,
+      "border": null,
+      "radius": null,
+      "text": {
+        "content": "5",
+        "family": "JetBrains Mono",
+        "size": 9,
+        "weight": 500,
+        "lineHeight": 19.5,
+        "tracking": "0em",
+        "color": "#58595a",
+        "transform": "none",
+        "align": "left"
+      },
+      "icon": null,
+      "effects": null,
+      "notes": "ink box; baseline y=944.0, text origin x=1202.8. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
+    }
+  ],
+  "verification": []
+}

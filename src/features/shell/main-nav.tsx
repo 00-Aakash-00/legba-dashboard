@@ -15,7 +15,7 @@ function NavList({ active }: { active: NavKey | null }) {
             <Link
               href={item.href}
               aria-current={active === item.key ? "page" : undefined}
-              className="text-muted text-sm aria-[current=page]:text-bone"
+              className="text-muted-foreground text-sm aria-[current=page]:text-bone"
             >
               {item.label}
             </Link>

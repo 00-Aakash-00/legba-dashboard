@@ -66,7 +66,7 @@ export function LogoLockup({
       href="/"
       aria-label={brand.homeLabel}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "inline-flex select-none items-center gap-2.5 rounded-md outline-none [-webkit-touch-callout:none] focus-visible:ring-2 focus-visible:ring-ring",
         className,
       )}
     >
