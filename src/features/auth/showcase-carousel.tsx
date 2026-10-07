@@ -140,8 +140,10 @@ export function ShowcaseCarousel({
       onFocus={() => setFocused(true)}
       onBlur={onBlur}
       className={cn(
-        // Banner (< 1024): compact, above the form.
-        "relative isolate order-first mx-4 mt-[max(0.75rem,env(safe-area-inset-top,0px))] h-40 shrink-0 overflow-hidden rounded-[24px] border-2 border-transparent shadow-[0_0_28px_-10px_rgb(233_25_59/0.55)]",
+        // Banner (< 1024): compact, above the form. Clipped, not hidden: a
+        // hidden box is still a scroll container, so focus, scrollIntoView or
+        // a #:~:text= link could scroll the overflowing art out of place.
+        "relative isolate order-first mx-4 mt-[max(0.75rem,env(safe-area-inset-top,0px))] h-40 shrink-0 overflow-clip rounded-[24px] border-2 border-transparent shadow-[0_0_28px_-10px_rgb(233_25_59/0.55)]",
         // Gradient border: base fill in the padding box, the measured red
         // ramp (left → right) in the border box.
         "[background:linear-gradient(#040202,#040202)_padding-box,linear-gradient(90deg,#ea1a3c_0%,#c51a32_28%,#b0192c_52%,#8f1420_76%,#74101a_95%,#650e16_100%)_border-box]",
@@ -186,7 +188,9 @@ export function ShowcaseCarousel({
                     {slide.accent}
                   </span>
                 </h2>
-                <p className="mt-1 hidden text-sm text-white/80 leading-[18px] sm:line-clamp-2 lg:mt-[14.95px] lg:line-clamp-none lg:block lg:max-w-[400px] lg:text-[15.5px] lg:text-white lg:leading-[20.5px]">
+                {/* The clamp's lines are clipped, not hidden, for the same
+                    reason as the panel: nothing can scroll them into view. */}
+                <p className="mt-1 hidden text-sm text-white/80 leading-[18px] sm:line-clamp-2 sm:overflow-clip lg:mt-[14.95px] lg:line-clamp-none lg:block lg:max-w-[400px] lg:text-[15.5px] lg:text-white lg:leading-[20.5px]">
                   {slide.body}
                 </p>
               </div>

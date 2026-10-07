@@ -8,7 +8,11 @@ export const metadata: Metadata = { title: auth.forgot.title };
 export default function ForgotPasswordPage() {
   const { forgot } = auth;
   return (
-    <AuthScreen heading={[forgot.heading]} subtitle={forgot.subtitle}>
+    <AuthScreen
+      heading={[forgot.heading]}
+      subtitle={forgot.subtitle}
+      legalLead={forgot.legalLead}
+    >
       <ForgotForm />
       <BackToLogin label={forgot.back} />
     </AuthScreen>

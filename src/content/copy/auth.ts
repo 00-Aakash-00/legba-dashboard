@@ -80,6 +80,8 @@ export const auth = {
     sentTitle: "Nothing to reset",
     sent: "No email was sent. Log in with any password.",
     back: "Back to log in",
+    // Names this page's own action, as the login and register leads do.
+    legalLead: "By continuing, you agree to our ",
   },
   sso: {
     title: "Single sign-on",

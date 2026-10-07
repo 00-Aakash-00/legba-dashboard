@@ -20,8 +20,8 @@ export function AuthScreen({
   /** One string per visual line. */
   heading: readonly string[];
   subtitle: string;
-  /** The consent line's lead-in; pages that sign nobody in have none. */
-  legalLead?: string;
+  /** The consent line's lead-in, naming the page's action. */
+  legalLead: string;
   children: ReactNode;
 }) {
   return (
@@ -50,11 +50,7 @@ export function AuthScreen({
         aria-hidden
         className="min-h-8 flex-1 shrink-0 lg:min-h-0 lg:grow-[1205] lg:basis-10"
       />
-      {legalLead ? (
-        <LegalLine lead={legalLead} />
-      ) : (
-        <div className="pb-[max(1rem,env(safe-area-inset-bottom,0px))] lg:pb-[33.5px]" />
-      )}
+      <LegalLine lead={legalLead} />
     </div>
   );
 }
