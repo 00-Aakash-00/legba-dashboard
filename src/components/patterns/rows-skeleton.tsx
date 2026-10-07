@@ -26,9 +26,7 @@ export function LoadingRegion({
 
 /** Skeleton bar tuned for the panel surface. */
 export function Bar({ className }: { className?: string }) {
-  return (
-    <Skeleton className={cn("h-3 rounded-full", className)} />
-  );
+  return <Skeleton className={cn("h-3 rounded-full", className)} />;
 }
 
 const WIDTHS = ["w-44", "w-36", "w-52", "w-40"];
