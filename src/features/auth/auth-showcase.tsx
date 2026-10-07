@@ -1,17 +1,11 @@
-import { auth } from "@/content/copy";
+import { ShowcaseCarousel } from "./showcase-carousel";
+import { ShowcaseDecor, ShowcaseMark } from "./showcase-decor";
 
-/** STUB (owned by the auth builder): the red showcase carousel panel. */
+/**
+ * The red showcase: the left panel on desktop, a compact banner above the
+ * form below 1024px. The art renders on the server; only the carousel (slide
+ * state, dots, autoplay, swipe sync) ships as a client island.
+ */
 export function AuthShowcase() {
-  const slide = auth.showcase.slides[0];
-  return (
-    <section
-      aria-label={auth.showcase.label}
-      className="rounded-[28px] border-2 border-showcase-line bg-instances-base p-8"
-    >
-      <p className="font-semibold text-2xl text-bone">
-        {slide.lead}
-        <span className="text-signal">{slide.accent}</span>
-      </p>
-    </section>
-  );
+  return <ShowcaseCarousel decor={<ShowcaseDecor />} mark={<ShowcaseMark />} />;
 }

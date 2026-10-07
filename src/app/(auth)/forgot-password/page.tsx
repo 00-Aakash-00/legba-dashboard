@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { auth } from "@/content/copy";
+import { AuthScreen, BackToLogin } from "@/features/auth/auth-screen";
+import { ForgotForm } from "@/features/auth/forgot-form";
 
 export const metadata: Metadata = { title: auth.forgot.title };
 
-/** STUB: replaced by the auth builder. */
-export default function Page() {
+export default function ForgotPasswordPage() {
+  const { forgot } = auth;
   return (
-    <h1 className="font-semibold text-2xl text-bone">{auth.forgot.heading}</h1>
+    <AuthScreen heading={[forgot.heading]} subtitle={forgot.subtitle}>
+      <ForgotForm />
+      <BackToLogin label={forgot.back} />
+    </AuthScreen>
   );
 }
