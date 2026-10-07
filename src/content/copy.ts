@@ -297,7 +297,12 @@ export const apiKeys = {
     "Create and manage API keys to access Legba's AI infrastructure and services.",
   create: "Create API key",
   loading: "Loading your API keys",
-  columns: { name: "Name", key: "Key", created: "Created", lastUsed: "Last used" },
+  columns: {
+    name: "Name",
+    key: "Key",
+    created: "Created",
+    lastUsed: "Last used",
+  },
   neverUsed: "Never",
   empty: {
     title: "No API keys yet",

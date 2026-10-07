@@ -1,0 +1,74 @@
+/*
+ * Orb loader: the "S1 · Thinking" lattice from AICSS Orbs
+ * (https://www.aicss.dev/components/orbs, github.com/kvnkld/aicss).
+ * Copyright (c) 2026 AICSS. MIT License — see ./spinner.LICENSE.
+ *
+ * Trimmed to the one variant this app uses. The geometry is authored on a
+ * 28px stage and scaled with --orb-k; colour is currentColor. Keyframe
+ * timing functions are literals because var() does not resolve there.
+ */
+@layer components {
+  .root {
+    position: relative;
+    display: inline-block;
+    flex: none;
+    vertical-align: middle;
+    overflow: hidden;
+    contain: strict;
+    --orb-rest: 0.2;
+  }
+
+  .root[data-tone="accent"] {
+    color: var(--color-signal, #f5274d);
+  }
+
+  .lattice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    transform-origin: 0 0;
+    /* Three 3px dots on a 6px pitch measure 15px; centre them on the stage. */
+    transform: scale(var(--orb-k, 1)) translate(6.5px, 6.5px);
+  }
+
+  .cell {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: var(--orb-rest);
+    animation: orb-wave 1.7s cubic-bezier(0.66, 0, 0.34, 1) infinite both;
+  }
+
+  /* A round wavefront radiates from the centre; each cell swells out of its
+     resting ink and sinks back. The tail after 56% is the gap between beats. */
+  @keyframes orb-wave {
+    0% {
+      opacity: var(--orb-rest);
+      transform: scale(1);
+      animation-timing-function: cubic-bezier(0.66, 0, 0.34, 1);
+    }
+    28% {
+      opacity: 1;
+      transform: scale(1.18);
+      animation-timing-function: cubic-bezier(0.66, 0, 0.34, 1);
+    }
+    56%,
+    100% {
+      opacity: var(--orb-rest);
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cell {
+      animation: none;
+    }
+    .cell[data-mid] {
+      opacity: 1;
+    }
+  }
+}
