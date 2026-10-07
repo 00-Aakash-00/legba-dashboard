@@ -75,8 +75,8 @@ export const auth = {
     // A placeholder: there is no auth, so no mail is sent (AGENTS.md).
     subtitle: "Any password works in this preview.",
     form: "Reset password",
-    submit: "Send reset link",
-    pending: "Sending",
+    submit: "Continue",
+    pending: "Checking",
     sentTitle: "Nothing to reset",
     sent: "No email was sent. Log in with any password.",
     back: "Back to log in",

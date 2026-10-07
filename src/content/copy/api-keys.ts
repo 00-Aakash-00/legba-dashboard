@@ -3,7 +3,7 @@
 export const apiKeys = {
   pageTitle: "API Keys",
   pageDescription:
-    "Create and manage API keys to access Legba's AI infrastructure and services.",
+    "Create and manage keys for the Legba API, MCP, and the agent skill.",
   create: "Create API key",
   loading: "Loading your API keys",
   section: "Active keys",

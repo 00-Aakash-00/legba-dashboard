@@ -33,7 +33,7 @@ export function Bar({ className }: { className?: string }) {
 
 const WIDTHS = ["w-44", "w-36", "w-52", "w-40"];
 
-/** Row skeletons for a simple named list (deployments, models, registries). */
+/** Row skeletons for a simple named list (sessions, API keys). */
 export function RowsSkeleton({
   label,
   rows = 3,

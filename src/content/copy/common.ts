@@ -7,7 +7,7 @@ export const SUPPORT_EMAIL = "support@legba.app";
 export const links = {
   docs: `${WEBSITE}/docs`,
   apiDocs: `${WEBSITE}/developers/api`,
-  pricing: `${WEBSITE}/pricing`,
+  pricing: `${WEBSITE}/#pricing`,
   terms: `${WEBSITE}/terms-of-service`,
   privacy: `${WEBSITE}/privacy-policy`,
   support: `mailto:${SUPPORT_EMAIL}`,
@@ -15,7 +15,6 @@ export const links = {
 
 export const brand = {
   name: "Legba",
-  product: "Inference Box",
   homeLabel: "Legba overview",
 };
 
@@ -23,7 +22,7 @@ export const meta = {
   titleTemplate: "%s · Legba",
   defaultTitle: "Legba",
   description:
-    "Manage API keys, deployments, and subscriptions for Legba's AI infrastructure.",
+    "API keys, sessions, and plans for the Legba API, MCP, and the agent skill.",
 };
 
 export const states = {
