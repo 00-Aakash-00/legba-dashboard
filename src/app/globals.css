@@ -67,6 +67,8 @@
   --color-panel: #101112;
   --color-panel-inner: #0f1010;
   --color-panel-raised: #191a1c;
+  /* Loading placeholders: visible on panels (#101112) and dialogs without competing with content. */
+  --color-skeleton: #26282b;
   --color-field: #151718;
   --color-chip: #161718;
   --color-badge: #17191a;

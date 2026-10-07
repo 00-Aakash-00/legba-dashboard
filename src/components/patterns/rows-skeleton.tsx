@@ -27,7 +27,7 @@ export function LoadingRegion({
 /** Skeleton bar tuned for the panel surface. */
 export function Bar({ className }: { className?: string }) {
   return (
-    <Skeleton className={cn("h-3 rounded-full bg-[#1b1d1f]", className)} />
+    <Skeleton className={cn("h-3 rounded-full", className)} />
   );
 }
 
@@ -48,7 +48,7 @@ export function RowsSkeleton({
           key={width}
           className="flex h-16 items-center gap-4 border-line-soft border-t px-3"
         >
-          <Skeleton className="size-9 shrink-0 rounded-[10px] bg-[#1b1d1f]" />
+          <Skeleton className="size-9 shrink-0 rounded-[10px]" />
           <div className="flex min-w-0 flex-1 flex-col gap-2.5">
             <Bar className={cn("max-w-[60%]", width)} />
             <Bar className="h-2.5 w-24 bg-[#17191a]" />
