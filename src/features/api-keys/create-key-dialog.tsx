@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import {
   type ReactElement,
   Suspense,
+  startTransition,
   use,
   useLayoutEffect,
   useRef,
@@ -191,6 +192,8 @@ export function CreateKeyRoot({
 
   function onCreated(name: string) {
     created.current = name;
+    // The list behind the dialog shows the new key while the secret is on screen.
+    startTransition(() => router.refresh());
     // Closed while the request was in flight (route hidden): confirm anyway.
     if (!handle.isOpen) confirmCreated();
   }

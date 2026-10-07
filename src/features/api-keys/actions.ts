@@ -1,6 +1,5 @@
 "use server";
 
-import { refresh } from "next/cache";
 import { unstable_rethrow } from "next/navigation";
 import { apiKeys } from "@/content/copy";
 import { createApiKey, revokeApiKey } from "@/server/services/api-keys";
@@ -45,7 +44,9 @@ export async function createKey(formData: FormData): Promise<CreateKeyResult> {
     console.error("[createKey] failed", reference ?? "", error);
     return { status: "failed", reference };
   }
-  refresh();
+  // The client refreshes the route in its own transition (router.refresh()):
+  // a server refresh() payload is dropped in production with partial
+  // prefetching, and would add a full page render to every response.
   const { id, name, prefix } = created.key;
   return {
     status: "created",
@@ -64,6 +65,5 @@ export async function revokeKey(id: string): Promise<RevokeKeyResult> {
     console.error("[revokeKey] failed", referenceOf(error) ?? "", error);
     return { ok: false };
   }
-  refresh();
   return { ok: true };
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
-import { unstable_rethrow } from "next/navigation";
+import { unstable_rethrow, useRouter } from "next/navigation";
 import {
   Fragment,
+  startTransition as startRefresh,
   useOptimistic,
   useRef,
   useState,
@@ -78,6 +79,7 @@ export function ApiKeysList({
   const [failed, setFailed] = useState<string[]>([]);
   const [revoking, setRevoking] = useState("");
   const [pending, startTransition] = useTransition();
+  const router = useRouter();
   const [revokeHandle] = useState(() =>
     AlertDialogPrimitive.createHandle<ApiKeyItem>(),
   );
@@ -105,6 +107,9 @@ export function ApiKeysList({
         unstable_rethrow(error);
       }
       if (ok) {
+        // Refresh in the same transition, so the optimistic removal holds
+        // until the refreshed list (without the key) replaces it.
+        startRefresh(() => router.refresh());
         toast.success(apiKeys.revoke.done(key.name));
       } else {
         // Shown on the restored row, next to the button that failed.
