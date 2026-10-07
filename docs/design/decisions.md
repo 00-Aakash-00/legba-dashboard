@@ -11,6 +11,9 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | Scope | Every other destination is a designed stub (title, designed empty state, main action). Only the API-key flow works end to end. |
 | Navigation | **Overview · Sessions · MCP · Agent Skill · API Keys** (user, 2026-10-07) replaces the mockup's inference tabs (Deployments, Model Catalog, Registries); same layout and styling. |
 | Logo | The locked doll mark and LEGBA wordmark are used exactly as provided: no filters, blur, recolouring or re-drawing (user, 2026-10-07). |
+| Preview content | Not public yet, so shown and labelled **Preview** (user, 2026-10-07): the agent skill install command is the placeholder `npx skills add legba/agent-skill`; the MCP page shows illustrative client config with placeholder host/key; API samples use the website's preview host `https://{your-api-host}/orgs/{org_uuid}/api`. Swap in real values before launch. |
+| Docs cards | The "■ DOCS" eyebrows are removed and the Product Documentation card becomes an install-the-agent-skill card (user, 2026-10-07). |
+| Full width | Content and header span the viewport with the mockup's gutters; no max-width cap (user, 2026-10-07). |
 | Backend | Placeholder backend (`src/server`): in-memory store and demo data. **No auth** (user, later on 2026-10-07): the login screen is a placeholder and any username/password continues to the dashboard; no sessions, no route guard. Typing a documented demo email at login switches a demo state (empty / error-then-retry / slow) so every UX state stays reachable for QA. |
 | Git | All commits as `aharish4@asu.edu`; private repo `github.com/00-Aakash-00/legba-dashboard`. |
 | Loaders | Every spinner is an aicss.dev orb. |
