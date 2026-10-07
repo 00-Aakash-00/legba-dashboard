@@ -32,6 +32,14 @@ export const PERSONAS = [
     behavior: { latencyMs: 0, failWindowMs: 6000 },
   },
   {
+    id: "usr_empty",
+    name: "Empty Demo",
+    email: "empty@demo.legba.app",
+    password: "1234567",
+    plans: [] as const,
+    behavior: NORMAL,
+  },
+  {
     id: "usr_slow",
     name: "Slow Demo",
     email: "slow@demo.legba.app",

@@ -63,6 +63,7 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
 - `jane@demo.gmail.com` — Ghost + Shield subscriptions (the mockup account).
 - `flaky@demo.legba.app` — list services fail for 6s after sign-in, then recover (error + retry states).
 - `slow@demo.legba.app` — 2.5s latency (skeleton states).
+- `empty@demo.legba.app` — no subscriptions or keys (first-use empty states).
 - Newly registered users start empty (first-use states). The store is in-memory: a restart wipes it.
 
 ## Verification
