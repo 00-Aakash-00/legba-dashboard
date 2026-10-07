@@ -18,6 +18,12 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
+        // Legba (mockup) variants
+        chip: "h-8 rounded-[10px] border-line bg-chip px-3 font-medium text-[15px] text-bone",
+        status:
+          "h-8 gap-2 rounded-[10px] border-line bg-[#151618] px-3 font-medium text-[13px] text-bone",
+        count:
+          "h-6 min-w-6 rounded-md bg-badge px-1.5 font-semibold text-muted text-xs",
       },
     },
     defaultVariants: {

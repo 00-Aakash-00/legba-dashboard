@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-[color,background-color,border-color,box-shadow,transform,filter] duration-150 ease-out-strong outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -17,6 +17,20 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        // Legba (mockup) variants
+        pill: "rounded-full pill-primary font-semibold text-white hover:brightness-110 aria-busy:brightness-95",
+        "pill-dark":
+          "rounded-full border-[#5a1622] bg-[linear-gradient(180deg,#24100f_0%,#170a0c_100%)] font-semibold text-bone shadow-[inset_0_-1px_0_rgb(245_39_77/0.55),0_10px_28px_-14px_rgb(245_39_77/0.6)] hover:border-[#7a1d2c] hover:shadow-[inset_0_-1px_0_rgb(245_39_77/0.75),0_12px_32px_-12px_rgb(245_39_77/0.7)]",
+        wine: "rounded-full border-wine-line bg-wine-fill font-semibold text-bone hover:bg-wine-fill-hover",
+        "outline-pill":
+          "rounded-full border-line-strong bg-transparent font-semibold text-bone hover:bg-white/[0.04]",
+        round:
+          "rounded-full border-line bg-transparent text-bone hover:bg-white/[0.05] disabled:opacity-40",
+        bar: "w-full justify-between rounded-[14px] border-line bg-[#121314] font-semibold text-bone hover:bg-[#17181b]",
+        social:
+          "rounded-field border-[#252525] bg-[#161517] font-semibold text-bone hover:bg-[#1c1b1e]",
+        "icon-ghost":
+          "rounded-full text-muted hover:bg-white/[0.05] hover:text-bone aria-expanded:text-bone",
       },
       size: {
         default:
@@ -30,6 +44,11 @@ const buttonVariants = cva(
         "icon-sm":
           "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
+        "pill-md": "h-10 gap-2 px-5 text-sm",
+        "pill-lg": "h-11 gap-2.5 px-6 text-[15px]",
+        "pill-xl": "h-14 gap-3 px-7 text-lg",
+        bar: "h-[53px] px-5 text-base",
+        "icon-xl": "size-10",
       },
     },
     defaultVariants: {
