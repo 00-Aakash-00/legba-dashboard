@@ -3,7 +3,13 @@
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { unstable_rethrow } from "next/navigation";
-import { useActionState, useId, useRef, useState } from "react";
+import {
+  useActionState,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
@@ -46,11 +52,12 @@ async function submitTopUp(
     unstable_rethrow(error);
     result = { status: "error", message: billing.offline };
   }
+  // Text-only toasts: icons belong to the navigation.
   if (result.status === "success") {
-    toast.success(billing.success(formatAmount(result.cents)));
+    toast.success(billing.success(formatAmount(result.cents)), { icon: null });
     topUpDialog.close();
   } else if (result.status === "error" && !topUpDialog.isOpen) {
-    toast.error(result.message);
+    toast.error(result.message, { icon: null });
   }
   return result;
 }
@@ -70,6 +77,28 @@ export function TopUpForm() {
   // Shown after the field is left or the form is sent; then kept live so it clears on fix.
   const [shownError, setShownError] = useState<string | null>(null);
   const [state, formAction, pending] = useActionState(submitTopUp, idle);
+
+  // A form that arrives after the dialog opened (slow chunk, or "Try again")
+  // replaces the element that had focus, and Base UI parks focus on the popup
+  // (again on the next frame). Move it to the chosen amount, as the dialog
+  // does on open. Touch keeps the dialog's default.
+  useLayoutEffect(() => {
+    const popup =
+      firstPresetRef.current?.closest<HTMLElement>('[role="dialog"]');
+    if (!popup || !window.matchMedia("(pointer: fine)").matches) return;
+    const focusChosen = () => {
+      const active = document.activeElement;
+      if (active !== document.body && active !== popup) return;
+      popup
+        .querySelector<HTMLElement>(
+          "[data-amount-presets] [aria-pressed='true']",
+        )
+        ?.focus({ preventScroll: true });
+    };
+    focusChosen();
+    const frame = requestAnimationFrame(focusChosen);
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const choice = resolve(preset[0], other);
   const otherInvalid = shownError !== null && other.trim() !== "";
@@ -131,7 +160,7 @@ export function TopUpForm() {
         <div className="relative">
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[15px] text-ink-subtle"
+            className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-base text-ink-subtle pointer-fine:text-[15px]"
           >
             $
           </span>
@@ -159,7 +188,8 @@ export function TopUpForm() {
               const check = parseAmount(other);
               setShownError(check.ok ? null : choiceError[check.reason]);
             }}
-            className="h-11 w-full rounded-[12px] border border-line-field bg-field pr-3.5 pl-7 font-medium text-[15px] text-bone tabular-nums outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#6f7378] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 disabled:opacity-60 aria-invalid:border-signal pointer-coarse:h-12"
+            // 16px on touch: iOS zooms into smaller inputs.
+            className="h-11 w-full rounded-[12px] border border-line-field bg-field pr-3.5 pl-7 font-medium text-base text-bone tabular-nums outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#6f7378] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 disabled:opacity-60 aria-invalid:border-signal pointer-coarse:h-12 pointer-fine:text-[15px]"
           />
         </div>
         <p

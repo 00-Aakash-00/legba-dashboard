@@ -33,7 +33,7 @@ function TabBar({ active }: { active: NavKey | null }) {
                     className="-top-px -translate-x-1/2 absolute left-1/2 h-0.5 w-8 rounded-b-[2px] bg-signal shadow-[0_0_10px_1px_rgb(244_26_68/0.55)]"
                   />
                 ) : null}
-                <NavIcon item={item} active={current} className="size-5" />
+                <NavIcon item={item} active={current} size={20} />
                 <span>{item.short}</span>
               </Link>
             </li>

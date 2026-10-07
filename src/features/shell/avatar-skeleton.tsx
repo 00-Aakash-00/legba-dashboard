@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 /**
  * Holds the account trigger's exact footprint (avatar + chevron on desktop,
- * a 44px target on phones) while the session streams in; fades in only if
+ * a 44px target on phones) while the account slot streams in; fades in only if
  * that takes longer than 300ms.
  */
 export function AvatarSkeleton() {

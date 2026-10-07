@@ -38,8 +38,13 @@ export const search = {
   closeHint: "Esc",
   groups: { pages: "Pages", actions: "Actions", docs: "Docs" },
   subscriptions: "Subscriptions",
+  plans: "Plans",
   actions: { createKey: "Create API key", topUp: "Top up credits" },
-  docs: { product: "Product documentation", api: "API documentation" },
+  docs: {
+    api: "API reference",
+    skill: "Install the agent skill",
+    product: "Documentation",
+  },
   newTab: "Opens in a new tab",
   // Extra words each entry answers to (matched, never shown).
   keywords: {
@@ -49,10 +54,12 @@ export const search = {
     agentSkill: ["skill", "agent", "install", "routing"],
     apiKeys: ["keys", "tokens", "credentials"],
     subscriptions: ["plans", "ghost", "shield", "billing"],
+    plans: ["pricing", "upgrade", "subscribe", "billing"],
     createKey: ["new key", "token"],
     topUp: ["credits", "billing", "payment", "balance", "add funds"],
-    product: ["docs", "guides", "help"],
-    api: ["docs", "reference", "endpoints"],
+    api: ["docs", "documentation", "endpoints", "quickstart", "preview"],
+    skill: ["docs", "documentation", "install", "agent"],
+    product: ["docs", "documentation", "guides", "help", "extension"],
   },
   loading: "Loading search",
   loadFailed: "Search didn't load. Check your connection and try again.",
@@ -61,7 +68,6 @@ export const search = {
 
 export const account = {
   menu: "Account menu",
-  signedInAs: "Signed in as",
   topUp: "Top up credits",
   support: "Contact support",
   docs: "Documentation",
@@ -74,7 +80,8 @@ export const account = {
 
 export const billing = {
   title: "Top up credits",
-  description: "Add credits to your balance to pay for usage.",
+  description:
+    "Add credits to your balance. Payments aren't connected in this preview.",
   amountLabel: "Amount",
   presets: [10, 25, 50, 100],
   defaultPreset: 25,

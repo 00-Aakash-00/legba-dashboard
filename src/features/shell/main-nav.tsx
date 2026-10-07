@@ -17,7 +17,8 @@ import { NavIcon } from "./nav-icon";
 function NavList({ active }: { active: NavKey | null }) {
   return (
     <nav aria-label={nav.label} className="mt-[19.5px] flex h-[41px]">
-      <ul className="flex h-full gap-x-[19px]">
+      {/* 25px between items puts ≈25.5px of ink from each label to the next icon, as drawn. */}
+      <ul className="flex h-full gap-x-[25px]">
         {NAV_ITEMS.map((item) => {
           const current = active === item.key;
           return (
@@ -35,11 +36,7 @@ function NavList({ active }: { active: NavKey | null }) {
                   "aria-[current=page]:font-semibold aria-[current=page]:text-ink aria-[current=page]:tracking-[-0.04em]",
                 )}
               >
-                <NavIcon
-                  item={item}
-                  active={current}
-                  className="size-[17px] shrink-0"
-                />
+                <NavIcon item={item} active={current} size={17} />
                 <span className="whitespace-nowrap leading-3">
                   {item.label}
                 </span>

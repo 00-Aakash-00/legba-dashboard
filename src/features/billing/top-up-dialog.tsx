@@ -1,8 +1,7 @@
 "use client";
 
-import { XIcon } from "lucide-react";
 import { catchError, type ErrorInfo } from "next/error";
-import { Suspense, use, useLayoutEffect } from "react";
+import { Suspense, use, useLayoutEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,9 +19,11 @@ import { topUpDialog, topUpForm } from "./top-up";
  * The top-up dialog root (mounted once, in the header). The frame and copy are
  * in the shell bundle; the form is a separate chunk loaded on first open (and
  * preloaded by every entry point). A slow chunk shows the form's skeleton, a
- * failed one says so and retries in place.
+ * failed one says so and retries in place. Every state has a text Cancel
+ * (icons belong to the navigation); Escape and the backdrop close it too.
  */
 export function TopUpDialog() {
+  const popupRef = useRef<HTMLDivElement>(null);
   // Activity hides the shell on some navigations: never return to an open dialog.
   useLayoutEffect(() => () => topUpDialog.close(), []);
 
@@ -35,11 +36,15 @@ export function TopUpDialog() {
       }}
     >
       <DialogContent
+        ref={popupRef}
         showCloseButton={false}
-        initialFocus={focusChosenAmount}
+        // Touch focuses the popup, Base UI's own touch default (no virtual keyboard).
+        initialFocus={(openType) =>
+          openType === "touch" ? popupRef.current : chosenAmount()
+        }
         className="max-h-[calc(100dvh-2rem)] gap-6 overflow-y-auto rounded-[20px] bg-panel p-6 shadow-[0_32px_80px_-24px_rgb(0_0_0/0.85)] ring-line duration-[220ms] ease-out-strong data-closed:duration-150 sm:max-w-[420px]"
       >
-        <DialogHeader className="gap-1.5 pr-10">
+        <DialogHeader className="gap-1.5">
           <DialogTitle className="font-semibold text-[19px] text-bone leading-6 tracking-[-0.03em]">
             {billing.title}
           </DialogTitle>
@@ -52,27 +57,13 @@ export function TopUpDialog() {
             <TopUpFormLoader />
           </Suspense>
         </TopUpBoundary>
-        {/* Last in the DOM: the dialog opens with focus on the amount, not on close. */}
-        <DialogClose
-          render={
-            <Button
-              variant="icon-ghost"
-              size="icon-lg"
-              className="absolute top-4 right-4 pointer-coarse:size-11"
-            />
-          }
-        >
-          <XIcon aria-hidden />
-          <span className="sr-only">{billing.cancel}</span>
-        </DialogClose>
       </DialogContent>
     </Dialog>
   );
 }
 
-/** Open on the chosen preset (keyboard and mouse); touch keeps Base UI's default. */
-function focusChosenAmount(openType: string) {
-  if (openType === "touch") return true;
+/** Keyboard and mouse open on the chosen preset; before the form loads, the first control. */
+function chosenAmount() {
   return (
     document.querySelector<HTMLElement>(
       "[data-amount-presets] [aria-pressed='true']",
@@ -85,14 +76,34 @@ function TopUpFormLoader() {
   return <TopUpForm />;
 }
 
-/** Mirrors the form (presets, field, actions); fades in only if the chunk is slow. */
+/** The way out while the form is loading or failed; the form has its own. */
+function CancelButton() {
+  return (
+    <DialogClose
+      render={
+        <Button
+          variant="ghost"
+          size="pill-md"
+          className="rounded-full text-ink-label pointer-coarse:h-11"
+        />
+      }
+    >
+      {billing.cancel}
+    </DialogClose>
+  );
+}
+
+/**
+ * Mirrors the form (presets, field, actions); the placeholders fade in only
+ * if the chunk is slow. Cancel is real from the start, where the form's is.
+ */
 function TopUpFormSkeleton() {
   return (
-    <div aria-busy className="skeleton-delay grid gap-5">
+    <div aria-busy className="grid gap-5">
       <p role="status" className="sr-only">
         {billing.loading}
       </p>
-      <div className="grid gap-2.5">
+      <div className="skeleton-delay grid gap-2.5">
         <Skeleton className="h-4 w-16 rounded-[6px]" />
         <div className="mt-2.5 grid grid-cols-4 gap-2">
           {billing.presets.map((dollars) => (
@@ -103,9 +114,11 @@ function TopUpFormSkeleton() {
         <Skeleton className="h-11 rounded-[12px]" />
         <div className="min-h-5" />
       </div>
-      <div className="flex justify-end gap-2">
-        <Skeleton className="h-10 w-24 rounded-full" />
-        <Skeleton className="h-10 w-36 rounded-full" />
+      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+        <CancelButton />
+        <div className="skeleton-delay">
+          <Skeleton className="h-10 rounded-full sm:w-36 pointer-coarse:h-11" />
+        </div>
       </div>
     </div>
   );
@@ -121,16 +134,20 @@ function renderFormError(_props: object, { reset }: ErrorInfo) {
       >
         {billing.loadFailed}
       </p>
-      <Button
-        variant="wine"
-        size="pill-md"
-        onClick={() => {
-          topUpForm.retry();
-          reset();
-        }}
-      >
-        {billing.retry}
-      </Button>
+      <div className="flex items-center gap-2">
+        <CancelButton />
+        <Button
+          variant="wine"
+          size="pill-md"
+          className="pointer-coarse:h-11"
+          onClick={() => {
+            topUpForm.retry();
+            reset();
+          }}
+        >
+          {billing.retry}
+        </Button>
+      </div>
     </div>
   );
 }

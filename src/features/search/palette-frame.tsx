@@ -1,13 +1,12 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { SearchIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { search } from "@/content/copy";
 
-/** Shared by the eager frame (loading, error) and the lazy cmdk body. */
+/** Shared by the eager frame (loading, error) and the lazy cmdk body. 16px on touch: iOS zooms into smaller inputs. */
 export const paletteInputClassName =
-  "h-full min-w-0 flex-1 bg-transparent font-medium text-[15px] text-bone tracking-[-0.01em] outline-none placeholder:text-[#898c90]";
+  "h-full min-w-0 flex-1 bg-transparent font-medium text-base text-bone tracking-[-0.01em] outline-none placeholder:text-[#898c90] pointer-fine:text-[15px]";
 
 /** The list area keeps one height in every state, so nothing jumps as the body loads. */
 export const paletteBodyClassName =
@@ -15,8 +14,8 @@ export const paletteBodyClassName =
 
 export function PaletteInputRow({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-14 shrink-0 items-center gap-3 border-line border-b pr-2 pl-4 lg:pr-4">
-      <SearchIcon aria-hidden className="size-5 shrink-0 text-[#9ea2a7]" />
+    // pl-5 lines the typed text up with the results (list px-2 + item px-3).
+    <div className="flex h-14 shrink-0 items-center gap-3 border-line border-b pr-2 pl-5 lg:pr-4">
       {children}
       <kbd
         aria-hidden

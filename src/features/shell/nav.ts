@@ -21,6 +21,12 @@ export type NavItem = {
   /** Glyph per docs/design/spec/icons.json. */
   icon: LucideIcon;
   /**
+   * Extra empty space on each side of a narrow glyph, in its 24-unit grid
+   * (lucide glyphs normally start 2 units in). NavIcon trims it so the label
+   * sits as close to this icon's ink as to every other one.
+   */
+  trim?: number;
+  /**
    * Inactive header ink, measured per label from the mockup
    * (spec overview.json header.nav.*.label; Overview is only drawn active).
    */
@@ -53,6 +59,8 @@ export const NAV_ITEMS: NavItem[] = [
     label: nav.items.mcp,
     short: nav.short.mcp,
     icon: PlugIcon,
+    // The plug spans x 6–18 of 24.
+    trim: 4,
     ink: "#9a9da1",
   },
   {
@@ -75,8 +83,10 @@ export const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-/** Which nav item a layout segment belongs to (subscriptions live under Overview). */
+/** Which nav item a layout segment belongs to (subscriptions and plans live under Overview). */
 export function activeNavKey(segment: string | null): NavKey | null {
-  if (segment === null || segment === "subscriptions") return "overview";
+  if (segment === null || segment === "subscriptions" || segment === "plans") {
+    return "overview";
+  }
   return NAV_ITEMS.find((item) => item.segment === segment)?.key ?? null;
 }

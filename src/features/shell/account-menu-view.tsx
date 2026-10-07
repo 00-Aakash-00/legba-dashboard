@@ -1,15 +1,7 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import {
-  BookOpenIcon,
-  ChevronDownIcon,
-  HeadsetIcon,
-  LogOutIcon,
-  RotateCwIcon,
-  UserRoundIcon,
-  WalletCardsIcon,
-} from "lucide-react";
+import { ChevronDownIcon, UserRoundIcon } from "lucide-react";
 import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
@@ -32,13 +24,14 @@ const menuLinkBase =
   "relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0";
 
 const itemClassName =
-  "h-9 gap-2.5 rounded-[9px] px-2.5 py-0 font-medium text-[13.5px] text-ink-label tracking-[-0.01em] focus:bg-white/[0.06] focus:text-bone pointer-coarse:h-11 [&_svg]:size-4 [&_svg]:text-ink-3";
+  "h-9 gap-2.5 rounded-[9px] px-2.5 py-0 font-medium text-[13.5px] text-ink-label tracking-[-0.01em] focus:bg-white/[0.06] focus:text-bone pointer-coarse:h-11";
 
 /**
  * The account trigger and menu (spec overview.json header.account: 38px
- * avatar + chevron). `profile` is null when the account slot failed: the
- * avatar turns generic, the menu says so and offers a retry, and it can
- * still sign out. Top up lives here on phones (the header pill is ≥1024).
+ * avatar + chevron). The items are text: icons belong to the navigation.
+ * `profile` is null when the account slot failed: the avatar turns generic,
+ * the menu says so and offers a retry, and it can still sign out. Top up
+ * lives here on phones (the header pill is ≥1024).
  */
 export function AccountMenuView({
   profile,
@@ -103,7 +96,6 @@ export function AccountMenuView({
           <DropdownMenuLabel className="px-2.5 pt-2 pb-2.5">
             {profile ? (
               <>
-                <span className="sr-only">{account.signedInAs} </span>
                 <span className="block truncate font-semibold text-[14px] text-bone tracking-[-0.01em]">
                   {profile.name}
                 </span>
@@ -119,7 +111,6 @@ export function AccountMenuView({
           </DropdownMenuLabel>
           {onRetry ? (
             <DropdownMenuItem className={itemClassName} onClick={onRetry}>
-              <RotateCwIcon aria-hidden />
               {account.retry}
             </DropdownMenuItem>
           ) : null}
@@ -129,7 +120,6 @@ export function AccountMenuView({
               topUpAfterClose.current = true;
             }}
           >
-            <WalletCardsIcon aria-hidden />
             {account.topUp}
           </DropdownMenuItem>
           <MenuPrimitive.LinkItem
@@ -137,7 +127,6 @@ export function AccountMenuView({
             href={links.support}
             className={cn(menuLinkBase, itemClassName)}
           >
-            <HeadsetIcon aria-hidden />
             {account.support}
           </MenuPrimitive.LinkItem>
           <MenuPrimitive.LinkItem
@@ -147,13 +136,12 @@ export function AccountMenuView({
             rel="noopener noreferrer"
             className={cn(menuLinkBase, itemClassName)}
           >
-            <BookOpenIcon aria-hidden />
             {account.docs}
             <span className="sr-only">, {search.newTab}</span>
           </MenuPrimitive.LinkItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="-mx-1.5 my-1.5 bg-line" />
-        {/* A native POST: the full page load leaves no signed-in state behind in hidden routes. */}
+        {/* A native POST clears the demo state; the full page load leaves none of it in hidden routes. */}
         <form
           ref={signOutForm}
           method="post"
@@ -170,12 +158,11 @@ export function AccountMenuView({
             aria-disabled={signingOut || undefined}
             onClick={() => signOutForm.current?.requestSubmit()}
           >
-            {signingOut ? (
-              <Spinner tone="accent" className="pending-delay -m-0.5" />
-            ) : (
-              <LogOutIcon aria-hidden />
-            )}
             {signingOut ? account.signingOut : account.signOut}
+            {/* At the end, so the label never moves when the orb appears. */}
+            {signingOut ? (
+              <Spinner tone="accent" className="pending-delay ml-auto" />
+            ) : null}
           </DropdownMenuItem>
         </form>
         <p role="status" className="sr-only">
