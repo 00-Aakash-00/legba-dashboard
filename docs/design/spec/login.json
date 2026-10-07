@@ -2338,5 +2338,13 @@
       "notes": "The underline ends at 1268.8, past the 'y' and under the '.', so the period is inside the link (or the decoration covers it). ink box. baseline y=877.6, text origin x=1185.1, advance≈79.9 (centre x≈1225.4). Mockup ink width 79.3; Montserrat 500/13 at 0em = 89.0 (+9.7), at -0.03em = 83.9 (+4.6); width-exact tracking -0.057em."
     }
   ],
-  "verification": []
+  "verification": [
+    {
+      "id": "_summary",
+      "field": "sampled",
+      "was": "",
+      "now": "14 sampled, 14 within 2px",
+      "evidence": "re-measurer"
+    }
+  ]
 }

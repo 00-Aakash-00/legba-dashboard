@@ -49,7 +49,7 @@
       "green-status": "#66e077",
       "text-primary": "#f5f5f5",
       "text-label": "#e3e4e4",
-      "text-nav-active": "#dcdbdb",
+      "text-nav-active": "#f5f5f5",
       "text-secondary": "#9aa0a6",
       "text-muted": "#8a9096",
       "text-caption": "#83888f",
@@ -373,7 +373,7 @@
         "weight": 600,
         "lineHeight": 16,
         "tracking": "-0.03em",
-        "color": "#dcdbdb",
+        "color": "#f5f5f5",
         "transform": "none",
         "align": "left"
       },
@@ -1403,7 +1403,7 @@
         "weight": 500,
         "lineHeight": 22,
         "tracking": "-0.03em",
-        "color": "#969da3",
+        "color": "#a2a9b0",
         "transform": "none",
         "align": "center"
       },
@@ -5242,5 +5242,34 @@
       "notes": "ink box; baseline y=944.0, text origin x=1202.8. gutter column; numbers right/centre in a 1ch cell at x 1202.8."
     }
   ],
-  "verification": []
+  "verification": [
+    {
+      "id": "header.nav.overview.label",
+      "field": "text.color",
+      "was": "#dcdbdb",
+      "now": "#f5f5f5",
+      "evidence": "Mockup ink Σ(lum−bg)=46.7k lum·px² over #0e0f10. Chrome-rendered Montserrat 600/13px/-0.03em with -webkit-font-smoothing:antialiased (as set on <html> in src/app/layout.tsx) yields 88% of that ink in #dcdbdb vs 99.5% in #f5f5f5; blur-aware template fit at the same spec gives fill lum 245; the mockup's stroke p99.5/top-10 lum 234/239 already exceed #dcdbdb (lum 219), which a #dcdbdb fill cannot produce. ΔE76 9.1."
+    },
+    {
+      "id": "tokens",
+      "field": "colors.text-nav-active",
+      "was": "#dcdbdb",
+      "now": "#f5f5f5",
+      "evidence": "Same value as header.nav.overview.label text.color (see entry above); changed with it so the token and the element agree."
+    },
+    {
+      "id": "hero.copy",
+      "field": "text.color",
+      "was": "#969da3",
+      "now": "#a2a9b0",
+      "evidence": "Mockup ink Σ(lum−bg)=192.3k (L1) / 117.0k (L2) lum·px² over #0a0a0a. Chrome-rendered Montserrat 500/16px/-0.03em antialiased yields 92% of that ink in #969da3 vs 99–100% in #a2a9b0 (same hue, lum 156→168); per-word blur-aware template fits ('infrastructure', 'services.') give fill lum 170/165; mockup p99.5 lum 167–170 and top-10 184 exceed #969da3 (lum 156). ΔE76 4.6."
+    },
+    {
+      "id": "_summary",
+      "field": "sampled",
+      "was": "",
+      "now": "14 sampled, 14 within 2px",
+      "evidence": "re-measurer"
+    }
+  ]
 }
