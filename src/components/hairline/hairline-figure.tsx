@@ -1,32 +1,51 @@
 "use client";
 
-import { type KeyboardEvent, useEffect, useId, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  type KeyboardEvent,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import { hairline } from "@/content/copy";
 import { cn } from "@/lib/utils";
 import type { HairlineFigureModule, HairlineKernel } from "./figures/figure";
 import styles from "./hairline-figure.module.css";
 
-export type HairlineKind = "ghost" | "shield";
+/** Figures people can drive with the keyboard (product art in a card). */
+export type InteractiveKind = "ghost" | "shield";
+/** Figures that decorate one empty or error state (never focusable). */
+export type StateKind = never;
+/** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
+export type HairlineKind = InteractiveKind | StateKind;
 
 type Point = readonly [number, number];
 
+type Entry = {
+  load: () => Promise<{ default: HairlineFigureModule }>;
+  /** The still rest drawing (public/images/hairline/<kind>.svg). */
+  fallback: string;
+  /** The colour the figure's plates take when its place isn't a panel. */
+  plate?: string;
+};
+
 /**
- * Per figure: its module, its still rest drawing, and the line (viewBox units,
- * 400 x 320) the keyboard moves the pointer along, from the figure's least
- * answer to its most, which is also the slider's orientation. Keys reach a
- * figure through its pointer, the way the hairline bench's `?at=` does, so a
- * figure needs no key code of its own; a figure that does handle keys (and
- * calls preventDefault) is left alone.
+ * A drivable figure also has the line (viewBox units, 400 x 320) the keyboard
+ * moves the pointer along, from the figure's least answer to its most, which
+ * is also the slider's orientation. Keys reach a figure through its pointer,
+ * the way the hairline bench's `?at=` does, so a figure needs no key code of
+ * its own; a figure that does handle keys (and calls preventDefault) is left
+ * alone.
  */
-const FIGURES: Record<
-  HairlineKind,
-  {
-    load: () => Promise<{ default: HairlineFigureModule }>;
-    fallback: string;
-    scrub: readonly [Point, Point];
-    orientation: "horizontal" | "vertical";
-  }
-> = {
+type DrivableEntry = Entry & {
+  scrub: readonly [Point, Point];
+  orientation: "horizontal" | "vertical";
+};
+
+const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
+  [K in StateKind]: Entry;
+} = {
   // The hood turns toward the pointer's bearing: across the hood, full left to full right.
   ghost: {
     load: () => import("./figures/ghost.js"),
@@ -64,11 +83,11 @@ const KEYS = new Set([
 const FORWARD = new Set(["ArrowRight", "ArrowUp"]);
 
 type HairlineFigureProps = {
-  kind: HairlineKind;
   /** Sizes and places the slot; may set --hairline-left/top/width/mask. */
   className?: string;
 } & (
   | {
+      kind: InteractiveKind;
       /** The illustration's name while it is a still picture. */
       label: string;
       /** Its name once the figure answers the pointer and the keys. */
@@ -81,6 +100,7 @@ type HairlineFigureProps = {
        * state): hidden from assistive tech and out of the tab order. It still
        * answers the pointer.
        */
+      kind: HairlineKind;
       decorative: true;
       label?: never;
       liveLabel?: never;
@@ -113,7 +133,9 @@ export function HairlineFigure({
   const [step, setStep] = useState<number | null>(null);
   /** The figure's read-out of what it shows, mirrored for the slider's value text. */
   const [reading, setReading] = useState("");
-  const interactive = ready && !decorative;
+  const entry: Entry | DrivableEntry = FIGURES[kind];
+  const drive = "scrub" in entry ? entry : null;
+  const interactive = ready && !decorative && drive !== null;
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -206,10 +228,10 @@ export function HairlineFigure({
   /** Holds the pointer at step n (0 to STEPS) along the figure's scrub line. */
   function scrubTo(n: number) {
     const stage = stageRef.current;
-    if (!stage) return;
+    if (!stage || !drive) return;
     setStep(n);
     const t = n / STEPS;
-    const [[x0, y0], [x1, y1]] = FIGURES[kind].scrub;
+    const [[x0, y0], [x1, y1]] = drive.scrub;
     const box = stage.getBoundingClientRect();
     stage.dispatchEvent(
       new PointerEvent("pointermove", {
@@ -245,6 +267,11 @@ export function HairlineFigure({
     // biome-ignore lint/a11y/useAriaPropsSupportedByRole: the slot is role="img" (named by label) until the figure mounts; then the name moves to the stage.
     <div
       className={cn(styles.figure, className)}
+      style={
+        entry.plate
+          ? ({ "--hairline-plate": entry.plate } as CSSProperties)
+          : undefined
+      }
       data-figure={kind}
       data-ready={ready || undefined}
       role={decorative || ready ? undefined : "img"}
@@ -274,7 +301,7 @@ export function HairlineFigure({
           tabIndex={interactive ? 0 : undefined}
           aria-label={interactive ? liveLabel : undefined}
           aria-describedby={interactive ? guidanceId : undefined}
-          aria-orientation={interactive ? FIGURES[kind].orientation : undefined}
+          aria-orientation={interactive ? drive?.orientation : undefined}
           aria-valuemin={interactive ? 0 : undefined}
           aria-valuemax={interactive ? STEPS : undefined}
           aria-valuenow={interactive ? (step ?? STEPS / 2) : undefined}
