@@ -1,0 +1,104 @@
+/*
+ * The subscription card, measured from the overview mockup at 1440
+ * (docs/design/spec/overview.json subs.card.*, border-box px). Wide cards put
+ * the illustration in a left column with the copy beside it; narrow ones
+ * (container < 346px) stack it on top. The left column keeps the copy at
+ * least 195px wide, shrinking from 220.2px to 140px before the card stacks.
+ */
+.card {
+  container: card / inline-size;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #1e2021;
+  border-radius: 18px;
+  background: #0f1010;
+  color: var(--color-ink);
+}
+
+.layout {
+  --art: clamp(140px, calc(100cqw - 207px), 220.2px);
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 442px;
+  padding: 18px 12px 21.5px 19px;
+}
+
+.chips {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-right: 5px;
+}
+
+/* The illustration slot: 215 x 305 at the card's inner left edge, under the chips. */
+.art {
+  position: absolute;
+  z-index: 1;
+  top: 50.5px;
+  left: 0;
+  width: calc(var(--art) - 5.2px);
+  aspect-ratio: 215 / 305;
+}
+
+.text {
+  position: relative;
+  z-index: 3;
+  min-width: 0;
+  margin-top: 34.5px;
+  /* A margin, not padding: the column's box must not cover the figure's pointer area. */
+  margin-left: calc(var(--art) - 19px);
+}
+
+.features {
+  margin-top: 23.2px;
+}
+
+.manage {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  margin-right: 4.5px;
+}
+
+@container card (width < 346px) {
+  .layout {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .chips {
+    margin-right: 0;
+  }
+
+  .art {
+    position: relative;
+    top: auto;
+    align-self: center;
+    width: auto;
+    height: 176px;
+    margin-top: 6px;
+  }
+
+  .text {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .features {
+    margin-top: 16px;
+  }
+
+  .manage {
+    margin-top: 20px;
+    margin-right: 0;
+  }
+}

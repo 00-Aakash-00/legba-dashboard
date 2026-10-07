@@ -1,0 +1,279 @@
+/*
+ * The subscriptions section: a prerendered frame (bullet, title, filter,
+ * arrows, View All) with a streamed part (the count and the cards) placed
+ * into it by grid area, so the per-user count sits in the header row while
+ * staying inside the section's Suspense and error boundary.
+ *
+ * Measured from the overview mockup at 1440 (spec subs.*): header row centred
+ * 37.25px below the panel's top edge, cards from 74.5px, 19.5px side insets.
+ * Narrow panels (container < 660px) put the filter and View All on a second row.
+ */
+.panel {
+  container: subs / inline-size;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid #232526;
+  border-radius: 20px;
+  background: #101111;
+}
+
+/*
+ * Narrow panels: a wrapping row. Bullet, title and count on the first line;
+ * the filter, the arrows (fine pointers) and View All on the second; the body
+ * below. `order` places the streamed count after the title wherever it lands
+ * in the DOM, and ::before breaks the line before the filter.
+ */
+.frame {
+  --pad-l: 15px;
+  --pad-r: 15px;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 18px var(--pad-r) 16px var(--pad-l);
+}
+
+.frame::before {
+  order: 4;
+  flex-basis: 100%;
+  height: 0;
+  content: "";
+}
+
+.bullet {
+  grid-area: bullet;
+  order: 1;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5.5px;
+  background: #fd1e43;
+  box-shadow: 0 0 8px rgba(253, 30, 67, 0.32);
+}
+
+.title {
+  grid-area: title;
+  order: 2;
+  min-width: 0;
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+.count {
+  grid-area: count;
+  order: 3;
+  margin-left: 10px;
+}
+
+.filter {
+  grid-area: filter;
+  order: 5;
+  justify-self: start;
+  margin-top: 14px;
+}
+
+.prev {
+  grid-area: prev;
+  order: 6;
+  margin-top: 14px;
+  margin-left: auto;
+}
+
+.next {
+  grid-area: next;
+  order: 7;
+  margin-top: 14px;
+  margin-left: 8px;
+}
+
+.view {
+  grid-area: view;
+  order: 8;
+  justify-self: end;
+  margin-top: 14px;
+  margin-left: 12px;
+}
+
+/* Touch hides the arrows; View All then takes the free space itself. */
+@media (pointer: coarse) {
+  .view {
+    margin-left: auto;
+  }
+}
+
+.body {
+  grid-area: body;
+  order: 9;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  min-width: 0;
+  margin-top: 14px;
+}
+
+/* Wide panels: one header row over the cards (the mockup). */
+@container subs (min-width: 660px) {
+  .frame {
+    --pad-l: 18.5px;
+    --pad-r: 18px;
+    display: grid;
+    grid-template-columns:
+      auto auto minmax(39.4px, auto) auto minmax(0, 1fr)
+      auto auto auto;
+    grid-template-rows: 37.5px 1fr;
+    grid-template-areas:
+      "bullet title count filter . prev next view"
+      "body body body body body body body body";
+    row-gap: 18.5px;
+    padding: 17.5px var(--pad-r) 20.5px var(--pad-l);
+  }
+
+  .frame::before {
+    display: none;
+  }
+
+  /* The /subscriptions page has no arrows or View All; its filter sits at the right. */
+  .page {
+    grid-template-columns: auto auto minmax(39.4px, auto) minmax(0, 1fr) auto;
+    grid-template-areas:
+      "bullet title count . filter"
+      "body body body body body";
+  }
+
+  .filter,
+  .prev,
+  .next,
+  .view,
+  .body {
+    margin-top: 0;
+  }
+
+  .bullet {
+    margin-left: 6px;
+  }
+
+  .title {
+    margin-left: 14.4px;
+  }
+
+  .count {
+    margin-left: 10.9px;
+  }
+
+  .filter {
+    margin-left: 29px;
+  }
+
+  .page .filter {
+    justify-self: end;
+  }
+
+  .prev {
+    margin-left: 0;
+  }
+
+  .view {
+    margin-left: 22.5px;
+  }
+
+  .body {
+    align-self: stretch;
+  }
+}
+
+/* The carousel: native horizontal scroll-snap, edge to edge inside the panel. */
+.rail {
+  container: rail / inline-size;
+  display: flex;
+  gap: 12px;
+  margin: 0 calc(-1 * var(--pad-r)) 0 calc(-1 * var(--pad-l));
+  padding: 0 var(--pad-r) 0 var(--pad-l);
+  scroll-padding-inline: var(--pad-l) var(--pad-r);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  display: flex;
+  flex: 0 0 86%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* Wide rails show two cards; the mockup draws the first a little wider. */
+@container rail (min-width: 760px) {
+  .slide {
+    flex-basis: calc((100% - 11px) * 0.5097);
+  }
+
+  .slide:nth-child(even) {
+    flex-basis: calc((100% - 11px) * 0.4903);
+  }
+}
+
+@container subs (min-width: 660px) {
+  .rail {
+    gap: 11px;
+  }
+}
+
+/* Where the arrows are hidden (touch) or the screen is narrow, dots show the position. */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 14px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #3e3232;
+  transition: background-color 200ms var(--ease-out-strong);
+}
+
+.dot[data-active] {
+  background: #f62a4c;
+}
+
+@media (width >= 64rem) and (pointer: fine) {
+  .dots {
+    display: none;
+  }
+}
+
+/* The /subscriptions page lists every card in a grid instead. */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  list-style: none;
+}
+
+.grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    scroll-behavior: auto;
+  }
+
+  .dot {
+    transition: none;
+  }
+}

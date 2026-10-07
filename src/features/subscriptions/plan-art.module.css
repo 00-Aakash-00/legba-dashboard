@@ -1,0 +1,100 @@
+/*
+ * The host of the Ghost / Shield hairline figures in the subscription cards.
+ *
+ * The slot is the mockup's illustration box (215 x 305). Everything here is in
+ * percentages of it, so it scales with the card. The figure's 400 x 320 stage
+ * sits at one CSS px per viewBox unit at full size (width 186.05%), placed so
+ * the figure's rest drawing fills the slot (offsets measured from the figures'
+ * rest silhouettes; adjust --hairline-left/top if a figure's rest box moves).
+ *
+ * Hairline rule 04: no colour inside a figure. The red mood is the host's: a
+ * glow and dust behind the figure (its plates are opaque, so they show only
+ * around it) and the mockup's light streaks in front of it.
+ */
+.art {
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.art > .figure,
+.art > .back,
+.art > .front {
+  position: absolute;
+  inset: 0;
+}
+
+.art > .figure {
+  z-index: 1;
+  pointer-events: auto;
+  --hairline-width: 186.05%;
+}
+
+.art > .back {
+  z-index: 0;
+}
+
+.art > .front {
+  z-index: 2;
+}
+
+.back > i,
+.front > i {
+  position: absolute;
+  display: block;
+}
+
+/* A thin light streak: a red core that fades left to right; its glow fades with it. */
+.streak {
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--from), rgba(240, 32, 63, 0));
+  filter: drop-shadow(0 0 3px rgba(240, 32, 63, 0.75));
+}
+
+.glow {
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(245, 39, 77, var(--a, 0.34)),
+    rgba(245, 39, 77, calc(var(--a, 0.34) * 0.33)) 48%,
+    rgba(245, 39, 77, 0)
+  );
+}
+
+/* Faint dust, scattered round the figure: red where it catches the light. */
+.dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Ghost: the hood looks out from the top of the slot; the cloak dissolves toward the bottom. */
+.ghost > .figure {
+  --hairline-left: -42.33%;
+  --hairline-top: -1.593%;
+  --hairline-mask: linear-gradient(#000 57.9%, transparent 90.1%);
+}
+
+/* Shield: the stack stands in its rings in the slot's upper two thirds. */
+.shield > .figure {
+  --hairline-left: -46.28%;
+  --hairline-top: -9.869%;
+}
+
+/* A ring of light laid over each of the shield's two ground rings. */
+.ring {
+  box-sizing: border-box;
+  border: 1px solid rgba(245, 39, 77, 0.8);
+  border-radius: 50%;
+  box-shadow:
+    0 0 6px rgba(240, 32, 63, 0.55),
+    inset 0 0 4px rgba(240, 32, 63, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art * {
+    transition: none;
+  }
+}

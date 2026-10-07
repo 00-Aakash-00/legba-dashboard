@@ -1,0 +1,74 @@
+/*
+ * The host of a hairline figure: a slot the page sizes and places (className),
+ * and inside it the figure's 400 x 320 stage, placed by the host through
+ * --hairline-left / --hairline-top / --hairline-width (percentages of the slot),
+ * so the figure's rest drawing fills the slot. The stage may overflow the slot.
+ *
+ * The figure draws lines only, in the kernel's classes; these tokens are its
+ * whole palette (hairline rule 04: no colour inside a figure). Red comes in
+ * through --hairline-hi, the one bright stroke.
+ */
+.figure {
+  --hairline-plate: #101112;
+  --hairline-hi: #f41a44;
+  --hairline-edge: rgba(245, 243, 236, 0.62);
+  --hairline-mid: rgba(245, 243, 236, 0.24);
+  --hairline-lo: rgba(245, 243, 236, 0.1);
+  position: relative;
+  border-radius: 12px;
+}
+
+.box {
+  position: absolute;
+  left: var(--hairline-left, 0%);
+  top: var(--hairline-top, 0%);
+  width: var(--hairline-width, 100%);
+  aspect-ratio: 5 / 4;
+  -webkit-mask-image: var(--hairline-mask, none);
+  mask-image: var(--hairline-mask, none);
+}
+
+.fallback,
+.stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fallback {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The kernel makes the stage pan-y only; in a horizontal carousel that would
+   trap sideways swipes that start on the figure, so both pans stay native. */
+.stage {
+  visibility: hidden;
+  touch-action: pan-x pan-y;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.figure[data-ready] .fallback {
+  visibility: hidden;
+}
+
+.figure[data-ready] .stage {
+  visibility: visible;
+}
+
+/* The stage overflows the slot, so the focus ring is drawn on the slot, inset so
+   a host that clips at the slot's edge (a card) still shows all of it. */
+.figure:has(.stage:focus-visible) {
+  outline: 2px solid var(--color-signal, #f41a44);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage svg * {
+    transition: none;
+  }
+}
