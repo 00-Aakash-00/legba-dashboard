@@ -1,0 +1,54 @@
+/*
+ * The wine surface of the overview's "View your instances" card, simplified
+ * for a smaller card: the vertical wine base, the hot glow on the right edge,
+ * the warm pool on the left, and the hairline that is brightest at the
+ * top-left (it shows through the transparent 1px border).
+ */
+.surface {
+  border: 1px solid transparent;
+  background:
+    radial-gradient(
+      103px 210px at right -9.9px top 94.9px,
+      rgb(247 25 49 / 0.62),
+      rgb(247 25 49 / 0.07) 50%,
+      rgb(247 25 49 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      62px 117px at right 19.7px top 26.6px,
+      rgb(90 16 23 / 0.8),
+      rgb(90 16 23 / 0) 50%
+    )
+    padding-box,
+    radial-gradient(
+      350px 300px at left 60px bottom -220px,
+      rgb(85 26 30),
+      rgb(85 26 30 / 0.6) 50%,
+      rgb(85 26 30 / 0)
+    )
+    padding-box,
+    radial-gradient(
+      98px 360px at left -21.7px bottom 60px,
+      rgb(255 26 51 / 0.38),
+      rgb(255 26 51 / 0.12) 50%,
+      rgb(255 26 51 / 0)
+    )
+    padding-box,
+    linear-gradient(#411013 0%, #2a0c0d 40%, #2e0d0f 75%, #2a0709 100%)
+    padding-box,
+    radial-gradient(
+      103px 210px at right -9.9px top 94.9px,
+      rgb(255 40 62 / 0.7),
+      rgb(255 40 62 / 0) 70%
+    )
+    border-box,
+    linear-gradient(
+      105deg,
+      #b0172b 0%,
+      #a3162a 14%,
+      #8e1824 21%,
+      #67151e 36%,
+      #5a141b 100%
+    )
+    border-box;
+}
