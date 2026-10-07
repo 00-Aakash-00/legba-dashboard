@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { auth } from "@/content/copy";
 
-export const metadata: Metadata = { title: auth.login.title };
+export const metadata: Metadata = { title: auth.register.title };
 
 /** STUB: replaced by the auth builder. */
-export default function LoginPage() {
+export default function Page() {
   return (
     <h1 className="font-semibold text-2xl text-bone">
-      {auth.login.headingLines.join(" ")}
+      {auth.register.heading}
     </h1>
   );
 }
