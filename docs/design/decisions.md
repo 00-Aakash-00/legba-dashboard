@@ -7,9 +7,11 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | Topic | Decision |
 |---|---|
 | Fidelity | Login and Overview match `docs/design/mockups/*.png` exactly at 1440px. |
-| Brand conflicts | **Mockup wins** over the website brand guide v4: Montserrat (not Inter), glows and red card planes, copy verbatim ("Inference Box", "No logs retained", `api.legba.ai`). |
+| Brand conflicts | **Mockup wins on visuals** over the website brand guide v4 (Montserrat, glows, red card planes). **Copy is rewritten for Legba** (user, later on 2026-10-07): no "Inference Box"; the dashboard serves the Legba API, MCP and the agent skill; wording follows the website's approved messaging, layout and line lengths stay as in the mockup. |
 | Scope | Every other destination is a designed stub (title, designed empty state, main action). Only the API-key flow works end to end. |
-| Backend | Placeholder backend (`src/server`): signed-cookie demo auth, in-memory store, seeded personas. |
+| Navigation | **Overview · Sessions · MCP · Agent Skill · API Keys** (user, 2026-10-07) replaces the mockup's inference tabs (Deployments, Model Catalog, Registries); same layout and styling. |
+| Logo | The locked doll mark and LEGBA wordmark are used exactly as provided: no filters, blur, recolouring or re-drawing (user, 2026-10-07). |
+| Backend | Placeholder backend (`src/server`): in-memory store and demo data. **No auth** (user, later on 2026-10-07): the login screen is a placeholder and any username/password continues to the dashboard; no sessions, no route guard. Typing a documented demo email at login switches a demo state (empty / error-then-retry / slow) so every UX state stays reachable for QA. |
 | Git | All commits as `aharish4@asu.edu`; private repo `github.com/00-Aakash-00/legba-dashboard`. |
 | Loaders | Every spinner is an aicss.dev orb. |
 | Chrome | Claude in Chrome runs only on this Mac's Chrome. |
