@@ -1,40 +1,49 @@
 import DocumentStack from "@/components/hairline/document-stack/DocumentStack";
-import { links, overview } from "@/content/copy";
+import { overview } from "@/content/copy";
+import { CopyCommand } from "./copy-command";
 import { DocsCardIntro, docsCardClass, ExploreLink } from "./docs-card";
 
-const titleId = "product-docs-title";
+const titleId = "skill-docs-title";
 
 /**
- * Product Documentation card. Static (no data), so it prerenders into the
- * shell; DocumentStack is its own client island and mounts its interactive
- * figure near the viewport (its static fallback shows until then, or for good
- * if the figure fails to load).
+ * Install-skill card, in the mockup's Product Documentation slot (spec
+ * overview.json docs.product.*): the agent skill's install command (a
+ * placeholder, marked Preview) and the way into the Agent Skill page.
+ * Static apart from two client islands: the copy button, and DocumentStack,
+ * which mounts its interactive figure near the viewport (its static fallback
+ * shows until then, or for good if the figure fails to load).
  */
-export function ProductDocsCard() {
-  const copy = overview.docs.product;
+export function InstallSkillCard() {
+  const copy = overview.docs.skill;
   return (
-    <section aria-labelledby={titleId} className={docsCardClass("product")}>
+    <section aria-labelledby={titleId} className={docsCardClass("skill")}>
       <DocsCardIntro
-        tone="product"
+        tone="skill"
         titleId={titleId}
         title={copy.title}
         body={copy.body}
-        className="@min-[375px]/docs:max-w-[236px]"
+        bodyClassName="@min-[375px]/docs:max-w-[236px]"
       />
       {/* Narrow: 70% wide under the text (the figure sits low in its 5:4
           box, so the top margin is the smaller one). Wide: the mockup's art
           region, scaled down (around its plate's centre) only when the card is
-          too narrow to keep the plate clear of the title. */}
-      <div className="mx-auto mt-4 mb-9 w-[70%] @min-[375px]/docs:absolute @min-[375px]/docs:top-[calc(152.75px-var(--art-w)*0.48375)] @min-[375px]/docs:right-[2px] @min-[375px]/docs:m-0 @min-[375px]/docs:w-(--art-w) @min-[375px]/docs:[--art-w:min(232px,calc((100cqw-218px)/0.875))]">
+          too narrow to keep the plate clear of the text. */}
+      <div className="mx-auto mt-4 mb-7 w-[70%] @min-[375px]/docs:absolute @min-[375px]/docs:top-[calc(152.75px-var(--art-w)*0.48375)] @min-[375px]/docs:right-[2px] @min-[375px]/docs:m-0 @min-[375px]/docs:w-(--art-w) @min-[375px]/docs:[--art-w:min(232px,calc((100cqw-218px)/0.875))]">
         <DocumentStack loading="lazy" label={copy.art} />
       </div>
+      {/* Wide: under the text, 224px so it stays clear of the art's plate
+          (which starts 235px in); narrow: the card's full width. */}
+      <CopyCommand className="relative z-10 mb-5 [--cmd-w:100cqw] @min-[375px]/docs:mt-[12.4px] @min-[375px]/docs:mb-0 @min-[375px]/docs:[--cmd-w:224px] @min-[375px]/docs:supports-[text-box:trim-both_cap_text]:mt-3.5" />
       <ExploreLink
-        tone="product"
-        href={links.docs}
+        tone="skill"
+        route="/agent-skill"
         label={copy.cta}
-        context={copy.title}
+        context={copy.ctaContext}
         className="mt-auto"
       />
     </section>
   );
 }
+
+/** The overview page's name for this slot (the mockup's Product Documentation card). */
+export const ProductDocsCard = InstallSkillCard;

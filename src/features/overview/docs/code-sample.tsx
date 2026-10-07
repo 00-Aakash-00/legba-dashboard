@@ -9,12 +9,15 @@ import {
   type TokenKind,
 } from "./code-samples";
 
+// The mockup's token hues. URL, string and continuation are lifted to 4.5:1
+// on the panel (#0f1010) for 9px text; the URL purple matches the command
+// panel's package name.
 const tokenColor: Record<TokenKind, string> = {
   command: "text-[#a7746b]",
   plain: "text-[#b2b1af]",
-  url: "text-[#996197]",
-  string: "text-[#c22b40]",
-  continuation: "text-[#9e5c56]",
+  url: "text-[#a46ba2]",
+  string: "text-[#d84a5d]",
+  continuation: "text-[#b06a63]",
 };
 
 /** The kind covering most of a line's characters: the line's own colour (the
@@ -29,9 +32,12 @@ function lineKind(tokens: Token[]) {
 
 // Lines and line numbers are inline-blocks trimmed to their ink (cap height to
 // descent; digits have none, and the mockup's digit boxes carry about 1px of
-// blur). The line boxes, and so the layout, are unchanged.
+// blur). The line boxes, and so the layout, are unchanged. The digits' 1px
+// pad applies only where the trim works: untrimmed, it would make each number
+// row 1px taller than its code line.
 const LINE_BOX = "inline-block [text-box:trim-both_cap_text]";
-const NUMBER_BOX = "inline-block pb-px [text-box:trim-both_cap_alphabetic]";
+const NUMBER_BOX =
+  "inline-block [text-box:trim-both_cap_alphabetic] supports-[text-box:trim-both_cap_alphabetic]:pb-px";
 
 // Cell geometry from the mockup: curl's label sits right of its cell's centre,
 // Python and JavaScript are padded evenly.
@@ -43,10 +49,13 @@ const tabCell: Record<CodeSampleId, string> = {
 
 /**
  * The API card's code panel: language tabs (Base UI via shadcn Tabs) over five
- * numbered lines. The panels are static, so selection follows focus (arrow
+ * numbered lines. The selected label is the mockup's red lifted to 4.5:1. The panels are static, so selection follows focus (arrow
  * keys, Home/End) and switches instantly, with no animation. The active panel
  * is the horizontal scroller and is focusable, so keyboard users can scroll
- * long lines; line numbers stay put and are left out of copied text.
+ * long lines; line numbers stay put and are left out of copied text. Its
+ * right edge fades out so cut-off lines read as scrollable; the lines end on
+ * a fade-wide pad, so they're fully legible once scrolled to the end, and the
+ * fade lifts while the panel has keyboard focus so the focus ring is whole.
  */
 export function CodeSample() {
   const copy = overview.docs.api;
@@ -66,7 +75,7 @@ export function CodeSample() {
               key={id}
               value={id}
               className={cn(
-                "h-full flex-none justify-start rounded-none border-0 px-0 py-0 font-medium text-[10.5px] text-ink-subtle leading-[13px] tracking-[-0.03em] transition-none first:rounded-tl-[9px] hover:text-[#a6a8ac] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset active:bg-white/[0.04] data-active:bg-badge data-active:font-semibold data-active:text-[#bb4853] pointer-coarse:text-xs dark:text-ink-subtle dark:data-active:bg-badge dark:data-active:text-[#bb4853] dark:hover:text-[#a6a8ac] group-data-[variant=default]/tabs-list:data-active:shadow-none",
+                "h-full flex-none justify-start rounded-none border-0 px-0 py-0 font-medium text-[10.5px] text-ink-subtle leading-[13px] tracking-[-0.03em] transition-none first:rounded-tl-[9px] hover:text-[#a6a8ac] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset active:bg-white/[0.04] data-active:bg-badge data-active:font-semibold data-active:text-[#d65a66] pointer-coarse:text-xs dark:text-ink-subtle dark:data-active:bg-badge dark:data-active:text-[#d65a66] dark:hover:text-[#a6a8ac] group-data-[variant=default]/tabs-list:data-active:shadow-none",
                 tabCell[id],
               )}
             >
@@ -82,9 +91,9 @@ export function CodeSample() {
           <TabsContent
             key={id}
             value={id}
-            className="overflow-x-auto overscroll-x-contain rounded-b-[9px] data-ending-style:hidden pt-[11.3px] pr-[1.5px] pb-[13.8px] font-medium font-mono text-[9px] leading-[2.186em] [scrollbar-color:#2a2b2d_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-solid focus-visible:-outline-offset-2 pointer-coarse:text-[11px]"
+            className="overflow-x-auto overscroll-x-contain rounded-b-[9px] data-ending-style:hidden pt-[11.3px] pr-[1.5px] pb-[13.8px] font-medium font-mono text-[9px] leading-[2.186em] [mask-image:linear-gradient(90deg,#000_calc(100%-24px),transparent)] [scrollbar-color:#2a2b2d_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-solid focus-visible:-outline-offset-2 focus-visible:[mask-image:none] pointer-coarse:text-[11px]"
           >
-            <div className="flex w-max min-w-full">
+            <div className="flex w-max min-w-full pr-6">
               <div
                 aria-hidden
                 className="sticky left-0 w-[39.2px] shrink-0 select-none bg-code pl-[13.3px] text-ink-faint"

@@ -1,8 +1,9 @@
 /*
  * Static, pre-tokenised code samples for the API Documentation card (no
  * Shiki: exact mockup colours, zero runtime; docs/design/decisions.md).
- * curl is the mockup's text verbatim (spec overview.json docs.api.code.line.*);
- * Python and JavaScript send the same request to the same placeholder endpoint.
+ * Each language is the website's quickstart create-instance call
+ * (Website/Legba/app/developers/api/quickstart/page.tsx), condensed to the
+ * mockup's five lines. The host and org are placeholders: the API is a preview.
  */
 
 /** Token colours from the spec: command, flag/plain text, URL and header
@@ -15,6 +16,10 @@ export type Token = readonly [TokenKind, string];
 export type CodeLine = { readonly indent: number; readonly tokens: Token[] };
 
 export type CodeSampleId = "curl" | "python" | "javascript";
+
+const ENDPOINT = "https://{your-api-host}/orgs/{org_uuid}/api/instances";
+const TOKEN = "Bearer YOUR_API_TOKEN";
+const JSON_TYPE = "application/json";
 
 export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
   {
@@ -30,7 +35,9 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
       {
         indent: 2,
         tokens: [
-          ["url", "https://api.legba.ai/v1"],
+          ["string", '"'],
+          ["url", ENDPOINT],
+          ["string", '"'],
           ["plain", " "],
           ["continuation", "\\"],
         ],
@@ -40,18 +47,30 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
         tokens: [
           ["plain", "-H "],
           ["string", '"'],
-          ["url", "Authorization: Bearer"],
-          ["string", ' ..."'],
+          ["url", `Authorization: ${TOKEN}`],
+          ["string", '"'],
+          ["plain", " "],
+          ["continuation", "\\"],
+        ],
+      },
+      {
+        indent: 2,
+        tokens: [
+          ["plain", "-H "],
+          ["string", '"'],
+          ["url", `Content-Type: ${JSON_TYPE}`],
+          ["string", '"'],
+          ["plain", " "],
+          ["continuation", "\\"],
         ],
       },
       {
         indent: 2,
         tokens: [
           ["plain", "-d "],
-          ["string", '"{"model": "ghost",'],
+          ["string", `'{"image": "ubuntu-20.04", "size": "small"}'`],
         ],
       },
-      { indent: 5, tokens: [["string", '"prompt": ".."}"']] },
     ],
   },
   {
@@ -67,12 +86,17 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
       {
         indent: 0,
         tokens: [
-          ["plain", "r = requests."],
+          ["plain", "response = requests."],
           ["command", "post"],
           ["plain", "("],
-          ["string", '"'],
-          ["url", "https://api.legba.ai/v1"],
-          ["string", '"'],
+        ],
+      },
+      {
+        indent: 2,
+        tokens: [
+          ["string", "'"],
+          ["url", ENDPOINT],
+          ["string", "'"],
           ["plain", ","],
         ],
       },
@@ -80,13 +104,21 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
         indent: 2,
         tokens: [
           ["plain", "headers={"],
-          ["string", '"'],
+          ["string", "'"],
           ["url", "Authorization"],
-          ["string", '"'],
+          ["string", "'"],
           ["plain", ": "],
-          ["string", '"'],
-          ["url", "Bearer"],
-          ["string", ' ..."'],
+          ["string", "'"],
+          ["url", TOKEN],
+          ["string", "'"],
+          ["plain", ", "],
+          ["string", "'"],
+          ["url", "Content-Type"],
+          ["string", "'"],
+          ["plain", ": "],
+          ["string", "'"],
+          ["url", JSON_TYPE],
+          ["string", "'"],
           ["plain", "},"],
         ],
       },
@@ -94,17 +126,8 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
         indent: 2,
         tokens: [
           ["plain", "json={"],
-          ["string", '"model": "ghost", "prompt": ".."'],
+          ["string", "'image': 'ubuntu-20.04', 'size': 'small'"],
           ["plain", "})"],
-        ],
-      },
-      {
-        indent: 0,
-        tokens: [
-          ["command", "print"],
-          ["plain", "(r."],
-          ["command", "json"],
-          ["plain", "())"],
         ],
       },
     ],
@@ -115,11 +138,13 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
       {
         indent: 0,
         tokens: [
+          ["command", "const"],
+          ["plain", " response = "],
           ["command", "await fetch"],
           ["plain", "("],
-          ["string", '"'],
-          ["url", "https://api.legba.ai/v1"],
-          ["string", '"'],
+          ["string", "'"],
+          ["url", ENDPOINT],
+          ["string", "'"],
           ["plain", ", {"],
         ],
       },
@@ -127,26 +152,42 @@ export const codeSamples: { id: CodeSampleId; lines: CodeLine[] }[] = [
         indent: 2,
         tokens: [
           ["plain", "method: "],
-          ["string", '"POST"'],
+          ["string", "'POST'"],
           ["plain", ","],
         ],
       },
       {
         indent: 2,
         tokens: [
-          ["plain", "headers: { Authorization: "],
-          ["string", '"'],
-          ["url", "Bearer"],
-          ["string", ' ..."'],
+          ["plain", "headers: { "],
+          ["string", "'"],
+          ["url", "Authorization"],
+          ["string", "'"],
+          ["plain", ": "],
+          ["string", "'"],
+          ["url", TOKEN],
+          ["string", "'"],
+          ["plain", ", "],
+          ["string", "'"],
+          ["url", "Content-Type"],
+          ["string", "'"],
+          ["plain", ": "],
+          ["string", "'"],
+          ["url", JSON_TYPE],
+          ["string", "'"],
           ["plain", " },"],
         ],
       },
       {
         indent: 2,
         tokens: [
-          ["plain", "body: "],
-          ["string", `'{"model": "ghost", "prompt": ".."}'`],
-          ["plain", ","],
+          ["plain", "body: JSON."],
+          ["command", "stringify"],
+          ["plain", "({ image: "],
+          ["string", "'ubuntu-20.04'"],
+          ["plain", ", size: "],
+          ["string", "'small'"],
+          ["plain", " }),"],
         ],
       },
       { indent: 0, tokens: [["plain", "});"]] },

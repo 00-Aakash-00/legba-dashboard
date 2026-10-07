@@ -1,4 +1,3 @@
-import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,8 +8,9 @@ import styles from "./instances-card.module.css";
 const TITLE_ID = "instances-card-title";
 
 /**
- * Overview "View your instances" card (docs/design/spec/overview.json,
- * instances.*). Static: it prerenders into the shell.
+ * Overview "View your sessions" card, the mockup's instances card
+ * (docs/design/spec/overview.json, instances.*). Static: it prerenders into
+ * the shell. Launch opens Sessions.
  */
 export function InstancesCard() {
   const { instances } = overview;
@@ -41,30 +41,33 @@ export function InstancesCard() {
             "mt-3.5 max-w-[19rem] text-pretty font-medium text-[#c2bbba] text-[15px] leading-[22px] tracking-[-0.03em] @md/instances:mt-[16.52px] @md/instances:max-w-none @md/instances:text-[16px] @md/instances:leading-[23px] @md/instances:tracking-[-0.043em]",
           )}
         >
+          {/* One sentence per line at every width: each is one preview
+              operation (create, list, terminate), and each fits the
+              narrowest card. */}
           {instances.body.map((line, index) => (
             <Fragment key={line}>
               {index > 0 ? (
                 <>
                   {" "}
-                  <br className="hidden @md/instances:inline" />
+                  <br />
                 </>
               ) : null}
               {line}
             </Fragment>
           ))}
         </p>
+        {/* Text only: icons belong to the navigation (AGENTS.md). */}
         <Link
           href="/sessions"
           className={cn(
             buttonVariants({ variant: "pill-red", size: "pill-lg" }),
             styles.launch,
-            "mt-auto -ml-[7.8px] h-11 w-[136.5px] justify-start gap-[9px] border-0 pr-0 pl-[29.5px] text-[14px] shadow-[0_0_5px_-1px_rgb(200_28_48/0.4)] motion-reduce:active:not-aria-[haspopup]:scale-100 motion-reduce:active:opacity-85",
+            "mt-auto -ml-[7.8px] h-11 w-[136.5px] justify-center border-0 px-0 text-[14px] shadow-[0_0_5px_-1px_rgb(200_28_48/0.4)] motion-reduce:active:not-aria-[haspopup]:scale-100 motion-reduce:active:opacity-85",
           )}
         >
           <span className="text-ink leading-[10px] tracking-[-0.064em]">
             {instances.cta}
           </span>
-          <ArrowUpRightIcon strokeWidth={1.7} className="size-[26px]" />
         </Link>
       </div>
     </section>

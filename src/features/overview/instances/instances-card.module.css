@@ -17,7 +17,7 @@
 }
 
 /*
- * "View your instances" surface (docs/design/spec/overview.json, instances).
+ * "View your sessions" surface (docs/design/spec/overview.json, instances).
  *
  * The wine field is fitted to the mockup (mean error ≈ 2/255 per channel): a
  * vertical base with soft pools of light and shade on top. Each pool is

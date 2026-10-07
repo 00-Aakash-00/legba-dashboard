@@ -7,9 +7,12 @@ const titleId = "api-docs-title";
 
 /**
  * API Documentation card. Static (no data), so it prerenders into the shell;
- * the language tabs are the only client island. Wide cards keep the mockup's
- * 218px code panel on the right and give way to 190px (the tab bar's width)
- * before the title would wrap; narrow cards stack the panel under the text.
+ * the language tabs are the only client island. Wide cards put the code panel
+ * on the right: the mockup's 218px at 1440, narrowing to 190px (the tab bar's
+ * width) on smaller cards, and growing on wider ones (225px left for the
+ * text) until every curl line fits. The body keeps at least 12px clear of
+ * the panel. Narrow cards stack the panel under the text. The samples call
+ * the preview API's placeholder host.
  */
 export function ApiDocsCard() {
   const copy = overview.docs.api;
@@ -18,7 +21,7 @@ export function ApiDocsCard() {
       aria-labelledby={titleId}
       className={cn(
         docsCardClass("api"),
-        "[--panel-w:min(218px,max(190px,calc(100cqw-204.5px)))]",
+        "[--panel-w:min(400px,max(190px,min(218px,calc(100cqw-204.5px)),calc(100cqw-225px)))]",
       )}
     >
       <DocsCardIntro
@@ -26,11 +29,11 @@ export function ApiDocsCard() {
         titleId={titleId}
         title={copy.title}
         body={copy.body}
-        className="@min-[375px]/docs:pr-[calc(var(--panel-w)-0.5px)]"
+        bodyClassName="@min-[375px]/docs:max-w-[min(236px,calc(100cqw-var(--panel-w)-11.5px))]"
       />
       <div className="relative my-7 @min-[375px]/docs:absolute @min-[375px]/docs:top-[49.5px] @min-[375px]/docs:right-[15.5px] @min-[375px]/docs:m-0 @min-[375px]/docs:w-(--panel-w)">
         {/* Blueprint grid behind the panel (docs.api.illustration.grid), the
-            same motif as the product card's art: two hairlines just outside
+            same motif as the skill card's art: two hairlines just outside
             the panel and a 26px column grid that fades away from it. */}
         <div
           aria-hidden

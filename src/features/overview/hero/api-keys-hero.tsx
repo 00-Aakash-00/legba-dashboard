@@ -1,4 +1,3 @@
-import { ChevronRightIcon, KeyIcon } from "lucide-react";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Button } from "@/components/ui/button";
@@ -43,7 +42,7 @@ export function ApiKeysHero() {
         fill
         loading="eager"
         fetchPriority="high"
-        sizes="(min-width: 1440px) 925px, (min-width: 1280px) 64vw, (min-width: 1024px) 60vw, calc(100vw - 32px)"
+        sizes="(min-width: 1280px) 66vw, (min-width: 1024px) 60vw, calc(100vw - 32px)"
         className="pointer-events-none select-none object-cover object-center opacity-80 @xl/hero:object-top"
       />
       <div className="relative flex w-full flex-col items-center justify-center px-5 py-9 text-center @xl/hero:pt-[66.3px] @xl/hero:pr-1 @xl/hero:pb-[43.15px] @xl/hero:pl-0">
@@ -90,6 +89,8 @@ export function ApiKeysHero() {
         >
           <Lines lines={hero.body} />
         </p>
+        {/* Text only: icons belong to the navigation (AGENTS.md), so the
+            label sits centred under the pill's centred glow. */}
         <CreateKeyDialog
           trigger={
             <Button
@@ -97,21 +98,13 @@ export function ApiKeysHero() {
               size="pill-xl"
               className={cn(
                 styles.cta,
-                "mt-6 h-[52px] w-full max-w-[432.5px] justify-start gap-4 border-transparent bg-none pr-4 pl-5 shadow-none hover:border-transparent hover:shadow-none motion-safe:active:scale-[0.97] motion-reduce:active:opacity-85",
-                "@xl/hero:mt-[21.7px] @xl/hero:h-[59.2px] @xl/hero:w-[432.5px] @xl/hero:gap-5 @xl/hero:pr-5 @xl/hero:pl-[28.5px]",
+                "mt-6 h-[52px] w-full max-w-[432.5px] justify-center border-transparent bg-none px-5 shadow-none hover:border-transparent hover:shadow-none motion-safe:active:scale-[0.97] motion-reduce:active:opacity-85",
+                "@xl/hero:mt-[21.7px] @xl/hero:h-[59.2px] @xl/hero:w-[432.5px]",
               )}
             >
-              <KeyIcon
-                strokeWidth={3.5}
-                className="size-6 text-signal-key @xl/hero:size-[25px]"
-              />
               <span className="text-[#e6e5e4] text-[16px] leading-4 tracking-[-0.03em] @xl/hero:text-[16.5px]">
                 {hero.cta}
               </span>
-              <ChevronRightIcon
-                strokeWidth={2.25}
-                className="ml-auto size-[22px] text-[#e74255]"
-              />
             </Button>
           }
         />
