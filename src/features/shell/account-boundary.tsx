@@ -1,22 +1,16 @@
 "use client";
 
-import { catchError } from "next/error";
+import { catchError, type ErrorInfo } from "next/error";
+import { AccountMenuView } from "./account-menu-view";
 
-/**
- * STUB (owned by the shell builder): if the account slot fails, fall back to
- * a generic avatar whose menu can still sign out (ux-guidelines degradation).
- */
-function renderAccountFallback() {
-  return (
-    <form action="/auth/sign-out" method="post">
-      <button
-        type="submit"
-        className="grid size-10 place-items-center rounded-full bg-chip text-sm"
-      >
-        ?
-      </button>
-    </form>
-  );
+// camelCase on purpose: catchError calls this as a function, not a component.
+function renderAccountFallback(_props: object, { retry }: ErrorInfo) {
+  return <AccountMenuView profile={null} onRetry={retry} />;
 }
 
+/**
+ * If the account slot fails, the header keeps a generic avatar whose menu
+ * says so, retries just this slot, and can still sign out (ux-guidelines:
+ * degrade one section, never the shell).
+ */
 export const AccountBoundary = catchError(renderAccountFallback);

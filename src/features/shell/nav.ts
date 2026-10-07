@@ -1,3 +1,11 @@
+import {
+  KeyRoundIcon,
+  LayoutGridIcon,
+  type LucideIcon,
+  MonitorUpIcon,
+  PackageIcon,
+  PencilLineIcon,
+} from "lucide-react";
 import type { Route } from "next";
 import { nav } from "@/content/copy";
 
@@ -10,6 +18,13 @@ export type NavItem = {
   segment: string | null;
   label: string;
   short: string;
+  /** Glyph per docs/design/spec/icons.json. */
+  icon: LucideIcon;
+  /**
+   * Inactive header ink, measured per label from the mockup
+   * (spec overview.json header.nav.*.label; Overview is only drawn active).
+   */
+  ink: string;
 };
 
 export const NAV_ITEMS: NavItem[] = [
@@ -19,6 +34,8 @@ export const NAV_ITEMS: NavItem[] = [
     segment: null,
     label: nav.items.overview,
     short: nav.short.overview,
+    icon: LayoutGridIcon,
+    ink: "#9a9ea4",
   },
   {
     key: "deployments",
@@ -26,6 +43,8 @@ export const NAV_ITEMS: NavItem[] = [
     segment: "deployments",
     label: nav.items.deployments,
     short: nav.short.deployments,
+    icon: MonitorUpIcon,
+    ink: "#9a9ea4",
   },
   {
     key: "models",
@@ -33,6 +52,8 @@ export const NAV_ITEMS: NavItem[] = [
     segment: "models",
     label: nav.items.models,
     short: nav.short.models,
+    icon: PackageIcon,
+    ink: "#9a9da1",
   },
   {
     key: "registries",
@@ -40,6 +61,8 @@ export const NAV_ITEMS: NavItem[] = [
     segment: "registries",
     label: nav.items.registries,
     short: nav.short.registries,
+    icon: PencilLineIcon,
+    ink: "#969ba0",
   },
   {
     key: "apiKeys",
@@ -47,6 +70,8 @@ export const NAV_ITEMS: NavItem[] = [
     segment: "api-keys",
     label: nav.items.apiKeys,
     short: nav.short.apiKeys,
+    icon: KeyRoundIcon,
+    ink: "#9ba5aa",
   },
 ];
 

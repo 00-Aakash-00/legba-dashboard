@@ -1,11 +1,11 @@
 import { getProfile } from "@/server/services/profile";
+import { AccountMenuView } from "./account-menu-view";
 
-/** STUB (owned by the shell builder): reads the session inside Suspense. */
+/**
+ * The header account slot. Reads the session, so the (app) layout renders it
+ * below <Suspense> (AvatarSkeleton) inside AccountBoundary.
+ */
 export async function AccountMenu() {
   const profile = await getProfile();
-  return (
-    <span className="grid size-10 place-items-center rounded-full bg-chip font-semibold text-sm">
-      {profile.initials}
-    </span>
-  );
+  return <AccountMenuView profile={profile} />;
 }
