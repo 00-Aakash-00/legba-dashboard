@@ -1,17 +1,17 @@
 "use client";
 
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { subscriptions } from "@/content/copy";
 import { cn } from "@/lib/utils";
 import { useSubscriptions } from "./subscriptions-context";
 
 const ARROW =
-  "size-[31px] border-[#18191b] bg-transparent text-[#c9cdd1] hover:bg-white/[0.05] disabled:opacity-80 data-disabled:cursor-default data-disabled:opacity-80 pointer-coarse:hidden [&_svg]:size-4 [&_svg]:stroke-[2.5]";
+  "h-[31px] border-[#18191b] bg-transparent px-3 font-semibold text-[#c9cdd1] text-[12.5px] tracking-[-0.03em] hover:bg-white/[0.05] disabled:opacity-80 data-disabled:cursor-default data-disabled:opacity-80 pointer-coarse:hidden";
 
 /**
  * Previous / next for the subscriptions carousel: each scrolls by one card and
- * is disabled at its end. Hidden for coarse pointers, where the row swipes.
+ * is disabled at its end. Text, not arrows (icons live only in the nav bar).
+ * Hidden for coarse pointers, where the row swipes.
  */
 export function CarouselArrows({
   prevClassName,
@@ -37,7 +37,6 @@ export function CarouselArrows({
     <>
       <Button
         variant="round"
-        size="icon"
         className={cn(ARROW, prevClassName)}
         aria-label={subscriptions.previous}
         aria-controls={rail?.id}
@@ -45,11 +44,10 @@ export function CarouselArrows({
         focusableWhenDisabled={scrollable}
         onClick={() => step(-1)}
       >
-        <ArrowLeftIcon aria-hidden />
+        {subscriptions.previousShort}
       </Button>
       <Button
         variant="round"
-        size="icon"
         className={cn(ARROW, nextClassName)}
         aria-label={subscriptions.next}
         aria-controls={rail?.id}
@@ -57,7 +55,7 @@ export function CarouselArrows({
         focusableWhenDisabled={scrollable}
         onClick={() => step(1)}
       >
-        <ArrowRightIcon aria-hidden />
+        {subscriptions.nextShort}
       </Button>
     </>
   );

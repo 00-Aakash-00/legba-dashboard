@@ -48,7 +48,8 @@
   height: 2px;
   border-radius: 1px;
   background: linear-gradient(90deg, var(--from), rgba(240, 32, 63, 0));
-  filter: drop-shadow(0 0 3px rgba(240, 32, 63, 0.75));
+  filter: drop-shadow(0 0 1.5px rgba(255, 58, 88, 0.95))
+    drop-shadow(0 0 5px rgba(240, 32, 63, 0.6));
 }
 
 .glow {
@@ -83,14 +84,14 @@
   --hairline-top: -9.869%;
 }
 
-/* A ring of light laid over each of the shield's two ground rings. */
+/* A ring of light on each of the shield figure's two rings, under its own line. */
 .ring {
   box-sizing: border-box;
-  border: 1px solid rgba(245, 39, 77, 0.8);
+  border: 1.25px solid rgba(248, 42, 78, 0.92);
   border-radius: 50%;
   box-shadow:
-    0 0 6px rgba(240, 32, 63, 0.55),
-    inset 0 0 4px rgba(240, 32, 63, 0.35);
+    0 0 9px rgba(240, 32, 63, 0.7),
+    inset 0 0 6px rgba(240, 32, 63, 0.45);
 }
 
 @media (prefers-reduced-motion: reduce) {

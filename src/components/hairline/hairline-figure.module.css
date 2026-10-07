@@ -6,14 +6,16 @@
  *
  * The figure draws lines only, in the kernel's classes; these tokens are its
  * whole palette (hairline rule 04: no colour inside a figure). Red comes in
- * through --hairline-hi, the one bright stroke.
+ * through --hairline-hi, the one bright stroke. The still fallbacks
+ * (public/images/hairline/<kind>.svg, the rest pose) bake these values in:
+ * export them again whenever a token changes.
  */
 .figure {
   --hairline-plate: #101112;
   --hairline-hi: #f41a44;
-  --hairline-edge: rgba(245, 243, 236, 0.62);
-  --hairline-mid: rgba(245, 243, 236, 0.24);
-  --hairline-lo: rgba(245, 243, 236, 0.1);
+  --hairline-edge: rgba(245, 243, 236, 0.8);
+  --hairline-mid: rgba(245, 243, 236, 0.32);
+  --hairline-lo: rgba(245, 243, 236, 0.14);
   position: relative;
   border-radius: 12px;
 }

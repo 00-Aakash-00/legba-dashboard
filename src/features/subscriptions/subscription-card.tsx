@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -117,11 +116,6 @@ export function SubscriptionCard({
           <span className="relative top-px leading-[14px]">
             {subscriptions.manage}
           </span>
-          <ChevronRightIcon
-            aria-hidden="true"
-            strokeWidth={2.25}
-            className="size-5 text-[#c8c9ca]"
-          />
         </Link>
       </div>
     </article>

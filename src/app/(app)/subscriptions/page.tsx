@@ -1,11 +1,13 @@
-import { ArrowUpRightIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { buttonVariants } from "@/components/ui/button";
-import { links, subscriptions } from "@/content/copy";
+import { subscriptions } from "@/content/copy";
 import { SubscriptionsSection } from "@/features/subscriptions/subscriptions-section";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = { title: subscriptions.pageTitle };
+export const metadata: Metadata = {
+  title: subscriptions.pageTitle,
+  description: subscriptions.pageDescription,
+};
 
 /**
  * Every subscription on the account. The header prerenders; the section
@@ -24,7 +26,7 @@ export default function SubscriptionsPage() {
           </p>
         </div>
         <a
-          href={links.pricing}
+          href={subscriptions.pricing}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -32,8 +34,7 @@ export default function SubscriptionsPage() {
             "w-full sm:w-auto pointer-coarse:h-11",
           )}
         >
-          {subscriptions.pageAction}
-          <ArrowUpRightIcon aria-hidden="true" className="size-4" />
+          {subscriptions.pageAction}{" "}
           <span className="sr-only">{subscriptions.newTab}</span>
         </a>
       </header>

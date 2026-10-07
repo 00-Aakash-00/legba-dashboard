@@ -1,7 +1,5 @@
-import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
-import { SectionBoundary } from "@/components/patterns/section-boundary";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,6 +10,7 @@ import { CarouselArrows } from "./carousel-arrows";
 import { SubscriptionCard } from "./subscription-card";
 import cardStyles from "./subscription-card.module.css";
 import styles from "./subscriptions.module.css";
+import { SubscriptionsBoundary } from "./subscriptions-boundary";
 import { SubscriptionsProvider } from "./subscriptions-context";
 import { SubscriptionsFilter } from "./subscriptions-filter";
 import { SubscriptionsList } from "./subscriptions-list";
@@ -63,15 +62,14 @@ export function SubscriptionsSection({
                 className={cn(
                   buttonVariants({ variant: "pill-red" }),
                   styles.view,
-                  "h-[37.5px] w-[118.5px] justify-between bg-[linear-gradient(90deg,#8a1424_0%,#6a121c_50%,#b0182b_100%)] pr-[16.5px] pl-[21.7px] text-[12.5px] text-ink tracking-[-0.03em] shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] pointer-coarse:h-11",
+                  "h-[37.5px] w-[118.5px] justify-center bg-[linear-gradient(90deg,#8a1424_0%,#6a121c_50%,#b0182b_100%)] px-4 text-[12.5px] text-ink tracking-[-0.03em] shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] pointer-coarse:h-11",
                 )}
               >
                 <span className="leading-[11px]">{subscriptions.viewAll}</span>
-                <ArrowUpRightIcon aria-hidden="true" className="size-6" />
               </Link>
             </>
           ) : null}
-          <SectionBoundary
+          <SubscriptionsBoundary
             title={subscriptions.error.title}
             body={subscriptions.error.body}
             className={cn(
@@ -82,7 +80,7 @@ export function SubscriptionsSection({
             <Suspense fallback={<SubscriptionsSkeleton layout={layout} />}>
               <SubscriptionsData layout={layout} scope={variant} />
             </Suspense>
-          </SectionBoundary>
+          </SubscriptionsBoundary>
         </div>
       </SubscriptionsProvider>
     </section>
@@ -178,9 +176,9 @@ function CardSkeleton() {
             {["one", "two", "three", "four"].map((key) => (
               <div
                 key={key}
-                className="flex min-h-[33px] items-center gap-[13.5px]"
+                className="flex min-h-[33px] items-center gap-[13.7px]"
               >
-                <Skeleton className="size-5 rounded-md bg-white/[0.06]" />
+                <Skeleton className="mx-[8.5px] size-[7px] shrink-0 rounded-[2px] bg-white/[0.06]" />
                 <Skeleton className="h-2.5 w-[58%] rounded bg-white/[0.05]" />
               </div>
             ))}

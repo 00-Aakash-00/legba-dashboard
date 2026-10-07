@@ -1,17 +1,19 @@
-import { ArrowLeftIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { SectionBoundary } from "@/components/patterns/section-boundary";
 import { subscriptions } from "@/content/copy";
 import {
   SubscriptionDetail,
   SubscriptionDetailSkeleton,
 } from "@/features/subscriptions/subscription-detail";
+import { SubscriptionsBoundary } from "@/features/subscriptions/subscriptions-boundary";
 
 const { detail } = subscriptions;
 
-export const metadata: Metadata = { title: detail.metaTitle };
+export const metadata: Metadata = {
+  title: detail.metaTitle,
+  description: detail.metaDescription,
+};
 
 /**
  * One subscription. The back link and heading prerender; the param and the
@@ -26,7 +28,6 @@ export default function SubscriptionPage({
         href="/subscriptions"
         className="-ml-2 inline-flex min-h-11 items-center gap-2 rounded-full px-2 font-medium text-[14px] text-ink-2 transition-colors duration-150 ease-out-strong hover:text-ink focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 active:text-ink"
       >
-        <ArrowLeftIcon aria-hidden="true" className="size-4" />
         {detail.back}
       </Link>
       <h1 className="mt-4 mb-3 flex items-center gap-3 font-semibold text-[13px] text-ink-3 uppercase tracking-[0.12em]">
@@ -36,7 +37,7 @@ export default function SubscriptionPage({
         />
         {detail.eyebrow}
       </h1>
-      <SectionBoundary
+      <SubscriptionsBoundary
         title={detail.error.title}
         body={detail.error.body}
         className="min-h-80 rounded-[20px] border border-line bg-panel"
@@ -44,7 +45,7 @@ export default function SubscriptionPage({
         <Suspense fallback={<SubscriptionDetailSkeleton />}>
           <SubscriptionDetail params={params} />
         </Suspense>
-      </SectionBoundary>
+      </SubscriptionsBoundary>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRightIcon, LayersIcon, ListFilterIcon } from "lucide-react";
 import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -11,8 +10,9 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { links, subscriptions } from "@/content/copy";
+import { subscriptions } from "@/content/copy";
 import { cn } from "@/lib/utils";
+import { PlanFigure } from "./plan-figure";
 import styles from "./subscriptions.module.css";
 import {
   type SubscriptionStatus,
@@ -146,16 +146,14 @@ function Grid({ items }: { items: SubscriptionItem[] }) {
 
 const EMPTY =
   "min-h-72 flex-1 gap-5 rounded-[18px] border border-[#1e2021] border-dashed bg-panel-inner px-6 py-10";
-const EMPTY_ICON =
-  "size-11 rounded-[12px] border border-line-chip bg-panel-raised text-signal-icon [&_svg:not([class*='size-'])]:size-5";
 
 /** First use: nothing subscribed yet. An invitation, with the way to subscribe. */
 function FirstUseEmpty() {
   return (
     <Empty className={EMPTY}>
       <EmptyHeader>
-        <EmptyMedia variant="icon" className={EMPTY_ICON}>
-          <LayersIcon aria-hidden="true" />
+        <EmptyMedia>
+          <PlanFigure plan="ghost" />
         </EmptyMedia>
         <EmptyTitle className="font-semibold text-base text-ink tracking-[-0.02em]">
           {subscriptions.empty.title}
@@ -166,7 +164,7 @@ function FirstUseEmpty() {
       </EmptyHeader>
       <EmptyContent>
         <a
-          href={links.pricing}
+          href={subscriptions.pricing}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -174,8 +172,7 @@ function FirstUseEmpty() {
             "pointer-coarse:h-11",
           )}
         >
-          {subscriptions.empty.action}
-          <ArrowUpRightIcon aria-hidden="true" className="size-4" />
+          {subscriptions.empty.action}{" "}
           <span className="sr-only">{subscriptions.newTab}</span>
         </a>
       </EmptyContent>
@@ -190,8 +187,8 @@ function FilteredEmpty() {
   return (
     <Empty className={EMPTY}>
       <EmptyHeader>
-        <EmptyMedia variant="icon" className={EMPTY_ICON}>
-          <ListFilterIcon aria-hidden="true" />
+        <EmptyMedia>
+          <PlanFigure plan="shield" />
         </EmptyMedia>
         <EmptyTitle className="font-semibold text-base text-ink tracking-[-0.02em]">
           {subscriptions.filtered.title(label)}

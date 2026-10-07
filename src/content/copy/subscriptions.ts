@@ -1,28 +1,38 @@
 // User-facing strings for this area. Owned by the subscriptions builder.
 
+import { WEBSITE } from "./common";
+
+/** Where "Browse plans" leads: the website's pricing section. */
+const PRICING = `${WEBSITE}/#pricing`;
+
 export const plans = {
   ghost: {
     title: "Ghost Mode",
-    body: "Maximum privacy. No traces. Built for operators.",
+    body: "A private route for your browser.",
     features: [
-      "Anonymous inference",
-      "No logs retained",
-      "Global access",
-      "Priority infrastructure",
+      "Private browser route",
+      "Location you choose",
+      "Browser only",
+      "Other apps unchanged",
     ],
     /** The illustration's name while it is a still picture. */
-    art: "Ghost Mode illustration: a hooded figure drawn in fine lines.",
+    art: "Ghost Mode illustration: a cloaked figure drawn in fine lines.",
+    /** Its name once it answers the pointer and the arrow keys. */
+    artLive:
+      "Ghost Mode illustration: a cloaked figure that turns to look toward the pointer.",
   },
   shield: {
     title: "Shield Mode",
-    body: "Enterprise-grade protection for your AI workloads.",
+    body: "An isolated browser for pages you do not trust.",
     features: [
-      "Enhanced security layer",
-      "Threat monitoring",
-      "Compliance ready",
-      "Dedicated support",
+      "Isolated browser",
+      "Off your device",
+      "For untrusted pages",
+      "Ends when you close it",
     ],
     art: "Shield Mode illustration: three nested shield plates standing in a ring.",
+    artLive:
+      "Shield Mode illustration: three nested shield plates. The plate under the pointer lights up and the others part.",
   },
 } as const;
 
@@ -31,6 +41,7 @@ export const subscriptions = {
   pageTitle: "Subscriptions",
   pageDescription: "Every plan on your account, and what it includes.",
   pageAction: "Browse plans",
+  pricing: PRICING,
   count: (n: number) => `${n} subscription${n === 1 ? "" : "s"}`,
   shown: (n: number) =>
     n === 0
@@ -45,6 +56,8 @@ export const subscriptions = {
   },
   previous: "Previous subscriptions",
   next: "Next subscriptions",
+  previousShort: "Previous",
+  nextShort: "Next",
   viewAll: "View All",
   vendor: (vendor: string) => `By: ${vendor}`,
   status: { active: "Active", paused: "Paused", cancelled: "Cancelled" },
@@ -53,7 +66,7 @@ export const subscriptions = {
   newTab: "(opens in a new tab)",
   empty: {
     title: "No subscriptions yet",
-    body: "Ghost Mode and Shield Mode plans appear here once you subscribe.",
+    body: "Your Legba plan appears here once you subscribe.",
     action: "Browse plans",
   },
   filtered: {
@@ -67,7 +80,9 @@ export const subscriptions = {
   },
   detail: {
     metaTitle: "Subscription",
-    back: "All subscriptions",
+    metaDescription:
+      "One plan on your account. See what it includes and how to change it.",
+    back: "Back to subscriptions",
     eyebrow: "Subscription",
     summaryTitle: "Summary",
     planLabel: "Plan",
@@ -78,11 +93,10 @@ export const subscriptions = {
     includes: "What's included",
     historyTitle: "Billing history",
     historyEmpty: "No invoices yet",
-    historyEmptyBody:
-      "Invoices for this plan will be listed here after the first billing date.",
+    historyEmptyBody: "Invoices appear here after the first billing date.",
     changeTitle: "Need to change this plan?",
     changeBody:
-      "Plan changes and cancellations go through our team for now. We usually reply within one business day.",
+      "Plan changes go through our team for now. Email us to change or cancel this plan.",
     contact: "Contact support",
     contactSubject: (plan: string) => `Change my ${plan} plan`,
     loading: "Loading this subscription",

@@ -1,4 +1,3 @@
-import { MailIcon, ReceiptTextIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { buttonVariants } from "@/components/ui/button";
@@ -14,6 +13,7 @@ import { links, plans, subscriptions } from "@/content/copy";
 import { cn } from "@/lib/utils";
 import { getSubscription } from "@/server/services/subscriptions";
 import { PlanFeatures } from "./plan-features";
+import { PlanFigure } from "./plan-figure";
 import { StatusChip } from "./subscription-card";
 
 const { detail } = subscriptions;
@@ -108,11 +108,8 @@ export async function SubscriptionDetail({
             </h3>
             <Empty className="mt-4 gap-3 rounded-[16px] border border-[#1e2021] border-dashed bg-panel-inner px-5 py-8">
               <EmptyHeader>
-                <EmptyMedia
-                  variant="icon"
-                  className="size-11 rounded-[12px] border border-line-chip bg-panel-raised text-signal-icon [&_svg:not([class*='size-'])]:size-5"
-                >
-                  <ReceiptTextIcon aria-hidden="true" />
+                <EmptyMedia>
+                  <PlanFigure plan={subscription.plan} />
                 </EmptyMedia>
                 <EmptyTitle className="font-semibold text-[15px] text-ink">
                   {detail.historyEmpty}
@@ -138,7 +135,6 @@ export async function SubscriptionDetail({
                 "mt-5 w-full sm:w-auto pointer-coarse:h-11",
               )}
             >
-              <MailIcon aria-hidden="true" className="size-4" />
               {detail.contact}
             </a>
           </section>

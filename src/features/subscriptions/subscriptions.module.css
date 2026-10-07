@@ -6,7 +6,7 @@
  *
  * Measured from the overview mockup at 1440 (spec subs.*): header row centred
  * 37.25px below the panel's top edge, cards from 74.5px, 19.5px side insets.
- * Narrow panels (container < 660px) put the filter and View All on a second row.
+ * Narrow panels (container < 728px) put the filter and View All on a second row.
  */
 .panel {
   container: subs / inline-size;
@@ -114,8 +114,13 @@
   margin-top: 14px;
 }
 
-/* Wide panels: one header row over the cards (the mockup). */
-@container subs (min-width: 660px) {
+/*
+ * Wide panels: one header row over the cards (the mockup). The row needs
+ * 686px with "All" and about 719px with the longest filter label
+ * ("Cancelled") and the text Previous / Next; narrower, the title would run
+ * into the count. The threshold leaves about 9px to spare.
+ */
+@container subs (min-width: 728px) {
   .frame {
     --pad-l: 18.5px;
     --pad-r: 18px;
