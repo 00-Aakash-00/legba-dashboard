@@ -1,3 +1,19 @@
 allowBuilds:
   sharp: false
   unrs-resolver: false
+
+# Supply-chain hygiene: only install releases older than 24h.
+minimumReleaseAge: 1440
+# next@16.4.0 (required by this project) was published 2026-10-06T18:35Z.
+# These exact-version excludes can be removed once it is 24h old.
+minimumReleaseAgeExclude:
+  - next@16.4.0
+  - "@next/env@16.4.0"
+  - "@next/swc-darwin-arm64@16.4.0"
+  - "@next/swc-darwin-x64@16.4.0"
+  - "@next/swc-linux-arm64-gnu@16.4.0"
+  - "@next/swc-linux-arm64-musl@16.4.0"
+  - "@next/swc-linux-x64-gnu@16.4.0"
+  - "@next/swc-linux-x64-musl@16.4.0"
+  - "@next/swc-win32-arm64-msvc@16.4.0"
+  - "@next/swc-win32-x64-msvc@16.4.0"
