@@ -31,8 +31,9 @@ Prefetching, React Compiler, typed routes), React 19.3, Tailwind 4.3, shadcn (Ba
   `animate-spin`, `Loader2`, or other spinners. Layout regions use skeletons.
 - Every screen and data-backed section handles loading, empty, error, and success (ux-guidelines skill).
   Services throw `ServiceError`; they never turn a failure into `[]`.
-- `cookies()`/session reads happen only below a `<Suspense>` boundary. `src/proxy.ts` gates GET/HEAD
-  navigations only; every Server Action and service calls `requireUser()` itself.
+- **There is no authentication** (user decision): the login screens are placeholders and any
+  username/password continues to the dashboard. No sessions, no route guard. `src/server/demo.ts`
+  holds the placeholder account and the demo state; `cookies()` reads happen only below `<Suspense>`.
 - Mobile follows the mobile-native skill: hover only under `(hover:hover) and (pointer:fine)`, `:active`
   press feedback, 16px inputs, `100dvh`, safe-area insets, scroll-snap carousels, never disable zoom.
 - Motion follows emil-design-eng: custom ease-out curves, UI animations ≤ 250ms, transform/opacity only,
@@ -59,12 +60,19 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
 - Ghost/Shield figures come from the `hairline-create` skill and follow its ten rules: no colour inside a
   figure; red comes from host CSS (`--hairline-hi`).
 
-## Test accounts (placeholder backend — password `1234567`)
-- `jane@demo.gmail.com` — Ghost + Shield subscriptions (the mockup account).
-- `flaky@demo.legba.app` — list services fail for 6s after sign-in, then recover (error + retry states).
+## Demo states (placeholder backend — type at login, any password)
+- Any username/password → the normal dashboard (Jane Doe, Ghost + Shield, the mockup's data).
+- `flaky@demo.legba.app` — list services fail for 6s after login, then recover (error + retry states).
 - `slow@demo.legba.app` — 2.5s latency (skeleton states).
 - `empty@demo.legba.app` — no subscriptions or keys (first-use empty states).
-- Newly registered users start empty (first-use states). The store is in-memory: a restart wipes it.
+- The store is in-memory: a restart resets created keys.
+
+## Product
+- The dashboard serves the **Legba API, MCP, and the agent skill**. Tabs: Overview · Sessions · MCP ·
+  Agent Skill · API Keys. Copy follows the website's approved messaging
+  (Website/Legba/docs/brand-voice.md): no "Inference Box", no retired phrases ("no logs", "solutions"…).
+- Not public yet, so always marked **Preview** and never presented as live: the browser API host
+  (`https://{your-api-host}/orgs/{org_uuid}/api`), the MCP config, the agent skill install command.
 
 ## Dev server
 - `pnpm dev` runs `next dev --no-server-fast-refresh`: Next 16.4 server HMR breaks `catchError` ("Cannot redefine property: catchError"). Keep the flag until a Next patch fixes it.

@@ -1,18 +1,17 @@
 import { describe, expect, it } from "vitest";
+import type { DemoUser } from "./demo";
 import { ServiceError } from "./errors";
-import type { SessionUser } from "./session";
 import { simulate } from "./simulate";
 
-const base: SessionUser = {
-  id: "usr_x",
-  name: "X",
-  email: "x@example.com",
-  signedInAt: Date.now(),
+const base: DemoUser = {
+  workspaceId: "demo_normal",
+  scenario: "normal",
   behavior: { latencyMs: 0, failWindowMs: 0 },
+  startedAt: Date.now(),
 };
 
 describe("simulate", () => {
-  it("passes normal users straight through", async () => {
+  it("passes the normal dashboard straight through", async () => {
     await expect(
       simulate(base, "SUBSCRIPTIONS_UNAVAILABLE"),
     ).resolves.toBeUndefined();
@@ -31,7 +30,7 @@ describe("simulate", () => {
   it("recovers once the window has passed", async () => {
     const flaky = {
       ...base,
-      signedInAt: Date.now() - 7000,
+      startedAt: Date.now() - 7000,
       behavior: { latencyMs: 0, failWindowMs: 6000 },
     };
     await expect(
@@ -39,7 +38,7 @@ describe("simulate", () => {
     ).resolves.toBeUndefined();
   });
 
-  it("adds the persona's latency", async () => {
+  it("adds the demo state's latency", async () => {
     const slow = { ...base, behavior: { latencyMs: 120, failWindowMs: 0 } };
     const started = performance.now();
     await simulate(slow, "SUBSCRIPTIONS_UNAVAILABLE");

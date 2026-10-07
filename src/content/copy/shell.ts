@@ -4,16 +4,16 @@ export const nav = {
   label: "Primary",
   items: {
     overview: "Overview",
-    deployments: "Deployments",
-    models: "Model Catalog",
-    registries: "Registries",
+    sessions: "Sessions",
+    mcp: "MCP",
+    agentSkill: "Agent Skill",
     apiKeys: "API Keys",
   },
   short: {
     overview: "Overview",
-    deployments: "Deploy",
-    models: "Models",
-    registries: "Registries",
+    sessions: "Sessions",
+    mcp: "MCP",
+    agentSkill: "Skill",
     apiKeys: "Keys",
   },
   // The logo link; distinct from "Overview" so voice control can tell them apart.
@@ -44,9 +44,9 @@ export const search = {
   // Extra words each entry answers to (matched, never shown).
   keywords: {
     overview: ["home", "dashboard"],
-    deployments: ["deploy", "instances", "servers"],
-    models: ["models", "catalog"],
-    registries: ["registry", "images", "containers"],
+    sessions: ["sessions", "instances", "browser", "isolated"],
+    mcp: ["mcp", "model context protocol", "agent", "connect"],
+    agentSkill: ["skill", "agent", "install", "routing"],
     apiKeys: ["keys", "tokens", "credentials"],
     subscriptions: ["plans", "ghost", "shield", "billing"],
     createKey: ["new key", "token"],

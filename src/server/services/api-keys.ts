@@ -1,7 +1,7 @@
 import "server-only";
 
 import { generateApiKey } from "../crypto";
-import { requireUser } from "../session";
+import { getDemoUser } from "../demo";
 import { simulate } from "../simulate";
 import { type ApiKeyRecord, store } from "../store";
 
@@ -16,9 +16,9 @@ function toDTO(record: ApiKeyRecord): ApiKeyDTO {
 }
 
 export async function listApiKeys(): Promise<ApiKeyDTO[]> {
-  const user = await requireUser();
+  const user = await getDemoUser();
   await simulate(user, "API_KEYS_UNAVAILABLE");
-  return (store.apiKeys.get(user.id) ?? [])
+  return (store.apiKeys.get(user.workspaceId) ?? [])
     .toSorted((a, b) => b.createdAt.localeCompare(a.createdAt))
     .map(toDTO);
 }
@@ -27,28 +27,31 @@ export async function listApiKeys(): Promise<ApiKeyDTO[]> {
 export async function createApiKey(
   name: string,
 ): Promise<{ key: ApiKeyDTO; secret: string }> {
-  const user = await requireUser();
+  const user = await getDemoUser();
   const { secret, hash, prefix } = generateApiKey();
   const record: ApiKeyRecord = {
     id: `key_${crypto.randomUUID().replaceAll("-", "").slice(0, 20)}`,
-    userId: user.id,
+    workspaceId: user.workspaceId,
     name,
     prefix,
     hash,
     createdAt: new Date().toISOString(),
     lastUsedAt: null,
   };
-  store.apiKeys.set(user.id, [...(store.apiKeys.get(user.id) ?? []), record]);
+  store.apiKeys.set(user.workspaceId, [
+    ...(store.apiKeys.get(user.workspaceId) ?? []),
+    record,
+  ]);
   return { key: toDTO(record), secret };
 }
 
 export async function revokeApiKey(id: string): Promise<void> {
-  const user = await requireUser();
-  // Idempotent and scoped to the user's own keys: revoking a key that is
-  // already gone (another tab, a double submit) is a success, not an error.
-  const keys = store.apiKeys.get(user.id) ?? [];
+  const user = await getDemoUser();
+  // Idempotent and scoped to the workspace's own keys: revoking a key that
+  // is already gone (another tab, a double submit) is a success, not an error.
+  const keys = store.apiKeys.get(user.workspaceId) ?? [];
   store.apiKeys.set(
-    user.id,
+    user.workspaceId,
     keys.filter((key) => key.id !== id),
   );
 }

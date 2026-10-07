@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "../session";
+import { DEMO_ACCOUNT } from "../demo";
 
 export type ProfileDTO = {
   name: string;
@@ -9,20 +9,21 @@ export type ProfileDTO = {
   avatarUrl: string | null;
 };
 
-/** The account shown in the header. Never fails for a valid session. */
+/**
+ * The account shown in the header. There is no auth, so it is the
+ * placeholder account from the mockup. Async so a real API can replace it.
+ */
 export async function getProfile(): Promise<ProfileDTO> {
-  const user = await requireUser();
-  const initials = user.name
+  const initials = DEMO_ACCOUNT.name
     .split(/\s+/)
     .filter(Boolean)
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
   return {
-    name: user.name,
-    email: user.email,
-    initials: initials || user.email[0]?.toUpperCase() || "?",
-    // The mockup account shows the generated portrait; everyone else gets initials.
-    avatarUrl: user.id === "usr_jane" ? "/images/avatars/default.webp" : null,
+    name: DEMO_ACCOUNT.name,
+    email: DEMO_ACCOUNT.email,
+    initials,
+    avatarUrl: DEMO_ACCOUNT.avatarUrl,
   };
 }

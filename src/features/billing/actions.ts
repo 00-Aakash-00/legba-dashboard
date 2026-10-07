@@ -4,7 +4,6 @@ import { unstable_rethrow } from "next/navigation";
 import { billing } from "@/content/copy";
 import { ServiceError } from "@/server/errors";
 import { topUp } from "@/server/services/billing";
-import { requireUser } from "@/server/session";
 import { parseAmount } from "./amount";
 
 export type TopUpState =
@@ -13,8 +12,8 @@ export type TopUpState =
   | { status: "success"; cents: number };
 
 /**
- * Tops up the balance. A public endpoint like any Server Action: it checks
- * the session itself and re-reads the amount from the raw field. Every
+ * Tops up the balance. A public endpoint like any Server Action: it re-reads
+ * the amount from the raw field and trusts nothing from the client. Every
  * failure is payment-grade: it says the top-up didn't happen and that the
  * user wasn't charged (the service fails before any charge is attempted).
  */
@@ -22,8 +21,6 @@ export async function topUpCredits(
   _previous: TopUpState,
   formData: FormData,
 ): Promise<TopUpState> {
-  await requireUser();
-
   const raw = formData.get("amount");
   const amount = parseAmount(typeof raw === "string" ? raw : "");
   if (!amount.ok) {

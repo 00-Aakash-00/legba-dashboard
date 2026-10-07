@@ -79,54 +79,6 @@ export const apiKeys = {
   },
 };
 
-export const workspace = {
-  deployments: {
-    title: "Deployments",
-    description: "Launch, monitor, and scale your deployed models.",
-    section: "All deployments",
-    loading: "Loading your deployments",
-    empty: {
-      title: "No deployments yet",
-      body: "Deploy a model from the catalog and it appears here with its status and usage.",
-      action: "Browse models",
-    },
-    error: {
-      title: "Couldn't load your deployments",
-      body: "The deployments service didn't respond. Running instances are unaffected. Try again in a moment.",
-    },
-  },
-  models: {
-    title: "Model Catalog",
-    description: "Models you can deploy on Legba's infrastructure.",
-    section: "Available models",
-    loading: "Loading the model catalog",
-    empty: {
-      title: "No models in your catalog yet",
-      body: "Models available to your workspace will be listed here. The docs explain what's coming.",
-      action: "Read the docs",
-    },
-    error: {
-      title: "Couldn't load the model catalog",
-      body: "The catalog service didn't respond. Try again in a moment.",
-    },
-  },
-  registries: {
-    title: "Registries",
-    description: "Connect container registries to deploy your own images.",
-    section: "Connected registries",
-    loading: "Loading your registries",
-    empty: {
-      title: "No registries connected",
-      body: "Connect a container registry to deploy your own images. The docs walk through it.",
-      action: "Read the registry guide",
-    },
-    error: {
-      title: "Couldn't load your registries",
-      body: "The registries service didn't respond. Try again in a moment.",
-    },
-  },
-};
-
 export const errorPages = {
   notFound: {
     title: "Page not found",

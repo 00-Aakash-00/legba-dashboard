@@ -11,3 +11,4 @@ export * from "./copy/docs";
 export * from "./copy/overview";
 export * from "./copy/shell";
 export * from "./copy/subscriptions";
+export * from "./copy/workspace";

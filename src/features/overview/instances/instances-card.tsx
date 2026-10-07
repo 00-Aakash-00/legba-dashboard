@@ -54,7 +54,7 @@ export function InstancesCard() {
           ))}
         </p>
         <Link
-          href="/deployments"
+          href="/sessions"
           className={cn(
             buttonVariants({ variant: "pill-red", size: "pill-lg" }),
             styles.launch,

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "../session";
+import { getDemoUser } from "../demo";
 import { simulate } from "../simulate";
 import { type SubscriptionRecord, store } from "../store";
 
@@ -14,20 +14,20 @@ function toDTO(record: SubscriptionRecord): SubscriptionDTO {
   return { id, plan, status, vendor, startedAt, renewsAt };
 }
 
-/** The signed-in user's subscriptions. Throws ServiceError; never returns [] on failure. */
+/** The workspace's subscriptions. Throws ServiceError; never returns [] on failure. */
 export async function listSubscriptions(): Promise<SubscriptionDTO[]> {
-  const user = await requireUser();
+  const user = await getDemoUser();
   await simulate(user, "SUBSCRIPTIONS_UNAVAILABLE");
-  return (store.subscriptions.get(user.id) ?? []).map(toDTO);
+  return (store.subscriptions.get(user.workspaceId) ?? []).map(toDTO);
 }
 
-/** One of the signed-in user's subscriptions, or null when it isn't theirs. */
+/** One of the workspace's subscriptions, or null when it doesn't exist. */
 export async function getSubscription(
   id: string,
 ): Promise<SubscriptionDTO | null> {
-  const user = await requireUser();
+  const user = await getDemoUser();
   await simulate(user, "SUBSCRIPTIONS_UNAVAILABLE");
-  const record = (store.subscriptions.get(user.id) ?? []).find(
+  const record = (store.subscriptions.get(user.workspaceId) ?? []).find(
     (subscription) => subscription.id === id,
   );
   return record ? toDTO(record) : null;

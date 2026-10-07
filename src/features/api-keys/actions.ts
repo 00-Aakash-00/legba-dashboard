@@ -4,7 +4,6 @@ import { refresh } from "next/cache";
 import { unstable_rethrow } from "next/navigation";
 import { apiKeys } from "@/content/copy";
 import { createApiKey, revokeApiKey } from "@/server/services/api-keys";
-import { requireUser } from "@/server/session";
 import { KeyIdSchema, KeyNameSchema } from "./schema";
 
 export type CreateKeyResult =
@@ -30,7 +29,6 @@ function referenceOf(error: unknown) {
 }
 
 export async function createKey(formData: FormData): Promise<CreateKeyResult> {
-  await requireUser();
   const parsed = KeyNameSchema.safeParse(formData.get("name"));
   if (!parsed.success) {
     return {
@@ -57,7 +55,6 @@ export async function createKey(formData: FormData): Promise<CreateKeyResult> {
 }
 
 export async function revokeKey(id: string): Promise<RevokeKeyResult> {
-  await requireUser();
   const parsed = KeyIdSchema.safeParse(id);
   if (!parsed.success) return { ok: false };
   try {
