@@ -12,8 +12,9 @@ import { eyebrowClass, SectionBullet } from "./section-card";
 /**
  * A calm, centred message for errors and missing pages, in the overview's
  * vocabulary: the screen's own hairline figure (decorative; the copy says
- * everything), the red bullet + eyebrow, one heading, what happened and what
- * to do next, and the way out.
+ * everything), the eyebrow, one heading, what happened and what to do next,
+ * and the way out. With a figure, its bright stroke is the one red above the
+ * button, so the eyebrow drops its red bullet.
  */
 export function StatusScreen({
   figure,
@@ -51,7 +52,7 @@ export function StatusScreen({
           eyebrowClass,
         )}
       >
-        <SectionBullet />
+        {figure ? null : <SectionBullet />}
         {eyebrow}
       </p>
       <h1 className="mt-4 max-w-[560px] text-balance font-semibold text-[28px] text-ink leading-8 tracking-[-0.03em] sm:text-[32px] sm:leading-[38px]">
