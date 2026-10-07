@@ -28,7 +28,28 @@ type Entry = {
   fallback: string;
   /** The colour the figure's plates take when its place isn't a panel. */
   plate?: string;
+  /**
+   * The rest drawing's box [x, y, w, h] in viewBox units (measured from the
+   * still, plus a little room). The slot then takes its aspect ratio and the
+   * stage is placed so the drawing fills it: size such a slot by height.
+   */
+  crop?: readonly [number, number, number, number];
 };
+
+/** Inline host variables for an entry: its plate, and its crop if it has one. */
+function hostStyle({ plate, crop }: Entry): CSSProperties | undefined {
+  if (!plate && !crop) return undefined;
+  const style: Record<string, string> = {};
+  if (plate) style["--hairline-plate"] = plate;
+  if (crop) {
+    const [x, y, w, h] = crop;
+    style.aspectRatio = `${w} / ${h}`;
+    style["--hairline-width"] = `${(400 / w) * 100}%`;
+    style["--hairline-left"] = `${(-x / w) * 100}%`;
+    style["--hairline-top"] = `${(-y / h) * 100}%`;
+  }
+  return style as CSSProperties;
+}
 
 /**
  * A drivable figure also has the line (viewBox units, 400 x 320) the keyboard
@@ -267,11 +288,7 @@ export function HairlineFigure({
     // biome-ignore lint/a11y/useAriaPropsSupportedByRole: the slot is role="img" (named by label) until the figure mounts; then the name moves to the stage.
     <div
       className={cn(styles.figure, className)}
-      style={
-        entry.plate
-          ? ({ "--hairline-plate": entry.plate } as CSSProperties)
-          : undefined
-      }
+      style={hostStyle(entry)}
       data-figure={kind}
       data-ready={ready || undefined}
       role={decorative || ready ? undefined : "img"}
