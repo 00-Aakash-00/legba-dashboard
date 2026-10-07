@@ -102,3 +102,6 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
 ## Git
 - Small conventional commits; author and committer `aharish4@asu.edu` (`git log --format='%ae %ce'`).
 - Push to the private `legba-dashboard` GitHub repo after every milestone.
+- **One branch only** (user rule): all work lands on `main`. Temporary worktrees are removed right after use
+  (`git worktree remove` + `git worktree prune`); when everything is committed there are no other branches
+  (local or on GitHub), worktrees or stashes.
