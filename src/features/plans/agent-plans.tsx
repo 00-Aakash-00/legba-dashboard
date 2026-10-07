@@ -136,8 +136,11 @@ function PlanColumn({ plan }: { plan: SwitchablePlan }) {
           {plansPage.agent.tagline[plan.id]}
         </p>
       </div>
+      {/* The box already shows the highlights: list only the other features. */}
       <Included
-        features={plan.features}
+        features={plan.features.filter(
+          (feature) => !plan.highlights.includes(feature),
+        )}
         onWine={featured}
         className="px-(--inset-included) pt-6 pb-8 lg:row-span-2 lg:grid lg:grid-rows-subgrid"
       />

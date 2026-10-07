@@ -112,7 +112,9 @@ export function ExtensionActions({
           setFlow(active ? "cancel" : "trial");
         }}
         className={cn(
-          "max-sm:w-full",
+          // From 640px at least as wide as its skeleton (sm:w-44), so either
+          // label lands in the skeleton's place and "Add to Chrome" stays put.
+          "max-sm:w-full sm:min-w-44",
           active && "hover:border-signal/60 hover:text-signal",
         )}
       >

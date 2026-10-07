@@ -33,6 +33,25 @@
   }
 }
 
+/*
+ * Section headings are link targets (/plans#agent-plans-heading,
+ * #extension-plan-heading): a jump lands the heading 1.5rem below the sticky
+ * header. The header is its bar plus a 1px rule plus the top safe area
+ * (app-header.tsx): 3.5rem + 1px below 1024px, 60px + 1px from 1024px. The
+ * root's scroll-padding-top (3.75rem, globals.css) counts in every jump and
+ * scroll-margin adds to it, so the margin is only the rest.
+ */
+.anchor {
+  --header-h: calc(3.5rem + 1px + env(safe-area-inset-top, 0px));
+  scroll-margin-top: calc(var(--header-h) + 1.5rem - 3.75rem);
+}
+
+@media (width >= 64rem) {
+  .anchor {
+    --header-h: calc(61px + env(safe-area-inset-top, 0px));
+  }
+}
+
 .column {
   --r-in-column: max(
     0px,

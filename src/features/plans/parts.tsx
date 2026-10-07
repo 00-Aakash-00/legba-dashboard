@@ -234,7 +234,11 @@ export function SectionHeading({
 }) {
   return (
     <div className="flex flex-col gap-2.5">
-      <h2 id={id} tabIndex={-1} className={cn(eyebrowClass, "outline-none")}>
+      <h2
+        id={id}
+        tabIndex={-1}
+        className={cn(eyebrowClass, styles.anchor, "outline-none")}
+      >
         {title}
       </h2>
       {description ? (
@@ -284,7 +288,7 @@ export function PreviewNote({ children }: { children: ReactNode }) {
 export function ChipSkeleton() {
   return (
     <span aria-hidden className="skeleton-delay flex">
-      <Skeleton className={cn(styles.chip, "h-6 w-24 bg-[#1b1d1f]")} />
+      <Skeleton className={cn(styles.chip, "h-6 w-24")} />
     </span>
   );
 }
@@ -292,7 +296,7 @@ export function ChipSkeleton() {
 export function ButtonSkeleton({ className }: { className?: string }) {
   return (
     <span aria-hidden className={cn("skeleton-delay flex", className)}>
-      <Skeleton className="h-11 w-full rounded-full bg-[#1b1d1f]" />
+      <Skeleton className="h-11 w-full rounded-full" />
     </span>
   );
 }

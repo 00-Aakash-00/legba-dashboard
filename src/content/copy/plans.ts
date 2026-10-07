@@ -13,7 +13,10 @@ export type AgentPlan = {
   description: string;
   price: string;
   priceSuffix?: string;
-  /** Shown in the plan's two highlighted rows. */
+  /**
+   * The plan's highlight box: two of its `features`, verbatim. "What's
+   * included" lists the other features, so each fact shows once.
+   */
   highlights: [string, string];
   features: string[];
   cta: string;
