@@ -86,11 +86,20 @@ export const errorPages = {
     body: "Check the address, or head back to your overview.",
     action: "Go to overview",
   },
+  /** A page inside the dashboard failed; the header and navigation still work. */
   app: {
     title: "Something went wrong",
     eyebrow: "Error",
     heading: "This page didn't load",
     body: "Something failed while loading it. Your data is safe. Try again, or head back to your overview.",
+    action: "Go to overview",
+  },
+  /** The dashboard's frame itself failed (src/app/error.tsx): no header to fall back on. */
+  frame: {
+    title: "Something went wrong",
+    eyebrow: "Error",
+    heading: "The dashboard didn't load",
+    body: "Something failed while loading the dashboard. Your data is safe. Try again, or go back to your overview.",
     action: "Go to overview",
   },
   global: {

@@ -21,7 +21,7 @@ export default function RootError({
   error: Error & { digest?: string };
   retry: () => void;
 }) {
-  const copy = errorPages.app;
+  const copy = errorPages.frame;
   return (
     <StandaloneFrame>
       <StatusScreen
