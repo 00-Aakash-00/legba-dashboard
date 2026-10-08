@@ -23,7 +23,8 @@ export type StateKind =
   | "vending"
   | "breaker"
   | "signpost"
-  | "fuse";
+  | "fuse"
+  | "cardfile";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -139,6 +140,13 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     fallback: "/images/hairline/fuse.svg",
     plate: "#121314",
     crop: [53, 41, 293, 250],
+  },
+  // Overview subscriptions failed: a card file whose divider jumped its notch.
+  cardfile: {
+    load: () => import("./figures/cardfile.js"),
+    fallback: "/images/hairline/cardfile.svg",
+    plate: "#0f1010",
+    crop: [52, 49, 295, 232],
   },
 };
 

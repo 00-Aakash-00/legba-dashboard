@@ -58,6 +58,7 @@ export function SubscriptionsPanel() {
             <span className="leading-[11px]">{subscriptions.viewAll}</span>
           </Link>
           <SectionBoundary
+            figure="cardfile"
             title={subscriptions.error.title}
             body={subscriptions.error.body}
             className={cn(
