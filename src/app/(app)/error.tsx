@@ -19,6 +19,7 @@ export default function AppError({
   return (
     <div className="flex min-h-[calc(100dvh-8rem)] w-full flex-col px-4">
       <StatusScreen
+        figure="unplugged"
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}

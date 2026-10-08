@@ -26,7 +26,8 @@ export type StateKind =
   | "fuse"
   | "cardfile"
   | "flapboard"
-  | "keyclip";
+  | "keyclip"
+  | "unplugged";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -172,6 +173,13 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     load: () => import("./figures/keyclip.js"),
     fallback: "/images/hairline/keyclip.svg",
     crop: [118, 49, 163, 234],
+  },
+  // A page failed (app shell kept): a plug lying short of its socket.
+  unplugged: {
+    load: () => import("./figures/unplugged.js"),
+    fallback: "/images/hairline/unplugged.svg",
+    plate: "#121314",
+    crop: [67, 49, 257, 241],
   },
 };
 
