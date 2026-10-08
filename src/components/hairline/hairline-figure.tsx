@@ -16,7 +16,12 @@ import styles from "./hairline-figure.module.css";
 /** Figures people can drive with the keyboard (product art in a card). */
 export type InteractiveKind = "ghost" | "shield";
 /** Figures that decorate one empty or error state (never focusable). */
-export type StateKind = never;
+export type StateKind =
+  | "keyhooks"
+  | "blankwindows"
+  | "blanksheet"
+  | "vending"
+  | "breaker";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -86,6 +91,38 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
       [204, 70],
     ],
     orientation: "vertical",
+  },
+  // API keys, none yet: a key rack with every hook bare.
+  keyhooks: {
+    load: () => import("./figures/keyhooks.js"),
+    fallback: "/images/hairline/keyhooks.svg",
+    crop: [77, 65, 246, 201],
+  },
+  // Sessions, none yet: a rack of browser windows with blank viewports.
+  blankwindows: {
+    load: () => import("./figures/blankwindows.js"),
+    fallback: "/images/hairline/blankwindows.svg",
+    crop: [79, 51, 234, 230],
+  },
+  // Search palette, no results: a loupe over a blank ruled sheet.
+  blanksheet: {
+    load: () => import("./figures/blanksheet.js"),
+    fallback: "/images/hairline/blanksheet.svg",
+    plate: "#141516",
+    crop: [37, 66, 326, 198],
+  },
+  // Plans: the plan read failed: a vending machine with an item stuck.
+  vending: {
+    load: () => import("./figures/vending.js"),
+    fallback: "/images/hairline/vending.svg",
+    crop: [109, 16, 181, 304],
+  },
+  // The app frame failed: a breaker panel with one breaker tripped.
+  breaker: {
+    load: () => import("./figures/breaker.js"),
+    fallback: "/images/hairline/breaker.svg",
+    plate: "#121314",
+    crop: [41, 41, 329, 249],
   },
 };
 

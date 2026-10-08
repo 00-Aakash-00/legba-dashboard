@@ -67,7 +67,7 @@ export function SectionError({
         <HairlineFigure
           kind={figure}
           decorative
-          className="mb-1 h-36 w-45 shrink-0"
+          className="mb-1 h-32 shrink-0"
         />
       ) : null}
       {/* Only the message is live, so the button's label changes don't re-announce it. */}

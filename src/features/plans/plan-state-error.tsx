@@ -33,6 +33,7 @@ export function PlanStateError({ reference }: { reference?: string }) {
   return (
     <div ref={noticeRef} className="rounded-card border border-line bg-panel">
       <SectionError
+        figure="vending"
         title={plansPage.error.title}
         body={plansPage.error.body}
         reference={reference}

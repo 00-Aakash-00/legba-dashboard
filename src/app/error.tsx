@@ -25,6 +25,7 @@ export default function RootError({
   return (
     <StandaloneFrame>
       <StatusScreen
+        figure="breaker"
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}

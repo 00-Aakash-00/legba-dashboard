@@ -1,6 +1,7 @@
 import { io } from "next/cache";
 import Link from "next/link";
 import { Suspense } from "react";
+import { HairlineFigure } from "@/components/hairline/hairline-figure";
 import { RowsSkeleton } from "@/components/patterns/rows-skeleton";
 import { SectionBoundary } from "@/components/patterns/section-boundary";
 import { SectionCard } from "@/components/patterns/section-card";
@@ -10,6 +11,7 @@ import {
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
+  EmptyMedia,
 } from "@/components/ui/empty";
 import { workspace } from "@/content/copy";
 import { cn } from "@/lib/utils";
@@ -69,6 +71,9 @@ async function Sessions() {
   return (
     <Empty className="flex-1 justify-start gap-7 border-0 px-6 pt-14 pb-12">
       <EmptyHeader className="max-w-[440px] gap-0">
+        <EmptyMedia className="mb-5">
+          <HairlineFigure kind="blankwindows" decorative className="h-36" />
+        </EmptyMedia>
         <h3 className="font-semibold text-[19px] text-ink leading-6 tracking-[-0.03em]">
           {copy.empty.title}
         </h3>

@@ -7,6 +7,7 @@ import {
 } from "cmdk";
 import type { Route } from "next";
 import { useRef, useState } from "react";
+import { HairlineFigure } from "@/components/hairline/hairline-figure";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -174,7 +175,8 @@ export function PaletteBody({
           "max-h-none scroll-py-2 overscroll-contain px-2 pb-2",
         )}
       >
-        <CommandEmpty className="flex flex-col items-center gap-2 px-6 py-14">
+        <CommandEmpty className="flex flex-col items-center gap-2 px-6 py-10">
+          <HairlineFigure kind="blanksheet" decorative className="mb-3 h-26" />
           <p className="font-semibold text-[15px] text-bone tracking-[-0.01em]">
             {search.empty(query)}
           </p>

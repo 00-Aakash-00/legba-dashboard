@@ -135,6 +135,7 @@ export function ApiKeysList({
 
       {visible.length === 0 ? (
         <EmptyState
+          figure="keyhooks"
           title={apiKeys.empty.title}
           body={apiKeys.empty.body}
           className="flex-1"

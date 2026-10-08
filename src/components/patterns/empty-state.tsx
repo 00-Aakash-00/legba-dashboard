@@ -39,7 +39,7 @@ export function EmptyState({
       <EmptyHeader className="max-w-[440px] gap-0">
         {figure ? (
           <EmptyMedia className="mb-5">
-            <HairlineFigure kind={figure} decorative className="h-40 w-50" />
+            <HairlineFigure kind={figure} decorative className="h-36" />
           </EmptyMedia>
         ) : null}
         <h3

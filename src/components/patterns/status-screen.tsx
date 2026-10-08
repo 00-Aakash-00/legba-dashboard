@@ -42,7 +42,7 @@ export function StatusScreen({
       )}
     >
       {figure ? (
-        <HairlineFigure kind={figure} decorative className="h-52 w-65" />
+        <HairlineFigure kind={figure} decorative className="h-44" />
       ) : null}
       <p className={cn(figure ? "mt-6" : null, eyebrowClass)}>{eyebrow}</p>
       <h1 className="mt-4 max-w-[560px] text-balance font-semibold text-[28px] text-ink leading-8 tracking-[-0.03em] sm:text-[32px] sm:leading-[38px]">
