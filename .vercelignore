@@ -1,0 +1,9 @@
+# Local-only files never go to Vercel.
+.env*
+!.env.example
+.next
+node_modules
+tsconfig.tsbuildinfo
+# Not needed to build or run the app.
+.claude
+docs
