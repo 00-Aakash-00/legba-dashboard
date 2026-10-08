@@ -6,11 +6,16 @@
  * percentages of it, so it scales with the card. The figure's 400 x 320 stage
  * sits at one CSS px per viewBox unit at full size (width 186.05%), placed so
  * the figure's rest drawing fills the slot (offsets measured from the figures'
- * rest silhouettes; adjust --hairline-left/top if a figure's rest box moves).
+ * rest silhouettes; adjust --figure-left/top if a figure's rest box moves).
  *
  * Hairline rule 04: no colour inside a figure. The red mood is the host's: a
  * glow and dust behind the figure (its plates are opaque, so they show only
  * around it) and the mockup's light streaks in front of it.
+ *
+ * The card may move a figure inside its slot (subscription-card.module.css):
+ * --art-drop lowers it by a share of the slot's height and --art-scale sizes
+ * it about the slot's foot. Its atmosphere moves with it, so the light stays
+ * registered to the figure; the slot, and the figure's focus ring on it, stay.
  */
 .art {
   isolation: isolate;
@@ -24,10 +29,18 @@
   inset: 0;
 }
 
+/* The figure's place at full size (--figure-left / --figure-top, per plan below), scaled and lowered by the card. */
 .art > .figure {
   z-index: 1;
   pointer-events: auto;
-  --hairline-width: 186.05%;
+  --hairline-left: calc(50% + var(--art-scale, 1) * (var(--figure-left) - 50%));
+  --hairline-top: calc(
+    100% +
+    var(--art-scale, 1) *
+    (var(--figure-top) - 100%) +
+    var(--art-drop, 0%)
+  );
+  --hairline-width: calc(var(--art-scale, 1) * 186.05%);
 }
 
 .art > .back {
@@ -36,6 +49,14 @@
 
 .art > .front {
   z-index: 2;
+}
+
+/* The atmosphere takes the figure's move: the same scale about the slot's foot, the same drop. */
+.art > .back,
+.art > .front {
+  transform-origin: 50% 100%;
+  translate: 0 var(--art-drop, 0%);
+  scale: var(--art-scale, 1);
 }
 
 .back > i,
@@ -74,21 +95,21 @@
 
 /* Ghost: the hood looks out from the top of the slot; the cloak dissolves toward the bottom. */
 .ghost > .figure {
-  --hairline-left: -42.33%;
-  --hairline-top: -1.593%;
+  --figure-left: -42.33%;
+  --figure-top: -1.593%;
   --hairline-mask: linear-gradient(#000 57.9%, transparent 90.1%);
 }
 
 /* Shield: the stack stands in its rings in the slot's upper two thirds. */
 .shield > .figure {
-  --hairline-left: -46.28%;
-  --hairline-top: -9.869%;
+  --figure-left: -46.28%;
+  --figure-top: -9.869%;
 }
 
 /* Patchboard: the switchboard's cabinet fills the slot's height, its keyshelf across the bottom. */
 .patchboard > .figure {
-  --hairline-left: -41.95%;
-  --hairline-top: -2.918%;
+  --figure-left: -41.95%;
+  --figure-top: -2.918%;
 }
 
 /* A ring of light on each of the shield figure's two rings, under its own line. */

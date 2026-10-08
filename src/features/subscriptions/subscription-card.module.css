@@ -49,6 +49,22 @@
   margin-top: 6px;
 }
 
+/*
+ * Stacked, the three figures stand on one baseline: each drawing's foot rests
+ * where Ghost's does, about 15px above the title (their rest ink, measured in
+ * this 176px slot). Shield's drawing is shorter, so it comes down; the
+ * switchboard is taller than the room between the chips and that line, so it
+ * is drawn 5% smaller. Each moves with its atmosphere (plan-art.module.css).
+ */
+.card[data-plan="shield"] {
+  --art-drop: 14.64%;
+}
+
+.card[data-plan="agent"] {
+  --art-scale: 0.95;
+  --art-drop: -1.28%;
+}
+
 .text {
   position: relative;
   z-index: 3;
@@ -89,6 +105,9 @@
       width: calc(var(--art) - 5.2px);
       height: auto;
       margin-top: 0;
+      /* The mockup's places, not the stacked baseline (above). */
+      --art-scale: 1;
+      --art-drop: 0%;
     }
 
     .text {

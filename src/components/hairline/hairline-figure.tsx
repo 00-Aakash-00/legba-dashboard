@@ -65,13 +65,15 @@ function hostStyle({ plate, crop }: Entry): CSSProperties | undefined {
 /**
  * A drivable figure also has the line (viewBox units, 400 x 320) the keyboard
  * moves the pointer along, from the figure's least answer to its most, which
- * is also the slider's orientation. Keys reach a figure through its pointer,
- * the way the hairline bench's `?at=` does, so a figure needs no key code of
- * its own; a figure that does handle keys (and calls preventDefault) is left
- * alone.
+ * is also the slider's orientation. Two points make a line walked in STEPS
+ * even steps; more make a polyline with one step per point, for a figure with
+ * a set of answers (a point inside each). Keys reach a figure through its
+ * pointer, the way the hairline bench's `?at=` does, so a figure needs no key
+ * code of its own; a figure that does handle keys (and calls preventDefault)
+ * is left alone.
  */
 type DrivableEntry = Entry & {
-  scrub: readonly [Point, Point];
+  scrub: readonly [Point, Point, ...Point[]];
   orientation: "horizontal" | "vertical";
 };
 
@@ -98,14 +100,34 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     ],
     orientation: "vertical",
   },
-  // The nearest parked cord seats its plug in the jack under the pointer: up the
-  // board, line 1 (bottom left) to line 20 (top right).
+  // The nearest parked cord seats its plug in the jack under the pointer: one
+  // stop per jack in line order, across each row and up the board, line 1
+  // (bottom left) to line 20 (top right). Each point is the centre of its
+  // line's hit region, probed from the figure, at least 12.5 units inside it.
   patchboard: {
     load: () => import("./figures/patchboard.js"),
     fallback: "/images/hairline/patchboard.svg",
     scrub: [
-      [156, 217],
-      [220, 60],
+      [155, 230],
+      [182, 222],
+      [207, 214],
+      [235, 206],
+      [151, 188],
+      [178, 179],
+      [204, 172],
+      [231, 163],
+      [148, 154],
+      [176, 146],
+      [201, 138],
+      [228, 130],
+      [145, 117],
+      [172, 108],
+      [198, 101],
+      [225, 92],
+      [142, 78],
+      [169, 70],
+      [194, 62],
+      [221, 54],
     ],
     orientation: "vertical",
   },
@@ -183,7 +205,7 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
   },
 };
 
-/** The keyboard's steps along the scrub line; at rest the slider reads the middle one. */
+/** The keyboard's steps along a two-point scrub line. */
 const STEPS = 10;
 
 const KEYS = new Set([
@@ -250,6 +272,10 @@ export function HairlineFigure({
   const [reading, setReading] = useState("");
   const entry: Entry | DrivableEntry = FIGURES[kind];
   const drive = "scrub" in entry ? entry : null;
+  // The slider's steps: STEPS along a line, one per point after a polyline's
+  // first. At rest it reads the middle (between two steps if their count is odd).
+  const steps =
+    drive && drive.scrub.length > 2 ? drive.scrub.length - 1 : STEPS;
   const interactive = ready && !decorative && drive !== null;
 
   useEffect(() => {
@@ -340,21 +366,24 @@ export function HairlineFigure({
     };
   }, [kind, decorative]);
 
-  /** Holds the pointer at step n (0 to STEPS) along the figure's scrub line. */
+  /** Holds the pointer at step n (0 to steps): a polyline's nth point, or n / STEPS along a line. */
   function scrubTo(n: number) {
     const stage = stageRef.current;
     if (!stage || !drive) return;
     setStep(n);
+    const { scrub } = drive;
+    const [[x0, y0], [x1, y1]] = scrub;
     const t = n / STEPS;
-    const [[x0, y0], [x1, y1]] = drive.scrub;
+    const [x, y] =
+      scrub.length > 2 ? scrub[n] : [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t];
     const box = stage.getBoundingClientRect();
     stage.dispatchEvent(
       new PointerEvent("pointermove", {
         pointerType: "mouse",
         pointerId: 1,
         bubbles: true,
-        clientX: box.left + ((x0 + (x1 - x0) * t) / 400) * box.width,
-        clientY: box.top + ((y0 + (y1 - y0) * t) / 320) * box.height,
+        clientX: box.left + (x / 400) * box.width,
+        clientY: box.top + (y / 320) * box.height,
       }),
     );
   }
@@ -373,9 +402,13 @@ export function HairlineFigure({
     event.preventDefault();
     if (event.key === "Escape") return rest();
     if (event.key === "Home") return scrubTo(0);
-    if (event.key === "End") return scrubTo(STEPS);
-    const delta = FORWARD.has(event.key) ? 1 : -1;
-    scrubTo(Math.min(STEPS, Math.max(0, (step ?? STEPS / 2) + delta)));
+    if (event.key === "End") return scrubTo(steps);
+    // From rest (the middle), the first press lands on the nearest step that way.
+    const at = step ?? steps / 2;
+    const next = FORWARD.has(event.key)
+      ? Math.floor(at) + 1
+      : Math.ceil(at) - 1;
+    scrubTo(Math.min(steps, Math.max(0, next)));
   }
 
   return (
@@ -415,8 +448,8 @@ export function HairlineFigure({
           aria-describedby={interactive ? guidanceId : undefined}
           aria-orientation={interactive ? drive?.orientation : undefined}
           aria-valuemin={interactive ? 0 : undefined}
-          aria-valuemax={interactive ? STEPS : undefined}
-          aria-valuenow={interactive ? (step ?? STEPS / 2) : undefined}
+          aria-valuemax={interactive ? steps : undefined}
+          aria-valuenow={interactive ? (step ?? steps / 2) : undefined}
           aria-valuetext={interactive ? reading || undefined : undefined}
           aria-hidden={ready ? undefined : true}
           onKeyDown={interactive ? onKeyDown : undefined}
