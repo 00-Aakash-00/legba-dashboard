@@ -174,7 +174,7 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     fallback: "/images/hairline/keyclip.svg",
     crop: [118, 49, 163, 234],
   },
-  // A page failed (app shell kept): a plug lying short of its socket.
+  // A page failed (app shell kept): a plug hanging half out of its socket.
   unplugged: {
     load: () => import("./figures/unplugged.js"),
     fallback: "/images/hairline/unplugged.svg",
