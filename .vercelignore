@@ -1,9 +1,10 @@
-# Local-only files never go to Vercel.
+# Local-only files never go to Vercel. Paths starting with / are anchored to the
+# project root (an unanchored name would also match folders inside src/).
 .env*
 !.env.example
-.next
-node_modules
-tsconfig.tsbuildinfo
+/.next
+/node_modules
+/tsconfig.tsbuildinfo
 # Not needed to build or run the app.
-.claude
-docs
+/.claude
+/docs
