@@ -12,7 +12,8 @@ export type SubscriptionItem = {
 
 /**
  * The streamed body of the panel: every plan's card in a native scroll-snap
- * row, with dots under it that mark the cards in view.
+ * row, with dots under it that mark the cards in view. Panels wide enough for
+ * every card lay the same list out as one row, without the dots.
  */
 export function SubscriptionsList({ items }: { items: SubscriptionItem[] }) {
   const { setRail, setEdges } = useSubscriptions();

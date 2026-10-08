@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * A plan's features. Icons live only in the nav bar and red square markers
- * nowhere (AGENTS.md), so each row has a CSS bullet: the small neutral round
+ * nowhere (AGENTS.md), so each row has a CSS marker: the small neutral round
  * dot /plans uses, centred in the mockup's 24px icon column so the text keeps
  * its place.
  */

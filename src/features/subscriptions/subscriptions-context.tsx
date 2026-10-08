@@ -17,7 +17,7 @@ const SubscriptionsContext = createContext<SubscriptionsState | null>(null);
 
 /**
  * Shared by the prerendered frame (Previous / Next) and the streamed cards,
- * so the frame works before the data arrives and drives the row after.
+ * so the frame's arrows appear once the cards are on screen and drive their row.
  */
 export function SubscriptionsProvider({ children }: { children: ReactNode }) {
   const [rail, setRail] = useState<HTMLElement | null>(null);

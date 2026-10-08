@@ -18,11 +18,12 @@ const TITLE_ID = "subscriptions-panel-title";
 
 /**
  * The overview's "Your subscriptions" panel: every plan (Ghost, Shield, the
- * agent plan), always listed with its status, in a carousel; each card and
- * View All open the dashboard's /plans page. A frame that prerenders (title,
- * Previous / Next, View All) around one streamed part that reads the plan
+ * agent plan), always listed with its status, in one row where they all fit
+ * and in a carousel otherwise; each card and View All open the dashboard's
+ * /plans page. A frame that prerenders (title, View All; Previous / Next
+ * join it with the cards) around one streamed part that reads the plan
  * state: the count and the cards, inside the panel's own error boundary and
- * Suspense. The title is plain text: no red square bullet (AGENTS.md).
+ * Suspense. The title is plain text: no red square marker (AGENTS.md).
  */
 export function SubscriptionsPanel() {
   return (
@@ -101,7 +102,7 @@ async function SubscriptionsData() {
   );
 }
 
-/** The cards' skeletons in the carousel, shown only after 300ms. */
+/** The cards' skeletons, laid out as the cards are (one row or the carousel), shown only after 300ms. */
 function SubscriptionsSkeleton() {
   return (
     <>
@@ -137,8 +138,11 @@ function CardSkeleton() {
         </div>
         <div className={cardStyles.text}>
           <Skeleton className="h-[17px] w-32 rounded-md bg-panel-raised" />
-          <Skeleton className="mt-[16px] h-3 w-[88%] rounded bg-white/[0.05]" />
-          <Skeleton className="mt-2 h-3 w-[60%] rounded bg-white/[0.05]" />
+          {/* The body's two 20px lines, as the card sets them, so a stacked row doesn't move when the cards land. */}
+          <div className="mt-[12.3px] flex h-10 flex-col justify-center gap-2">
+            <Skeleton className="h-3 w-[88%] rounded bg-white/[0.05]" />
+            <Skeleton className="h-3 w-[60%] rounded bg-white/[0.05]" />
+          </div>
           <div className={cn(cardStyles.features, "flex flex-col")}>
             {["one", "two", "three", "four"].map((key) => (
               <div

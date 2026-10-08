@@ -11,7 +11,9 @@ const ARROW =
 /**
  * Previous / next for the subscriptions carousel: each scrolls by one card and
  * is disabled at its end. Text, not arrows (icons live only in the nav bar).
- * Hidden for coarse pointers, where the row swipes.
+ * Hidden for coarse pointers, where the row swipes, and on panels wide enough
+ * for every card (subscriptions.module.css). Not drawn while the cards load or
+ * after they failed: there is nothing to scroll then.
  */
 export function CarouselArrows({
   prevClassName,
@@ -21,9 +23,10 @@ export function CarouselArrows({
   nextClassName?: string;
 }) {
   const { rail, edges } = useSubscriptions();
+  if (rail === null) return null;
   // While a card is off screen, a disabled arrow keeps focus (so pressing it
   // to the end doesn't drop focus); with nothing to scroll it leaves the tab order.
-  const scrollable = rail !== null && !(edges.start && edges.end);
+  const scrollable = !(edges.start && edges.end);
 
   function step(direction: 1 | -1) {
     if (!rail) return;
@@ -39,8 +42,8 @@ export function CarouselArrows({
         variant="round"
         className={cn(ARROW, prevClassName)}
         aria-label={subscriptions.previous}
-        aria-controls={rail?.id}
-        disabled={rail === null || edges.start}
+        aria-controls={rail.id}
+        disabled={edges.start}
         focusableWhenDisabled={scrollable}
         onClick={() => step(-1)}
       >
@@ -50,8 +53,8 @@ export function CarouselArrows({
         variant="round"
         className={cn(ARROW, nextClassName)}
         aria-label={subscriptions.next}
-        aria-controls={rail?.id}
-        disabled={rail === null || edges.end}
+        aria-controls={rail.id}
+        disabled={edges.end}
         focusableWhenDisabled={scrollable}
         onClick={() => step(1)}
       >

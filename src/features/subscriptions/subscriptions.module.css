@@ -6,9 +6,10 @@
  *
  * Measured from the overview mockup at 1440 (spec subs.*): header row centred
  * 37.25px below the panel's top edge, cards from 74.5px, 19.5px side insets.
- * The mockup's red square bullet is not drawn (AGENTS.md), so the title starts
+ * The mockup's red square marker is not drawn (AGENTS.md), so the title starts
  * at the side inset, flush with the cards. Narrow panels (container < 530px)
- * put Previous / Next and View All on a second row.
+ * put Previous / Next and View All on a second row. Panels from 800px show
+ * every card at once (below), with nothing to scroll.
  */
 .panel {
   container: subs / inline-size;
@@ -82,11 +83,19 @@
   margin-left: 12px;
 }
 
-/* Touch hides the arrows; View All then takes the free space itself. */
+/*
+ * Touch hides the arrows, and they aren't drawn while the cards load or after
+ * they failed (View All then follows the title); View All takes the free space
+ * itself.
+ */
 @media (pointer: coarse) {
   .view {
     margin-left: auto;
   }
+}
+
+.title + .view {
+  margin-left: auto;
 }
 
 .body {
@@ -237,6 +246,30 @@
     bottom: 7.5px;
     padding-top: 0;
     pointer-events: none;
+  }
+}
+
+/*
+ * Wide panels (from 800px: 1440 gives 288px cards) show every plan at once:
+ * one row of stacked cards (subscription-card.module.css keeps them stacked
+ * from the same 800px), each stretched to the row's height so the bars line
+ * up at the bottom. Nothing scrolls, so there are no Previous / Next and no
+ * dots. At 800px a card is about 247px wide, which still fits its chips and
+ * each feature on one line; narrower panels keep the carousel.
+ */
+@container subs (min-width: 800px) {
+  .prev,
+  .next,
+  .dots {
+    display: none;
+  }
+
+  .rail {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    overflow: visible;
+    clip-path: none;
   }
 }
 

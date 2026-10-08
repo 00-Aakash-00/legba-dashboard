@@ -18,8 +18,8 @@ type Status = SubscriptionDTO["status"];
  * empty- or error-state figure can't be borrowed here. The agent plan's own
  * figure (a switchboard, "patchboard") is still being drawn: once it lands,
  * it goes here and its atmosphere in plan-art.tsx. Until then the agent card
- * has no art, and its copy starts at the card's edge instead of beside an
- * empty slot.
+ * keeps its slot empty when stacked, so its copy lines up with the other
+ * cards', and in the wide layout starts its copy at the card's edge.
  */
 const ART: { [P in Plan]?: InteractiveKind } = {
   ghost: "ghost",
@@ -122,7 +122,11 @@ export function SubscriptionCard({
           <VendorChip />
           <StatusChip status={status} label={content.status} />
         </div>
-        {art ? <PlanArt plan={art} className={styles.art} /> : null}
+        {art ? (
+          <PlanArt plan={art} className={styles.art} />
+        ) : (
+          <div aria-hidden="true" className={styles.art} />
+        )}
         <div className={styles.text}>
           <h3
             id={titleId}
@@ -130,7 +134,8 @@ export function SubscriptionCard({
           >
             {content.title}
           </h3>
-          <p className="mt-[12.3px] font-medium text-[#93999e] text-[14.5px] leading-5 tracking-[-0.03em]">
+          {/* Never one word alone on the last line: pretty where supported, balanced elsewhere. */}
+          <p className="mt-[12.3px] text-balance font-medium text-[#93999e] text-[14.5px] leading-5 tracking-[-0.03em] supports-[text-wrap:pretty]:text-pretty">
             {content.body}
           </p>
           <PlanFeatures
