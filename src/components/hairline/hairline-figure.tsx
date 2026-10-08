@@ -21,7 +21,8 @@ export type StateKind =
   | "blankwindows"
   | "blanksheet"
   | "vending"
-  | "breaker";
+  | "breaker"
+  | "signpost";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -123,6 +124,13 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     fallback: "/images/hairline/breaker.svg",
     plate: "#121314",
     crop: [41, 41, 329, 249],
+  },
+  // 404, on the page colour: a signpost whose boards point nowhere.
+  signpost: {
+    load: () => import("./figures/signpost.js"),
+    fallback: "/images/hairline/signpost.svg",
+    plate: "#121314",
+    crop: [66, 40, 272, 253],
   },
 };
 

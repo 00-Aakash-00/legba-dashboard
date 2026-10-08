@@ -16,6 +16,7 @@ export default function NotFound() {
   return (
     <StandaloneFrame>
       <StatusScreen
+        figure="signpost"
         eyebrow={copy.eyebrow}
         title={copy.heading}
         body={copy.body}
