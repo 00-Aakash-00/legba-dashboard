@@ -35,6 +35,7 @@ export function SessionsSection() {
       className="min-h-[360px]"
     >
       <SectionBoundary
+        figure="flapboard"
         title={copy.error.title}
         body={copy.error.body}
         className="flex-1"

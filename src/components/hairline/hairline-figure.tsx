@@ -24,7 +24,8 @@ export type StateKind =
   | "breaker"
   | "signpost"
   | "fuse"
-  | "cardfile";
+  | "cardfile"
+  | "flapboard";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -147,6 +148,12 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     fallback: "/images/hairline/cardfile.svg",
     plate: "#0f1010",
     crop: [52, 49, 295, 232],
+  },
+  // Sessions failed to load: a split-flap status board with one flap stuck mid-flip.
+  flapboard: {
+    load: () => import("./figures/flapboard.js"),
+    fallback: "/images/hairline/flapboard.svg",
+    crop: [141, 71, 117, 190],
   },
 };
 
