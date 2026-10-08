@@ -43,3 +43,22 @@
     mask-position: 0 0;
   }
 }
+
+/*
+ * Height. The scroller is a size container that is as tall as its lines
+ * (`--lines` line boxes, set in code-sample.tsx, plus its padding), so the
+ * panel is never shorter than the code. When the panel is stretched taller
+ * (the API card's wide layout grows it with the card), the rows share the
+ * extra: each line box takes an equal part of the height, never less than
+ * the scroller's own line height (1lh, the mockup's 2.186em), so the lines
+ * spread evenly and leave no empty band. Its overflow-y is hidden, so a
+ * sub-pixel remainder can't make it scroll vertically.
+ */
+.scroller {
+  container-type: size;
+  contain-intrinsic-block-size: calc(var(--lines) * 1lh);
+}
+
+.lines {
+  line-height: max(1lh, calc(100cqh / var(--lines)));
+}

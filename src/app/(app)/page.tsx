@@ -20,7 +20,10 @@ export default function OverviewPage() {
       <ApiKeysHero />
       <InstancesCard />
       <SubscriptionsPanel />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-rows-[264.5px_260px] xl:gap-4">
+      {/* Rows sized by the docs cards (their min-heights are the mockup's
+          heights). On desktop the stack stretches to the subscriptions
+          panel's height, and the two rows share the extra equally. */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:gap-4">
         <ProductDocsCard />
         <ApiDocsCard />
       </div>

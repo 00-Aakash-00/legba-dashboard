@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { type CSSProperties, Fragment } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { overview } from "@/content/copy";
 import { cn } from "@/lib/utils";
@@ -56,14 +56,18 @@ const tabCell: Record<CodeSampleId, string> = {
  * focused); line numbers stay put and are left out of copied text. While
  * lines run past its right edge, the edge fades into the panel colour so
  * they read as scrollable; the fade goes once the lines are scrolled to
- * their end (code-sample.module.css).
+ * their end (code-sample.module.css). Stretched taller than its lines need
+ * (as a grid item), the panel spreads the lines evenly over its height, so
+ * there is no empty band under the code. Grid, not flex, carries the height
+ * down to the scroller: Chrome resolves container units to 0 in a flex item
+ * whose flex container has only a min-height.
  */
 export function CodeSample() {
   const copy = overview.docs.api;
   return (
     <section
       aria-label={copy.codeLabel}
-      className="relative z-10 rounded-[10px] border border-line-soft bg-code"
+      className="relative z-10 grid grid-cols-1 rounded-[10px] border border-line-soft bg-code"
     >
       <Tabs defaultValue="curl" className="flex-col gap-0">
         <TabsList
@@ -92,12 +96,13 @@ export function CodeSample() {
           <TabsContent
             key={id}
             value={id}
+            style={{ "--lines": lines.length } as CSSProperties}
             className={cn(
               styles.scroller,
-              "overflow-x-auto overscroll-x-contain rounded-b-[9px] data-ending-style:hidden pt-[11.3px] pr-[1.5px] pb-[13.8px] font-medium font-mono text-[9px] leading-[2.186em] [scrollbar-color:#2a2b2d_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-solid focus-visible:-outline-offset-2 pointer-coarse:text-[11px]",
+              "overflow-x-auto overflow-y-hidden overscroll-x-contain rounded-b-[9px] data-ending-style:hidden pt-[11.3px] pr-[1.5px] pb-[13.8px] font-medium font-mono text-[9px] leading-[2.186em] [scrollbar-color:#2a2b2d_transparent] [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-solid focus-visible:-outline-offset-2 pointer-coarse:text-[11px]",
             )}
           >
-            <div className="flex w-max min-w-full pr-8">
+            <div className={cn(styles.lines, "flex w-max min-w-full pr-8")}>
               <div
                 aria-hidden
                 className="sticky left-0 w-[39.2px] shrink-0 select-none bg-code pl-[13.3px] text-ink-faint"

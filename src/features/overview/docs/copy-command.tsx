@@ -101,7 +101,8 @@ export function CopyCommand({ className }: { className?: string }) {
       {/* Always mounted so what it says is announced. The confirmation is
           spoken only (the button says Copied); the failure shows the app's
           copy-failure note under the panel, set at 12px so it stays on two
-          lines and the card (a fixed grid row on desktop) keeps its height. */}
+          lines and fits within the card's mockup height (desktop cards are
+          never shorter), so the card keeps its height. */}
       <div aria-live="polite">
         {state === "failed" ? (
           <CopyFailed className="mt-1 w-(--cmd-w) max-w-full text-[12px] leading-4 tracking-[-0.02em]" />
