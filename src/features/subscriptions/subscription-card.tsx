@@ -129,7 +129,7 @@ export function SubscriptionCard({
             {content.title}
           </h3>
           {/* Never one word alone on the last line: pretty where supported, balanced elsewhere. */}
-          <p className="mt-[12.3px] text-balance font-medium text-[#93999e] text-[14.5px] leading-5 tracking-[-0.03em] supports-[text-wrap:pretty]:text-pretty">
+          <p className="mt-[12.3px] min-h-10 text-balance font-medium text-[#93999e] text-[14.5px] leading-5 tracking-[-0.03em] supports-[text-wrap:pretty]:text-pretty">
             {content.body}
           </p>
           <PlanFeatures

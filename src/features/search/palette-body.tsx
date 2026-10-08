@@ -172,10 +172,10 @@ export function PaletteBody({
       <CommandList
         className={cn(
           paletteBodyClassName,
-          "max-h-none scroll-py-2 overscroll-contain px-2 pb-2",
+          "max-h-none scroll-py-2 overscroll-contain px-2 pb-2 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col",
         )}
       >
-        <CommandEmpty className="flex flex-col items-center gap-2 px-6 py-10">
+        <CommandEmpty className="my-auto flex flex-col items-center gap-2 px-6 py-10">
           <HairlineFigure kind="blanksheet" decorative className="mb-3 h-26" />
           <p className="font-semibold text-[15px] text-bone tracking-[-0.01em]">
             {search.empty(query)}

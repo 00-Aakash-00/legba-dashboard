@@ -73,7 +73,7 @@ export function SectionError({
       {/* Only the message is live, so the button's label changes don't re-announce it. */}
       <div role="alert" className="flex flex-col items-center gap-2">
         <p className="font-semibold text-base text-foreground">{title}</p>
-        <p className="max-w-sm text-muted-foreground text-sm leading-relaxed">
+        <p className="max-w-sm text-balance text-muted-foreground text-sm leading-relaxed supports-[text-wrap:pretty]:text-pretty">
           {body}
         </p>
         {reference ? (
