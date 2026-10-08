@@ -1,5 +1,6 @@
 /*
- * The host of the Ghost / Shield hairline figures in the subscription cards.
+ * The host of the Ghost / Shield / Patchboard hairline figures in the
+ * subscription cards.
  *
  * The slot is the mockup's illustration box (215 x 305). Everything here is in
  * percentages of it, so it scales with the card. The figure's 400 x 320 stage
@@ -82,6 +83,12 @@
 .shield > .figure {
   --hairline-left: -46.28%;
   --hairline-top: -9.869%;
+}
+
+/* Patchboard: the switchboard's cabinet fills the slot's height, its keyshelf across the bottom. */
+.patchboard > .figure {
+  --hairline-left: -41.95%;
+  --hairline-top: -2.918%;
 }
 
 /* A ring of light on each of the shield figure's two rings, under its own line. */

@@ -51,7 +51,14 @@ export const subscriptions = {
   /** The card's bar: on a plan that is on, and on one that isn't (or is Free). */
   manage: "Manage plan",
   viewPlans: "View plans",
-  agent: { title: "Agent plan" },
+  agent: {
+    title: "Agent plan",
+    /** The illustration's name while it is a still picture. */
+    art: "Agent plan illustration: an operator's switchboard drawn in fine lines.",
+    /** Its name once it answers the pointer and the arrow keys. */
+    artLive:
+      "Agent plan illustration: an operator's switchboard. A cord plugs into the jack under the pointer and that line lights up.",
+  },
   loading: "Loading your subscriptions",
   error: {
     title: "Couldn't load your subscriptions",

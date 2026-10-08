@@ -15,15 +15,13 @@ type Status = SubscriptionDTO["status"];
 
 /**
  * Each card's hairline figure: card figures only (InteractiveKind), so an
- * empty- or error-state figure can't be borrowed here. The agent plan's own
- * figure (a switchboard, "patchboard") is still being drawn: once it lands,
- * it goes here and its atmosphere in plan-art.tsx. Until then the agent card
- * keeps its slot empty when stacked, so its copy lines up with the other
- * cards', and in the wide layout starts its copy at the card's edge.
+ * empty- or error-state figure can't be borrowed here. The agent plan's is a
+ * switchboard; its atmosphere is in plan-art.tsx with the others'.
  */
-const ART: { [P in Plan]?: InteractiveKind } = {
+const ART: Record<Plan, InteractiveKind> = {
   ghost: "ghost",
   shield: "shield",
+  agent: "patchboard",
 };
 
 /** Where each card leads: its plan's section on /plans (the ids of that page's section headings). */
@@ -117,16 +115,12 @@ export function SubscriptionCard({
   const titleId = `subscription-${plan}-title`;
   return (
     <article aria-labelledby={titleId} data-plan={plan} className={styles.card}>
-      <div className={cn(styles.layout, !art && styles.bare)}>
+      <div className={styles.layout}>
         <div className={styles.chips}>
           <VendorChip />
           <StatusChip status={status} label={content.status} />
         </div>
-        {art ? (
-          <PlanArt plan={art} className={styles.art} />
-        ) : (
-          <div aria-hidden="true" className={styles.art} />
-        )}
+        <PlanArt plan={art} className={styles.art} />
         <div className={styles.text}>
           <h3
             id={titleId}

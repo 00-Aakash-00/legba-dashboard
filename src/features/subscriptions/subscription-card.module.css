@@ -39,10 +39,7 @@
   gap: 12px;
 }
 
-/*
- * The illustration slot, centred under the chips. A plan whose figure isn't
- * drawn yet keeps it empty, so its copy lines up with the other cards'.
- */
+/* The illustration slot, centred under the chips. */
 .art {
   position: relative;
   z-index: 1;
@@ -107,19 +104,6 @@
 
     .manage {
       margin-right: 4.5px;
-    }
-
-    /*
-     * A card without art (the agent plan, until its figure lands): no empty
-     * column. The copy keeps its height in the row and starts at the card's
-     * edge, under the vendor chip.
-     */
-    .bare {
-      --art: 19px;
-    }
-
-    .bare .art {
-      display: none;
     }
   }
 }

@@ -34,6 +34,7 @@ export default function ApiKeysPage() {
     >
       <SectionCard headingId={HEADING_ID} title={apiKeys.section}>
         <SectionBoundary
+          figure="keyclip"
           title={apiKeys.error.title}
           body={apiKeys.error.body}
           className="flex-1"

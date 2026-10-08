@@ -3,7 +3,7 @@ import {
   HairlineFigure,
   type InteractiveKind,
 } from "@/components/hairline/hairline-figure";
-import { plans } from "@/content/copy";
+import { plans, subscriptions } from "@/content/copy";
 import { cn } from "@/lib/utils";
 import styles from "./plan-art.module.css";
 
@@ -118,6 +118,37 @@ const ATMOSPHERE: Record<InteractiveKind, Atmosphere> = {
     ],
     front: [{ kind: "streak", box: [70.47, 20.16, 7.44], from: "#c8142e" }],
   },
+  // The switchboard (the agent plan; the mockup has no agent card, so its
+  // lights follow Ghost's and Shield's): the light comes from the upper right
+  // and catches the cabinet's right edge at the routed line's plug, the bright
+  // mark at rest. No streak crosses the drawing in any pose.
+  patchboard: {
+    dust: {
+      seed: 23,
+      count: 230,
+      centre: [109.8, 157.1],
+      radii: [118.2, 163.8],
+      hot: [
+        [155.4, 82.6, 44],
+        [53.7, 288.9, 40],
+      ],
+      halo: { centre: [82.4, 85.3], radii: [68.6, 74], count: 200, spread: 11 },
+    },
+    back: [
+      // The cabinet's lit right edge, above, at and below the routed line's plug.
+      glow(149.1, 56.6, 10, 16, 0.42),
+      glow(152.4, 82.6, 13, 22, 0.62),
+      glow(154, 112.6, 9, 18, 0.3),
+      // Low on the left, under the keyshelf's near end.
+      glow(55.7, 290.9, 30, 18, 0.26),
+    ],
+    front: [
+      { kind: "streak", box: [74.1, 24.78, 15.81], from: "#c41e37" },
+      { kind: "streak", box: [75.33, 28.39, 26.98], from: "#f72843" },
+      { kind: "streak", box: [-5.58, 49.75, 14.96], from: "#e5253e" },
+      { kind: "streak", box: [95.81, 82.3, 18.6], from: "#b82d3f" },
+    ],
+  },
 };
 
 /** A small seeded PRNG (mulberry32): the dust is the same on every render. */
@@ -203,6 +234,7 @@ function batch(motes: Mote[]) {
 const DUST = {
   ghost: batch(scatter(ATMOSPHERE.ghost.dust)),
   shield: batch(scatter(ATMOSPHERE.shield.dust)),
+  patchboard: batch(scatter(ATMOSPHERE.patchboard.dust)),
 };
 
 const pct = (n: number) => `${n}%`;
@@ -230,6 +262,13 @@ function Lights({ lights }: { lights: Light[] }) {
     );
   });
 }
+
+/** Each figure's names, from the copy of the card it is drawn for. */
+const LABELS: Record<InteractiveKind, { art: string; artLive: string }> = {
+  ghost: plans.ghost,
+  shield: plans.shield,
+  patchboard: subscriptions.agent,
+};
 
 /** The card's illustration slot: the plan's hairline figure in its host atmosphere. */
 export function PlanArt({
@@ -265,8 +304,8 @@ export function PlanArt({
       </div>
       <HairlineFigure
         kind={plan}
-        label={plans[plan].art}
-        liveLabel={plans[plan].artLive}
+        label={LABELS[plan].art}
+        liveLabel={LABELS[plan].artLive}
         className={styles.figure}
       />
       <div className={styles.front} aria-hidden="true">

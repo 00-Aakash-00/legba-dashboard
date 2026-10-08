@@ -14,7 +14,7 @@ import type { HairlineFigureModule, HairlineKernel } from "./figures/figure";
 import styles from "./hairline-figure.module.css";
 
 /** Figures people can drive with the keyboard (product art in a card). */
-export type InteractiveKind = "ghost" | "shield";
+export type InteractiveKind = "ghost" | "shield" | "patchboard";
 /** Figures that decorate one empty or error state (never focusable). */
 export type StateKind =
   | "keyhooks"
@@ -25,7 +25,8 @@ export type StateKind =
   | "signpost"
   | "fuse"
   | "cardfile"
-  | "flapboard";
+  | "flapboard"
+  | "keyclip";
 /** Every figure is drawn for, and used in, exactly one place (AGENTS.md). */
 export type HairlineKind = InteractiveKind | StateKind;
 
@@ -96,6 +97,17 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     ],
     orientation: "vertical",
   },
+  // The nearest parked cord seats its plug in the jack under the pointer: up the
+  // board, line 1 (bottom left) to line 20 (top right).
+  patchboard: {
+    load: () => import("./figures/patchboard.js"),
+    fallback: "/images/hairline/patchboard.svg",
+    scrub: [
+      [156, 217],
+      [220, 60],
+    ],
+    orientation: "vertical",
+  },
   // API keys, none yet: a key rack with every hook bare.
   keyhooks: {
     load: () => import("./figures/keyhooks.js"),
@@ -154,6 +166,12 @@ const FIGURES: { [K in InteractiveKind]: DrivableEntry } & {
     load: () => import("./figures/flapboard.js"),
     fallback: "/images/hairline/flapboard.svg",
     crop: [141, 71, 117, 190],
+  },
+  // API keys failed to load: an open carabiner above the key ring it let go.
+  keyclip: {
+    load: () => import("./figures/keyclip.js"),
+    fallback: "/images/hairline/keyclip.svg",
+    crop: [118, 49, 163, 234],
   },
 };
 
