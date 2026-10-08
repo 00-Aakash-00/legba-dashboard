@@ -49,7 +49,7 @@ export function RowsSkeleton({
           <Skeleton className="size-9 shrink-0 rounded-[10px]" />
           <div className="flex min-w-0 flex-1 flex-col gap-2.5">
             <Bar className={cn("max-w-[60%]", width)} />
-            <Bar className="h-2.5 w-24 bg-[#17191a]" />
+            <Bar className="h-2.5 w-24 opacity-70" />
           </div>
         </div>
       ))}
