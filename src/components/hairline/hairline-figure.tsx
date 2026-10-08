@@ -290,6 +290,7 @@ export function HairlineFigure({
       className={cn(styles.figure, className)}
       style={hostStyle(entry)}
       data-figure={kind}
+      data-cropped={entry.crop ? "" : undefined}
       data-ready={ready || undefined}
       role={decorative || ready ? undefined : "img"}
       aria-label={decorative || ready ? undefined : label}

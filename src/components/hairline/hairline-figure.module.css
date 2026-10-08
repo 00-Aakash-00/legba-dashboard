@@ -20,6 +20,17 @@
   border-radius: 12px;
 }
 
+/*
+ * A cropped figure (an empty or error state) fills its slot, and its stage
+ * reaches past it. Clip paint and hit area a short way outside the slot, so
+ * hover poses keep a little room while the stage never covers (or blocks
+ * clicks on) the heading and buttons around it.
+ */
+.figure[data-cropped] {
+  overflow: clip;
+  overflow-clip-margin: 12px;
+}
+
 .box {
   position: absolute;
   left: var(--hairline-left, 0%);
