@@ -96,6 +96,8 @@ The skill predates Next 16.3/16.4 and React 19.3. Where they disagree, these win
   Playwright emulation, named as such in reports.
 - QA runs in independent subagents per the qa-guidelines skill; QA agents report, never fix.
 - QA agents and any agent that drives the browser run on **Sonnet**, not Opus (user rule).
+- **Don't over-review** (user rule): no judge/blind-reader loops or re-review cycles. Every review is a visual
+  check in Claude in Chrome against the running app; fix what it shows, once.
 - QA starts only once everything is built: clear the caches (`.next/`, `node_modules/.cache/`), rebuild
   from clean (`pnpm build`), start that build, then QA it (user rule).
 
