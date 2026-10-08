@@ -80,7 +80,9 @@ Below 1024 the showcase becomes a compact banner and the form takes the page:
 ## Overview
 
 1024–1279: grid `minmax(0,3fr) minmax(0,2fr)`; hero | instances; subscriptions | docs stack. The
-subscriptions carousel shows one card plus a peek, with the arrows.
+subscriptions carousel shows one card plus a peek, with the arrows. Wherever the panel is at least 800px
+wide, all three plan cards (Ghost, Shield, Agent plan) sit side by side in the stacked layout instead, with
+no arrows.
 
 Below 1024 (one column, order: hero, instances, subscriptions, docs):
 

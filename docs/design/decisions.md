@@ -20,7 +20,8 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | Icons | **Only in the nav bar and on the login screens** (user, 2026-10-07): the header (tabs, search, support/docs, Top-Up), the mobile top bar and tab bar, and login/register/forgot/SSO. Everywhere else buttons and links are text, lists use CSS bullets, toasts and dialogs have no glyphs. |
 | Empty and error states | Each shows a hairline figure (hairline-create skill) drawn for that page, never an icon tile (user, 2026-10-07). |
 | Unique figures | Every hairline figure is used in exactly one place and no figure is a variant of another (user, 2026-10-07). |
-| Plans | "Your subscriptions" lists every plan with its status (Inactive / Free plan / Active); cards and View All open the dashboard's own `/plans` page, where people subscribe (placeholder, no payment) (user, 2026-10-07). Nested boxes follow outer radius = inner radius + padding. |
+| Plans | "Your subscriptions" lists every plan with its status (Inactive / Free plan / Active); cards and View All open the dashboard's own `/plans` page, where people subscribe (placeholder, no payment) (user, 2026-10-07). Nested boxes follow outer radius = inner radius + padding. All three plan cards are visible side by side wherever they fit (from 800px of panel width, stacked card layout); a carousel only below that (user, 2026-10-07). |
+| Red squares | No red rounded-square markers anywhere: section bullets, list bullets, LED tiles, the rack art's glyphs (user, 2026-10-07: "I dont like the way this is used everywhere"). Titles are plain text; lists use a small neutral dot. Modals have no red top glow. |
 | QA | QA and browser-driving agents run on Sonnet; QA starts only after everything is built, the caches are cleared and the app is rebuilt from clean (user, 2026-10-07). |
 | Chrome | Claude in Chrome runs only on this Mac's Chrome. |
 
@@ -34,7 +35,11 @@ Every deviation from the mockups or from a default is recorded here with its rea
 | Showcase slide 1 heading | One line | Wraps to two lines from 1024 to 1440px, so the mark sits about 33px higher | The approved tagline is longer; copy stays word for word. |
 | Doll mark (lockup and showcase) | Face recoloured | The locked mark exactly as provided (its black face shows) | Logo decision. |
 | "Remember me" | Checked | Defaults to checked (visual only: there is no auth) | Matches the mockup. |
-| Button and list icons (Create API Key key + chevron, Launch ↗, View All ↗, Explore ↗, carousel arrows, Manage ›, feature icons, copy glyphs) | Icons | Text labels; Previous/Next as text; red CSS square bullets for features | The icons rule. |
+| Button and list icons (Create API Key key + chevron, Launch ↗, View All ↗, Explore ↗, carousel arrows, Manage ›, feature icons, copy glyphs) | Icons | Text labels; Previous/Next as text (only where the cards don't all fit); neutral dots for features | The icons rule. |
+| "■ Your subscriptions" and section bullets | Red square bullet | Plain title text | The red-squares rule. |
+| Subscriptions panel at 1440 | Two wide cards + filter + arrows | Three stacked cards (Ghost, Shield, Agent plan) with statuses, no filter, no arrows | The plans decision; the panel is taller, so the docs column stretches to match. |
+| Sessions card rack art | Red rounded-square LEDs on each row | A small unlit ring per row | The red-squares rule. |
+| Error screens | One "Something went wrong" screen | Three scopes, each with its own figure: a page (plug), the dashboard frame ("The dashboard didn't load", breaker), the whole app (fuse) | Unique figures; the frame error says what actually failed. |
 | Empty and error states | Icon tile | The page's own hairline figure | The empty/error-state and unique-figure rules. |
 
 ## Engineering decisions
