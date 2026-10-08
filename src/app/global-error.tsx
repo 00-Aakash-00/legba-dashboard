@@ -38,6 +38,7 @@ export default function GlobalError({
         <title>{copy.title}</title>
         <StandaloneFrame>
           <StatusScreen
+            figure="fuse"
             eyebrow={copy.eyebrow}
             title={copy.heading}
             body={copy.body}
